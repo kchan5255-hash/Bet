@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { OddsPayload, RaceOdds, RunnerOdds } from "./types";
-import { supabase } from "./supabase";
+import { getSupabase } from "./supabase";
 import { getMeetingDate } from "./data";
 
 const VENUE = process.env.NEXT_PUBLIC_VENUE || "HV";
@@ -85,6 +85,7 @@ export function useLiveOdds() {
     setLoading(true);
     setError(null);
     try {
+      const supabase = getSupabase();
       const [oddsRes, metaRes] = await Promise.all([
         supabase
           .from("odds")
@@ -124,6 +125,7 @@ export function useLiveOdds() {
     if (!date) return;
     refresh();
 
+    const supabase = getSupabase();
     const filter = `date=eq.${date}`;
     const channel = supabase
       .channel(`live-odds-${date}-${VENUE}`)
