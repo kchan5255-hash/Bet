@@ -36,12 +36,21 @@ export function ResultsList({ data }: ResultsListProps) {
       initialKind: kind,
     });
 
+  if (data.races.length === 0) {
+    return (
+      <p className="text-sm text-text-muted text-center py-8">
+        該賽馬日暫無資料。
+      </p>
+    );
+  }
+
   return (
     <div className="space-y-3">
       {data.races.map((race) => (
         <RaceCard
           key={race.raceNo}
           race={race}
+          date={data.date}
           onVideo={(kind) => openVideo(race, kind)}
         />
       ))}
@@ -56,14 +65,16 @@ export function ResultsList({ data }: ResultsListProps) {
 
 function RaceCard({
   race,
+  date,
   onVideo,
 }: {
   race: ResultRace;
+  date: string;
   onVideo: (kind: VideoKind) => void;
 }) {
   const time = formatPostTimeShort(race.postTime);
   const top4Nos = race.top4.map((r) => r.no);
-  const detailHref = `/results/${race.raceNo}`;
+  const detailHref = `/results/${race.raceNo}?date=${date}`;
 
   return (
     <article className="rounded-xl border-l-4 border-l-precision border border-border-subtle bg-bg-elevated overflow-hidden">

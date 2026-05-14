@@ -50,14 +50,16 @@ export function ResultDetailClient({
   dividends,
 }: ResultDetailClientProps) {
   const router = useRouter();
+  const backHref = `/results?date=${date}`;
 
   return (
     <div className="space-y-3">
-      <MobileHeader />
+      <MobileHeader backHref={backHref} />
+      <DesktopHeader backHref={backHref} />
       <RaceSwitcher
         races={races}
         currentRaceNo={currentRaceNo}
-        onSelect={(no) => router.replace(`/results/${no}`)}
+        onSelect={(no) => router.replace(`/results/${no}?date=${date}`)}
       />
 
       <RaceMetaCard race={race} date={date} venueName={venueName} />
@@ -69,11 +71,11 @@ export function ResultDetailClient({
   );
 }
 
-function MobileHeader() {
+function MobileHeader({ backHref }: { backHref: string }) {
   return (
     <div className="md:hidden flex items-center gap-3">
       <Link
-        href="/results"
+        href={backHref}
         aria-label="返回賽果列表"
         className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-bg-elevated text-text-muted hover:text-text transition"
       >
@@ -81,6 +83,23 @@ function MobileHeader() {
       </Link>
       <h1 className="flex-1 text-base font-bold text-center">賽果派彩</h1>
       <span className="w-9" />
+    </div>
+  );
+}
+
+function DesktopHeader({ backHref }: { backHref: string }) {
+  return (
+    <div className="hidden md:flex items-center gap-3 mb-2">
+      <Link
+        href={backHref}
+        aria-label="返回賽果列表"
+        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border-subtle bg-bg-elevated text-text-muted hover:text-text transition"
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </Link>
+      <h1 className="text-2xl md:text-3xl font-black tracking-tight">
+        賽果派彩
+      </h1>
     </div>
   );
 }

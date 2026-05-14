@@ -1,6 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
 import {
   getResults,
   getResultRace,
@@ -8,32 +6,40 @@ import {
   getModelRanking,
   getRunnerScores,
   groupDividends,
+  getMeetingDates,
+  getLatestMeetingDate,
   formatPostTimeShort,
 } from "@/lib/results";
 import { ResultDetailClient } from "@/components/ResultDetailClient";
 
-export function generateStaticParams() {
-  return getResults().races.map((r) => ({ raceNo: String(r.raceNo) }));
-}
-
 interface ResultDetailPageProps {
   params: Promise<{ raceNo: string }>;
+  searchParams: Promise<{ date?: string }>;
 }
 
 export default async function ResultDetailPage({
   params,
+  searchParams,
 }: ResultDetailPageProps) {
-  const { raceNo: raceNoStr } = await params;
+  const [{ raceNo: raceNoStr }, { date }] = await Promise.all([
+    params,
+    searchParams,
+  ]);
   const raceNo = Number(raceNoStr);
   if (!Number.isFinite(raceNo)) notFound();
 
-  const data = getResults();
-  const race = getResultRace(raceNo);
+  const meetingDates = getMeetingDates();
+  const validDates = new Set(meetingDates.map((d) => d.date));
+  const targetDate =
+    date && validDates.has(date) ? date : getLatestMeetingDate();
+
+  const data = getResults(targetDate);
+  const race = getResultRace(targetDate, raceNo);
   if (!race) notFound();
 
-  const modelRanking = getModelRanking(raceNo);
-  const scores = getRunnerScores(raceNo);
-  const dividends = groupDividends(getDividends(raceNo));
+  const modelRanking = getModelRanking(targetDate, raceNo);
+  const scores = getRunnerScores(targetDate, raceNo);
+  const dividends = groupDividends(getDividends(targetDate, raceNo));
 
   const top4 = race.top4.map((r) => ({
     plc: r.plc,
@@ -49,19 +55,6 @@ export default async function ResultDetailPage({
 
   return (
     <div className="mx-auto max-w-3xl px-3 md:px-6 py-3 md:py-6">
-      <header className="hidden md:flex items-center gap-3 mb-5">
-        <Link
-          href="/results"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border-subtle bg-bg-elevated text-text-muted hover:text-text transition"
-          aria-label="返回賽果列表"
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </Link>
-        <h1 className="text-2xl md:text-3xl font-black tracking-tight">
-          賽果派彩
-        </h1>
-      </header>
-
       <ResultDetailClient
         date={data.date}
         venue={data.venue}

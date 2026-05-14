@@ -1,5 +1,5 @@
-import resultsData from "@/data/race-results.json";
-import dividendsData from "@/data/race-dividends.json";
+import resultsByDate from "@/data/race-results-by-date.json";
+import dividendsByDate from "@/data/dividends-by-date.json";
 import analysisResults from "@/data/analysis-results.json";
 import type { AnalysisResults, Runner } from "./types";
 
@@ -39,92 +39,63 @@ export interface ResultsPayload {
   races: ResultRace[];
 }
 
-export function getResults(): ResultsPayload {
-  return resultsData as ResultsPayload;
-}
-
-export interface DividendRow {
-  pool: string;
-  combo: string;
-  dividend: string;
-}
-
-interface DividendsPayload {
+export interface DateMeta {
   date: string;
   venue: string;
-  races: { raceNo: number; dividends: DividendRow[] }[];
+  venueName: string;
+  raceCount: number;
 }
 
-export function getDividends(raceNo: number): DividendRow[] {
-  const data = dividendsData as DividendsPayload;
-  const entry = data.races.find((r) => r.raceNo === raceNo);
-  return entry?.dividends ?? [];
+interface ResultsByDate {
+  dates: DateMeta[];
+  byDate: Record<string, ResultsPayload>;
 }
 
-export interface PoolGroup {
-  pool: string;
-  rows: DividendRow[];
+interface DividendsByDate {
+  dates: string[];
+  byDate: Record<
+    string,
+    {
+      date: string;
+      venue: string;
+      venueName: string;
+      races: { raceNo: number; dividends: DividendRow[] }[];
+    }
+  >;
 }
 
-const POOL_ORDER = [
-  "獨贏",
-  "位置",
-  "連贏",
-  "位置Q",
-  "二重彩",
-  "三重彩",
-  "單T",
-  "四連環",
-  "四重彩",
-  "三T",
-  "六環彩",
-];
+const RESULTS = resultsByDate as ResultsByDate;
+const DIVIDENDS = dividendsByDate as DividendsByDate;
 
-export function groupDividends(rows: DividendRow[]): PoolGroup[] {
-  const map = new Map<string, DividendRow[]>();
-  for (const r of rows) {
-    if (!map.has(r.pool)) map.set(r.pool, []);
-    map.get(r.pool)!.push(r);
+export function getMeetingDates(): DateMeta[] {
+  return RESULTS.dates;
+}
+
+export function getLatestMeetingDate(): string {
+  const dates = RESULTS.dates;
+  return dates[dates.length - 1]?.date ?? "";
+}
+
+export function getResults(date?: string): ResultsPayload {
+  const target = date ?? getLatestMeetingDate();
+  const payload = RESULTS.byDate[target];
+  if (!payload) {
+    return {
+      date: target,
+      venue: "",
+      venueName: "",
+      scrapedAt: "",
+      races: [],
+    };
   }
-  return [...map.entries()]
-    .map(([pool, rs]) => ({ pool, rows: rs }))
-    .sort((a, b) => {
-      const ai = POOL_ORDER.indexOf(a.pool);
-      const bi = POOL_ORDER.indexOf(b.pool);
-      if (ai === -1 && bi === -1) return 0;
-      if (ai === -1) return 1;
-      if (bi === -1) return -1;
-      return ai - bi;
-    });
+  return payload;
 }
 
-export function getResultRace(raceNo: number): ResultRace | undefined {
-  return getResults().races.find((r) => r.raceNo === raceNo);
-}
-
-export function getModelRanking(raceNo: number): Map<string, number> {
-  const races = analysisResults as AnalysisResults;
-  const race = races.find((r) => r.raceNo === raceNo);
-  const map = new Map<string, number>();
-  if (!race) return map;
-  const sorted = [...race.runners].sort(
-    (a: Runner, b: Runner) => b.modelProbability - a.modelProbability,
-  );
-  sorted.forEach((r, idx) => {
-    map.set(r.no, idx + 1);
-  });
-  return map;
-}
-
-export function getRunnerScores(raceNo: number): Map<string, number> {
-  const races = analysisResults as AnalysisResults;
-  const race = races.find((r) => r.raceNo === raceNo);
-  const map = new Map<string, number>();
-  if (!race) return map;
-  for (const r of race.runners) {
-    map.set(r.no, Math.round(r.rawScore * 100));
-  }
-  return map;
+export function getResultRace(
+  date: string,
+  raceNo: number,
+): ResultRace | undefined {
+  return getResults(date).races.find((r) => r.raceNo === raceNo);
 }
 
 export type VideoKind =
@@ -187,14 +158,6 @@ export function buildVideoUrl(
   return `${VIDEO_HOST}${VIDEO_PATH}?${params.toString()}`;
 }
 
-export function buildAllInOneReplayUrl(
-  date: string,
-  venue: string,
-  raceNo: number,
-): string {
-  return buildVideoUrl("replay", date, venue, raceNo);
-}
-
 export function buildResultPageUrl(
   date: string,
   venue: string,
@@ -223,4 +186,87 @@ export function weekdayLabel(date: string): string {
   const d = new Date(`${date}T00:00:00+08:00`);
   if (Number.isNaN(d.getTime())) return "";
   return ["週日", "週一", "週二", "週三", "週四", "週五", "週六"][d.getDay()];
+}
+
+export interface DividendRow {
+  pool: string;
+  combo: string;
+  dividend: string;
+}
+
+export function getDividends(date: string, raceNo: number): DividendRow[] {
+  const day = DIVIDENDS.byDate[date];
+  if (!day) return [];
+  const entry = day.races.find((r) => r.raceNo === raceNo);
+  return entry?.dividends ?? [];
+}
+
+export interface PoolGroup {
+  pool: string;
+  rows: DividendRow[];
+}
+
+const POOL_ORDER = [
+  "獨贏",
+  "位置",
+  "連贏",
+  "位置Q",
+  "二重彩",
+  "三重彩",
+  "單T",
+  "四連環",
+  "四重彩",
+  "三T",
+  "六環彩",
+];
+
+export function groupDividends(rows: DividendRow[]): PoolGroup[] {
+  const map = new Map<string, DividendRow[]>();
+  for (const r of rows) {
+    if (!map.has(r.pool)) map.set(r.pool, []);
+    map.get(r.pool)!.push(r);
+  }
+  return [...map.entries()]
+    .map(([pool, rs]) => ({ pool, rows: rs }))
+    .sort((a, b) => {
+      const ai = POOL_ORDER.indexOf(a.pool);
+      const bi = POOL_ORDER.indexOf(b.pool);
+      if (ai === -1 && bi === -1) return 0;
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
+    });
+}
+
+export function getModelRanking(
+  date: string,
+  raceNo: number,
+): Map<string, number> {
+  const map = new Map<string, number>();
+  if (date !== "2026-05-13") return map;
+  const races = analysisResults as AnalysisResults;
+  const race = races.find((r) => r.raceNo === raceNo);
+  if (!race) return map;
+  const sorted = [...race.runners].sort(
+    (a: Runner, b: Runner) => b.modelProbability - a.modelProbability,
+  );
+  sorted.forEach((r, idx) => {
+    map.set(r.no, idx + 1);
+  });
+  return map;
+}
+
+export function getRunnerScores(
+  date: string,
+  raceNo: number,
+): Map<string, number> {
+  const map = new Map<string, number>();
+  if (date !== "2026-05-13") return map;
+  const races = analysisResults as AnalysisResults;
+  const race = races.find((r) => r.raceNo === raceNo);
+  if (!race) return map;
+  for (const r of race.runners) {
+    map.set(r.no, Math.round(r.rawScore * 100));
+  }
+  return map;
 }
