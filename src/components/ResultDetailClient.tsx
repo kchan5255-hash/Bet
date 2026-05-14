@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, Trophy, Wallet } from "lucide-react";
 import type { PoolGroup } from "@/lib/results";
@@ -15,6 +16,16 @@ interface RaceMeta {
   course: string;
   going: string;
   time: string;
+}
+
+interface RaceSwitcherEntry {
+  raceNo: number;
+  postTime: string;
+  className: string;
+  distance: number;
+  going: string;
+  course: string;
+  raceName: string;
 }
 
 interface Top4Entry {
@@ -33,7 +44,7 @@ interface ResultDetailClientProps {
   date: string;
   venue: string;
   venueName: string;
-  races: { raceNo: number; postTime: string }[];
+  races: RaceSwitcherEntry[];
   currentRaceNo: number;
   race: RaceMeta;
   top4: Top4Entry[];
@@ -42,10 +53,8 @@ interface ResultDetailClientProps {
 
 export function ResultDetailClient({
   date,
-  venueName,
   races,
   currentRaceNo,
-  race,
   top4,
   dividends,
 }: ResultDetailClientProps) {
@@ -61,8 +70,6 @@ export function ResultDetailClient({
         currentRaceNo={currentRaceNo}
         onSelect={(no) => router.replace(`/results/${no}?date=${date}`)}
       />
-
-      <RaceMetaCard race={race} date={date} venueName={venueName} />
 
       <ResultsTable top4={top4} />
 
@@ -109,71 +116,78 @@ function RaceSwitcher({
   currentRaceNo,
   onSelect,
 }: {
-  races: { raceNo: number; postTime: string }[];
+  races: RaceSwitcherEntry[];
   currentRaceNo: number;
   onSelect: (raceNo: number) => void;
 }) {
+  const current = races.find((r) => r.raceNo === currentRaceNo) ?? races[0];
+  const activeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    activeRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [currentRaceNo]);
+
+  if (!current) return null;
+
   return (
-    <nav
-      aria-label="場次切換"
-      className="overflow-x-auto -mx-3 md:mx-0 px-3 md:px-0"
-    >
-      <ul className="flex items-stretch gap-1 min-w-max">
-        {races.map((r) => {
-          const active = r.raceNo === currentRaceNo;
-          return (
-            <li key={r.raceNo}>
+    <div className="rounded-xl border border-border-subtle bg-bg-elevated overflow-hidden">
+      <div className="flex items-stretch">
+        <div className="flex items-center gap-3 bg-gradient-to-br from-upset/30 to-upset/10 px-4 py-3 flex-shrink-0 border-r border-border-subtle">
+          <div className="number-mono text-3xl font-black text-white">
+            {String(current.raceNo).padStart(2, "0")}
+          </div>
+          <div className="min-w-0">
+            <div className="text-[10px] text-text-muted font-medium">
+              {formatPostTimeShort(current.postTime)} · {current.going}
+            </div>
+            <div className="text-sm font-bold truncate">
+              {current.className},{current.distance}米
+            </div>
+            <div className="text-[11px] text-text-muted truncate">
+              {current.raceName}
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="flex gap-px overflow-x-auto flex-1"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {races.map((r) => {
+            const active = r.raceNo === currentRaceNo;
+            return (
               <button
+                key={r.raceNo}
+                ref={active ? activeRef : null}
                 type="button"
                 onClick={() => onSelect(r.raceNo)}
                 className={cn(
-                  "flex flex-col items-center justify-center min-w-14 px-3 py-2 rounded-lg border transition",
+                  "flex-shrink-0 w-16 py-3 text-center transition-all",
                   active
-                    ? "border-precision/60 bg-precision/15 text-precision"
-                    : "border-border-subtle bg-bg-elevated text-text-muted hover:text-text",
+                    ? "bg-upset/20 border-b-2 border-upset"
+                    : "bg-bg-subtle hover:bg-bg-elevated border-b-2 border-transparent",
                 )}
                 aria-current={active ? "page" : undefined}
               >
-                <span className="number-mono text-base font-black">
+                <div
+                  className={cn(
+                    "number-mono text-lg font-bold",
+                    active ? "text-white" : "text-text-muted",
+                  )}
+                >
                   {String(r.raceNo).padStart(2, "0")}
-                </span>
-                <span className="number-mono text-[10px] mt-0.5">
+                </div>
+                <div className="text-[10px] text-text-subtle mt-0.5">
                   {formatPostTimeShort(r.postTime)}
-                </span>
+                </div>
               </button>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  );
-}
-
-function RaceMetaCard({
-  race,
-  date,
-  venueName,
-}: {
-  race: RaceMeta;
-  date: string;
-  venueName: string;
-}) {
-  return (
-    <div className="rounded-xl border border-border-subtle bg-bg-elevated p-3">
-      <div className="flex items-center gap-2 text-[11px] text-text-muted">
-        <span className="number-mono">
-          {String(race.raceNo).padStart(2, "0")}
-        </span>
-        <span>·</span>
-        <span className="number-mono">{race.time}</span>
-        <span>·</span>
-        <span>{date}</span>
-        <span>·</span>
-        <span>{venueName}</span>
-      </div>
-      <div className="mt-1 text-base font-bold">{race.raceName}</div>
-      <div className="mt-1 text-[11px] text-text-subtle">
-        {race.className} · {race.distance}米 · {race.course} · {race.going}
+            );
+          })}
+        </div>
       </div>
     </div>
   );

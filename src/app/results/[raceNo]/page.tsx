@@ -62,6 +62,11 @@ export default async function ResultDetailPage({
         races={data.races.map((r) => ({
           raceNo: r.raceNo,
           postTime: r.postTime,
+          className: r.className,
+          distance: r.distance,
+          going: r.going,
+          course: r.course,
+          raceName: r.raceName || r.titleBlock,
         }))}
         currentRaceNo={raceNo}
         race={{
