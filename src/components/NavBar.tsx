@@ -7,6 +7,7 @@ import { Sparkles, Bell, HelpCircle, Gift } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/races", label: "本期預測" },
+  { href: "/results", label: "賽果派彩" },
   { href: "/history", label: "歷史記錄" },
   { href: "/account", label: "帳戶" },
 ];
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
 const MOBILE_TITLES: Record<string, string> = {
   "/": "Furlong",
   "/races": "勝率預測",
+  "/results": "賽果派彩",
   "/history": "歷史記錄",
   "/account": "我的帳戶",
 };
@@ -25,11 +27,13 @@ export function NavBar() {
     MOBILE_TITLES[pathname] ??
     (pathname.startsWith("/races")
       ? "勝率預測"
-      : pathname.startsWith("/history")
-        ? "歷史記錄"
-        : pathname.startsWith("/account")
-          ? "我的帳戶"
-          : "Furlong");
+      : pathname.startsWith("/results")
+        ? "賽果派彩"
+        : pathname.startsWith("/history")
+          ? "歷史記錄"
+          : pathname.startsWith("/account")
+            ? "我的帳戶"
+            : "Furlong");
 
   return (
     <>

@@ -38,13 +38,19 @@ export default function LandingPage() {
           讓你看見數據背後的信號，而非噪音。
         </p>
 
-        <div className="mt-10 flex items-center justify-center gap-3">
+        <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
           <Link
             href="/races"
             className="inline-flex items-center gap-2 rounded-xl ai-gradient px-6 py-3 font-semibold shadow-lg shadow-indigo-500/30 hover:opacity-90 transition"
           >
             查看本期預測
             <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link
+            href="/results"
+            className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-elevated px-6 py-3 font-semibold text-text-muted hover:text-text hover:border-text-muted transition"
+          >
+            賽果派彩
           </Link>
           <Link
             href="/account"

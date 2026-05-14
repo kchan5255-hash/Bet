@@ -6,17 +6,18 @@ import { cn } from "@/lib/utils";
 import { getRaceOddsUpdate, mergeLiveOdds } from "@/lib/live-odds";
 import {
   sortRunnersByProb,
-  getTopFour,
-  getDarkHorse,
+  getColdBurstPicks,
   findFavouriteNos,
+  type ColdBurstRunner,
 } from "@/lib/data";
 import { applyProfessionalModel } from "@/lib/professional-model";
 import { useLiveOdds } from "@/lib/use-live-odds";
 import { useSubscription } from "@/lib/subscription";
 import { RaceSwitcher } from "./RaceSwitcher";
 import { RunnerRow } from "./RunnerRow";
+import { RunnerDetailDialog } from "./RunnerDetailDialog";
 import { PaywallOverlay } from "./PaywallOverlay";
-import { Flame, RefreshCw, SlidersHorizontal } from "lucide-react";
+import { Sparkles, AlertTriangle, RefreshCw, SlidersHorizontal } from "lucide-react";
 
 interface RaceViewerProps {
   races: Race[];
@@ -27,6 +28,7 @@ export function RaceViewer({ races }: RaceViewerProps) {
   const [modelMode, setModelMode] = useState<"original" | "professional">(
     "original",
   );
+  const [selectedRunner, setSelectedRunner] = useState<Runner | null>(null);
   const liveOdds = useLiveOdds();
   const baseRace = races.find((r) => r.raceNo === raceNo) ?? races[0];
   const modelRace =
@@ -36,8 +38,7 @@ export function RaceViewer({ races }: RaceViewerProps) {
   const race = mergeLiveOdds(modelRace, liveOdds.odds);
   const oddsUpdate = getRaceOddsUpdate(race, liveOdds.odds);
   const sorted = sortRunnersByProb(race.runners);
-  const topFour = getTopFour(race);
-  const darkHorse = getDarkHorse(race);
+  const coldBurst = getColdBurstPicks(race);
   const favs = findFavouriteNos(race);
   const { isPro, ready } = useSubscription();
 
@@ -55,24 +56,23 @@ export function RaceViewer({ races }: RaceViewerProps) {
         />
       </div>
 
-      {ready && (
+      {ready && coldBurst.length > 0 && (
         <>
           {isPro ? (
-            <TopPicksCard
-              runners={topFour}
-              darkHorse={darkHorse}
+            <ColdBurstCard
+              picks={coldBurst}
               favWinNo={favs.win}
               favPlaceNo={favs.place}
+              onSelect={setSelectedRunner}
             />
           ) : (
             <PaywallOverlay
-              title="升級解鎖 AI 推介"
-              description="查看本場 AI 評選四大數據推介、冷門黑馬、正負面因素分析"
+              title="升級解鎖冷門黑馬"
+              description="查看本場兩匹隱藏冷門爆點馬"
               className="min-h-[180px]"
             >
-              <TopPicksCard
-                runners={topFour}
-                darkHorse={darkHorse}
+              <ColdBurstCard
+                picks={coldBurst}
                 favWinNo={favs.win}
                 favPlaceNo={favs.place}
               />
@@ -86,6 +86,12 @@ export function RaceViewer({ races }: RaceViewerProps) {
         showProb={isPro}
         favWinNo={favs.win}
         favPlaceNo={favs.place}
+        onSelect={setSelectedRunner}
+      />
+
+      <RunnerDetailDialog
+        runner={selectedRunner}
+        onClose={() => setSelectedRunner(null)}
       />
     </div>
   );
@@ -211,58 +217,50 @@ function TableLayout({
   );
 }
 
-function TopPicksCard({
-  runners,
-  darkHorse,
+function ColdBurstCard({
+  picks,
   favWinNo,
   favPlaceNo,
+  onSelect,
 }: {
-  runners: Runner[];
-  darkHorse: Runner | null;
+  picks: ColdBurstRunner[];
   favWinNo?: string;
   favPlaceNo?: string;
+  onSelect?: (runner: Runner) => void;
 }) {
   return (
-    <div className="rounded-xl border border-border-subtle bg-bg-elevated overflow-hidden">
-      <div className="flex items-center gap-2 bg-gradient-to-r from-precision/20 to-transparent px-3 py-2 border-b border-border-subtle">
-        <Flame className="h-4 w-4 text-precision" />
-        <h3 className="text-xs font-bold uppercase tracking-wider text-precision">
-          AI 推介
+    <div className="rounded-xl border border-upset/30 bg-bg-elevated overflow-hidden shadow-[0_0_24px_-12px_rgba(139,92,246,0.5)]">
+      <div className="relative flex items-center gap-2.5 bg-gradient-to-r from-upset/25 via-upset/10 to-transparent px-3 py-2.5 border-b border-upset/20">
+        <span className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-upset-glow to-upset" />
+        <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-upset/20 ring-1 ring-upset/40">
+          <Sparkles className="h-3.5 w-3.5 text-upset-glow" />
+        </span>
+        <h3 className="text-sm font-extrabold tracking-wide text-upset-glow">
+          冷門黑馬
         </h3>
-        <span className="text-[10px] text-text-muted">
-          四大數據推介 + 冷門黑馬
+        <span className="ml-auto rounded-md border border-upset/30 bg-upset/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-wider text-upset-glow uppercase">
+          隱藏爆點推介
         </span>
       </div>
       <TableLayout showProb>
         <tbody className="divide-y divide-border-subtle">
-          {runners.map((r) => (
+          {picks.map(({ runner }) => (
             <RunnerRow
-              key={r.no}
-              runner={r}
+              key={runner.no}
+              runner={runner}
               favWinNo={favWinNo}
               favPlaceNo={favPlaceNo}
+              onSelect={onSelect}
             />
           ))}
-          {darkHorse && (
-            <>
-              <tr className="bg-bg-subtle/60">
-                <td
-                  colSpan={7}
-                  className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-text-subtle"
-                >
-                  冷門推介
-                </td>
-              </tr>
-              <RunnerRow
-                key={`dark-${darkHorse.no}`}
-                runner={darkHorse}
-                favWinNo={favWinNo}
-                favPlaceNo={favPlaceNo}
-              />
-            </>
-          )}
         </tbody>
       </TableLayout>
+      <div className="flex items-start gap-2 border-t border-warning/20 bg-warning/5 px-3 py-2">
+        <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-warning" />
+        <p className="text-[10px] leading-relaxed text-warning/90">
+          冷門爆點僅供參考,命中率較低、波動較大,請謹慎選擇。
+        </p>
+      </div>
     </div>
   );
 }
@@ -272,11 +270,13 @@ function RunnerList({
   showProb,
   favWinNo,
   favPlaceNo,
+  onSelect,
 }: {
   sorted: Runner[];
   showProb: boolean;
   favWinNo?: string;
   favPlaceNo?: string;
+  onSelect?: (runner: Runner) => void;
 }) {
   return (
     <div className="rounded-xl border border-border-subtle bg-bg-elevated overflow-hidden">
@@ -300,6 +300,7 @@ function RunnerList({
               showProbability={showProb}
               favWinNo={favWinNo}
               favPlaceNo={favPlaceNo}
+              onSelect={onSelect}
             />
           ))}
         </tbody>

@@ -35,6 +35,7 @@ export interface Runner {
   jockey: string;
   trainer: string;
   age: string;
+  sex?: string;
   careerStats: string;
   recordsCount: number;
   daysSinceLastRun: number | null;
@@ -46,6 +47,11 @@ export interface Runner {
   negatives: string[];
   winOdds?: number | null;
   placeOdds?: number | null;
+  gearInfo?: string;
+  allowance?: string;
+  trainerPreference?: number;
+  trumpCard?: boolean;
+  priority?: boolean;
 }
 
 export interface Race {

@@ -3,17 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Video,
-  Sparkles,
   Trophy,
+  Sparkles,
+  Clock,
   MoreHorizontal,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const TABS = [
-  { href: "/", icon: Video, label: "賽馬演彩" },
+  { href: "/results", icon: Trophy, label: "賽果派彩" },
   { href: "/races", icon: Sparkles, label: "勝率預測", primary: true },
-  { href: "/history", icon: Trophy, label: "歷史記錄" },
+  { href: "/history", icon: Clock, label: "歷史記錄" },
   { href: "/account", icon: MoreHorizontal, label: "帳戶" },
 ];
 

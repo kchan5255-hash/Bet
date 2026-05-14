@@ -9,6 +9,7 @@ interface RunnerRowProps {
   showProbability?: boolean;
   favWinNo?: string;
   favPlaceNo?: string;
+  onSelect?: (runner: Runner) => void;
 }
 
 export function RunnerRow({
@@ -16,13 +17,31 @@ export function RunnerRow({
   showProbability = true,
   favWinNo,
   favPlaceNo,
+  onSelect,
 }: RunnerRowProps) {
   const rawScore100 = runner.rawScore * 100;
+  const clickable = Boolean(onSelect);
+
+  const handleKey = (e: React.KeyboardEvent<HTMLTableRowElement>) => {
+    if (!onSelect) return;
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onSelect(runner);
+    }
+  };
 
   return (
     <tr
+      onClick={onSelect ? () => onSelect(runner) : undefined}
+      onKeyDown={handleKey}
+      role={clickable ? "button" : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      aria-label={clickable ? `查看 ${runner.no} ${runner.name} 詳細資料` : undefined}
       className={cn(
-        "hover:bg-bg-elevated/40 transition",
+        "transition outline-none",
+        clickable
+          ? "cursor-pointer hover:bg-bg-subtle/60 focus-visible:bg-bg-subtle/60 focus-visible:ring-1 focus-visible:ring-precision/60"
+          : "hover:bg-bg-elevated/40",
       )}
     >
       <td className="pl-2 pr-1 py-2">
