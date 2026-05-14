@@ -35,7 +35,7 @@ export function RunnerDetailDialog({ runner, onClose }: RunnerDetailDialogProps)
       role="dialog"
       aria-modal="true"
       aria-label={`${runner.no} ${runner.name} 詳細資料`}
-      className="fixed inset-0 z-50 flex items-end md:items-center justify-center"
+      className="fixed inset-0 z-[60] flex items-end md:items-center justify-center"
     >
       <button
         type="button"

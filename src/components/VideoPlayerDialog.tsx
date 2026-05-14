@@ -69,7 +69,7 @@ export function VideoPlayerDialog({ target, onClose }: VideoPlayerDialogProps) {
       role="dialog"
       aria-modal="true"
       aria-label={`第 ${target.raceNo} 場 全方位賽事重溫`}
-      className="fixed inset-0 z-50 flex items-end md:items-center justify-center"
+      className="fixed inset-0 z-[60] flex items-end md:items-center justify-center"
     >
       <button
         type="button"
@@ -80,8 +80,8 @@ export function VideoPlayerDialog({ target, onClose }: VideoPlayerDialogProps) {
       <div
         className={cn(
           "relative z-10 w-full md:max-w-3xl flex flex-col",
-          "max-h-[92vh] md:max-h-[88vh]",
-          "rounded-t-2xl md:rounded-2xl border border-border-subtle bg-bg-elevated",
+          "h-[100dvh] md:h-auto md:max-h-[88vh]",
+          "md:rounded-2xl border border-border-subtle bg-bg-elevated",
           "shadow-[0_-8px_40px_-12px_rgba(0,0,0,0.6)] md:shadow-2xl",
           "animate-fade-in",
         )}
