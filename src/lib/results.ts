@@ -1,4 +1,7 @@
 import resultsData from "@/data/race-results.json";
+import dividendsData from "@/data/race-dividends.json";
+import analysisResults from "@/data/analysis-results.json";
+import type { AnalysisResults, Runner } from "./types";
 
 export interface ResultRunner {
   plc: string;
@@ -38,6 +41,90 @@ export interface ResultsPayload {
 
 export function getResults(): ResultsPayload {
   return resultsData as ResultsPayload;
+}
+
+export interface DividendRow {
+  pool: string;
+  combo: string;
+  dividend: string;
+}
+
+interface DividendsPayload {
+  date: string;
+  venue: string;
+  races: { raceNo: number; dividends: DividendRow[] }[];
+}
+
+export function getDividends(raceNo: number): DividendRow[] {
+  const data = dividendsData as DividendsPayload;
+  const entry = data.races.find((r) => r.raceNo === raceNo);
+  return entry?.dividends ?? [];
+}
+
+export interface PoolGroup {
+  pool: string;
+  rows: DividendRow[];
+}
+
+const POOL_ORDER = [
+  "獨贏",
+  "位置",
+  "連贏",
+  "位置Q",
+  "二重彩",
+  "三重彩",
+  "單T",
+  "四連環",
+  "四重彩",
+  "三T",
+  "六環彩",
+];
+
+export function groupDividends(rows: DividendRow[]): PoolGroup[] {
+  const map = new Map<string, DividendRow[]>();
+  for (const r of rows) {
+    if (!map.has(r.pool)) map.set(r.pool, []);
+    map.get(r.pool)!.push(r);
+  }
+  return [...map.entries()]
+    .map(([pool, rs]) => ({ pool, rows: rs }))
+    .sort((a, b) => {
+      const ai = POOL_ORDER.indexOf(a.pool);
+      const bi = POOL_ORDER.indexOf(b.pool);
+      if (ai === -1 && bi === -1) return 0;
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
+    });
+}
+
+export function getResultRace(raceNo: number): ResultRace | undefined {
+  return getResults().races.find((r) => r.raceNo === raceNo);
+}
+
+export function getModelRanking(raceNo: number): Map<string, number> {
+  const races = analysisResults as AnalysisResults;
+  const race = races.find((r) => r.raceNo === raceNo);
+  const map = new Map<string, number>();
+  if (!race) return map;
+  const sorted = [...race.runners].sort(
+    (a: Runner, b: Runner) => b.modelProbability - a.modelProbability,
+  );
+  sorted.forEach((r, idx) => {
+    map.set(r.no, idx + 1);
+  });
+  return map;
+}
+
+export function getRunnerScores(raceNo: number): Map<string, number> {
+  const races = analysisResults as AnalysisResults;
+  const race = races.find((r) => r.raceNo === raceNo);
+  const map = new Map<string, number>();
+  if (!race) return map;
+  for (const r of race.runners) {
+    map.set(r.no, Math.round(r.rawScore * 100));
+  }
+  return map;
 }
 
 export type VideoKind =

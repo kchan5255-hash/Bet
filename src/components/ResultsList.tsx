@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   Trophy,
   ChevronRight,
@@ -8,7 +9,6 @@ import {
   TrendingUp,
 } from "lucide-react";
 import {
-  buildResultPageUrl,
   formatPostTimeShort,
   videoLabel,
   type ResultRace,
@@ -42,8 +42,6 @@ export function ResultsList({ data }: ResultsListProps) {
         <RaceCard
           key={race.raceNo}
           race={race}
-          date={data.date}
-          venue={data.venue}
           onVideo={(kind) => openVideo(race, kind)}
         />
       ))}
@@ -58,21 +56,22 @@ export function ResultsList({ data }: ResultsListProps) {
 
 function RaceCard({
   race,
-  date,
-  venue,
   onVideo,
 }: {
   race: ResultRace;
-  date: string;
-  venue: string;
   onVideo: (kind: VideoKind) => void;
 }) {
   const time = formatPostTimeShort(race.postTime);
   const top4Nos = race.top4.map((r) => r.no);
+  const detailHref = `/results/${race.raceNo}`;
 
   return (
     <article className="rounded-xl border-l-4 border-l-precision border border-border-subtle bg-bg-elevated overflow-hidden">
-      <div className="flex items-stretch">
+      <Link
+        href={detailHref}
+        className="flex items-stretch hover:bg-bg-subtle/40 transition"
+        aria-label={`查看第 ${race.raceNo} 場詳情`}
+      >
         <RaceBadge raceNo={race.raceNo} />
 
         <div className="flex-1 min-w-0 p-3">
@@ -105,20 +104,14 @@ function RaceCard({
               </div>
             </div>
 
-            <div className="flex flex-col items-end gap-1.5 shrink-0">
-              <a
-                href={buildResultPageUrl(date, venue, race.raceNo)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-bg-subtle text-text-muted hover:text-text transition"
-                title="於賽馬會官網查看完整賽果"
-              >
+            <div className="flex items-center shrink-0 self-center">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-bg-subtle text-text-muted">
                 <ChevronRight className="h-4 w-4" />
-              </a>
+              </span>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="grid grid-cols-2 gap-px bg-border-subtle">
         <VideoTile
