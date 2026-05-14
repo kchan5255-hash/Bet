@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, Trophy, Wallet } from "lucide-react";
 import type { PoolGroup } from "@/lib/results";
@@ -56,7 +57,7 @@ export function ResultDetailClient({
       <RaceSwitcher
         races={races}
         currentRaceNo={currentRaceNo}
-        onSelect={(no) => router.push(`/results/${no}`)}
+        onSelect={(no) => router.replace(`/results/${no}`)}
       />
 
       <RaceMetaCard race={race} date={date} venueName={venueName} />
@@ -71,14 +72,13 @@ export function ResultDetailClient({
 function MobileHeader() {
   return (
     <div className="md:hidden flex items-center gap-3">
-      <button
-        type="button"
-        onClick={() => history.back()}
-        aria-label="返回"
+      <Link
+        href="/results"
+        aria-label="返回賽果列表"
         className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-bg-elevated text-text-muted hover:text-text transition"
       >
         <ChevronLeft className="h-4 w-4" />
-      </button>
+      </Link>
       <h1 className="flex-1 text-base font-bold text-center">賽果派彩</h1>
       <span className="w-9" />
     </div>
