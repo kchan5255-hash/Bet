@@ -1,4 +1,4 @@
-import analysisResults from "@/data/analysis-results.json";
+import analysisByDate from "@/data/analysis-by-date.json";
 import coldBurstPicks from "@/data/cold-burst-picks.json";
 import type { AnalysisResults, Race, Runner } from "./types";
 
@@ -23,18 +23,41 @@ interface ColdBurstData {
   races: ColdBurstRace[];
 }
 
-export function getRaces(): Race[] {
-  return analysisResults as AnalysisResults;
+export interface MeetingMeta {
+  date: string;
+  venue: string;
+  venueName: string;
+  weekday: string;
+  raceCount: number;
 }
 
-export function getRace(raceNo: number): Race | undefined {
-  return getRaces().find((r) => r.raceNo === raceNo);
+interface AnalysisByDate {
+  dates: MeetingMeta[];
+  byDate: Record<string, AnalysisResults>;
+}
+
+const ANALYSIS = analysisByDate as AnalysisByDate;
+
+export function getMeetings(): MeetingMeta[] {
+  return ANALYSIS.dates;
+}
+
+export function getLatestMeetingDate(): string {
+  const dates = ANALYSIS.dates;
+  return dates[dates.length - 1]?.date ?? "";
+}
+
+export function getRaces(date?: string): Race[] {
+  const target = date ?? getLatestMeetingDate();
+  return ANALYSIS.byDate[target] ?? [];
+}
+
+export function getRace(raceNo: number, date?: string): Race | undefined {
+  return getRaces(date).find((r) => r.raceNo === raceNo);
 }
 
 export function getMeetingDate(): string {
-  const first = getRaces()[0];
-  if (!first) return "";
-  return first.postTime.slice(0, 10);
+  return getLatestMeetingDate();
 }
 
 export function formatMeetingDate(iso: string): string {

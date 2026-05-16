@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, Trophy, Wallet } from "lucide-react";
 import type { PoolGroup } from "@/lib/results";
@@ -36,8 +36,10 @@ interface Top4Entry {
   jockey: string;
   trainer: string;
   draw: number;
-  modelRank: number | null;
-  score: number | null;
+  proRank: number | null;
+  proScore: number | null;
+  v9Rank: number | null;
+  v9Score: number | null;
 }
 
 interface ResultDetailClientProps {
@@ -194,9 +196,34 @@ function RaceSwitcher({
 }
 
 function ResultsTable({ top4 }: { top4: Top4Entry[] }) {
+  const [model, setModel] = useState<"pro" | "v9">("pro");
   return (
     <section className="rounded-xl border border-border-subtle bg-bg-elevated overflow-hidden">
-      <SectionTab icon={<Trophy className="h-3.5 w-3.5" />} label="賽果" />
+      <div className="flex items-center justify-between gap-2 px-3 py-2 border-b border-border-subtle bg-bg-subtle">
+        <div className="flex items-center gap-1.5">
+          <span className="text-precision">
+            <Trophy className="h-3.5 w-3.5" />
+          </span>
+          <span className="text-xs font-bold tracking-wider">賽果</span>
+        </div>
+        <div className="grid grid-cols-2 rounded-md border border-border-subtle bg-bg-elevated p-0.5">
+          {(["pro", "v9"] as const).map((option) => (
+            <button
+              key={option}
+              type="button"
+              onClick={() => setModel(option)}
+              className={cn(
+                "h-7 px-3 text-[11px] font-bold transition rounded",
+                model === option
+                  ? "bg-precision text-white shadow-sm"
+                  : "text-text-muted hover:text-text",
+              )}
+            >
+              {option === "pro" ? "Pro" : "V9"}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -204,8 +231,8 @@ function ResultsTable({ top4 }: { top4: Top4Entry[] }) {
               <Th className="text-left pl-3">名次</Th>
               <Th className="text-left">馬號</Th>
               <Th className="text-left">馬名</Th>
-              <Th>勝率預測 名次</Th>
-              <Th>即時量感 指數</Th>
+              <Th>{model === "pro" ? "Pro" : "V9"} 名次</Th>
+              <Th>{model === "pro" ? "Pro" : "V9"} 指數</Th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border-subtle">
@@ -224,10 +251,10 @@ function ResultsTable({ top4 }: { top4: Top4Entry[] }) {
                   </div>
                 </td>
                 <td className="px-1 py-2 text-center">
-                  <RankCell rank={r.modelRank} />
+                  <RankCell rank={model === "pro" ? r.proRank : r.v9Rank} />
                 </td>
                 <td className="px-1 py-2 text-center">
-                  <ScoreCell score={r.score} />
+                  <ScoreCell score={model === "pro" ? r.proScore : r.v9Score} />
                 </td>
               </tr>
             ))}

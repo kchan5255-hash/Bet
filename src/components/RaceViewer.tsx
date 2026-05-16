@@ -11,6 +11,7 @@ import {
   type ColdBurstRunner,
 } from "@/lib/data";
 import { applyProfessionalModel } from "@/lib/professional-model";
+import { applyV9Model } from "@/lib/v9-model";
 import { useLiveOdds } from "@/lib/use-live-odds";
 import { useSubscription } from "@/lib/subscription";
 import { RaceSwitcher } from "./RaceSwitcher";
@@ -21,20 +22,19 @@ import { Sparkles, AlertTriangle, RefreshCw, SlidersHorizontal } from "lucide-re
 
 interface RaceViewerProps {
   races: Race[];
+  date?: string;
 }
 
-export function RaceViewer({ races }: RaceViewerProps) {
+export function RaceViewer({ races, date }: RaceViewerProps) {
   const [raceNo, setRaceNo] = useState<number>(races[0]?.raceNo ?? 1);
-  const [modelMode, setModelMode] = useState<"original" | "professional">(
-    "original",
-  );
+  const [modelMode, setModelMode] = useState<"pro" | "v9">("pro");
   const [selectedRunner, setSelectedRunner] = useState<Runner | null>(null);
   const liveOdds = useLiveOdds();
   const baseRace = races.find((r) => r.raceNo === raceNo) ?? races[0];
   const modelRace =
-    modelMode === "professional"
-      ? applyProfessionalModel(baseRace)
-      : baseRace;
+    modelMode === "v9"
+      ? applyV9Model(baseRace, date)
+      : applyProfessionalModel(baseRace);
   const race = mergeLiveOdds(modelRace, liveOdds.odds);
   const oddsUpdate = getRaceOddsUpdate(race, liveOdds.odds);
   const sorted = sortRunnersByProb(race.runners);
@@ -156,12 +156,12 @@ function ModelToggle({
   value,
   onChange,
 }: {
-  value: "original" | "professional";
-  onChange: (value: "original" | "professional") => void;
+  value: "pro" | "v9";
+  onChange: (value: "pro" | "v9") => void;
 }) {
   const options = [
-    { value: "original" as const, label: "Original" },
-    { value: "professional" as const, label: "Professional" },
+    { value: "pro" as const, label: "Pro" },
+    { value: "v9" as const, label: "V9" },
   ];
 
   return (

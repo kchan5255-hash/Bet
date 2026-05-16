@@ -37,8 +37,10 @@ export default async function ResultDetailPage({
   const race = getResultRace(targetDate, raceNo);
   if (!race) notFound();
 
-  const modelRanking = getModelRanking(targetDate, raceNo);
-  const scores = getRunnerScores(targetDate, raceNo);
+  const proRanking = getModelRanking(targetDate, raceNo, "pro");
+  const proScores = getRunnerScores(targetDate, raceNo, "pro");
+  const v9Ranking = getModelRanking(targetDate, raceNo, "v9");
+  const v9Scores = getRunnerScores(targetDate, raceNo, "v9");
   const dividends = groupDividends(getDividends(targetDate, raceNo));
 
   const top4 = race.top4.map((r) => ({
@@ -49,8 +51,10 @@ export default async function ResultDetailPage({
     jockey: r.jockey,
     trainer: r.trainer,
     draw: r.draw,
-    modelRank: modelRanking.get(r.no) ?? null,
-    score: scores.get(r.no) ?? null,
+    proRank: proRanking.get(r.no) ?? null,
+    proScore: proScores.get(r.no) ?? null,
+    v9Rank: v9Ranking.get(r.no) ?? null,
+    v9Score: v9Scores.get(r.no) ?? null,
   }));
 
   return (

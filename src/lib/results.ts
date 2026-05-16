@@ -1,6 +1,8 @@
 import resultsByDate from "@/data/race-results-by-date.json";
 import dividendsByDate from "@/data/dividends-by-date.json";
-import analysisResults from "@/data/analysis-results.json";
+import analysisByDate from "@/data/analysis-by-date.json";
+import v9Results from "@/data/v9-results.json";
+import { applyProfessionalModel } from "./professional-model";
 import type { AnalysisResults, Runner } from "./types";
 
 export interface ResultRunner {
@@ -238,16 +240,66 @@ export function groupDividends(rows: DividendRow[]): PoolGroup[] {
     });
 }
 
+export type ResultModel = "pro" | "v9";
+
+interface V9RunnerEntry {
+  no: string;
+  rank: number;
+  rawScore: number;
+  modelProbability: number;
+}
+
+interface V9RaceEntry {
+  raceNo: number;
+  runners: V9RunnerEntry[];
+}
+
+interface V9DayEntry {
+  date: string;
+  venue: string;
+  races: V9RaceEntry[];
+}
+
+interface V9Payload {
+  dates: string[];
+  byDate: Record<string, V9DayEntry>;
+}
+
+interface AnalysisByDate {
+  dates: { date: string }[];
+  byDate: Record<string, AnalysisResults>;
+}
+
+const V9 = v9Results as V9Payload;
+const ANALYSIS = analysisByDate as AnalysisByDate;
+
 export function getModelRanking(
   date: string,
   raceNo: number,
+  model: ResultModel = "pro",
 ): Map<string, number> {
   const map = new Map<string, number>();
-  if (date !== "2026-05-13") return map;
-  const races = analysisResults as AnalysisResults;
-  const race = races.find((r) => r.raceNo === raceNo);
-  if (!race) return map;
-  const sorted = [...race.runners].sort(
+
+  if (model === "v9") {
+    const day = V9.byDate?.[date];
+    if (!day) return map;
+    const race = day.races.find((r) => r.raceNo === raceNo);
+    if (!race) return map;
+    const sorted = [...race.runners].sort(
+      (a, b) => b.modelProbability - a.modelProbability,
+    );
+    sorted.forEach((r, idx) => {
+      map.set(String(r.no), idx + 1);
+    });
+    return map;
+  }
+
+  const dayRaces = ANALYSIS.byDate?.[date];
+  if (!dayRaces) return map;
+  const baseRace = dayRaces.find((r) => r.raceNo === raceNo);
+  if (!baseRace) return map;
+  const proRace = applyProfessionalModel(baseRace);
+  const sorted = [...proRace.runners].sort(
     (a: Runner, b: Runner) => b.modelProbability - a.modelProbability,
   );
   sorted.forEach((r, idx) => {
@@ -259,13 +311,27 @@ export function getModelRanking(
 export function getRunnerScores(
   date: string,
   raceNo: number,
+  model: ResultModel = "pro",
 ): Map<string, number> {
   const map = new Map<string, number>();
-  if (date !== "2026-05-13") return map;
-  const races = analysisResults as AnalysisResults;
-  const race = races.find((r) => r.raceNo === raceNo);
-  if (!race) return map;
-  for (const r of race.runners) {
+
+  if (model === "v9") {
+    const day = V9.byDate?.[date];
+    if (!day) return map;
+    const race = day.races.find((r) => r.raceNo === raceNo);
+    if (!race) return map;
+    for (const r of race.runners) {
+      map.set(String(r.no), Math.round(r.rawScore * 100));
+    }
+    return map;
+  }
+
+  const dayRaces = ANALYSIS.byDate?.[date];
+  if (!dayRaces) return map;
+  const baseRace = dayRaces.find((r) => r.raceNo === raceNo);
+  if (!baseRace) return map;
+  const proRace = applyProfessionalModel(baseRace);
+  for (const r of proRace.runners) {
     map.set(r.no, Math.round(r.rawScore * 100));
   }
   return map;

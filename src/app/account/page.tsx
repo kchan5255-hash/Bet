@@ -2,8 +2,8 @@ import { AccountPanel } from "@/components/AccountPanel";
 
 export default function AccountPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-8">
-      <header className="mb-8">
+    <div className="mx-auto max-w-5xl px-4 py-4 md:px-6 md:py-8">
+      <header className="hidden md:block mb-8">
         <div className="flex items-center gap-2 text-xs text-text-subtle uppercase tracking-widest mb-2">
           <span className="h-px w-8 bg-border" />
           My Account
@@ -15,6 +15,10 @@ export default function AccountPage() {
           管理個人資料、訂閱狀態與付款方式
         </p>
       </header>
+
+      <p className="md:hidden mb-4 text-xs text-text-muted leading-relaxed">
+        管理個人資料、訂閱狀態與付款方式
+      </p>
 
       <AccountPanel />
     </div>

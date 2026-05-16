@@ -1,6 +1,24 @@
 "use client";
 
-import { Check, Crown, Sparkles, UserCircle2 } from "lucide-react";
+import Link from "next/link";
+import {
+  Bell,
+  Check,
+  ChevronRight,
+  Coins,
+  Crown,
+  Flame,
+  HelpCircle,
+  History,
+  MessageSquare,
+  Receipt,
+  Settings,
+  Sparkles,
+  Star,
+  Trophy,
+  UserCircle2,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useSubscription } from "@/lib/subscription";
 import { cn } from "@/lib/utils";
 
@@ -56,33 +74,44 @@ const PLANS = [
   },
 ];
 
+type MenuItem = {
+  icon: LucideIcon;
+  label: string;
+  href?: string;
+  trailing?: string;
+  badge?: number;
+  disabled?: boolean;
+};
+
 export function AccountPanel() {
   const { isPro, ready, toggle } = useSubscription();
 
   return (
-    <div className="space-y-10">
-      <section className="rounded-2xl border border-border-subtle bg-bg-elevated p-6">
-        <div className="flex items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-bg-subtle">
-            <UserCircle2 className="h-7 w-7 text-text-muted" />
+    <div className="space-y-6 md:space-y-10">
+      <section className="rounded-2xl border border-border-subtle bg-bg-elevated p-4 md:p-6">
+        <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-bg-subtle shrink-0">
+            <UserCircle2 className="h-6 w-6 md:h-7 md:w-7 text-text-muted" />
           </div>
-          <div className="flex-1">
-            <div className="text-sm text-text-muted">Demo 訪客</div>
-            <div className="text-xl font-bold">guest@furlong.app</div>
+          <div className="flex-1 min-w-0">
+            <div className="text-xs md:text-sm text-text-muted">Demo 訪客</div>
+            <div className="text-base md:text-xl font-bold truncate">guest@furlong.app</div>
           </div>
           <StatusBadge isPro={isPro} ready={ready} />
         </div>
 
-        <div className="mt-5 flex flex-wrap items-center gap-3 rounded-xl border border-dashed border-border bg-bg-subtle px-4 py-3">
-          <Sparkles className="h-4 w-4 text-upset-glow" />
-          <span className="text-xs text-text-muted">
-            Demo 模式：可切換 Pro 狀態預覽付費內容（階段二將改為 Stripe 訂閱）
-          </span>
+        <div className="mt-4 md:mt-5 rounded-xl border border-dashed border-border bg-bg-subtle px-3 py-3 md:px-4 md:flex md:flex-wrap md:items-center md:gap-3">
+          <div className="flex items-start gap-2 md:items-center">
+            <Sparkles className="h-4 w-4 text-upset-glow shrink-0 mt-0.5 md:mt-0" />
+            <span className="text-xs text-text-muted leading-relaxed">
+              Demo 模式：可切換 Pro 狀態預覽付費內容（階段二將改為 Stripe 訂閱）
+            </span>
+          </div>
           <button
             onClick={() => toggle(!isPro)}
             disabled={!ready}
             className={cn(
-              "ml-auto rounded-md px-3 py-1 text-xs font-semibold transition",
+              "mt-3 w-full md:mt-0 md:ml-auto md:w-auto rounded-md px-3 py-2 md:py-1 text-xs font-semibold transition",
               isPro
                 ? "bg-danger/10 text-danger border border-danger/30 hover:bg-danger/20"
                 : "ai-gradient text-white",
@@ -93,13 +122,37 @@ export function AccountPanel() {
         </div>
       </section>
 
-      <section>
-        <div className="flex items-center gap-2 text-xs text-text-subtle uppercase tracking-widest mb-2">
+      <MenuGroup icon={Crown} title="訂閱 Pro">
+        <ProUpsellRow isPro={isPro} />
+        <MenuRow
+          item={{ icon: Receipt, label: "付費記錄", trailing: "暫無記錄", disabled: true }}
+        />
+      </MenuGroup>
+
+      <MenuGroup icon={Flame} title="更多功能">
+        <MenuRow item={{ icon: Trophy, label: "賽果派彩", href: "/results" }} />
+        <MenuRow item={{ icon: Sparkles, label: "勝率預測", href: "/races" }} />
+        <MenuRow item={{ icon: History, label: "歷史記錄", href: "/history" }} />
+        <MenuRow item={{ icon: Star, label: "自選分析", trailing: "即將推出", disabled: true }} />
+      </MenuGroup>
+
+      <MenuGroup icon={Settings} title="設定與服務">
+        <MenuRow
+          item={{ icon: Coins, label: "我的積分", trailing: "請先登入賬號", disabled: true }}
+        />
+        <MenuRow item={{ icon: Bell, label: "訊息", badge: 8, disabled: true }} />
+        <MenuRow item={{ icon: Settings, label: "設定", disabled: true }} />
+        <MenuRow item={{ icon: MessageSquare, label: "聯絡我們", disabled: true }} />
+        <MenuRow item={{ icon: HelpCircle, label: "幫助中心", disabled: true }} />
+      </MenuGroup>
+
+      <section id="plans">
+        <div className="hidden md:flex items-center gap-2 text-xs text-text-subtle uppercase tracking-widest mb-2">
           <span className="h-px w-8 bg-border" />
           Plans & Pricing
         </div>
-        <h2 className="text-2xl font-black tracking-tight mb-6">訂閱方案</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <h2 className="text-lg md:text-2xl font-black tracking-tight mb-4 md:mb-6">訂閱方案</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4">
           {PLANS.map((plan) => (
             <PlanCard key={plan.id} plan={plan} isCurrent={plan.id === "free" ? !isPro : false} />
           ))}
@@ -109,24 +162,122 @@ export function AccountPanel() {
   );
 }
 
+function MenuGroup({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: LucideIcon;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section>
+      <div className="flex items-center gap-2 px-1 mb-2 text-sm font-semibold text-text-muted">
+        <Icon className="h-4 w-4" />
+        <span>{title}</span>
+      </div>
+      <div className="rounded-2xl border border-border-subtle bg-bg-elevated overflow-hidden divide-y divide-border-subtle">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function MenuRow({ item }: { item: MenuItem }) {
+  const Icon = item.icon;
+  const content = (
+    <>
+      <div className="relative shrink-0">
+        <Icon
+          className={cn(
+            "h-5 w-5",
+            item.disabled ? "text-text-subtle" : "text-text-muted",
+          )}
+        />
+        {item.badge !== undefined && item.badge > 0 && (
+          <span className="number-mono absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-danger px-1 text-[9px] font-bold text-white">
+            {item.badge}
+          </span>
+        )}
+      </div>
+      <span
+        className={cn(
+          "flex-1 text-[15px] font-medium",
+          item.disabled ? "text-text-muted" : "text-text",
+        )}
+      >
+        {item.label}
+      </span>
+      {item.trailing && (
+        <span className="text-xs text-text-subtle">{item.trailing}</span>
+      )}
+      {!item.disabled && <ChevronRight className="h-4 w-4 text-text-subtle shrink-0" />}
+    </>
+  );
+
+  const baseClass =
+    "flex items-center gap-3 px-4 py-3.5 transition-colors min-h-[52px]";
+
+  if (item.href && !item.disabled) {
+    return (
+      <Link href={item.href} className={cn(baseClass, "hover:bg-bg-subtle/60 active:bg-bg-subtle")}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      className={cn(
+        baseClass,
+        item.disabled ? "opacity-60" : "hover:bg-bg-subtle/60 active:bg-bg-subtle cursor-pointer",
+      )}
+    >
+      {content}
+    </div>
+  );
+}
+
+function ProUpsellRow({ isPro }: { isPro: boolean }) {
+  return (
+    <Link
+      href="#plans"
+      className={cn(
+        "flex items-center gap-3 px-4 py-3.5 min-h-[52px] transition-opacity",
+        "ai-gradient text-white hover:opacity-95 active:opacity-90",
+      )}
+    >
+      <Crown className="h-5 w-5 shrink-0" />
+      <span className="flex-1 text-[15px] font-bold">
+        {isPro ? "管理 Pro 訂閱" : "訂閱 Pro"}
+      </span>
+      <span className="text-xs font-semibold text-white/90">
+        {isPro ? "Pro 會員" : "解鎖 AI"}
+      </span>
+      <ChevronRight className="h-4 w-4 text-white/80 shrink-0" />
+    </Link>
+  );
+}
+
 function StatusBadge({ isPro, ready }: { isPro: boolean; ready: boolean }) {
   if (!ready) {
     return (
-      <span className="rounded-full border border-border-subtle px-3 py-1 text-xs text-text-subtle">
+      <span className="rounded-full border border-border-subtle px-2 py-1 text-[10px] md:text-xs text-text-subtle shrink-0">
         載入中…
       </span>
     );
   }
   if (isPro) {
     return (
-      <span className="inline-flex items-center gap-1 rounded-full ai-gradient px-3 py-1 text-xs font-semibold text-white">
+      <span className="inline-flex items-center gap-1 rounded-full ai-gradient px-2 md:px-3 py-1 text-[10px] md:text-xs font-semibold text-white shrink-0">
         <Crown className="h-3 w-3" />
         Pro 會員
       </span>
     );
   }
   return (
-    <span className="rounded-full border border-border bg-bg-subtle px-3 py-1 text-xs font-medium text-text-muted">
+    <span className="rounded-full border border-border bg-bg-subtle px-2 md:px-3 py-1 text-[10px] md:text-xs font-medium text-text-muted shrink-0">
       免費方案
     </span>
   );
@@ -142,7 +293,7 @@ function PlanCard({
   return (
     <div
       className={cn(
-        "relative rounded-2xl border p-6 flex flex-col transition",
+        "relative rounded-2xl border p-4 md:p-6 flex flex-col transition",
         plan.highlight
           ? "border-upset/50 bg-gradient-to-b from-upset/10 to-bg-elevated shadow-lg shadow-upset/10"
           : "border-border-subtle bg-bg-elevated",
@@ -157,24 +308,24 @@ function PlanCard({
         </div>
       )}
 
-      <div className="mb-4">
-        <h3 className="text-lg font-bold mb-1">{plan.name}</h3>
+      <div className="mb-3 md:mb-4">
+        <h3 className="text-base md:text-lg font-bold mb-1">{plan.name}</h3>
         <p className="text-xs text-text-muted">{plan.desc}</p>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-4 md:mb-6">
         <div className="flex items-baseline gap-2">
-          <span className="number-mono text-4xl font-black">{plan.price}</span>
+          <span className="number-mono text-3xl md:text-4xl font-black">{plan.price}</span>
         </div>
         <div className="text-[11px] text-text-subtle mt-1">{plan.period}</div>
       </div>
 
-      <ul className="space-y-2.5 mb-6 flex-1">
+      <ul className="space-y-2 md:space-y-2.5 mb-4 md:mb-6 flex-1">
         {plan.features.map((f) => (
           <li
             key={f.text}
             className={cn(
-              "flex items-start gap-2 text-sm leading-relaxed",
+              "flex items-start gap-2 text-[13px] md:text-sm leading-relaxed",
               !f.enabled && "opacity-40",
             )}
           >
