@@ -1,6 +1,10 @@
 import { AccountPanel } from "@/components/AccountPanel";
+import { getSupabaseServer } from "@/lib/supabase/server";
 
-export default function AccountPage() {
+export default async function AccountPage() {
+  const supabase = await getSupabaseServer();
+  const { data } = await supabase.auth.getUser();
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-4 md:px-6 md:py-8">
       <header className="hidden md:block mb-8">
@@ -20,7 +24,7 @@ export default function AccountPage() {
         管理個人資料、訂閱狀態與付款方式
       </p>
 
-      <AccountPanel />
+      <AccountPanel user={data.user} />
     </div>
   );
 }

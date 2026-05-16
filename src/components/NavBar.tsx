@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Sparkles, Bell, HelpCircle, Gift } from "lucide-react";
+import { useAuth } from "@/lib/use-auth";
+import { Sparkles, Bell, HelpCircle, Gift, UserCircle2 } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/races", label: "本期預測" },
@@ -22,6 +23,7 @@ const MOBILE_TITLES: Record<string, string> = {
 
 export function NavBar() {
   const pathname = usePathname();
+  const { user, ready } = useAuth();
 
   const mobileTitle =
     MOBILE_TITLES[pathname] ??
@@ -96,6 +98,15 @@ export function NavBar() {
                 </Link>
               );
             })}
+            {ready && !user ? (
+              <Link
+                href="/login"
+                className="ml-2 inline-flex items-center gap-1.5 rounded-md ai-gradient px-3 py-1.5 text-sm font-semibold text-white hover:opacity-90 transition"
+              >
+                <UserCircle2 className="h-4 w-4" />
+                登入
+              </Link>
+            ) : null}
           </nav>
         </div>
       </header>
