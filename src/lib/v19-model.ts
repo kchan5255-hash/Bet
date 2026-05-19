@@ -1,34 +1,36 @@
 import type { Race } from "./types";
-import v18Data from "@/data/v18.json";
+import v19Data from "@/data/v19.json";
 
-interface V18Top3Entry {
+interface V19Top3Entry {
   no: string;
   name: string;
   prob: number;
   draw?: number;
 }
 
-interface V18RecommendCombo {
+interface V19RecommendCombo {
   combo: string;
   label: string;
 }
 
-interface V18Recommend {
+interface V19Recommend {
   tier: "S" | "A" | "B";
-  qinT12: V18RecommendCombo;
-  qinBanker: V18RecommendCombo[];
+  qinT12: V19RecommendCombo;
+  qinBanker: V19RecommendCombo[];
   score: number;
   stakeMul: number;
+  boost?: string | null;
 }
 
-interface V18RaceEntry {
+interface V19RaceEntry {
   raceNo: number;
   meta: Record<string, unknown>;
-  proTop3: V18Top3Entry[];
+  proTop3: V19Top3Entry[];
   fieldSize: number | null;
   gate: {
     action: "play" | "skip";
     tier: "S" | "A" | "B" | null;
+    reason: string | null;
     reasons: string[];
     riskFlags: string[];
     jtCombo: string | null;
@@ -38,46 +40,48 @@ interface V18RaceEntry {
     class: number | null;
     lastBodyWeight: number | null;
     bodyDelta: number | null;
+    v18Tier: "S" | "A" | "B" | null;
+    boost: string | null;
   };
-  recommend: V18Recommend | null;
+  recommend: V19Recommend | null;
   actualTop3: string[];
 }
 
-interface V18DayEntry {
+interface V19DayEntry {
   date: string;
   venue: string;
-  races: V18RaceEntry[];
+  races: V19RaceEntry[];
 }
 
-interface V18Payload {
+interface V19Payload {
   dates: string[];
-  byDate: Record<string, V18DayEntry>;
+  byDate: Record<string, V19DayEntry>;
   generatedAt: string;
   notes?: string;
 }
 
-const DATA = v18Data as V18Payload;
+const DATA = v19Data as V19Payload;
 
-const byDate = new Map<string, Map<number, V18RaceEntry>>();
+const byDate = new Map<string, Map<number, V19RaceEntry>>();
 for (const date of Object.keys(DATA.byDate ?? {})) {
   const day = DATA.byDate[date];
-  const races = new Map<number, V18RaceEntry>();
+  const races = new Map<number, V19RaceEntry>();
   for (const race of day.races ?? []) {
     races.set(race.raceNo, race);
   }
   byDate.set(date, races);
 }
 
-export function getV18Entry(
+export function getV19Entry(
   date: string | undefined,
   raceNo: number,
-): V18RaceEntry | null {
+): V19RaceEntry | null {
   if (!date) return null;
   return byDate.get(date)?.get(raceNo) ?? null;
 }
 
-export function applyV18Model(race: Race, date?: string): Race {
-  const entry = getV18Entry(date, race.raceNo);
+export function applyV19Model(race: Race, date?: string): Race {
+  const entry = getV19Entry(date, race.raceNo);
   if (!entry || entry.proTop3.length < 3) {
     return race;
   }
@@ -100,18 +104,18 @@ export function applyV18Model(race: Race, date?: string): Race {
   };
 }
 
-export function getV18Recommend(
+export function getV19Recommend(
   date: string | undefined,
   raceNo: number,
-): V18Recommend | null {
-  return getV18Entry(date, raceNo)?.recommend ?? null;
+): V19Recommend | null {
+  return getV19Entry(date, raceNo)?.recommend ?? null;
 }
 
-export function isV18Available(date: string | undefined): boolean {
+export function isV19Available(date: string | undefined): boolean {
   if (!date) return false;
   return byDate.has(date);
 }
 
-export type { V18RaceEntry, V18Recommend };
-export const V18_AVAILABLE_DATES = DATA.dates ?? [];
-export const V18_NOTES = DATA.notes ?? "";
+export type { V19RaceEntry, V19Recommend };
+export const V19_AVAILABLE_DATES = DATA.dates ?? [];
+export const V19_NOTES = DATA.notes ?? "";

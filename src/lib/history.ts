@@ -1,73 +1,71 @@
-import type { Race, Runner } from "./types";
+import v19 from "@/data/v19.json";
 
-import history_20260513 from "@/data/history/2026-05-13.json";
+export interface V19Pick {
+  no: string;
+  name: string;
+  prob: number;
+}
+
+export interface V19Race {
+  raceNo: number;
+  meta: {
+    titleBlock?: string;
+    className: string;
+    distance: number;
+    going: string;
+    course: string;
+  };
+  proTop3: V19Pick[];
+  fieldSize: number;
+  actualTop3: string[];
+}
 
 export interface HistoryMeeting {
   date: string;
-  races: Race[];
+  venue: string;
+  races: V19Race[];
 }
 
-export interface MeetingResults {
-  [raceNo: number]: string[];
+interface V19File {
+  dates: string[];
+  byDate: Record<
+    string,
+    {
+      date: string;
+      venue: string;
+      races: V19Race[];
+    }
+  >;
 }
 
-const HISTORY: HistoryMeeting[] = [
-  { date: "2026-05-13", races: history_20260513 as Race[] },
-];
+const FILE = v19 as unknown as V19File;
+const AUTO_FROM = "2026-05-01";
 
 export function getHistoryMeetings(): HistoryMeeting[] {
-  return [...HISTORY].sort((a, b) => b.date.localeCompare(a.date));
+  return FILE.dates
+    .filter((d) => d >= AUTO_FROM)
+    .map((d) => {
+      const m = FILE.byDate[d];
+      return {
+        date: m.date,
+        venue: m.venue,
+        races: m.races,
+      };
+    })
+    .sort((a, b) => b.date.localeCompare(a.date));
 }
 
-export function getTopFourNos(race: Race): string[] {
-  return [...race.runners]
-    .sort((a, b) => b.modelProbability - a.modelProbability)
-    .slice(0, 4)
-    .map((r) => r.no);
+export function getTopPicks(race: V19Race): string[] {
+  return race.proTop3.map((p) => p.no);
 }
 
-export function isHit(topFour: string[], actualTop3: string[]): boolean {
+export function isJudged(race: V19Race): boolean {
+  return race.actualTop3.length > 0;
+}
+
+export function isHit(picks: string[], actualTop3: string[]): boolean {
   if (!actualTop3.length) return false;
-  return topFour.some((no) => actualTop3.includes(no));
-}
-
-const STORAGE_KEY = "furlong_race_results";
-
-export function loadResults(): Record<string, MeetingResults> {
-  if (typeof window === "undefined") return {};
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return {};
-    return JSON.parse(raw) as Record<string, MeetingResults>;
-  } catch {
-    return {};
-  }
-}
-
-export function saveResults(data: Record<string, MeetingResults>): void {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
-export function setRaceResult(
-  date: string,
-  raceNo: number,
-  top3: string[],
-): void {
-  const all = loadResults();
-  const meeting = all[date] ?? {};
-  meeting[raceNo] = top3;
-  all[date] = meeting;
-  saveResults(all);
-}
-
-export function getRaceResult(
-  date: string,
-  raceNo: number,
-  store?: Record<string, MeetingResults>,
-): string[] {
-  const all = store ?? loadResults();
-  return all[date]?.[raceNo] ?? [];
+  return picks.some((no) => actualTop3.includes(no));
 }
 
 export interface HitStats {
@@ -77,21 +75,16 @@ export interface HitStats {
   hitRate: number;
 }
 
-export function calcStats(
-  meetings: HistoryMeeting[],
-  store: Record<string, MeetingResults>,
-): HitStats {
+export function calcStats(meetings: HistoryMeeting[]): HitStats {
   let totalRaces = 0;
   let judgedRaces = 0;
   let hitRaces = 0;
   meetings.forEach((meeting) => {
     meeting.races.forEach((race) => {
       totalRaces += 1;
-      const actual = getRaceResult(meeting.date, race.raceNo, store);
-      if (!actual.length) return;
+      if (!isJudged(race)) return;
       judgedRaces += 1;
-      const topFour = getTopFourNos(race);
-      if (isHit(topFour, actual)) hitRaces += 1;
+      if (isHit(getTopPicks(race), race.actualTop3)) hitRaces += 1;
     });
   });
   return {
@@ -109,10 +102,7 @@ export interface TrendPoint {
   hit: number;
 }
 
-export function calcTrend(
-  meetings: HistoryMeeting[],
-  store: Record<string, MeetingResults>,
-): TrendPoint[] {
+export function calcTrend(meetings: HistoryMeeting[]): TrendPoint[] {
   return meetings
     .slice()
     .sort((a, b) => a.date.localeCompare(b.date))
@@ -120,11 +110,9 @@ export function calcTrend(
       let judged = 0;
       let hit = 0;
       meeting.races.forEach((race) => {
-        const actual = getRaceResult(meeting.date, race.raceNo, store);
-        if (!actual.length) return;
+        if (!isJudged(race)) return;
         judged += 1;
-        const topFour = getTopFourNos(race);
-        if (isHit(topFour, actual)) hit += 1;
+        if (isHit(getTopPicks(race), race.actualTop3)) hit += 1;
       });
       return {
         date: meeting.date,
@@ -132,12 +120,10 @@ export function calcTrend(
         judged,
         hit,
       };
-    });
+    })
+    .filter((p) => p.judged > 0);
 }
 
-export function runnerByNo(
-  race: Race,
-  no: string,
-): Runner | undefined {
-  return race.runners.find((r) => r.no === no);
+export function pickByNo(race: V19Race, no: string): V19Pick | undefined {
+  return race.proTop3.find((p) => p.no === no);
 }

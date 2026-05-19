@@ -8,11 +8,11 @@ import { sortRunnersByProb, findFavouriteNos } from "@/lib/data";
 import { applyProfessionalModel } from "@/lib/professional-model";
 import { applyV9Model } from "@/lib/v9-model";
 import {
-  applyV18Model,
-  getV18Recommend,
-  getV18Entry,
-  isV18Available,
-} from "@/lib/v18-model";
+  applyV19Model,
+  getV19Recommend,
+  getV19Entry,
+  isV19Available,
+} from "@/lib/v19-model";
 import { useLiveOdds } from "@/lib/use-live-odds";
 import { useSubscription } from "@/lib/subscription";
 import { RaceSwitcher } from "./RaceSwitcher";
@@ -26,24 +26,24 @@ interface RaceViewerProps {
   date?: string;
 }
 
-type ModelMode = "v18" | "pro" | "v9";
+type ModelMode = "v19" | "pro" | "v9";
 
 export function RaceViewer({ races, date }: RaceViewerProps) {
   const [raceNo, setRaceNo] = useState<number>(races[0]?.raceNo ?? 1);
-  const v18Available = isV18Available(date);
-  const [modelMode, setModelMode] = useState<ModelMode>(v18Available ? "v18" : "pro");
+  const v19Available = isV19Available(date);
+  const [modelMode, setModelMode] = useState<ModelMode>(v19Available ? "v19" : "pro");
   const [selectedRunner, setSelectedRunner] = useState<Runner | null>(null);
   const liveOdds = useLiveOdds();
   const baseRace = races.find((r) => r.raceNo === raceNo) ?? races[0];
   const effectiveMode: ModelMode = (() => {
-    if (modelMode === "v18" && !v18Available) return "pro";
+    if (modelMode === "v19" && !v19Available) return "pro";
     return modelMode;
   })();
   const modelRace =
     effectiveMode === "v9"
       ? applyV9Model(baseRace, date)
-      : effectiveMode === "v18"
-        ? applyV18Model(baseRace, date)
+      : effectiveMode === "v19"
+        ? applyV19Model(baseRace, date)
         : applyProfessionalModel(baseRace);
   const race = mergeLiveOdds(modelRace, liveOdds.odds);
   const oddsUpdate = getRaceOddsUpdate(race, liveOdds.odds);
@@ -51,8 +51,8 @@ export function RaceViewer({ races, date }: RaceViewerProps) {
   const favs = findFavouriteNos(race);
   const { isPro, ready } = useSubscription();
 
-  const v18Entry = effectiveMode === "v18" ? getV18Entry(date, race.raceNo) : null;
-  const v18Recommend = effectiveMode === "v18" ? getV18Recommend(date, race.raceNo) : null;
+  const v19Entry = effectiveMode === "v19" ? getV19Entry(date, race.raceNo) : null;
+  const v19Recommend = effectiveMode === "v19" ? getV19Recommend(date, race.raceNo) : null;
 
   return (
     <div className="space-y-3">
@@ -61,7 +61,7 @@ export function RaceViewer({ races, date }: RaceViewerProps) {
         <ModelToggle
           value={modelMode}
           onChange={setModelMode}
-          v18Available={v18Available}
+          v19Available={v19Available}
         />
         <OddsRefreshBar
           loading={liveOdds.loading}
@@ -72,10 +72,10 @@ export function RaceViewer({ races, date }: RaceViewerProps) {
         />
       </div>
 
-      {effectiveMode === "v18" && (
-        <V18Banner
-          entry={v18Entry}
-          recommend={v18Recommend}
+      {effectiveMode === "v19" && (
+        <V19Banner
+          entry={v19Entry}
+          recommend={v19Recommend}
           isPro={isPro}
         />
       )}
@@ -156,14 +156,14 @@ function formatShortTime(value: string): string {
 function ModelToggle({
   value,
   onChange,
-  v18Available,
+  v19Available,
 }: {
   value: ModelMode;
   onChange: (value: ModelMode) => void;
-  v18Available: boolean;
+  v19Available: boolean;
 }) {
   const options: { value: ModelMode; label: string; disabled?: boolean }[] = [
-    { value: "v18", label: "V18 ★", disabled: !v18Available },
+    { value: "v19", label: "V19 ★", disabled: !v19Available },
     { value: "pro", label: "Pro" },
     { value: "v9", label: "V9" },
   ];
@@ -224,26 +224,32 @@ function TableLayout({
   );
 }
 
-function V18Banner({
+function V19Banner({
   entry,
   recommend,
   isPro,
 }: {
-  entry: ReturnType<typeof getV18Entry>;
-  recommend: ReturnType<typeof getV18Recommend>;
+  entry: ReturnType<typeof getV19Entry>;
+  recommend: ReturnType<typeof getV19Recommend>;
   isPro: boolean;
 }) {
   if (!entry) return null;
   const isPlay = entry.gate.action === "play" && recommend !== null;
   if (!isPlay) {
+    const skipReason = entry.gate.reason || "唔過 V19 條件";
+    const reasonText = skipReason.startsWith("bad-distance")
+      ? `距離 filter 跳過此場（${skipReason.replace("bad-distance=", "")}）`
+      : skipReason === "v18-skip"
+        ? "V18 風險 gate 跳過"
+        : skipReason === "no-pick"
+          ? "無 V14 推介"
+          : `跳過此場（${skipReason}）`;
     return (
       <div className="rounded-xl border border-border-subtle bg-bg-elevated px-3 py-2">
         <div className="flex items-center gap-2">
           <AlertTriangle className="h-4 w-4 text-text-muted shrink-0" />
-          <span className="text-xs font-bold text-text">V18</span>
-          <span className="text-[10px] text-text-muted">
-            風險 gate 跳過此場（{(entry.gate.riskFlags || []).slice(0, 2).join("、") || "唔過 V18 條件"}）
-          </span>
+          <span className="text-xs font-bold text-text">V19</span>
+          <span className="text-[10px] text-text-muted">{reasonText}</span>
         </div>
       </div>
     );
@@ -256,18 +262,19 @@ function V18Banner({
   const recBanker = recommend?.qinBanker ?? [];
   const stakeMul = recommend?.stakeMul ?? 1.0;
   const reasons = entry.gate.reasons || [];
+  const boost = entry.gate.boost;
 
   if (!isPro) {
     return (
       <PaywallOverlay
-        title="升級解鎖 V18 推介"
+        title="升級解鎖 V19 推介"
         description={`Tier ${tier} — 連贏 / 位置Q 推介`}
         className="min-h-[110px]"
       >
         <div className="rounded-xl border border-precision/40 bg-precision/5 px-3 py-2">
           <div className="flex items-center gap-2">
             <Target className="h-4 w-4 text-precision" />
-            <span className="text-xs font-bold text-text">V18 推介</span>
+            <span className="text-xs font-bold text-text">V19 推介</span>
           </div>
         </div>
       </PaywallOverlay>
@@ -288,14 +295,17 @@ function V18Banner({
       <div className="flex items-center gap-2">
         <Target className="h-4 w-4 text-precision shrink-0" />
         <span className="text-xs font-bold text-text">
-          V18 — Tier {tier} {isS && "★"}
+          V19 — Tier {tier} {isS && "★"}
+          {boost === "middle" && (
+            <span className="ml-1 text-[10px] text-precision">middle-boost</span>
+          )}
         </span>
         <span className="ml-auto text-[10px] text-text-muted">
           {isS
-            ? "ROI +25.5% (203 場)"
+            ? "ROI +78.5% (212 場)"
             : isA
-              ? "ROI +45.3% (311 場)"
-              : "ROI +10.1% (183 場)"}
+              ? "ROI +26.1% (225 場)"
+              : "ROI +18.5% (94 場)"}
         </span>
       </div>
       <div className="mt-2 flex flex-wrap gap-2 text-xs">
