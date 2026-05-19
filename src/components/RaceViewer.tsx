@@ -4,49 +4,65 @@ import { useState } from "react";
 import type { Race, Runner } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { getRaceOddsUpdate, mergeLiveOdds } from "@/lib/live-odds";
-import {
-  sortRunnersByProb,
-  getColdBurstPicks,
-  findFavouriteNos,
-  type ColdBurstRunner,
-} from "@/lib/data";
+import { sortRunnersByProb, findFavouriteNos } from "@/lib/data";
 import { applyProfessionalModel } from "@/lib/professional-model";
 import { applyV9Model } from "@/lib/v9-model";
+import {
+  applyV18Model,
+  getV18Recommend,
+  getV18Entry,
+  isV18Available,
+} from "@/lib/v18-model";
 import { useLiveOdds } from "@/lib/use-live-odds";
 import { useSubscription } from "@/lib/subscription";
 import { RaceSwitcher } from "./RaceSwitcher";
 import { RunnerRow } from "./RunnerRow";
 import { RunnerDetailDialog } from "./RunnerDetailDialog";
 import { PaywallOverlay } from "./PaywallOverlay";
-import { Sparkles, AlertTriangle, RefreshCw, SlidersHorizontal } from "lucide-react";
+import { AlertTriangle, RefreshCw, SlidersHorizontal, Target } from "lucide-react";
 
 interface RaceViewerProps {
   races: Race[];
   date?: string;
 }
 
+type ModelMode = "v18" | "pro" | "v9";
+
 export function RaceViewer({ races, date }: RaceViewerProps) {
   const [raceNo, setRaceNo] = useState<number>(races[0]?.raceNo ?? 1);
-  const [modelMode, setModelMode] = useState<"pro" | "v9">("pro");
+  const v18Available = isV18Available(date);
+  const [modelMode, setModelMode] = useState<ModelMode>(v18Available ? "v18" : "pro");
   const [selectedRunner, setSelectedRunner] = useState<Runner | null>(null);
   const liveOdds = useLiveOdds();
   const baseRace = races.find((r) => r.raceNo === raceNo) ?? races[0];
+  const effectiveMode: ModelMode = (() => {
+    if (modelMode === "v18" && !v18Available) return "pro";
+    return modelMode;
+  })();
   const modelRace =
-    modelMode === "v9"
+    effectiveMode === "v9"
       ? applyV9Model(baseRace, date)
-      : applyProfessionalModel(baseRace);
+      : effectiveMode === "v18"
+        ? applyV18Model(baseRace, date)
+        : applyProfessionalModel(baseRace);
   const race = mergeLiveOdds(modelRace, liveOdds.odds);
   const oddsUpdate = getRaceOddsUpdate(race, liveOdds.odds);
   const sorted = sortRunnersByProb(race.runners);
-  const coldBurst = getColdBurstPicks(race);
   const favs = findFavouriteNos(race);
   const { isPro, ready } = useSubscription();
+
+  const v18Entry = effectiveMode === "v18" ? getV18Entry(date, race.raceNo) : null;
+  const v18Recommend = effectiveMode === "v18" ? getV18Recommend(date, race.raceNo) : null;
 
   return (
     <div className="space-y-3">
       <RaceSwitcher races={races} currentRaceNo={raceNo} onSelect={setRaceNo} />
       <div className="grid gap-2 md:grid-cols-[1fr_auto]">
-        <ModelToggle value={modelMode} onChange={setModelMode} />
+        <ModelToggle
+          value={modelMode}
+          onChange={setModelMode}
+          v18Available={v18Available}
+        />
         <OddsRefreshBar
           loading={liveOdds.loading}
           error={liveOdds.error}
@@ -56,38 +72,23 @@ export function RaceViewer({ races, date }: RaceViewerProps) {
         />
       </div>
 
-      {ready && coldBurst.length > 0 && (
-        <>
-          {isPro ? (
-            <ColdBurstCard
-              picks={coldBurst}
-              favWinNo={favs.win}
-              favPlaceNo={favs.place}
-              onSelect={setSelectedRunner}
-            />
-          ) : (
-            <PaywallOverlay
-              title="升級解鎖冷門黑馬"
-              description="查看本場兩匹隱藏冷門爆點馬"
-              className="min-h-[180px]"
-            >
-              <ColdBurstCard
-                picks={coldBurst}
-                favWinNo={favs.win}
-                favPlaceNo={favs.place}
-              />
-            </PaywallOverlay>
-          )}
-        </>
+      {effectiveMode === "v18" && (
+        <V18Banner
+          entry={v18Entry}
+          recommend={v18Recommend}
+          isPro={isPro}
+        />
       )}
 
-      <RunnerList
-        sorted={sorted}
-        showProb={isPro}
-        favWinNo={favs.win}
-        favPlaceNo={favs.place}
-        onSelect={setSelectedRunner}
-      />
+      {ready && (
+        <RunnerList
+          sorted={sorted}
+          showProb={isPro}
+          favWinNo={favs.win}
+          favPlaceNo={favs.place}
+          onSelect={setSelectedRunner}
+        />
+      )}
 
       <RunnerDetailDialog
         runner={selectedRunner}
@@ -155,13 +156,16 @@ function formatShortTime(value: string): string {
 function ModelToggle({
   value,
   onChange,
+  v18Available,
 }: {
-  value: "pro" | "v9";
-  onChange: (value: "pro" | "v9") => void;
+  value: ModelMode;
+  onChange: (value: ModelMode) => void;
+  v18Available: boolean;
 }) {
-  const options = [
-    { value: "pro" as const, label: "Pro" },
-    { value: "v9" as const, label: "V9" },
+  const options: { value: ModelMode; label: string; disabled?: boolean }[] = [
+    { value: "v18", label: "V18 ★", disabled: !v18Available },
+    { value: "pro", label: "Pro" },
+    { value: "v9", label: "V9" },
   ];
 
   return (
@@ -170,20 +174,23 @@ function ModelToggle({
         <SlidersHorizontal className="h-4 w-4 text-text-muted shrink-0" />
         <span className="text-xs font-bold text-text">Model</span>
       </div>
-      <div className="grid grid-cols-2 rounded-lg border border-border-subtle bg-bg-subtle p-0.5">
+      <div className="grid grid-cols-3 rounded-lg border border-border-subtle bg-bg-subtle p-0.5">
         {options.map((option) => {
-          const active = option.value === value;
+          const active = option.value === value && !option.disabled;
           return (
             <button
               key={option.value}
               type="button"
-              onClick={() => onChange(option.value)}
+              onClick={() => !option.disabled && onChange(option.value)}
+              disabled={option.disabled}
               className={cn(
-                "h-8 px-3 text-xs font-bold transition rounded-md",
+                "h-8 px-2 text-xs font-bold transition rounded-md",
                 active
                   ? "bg-precision text-white shadow-sm"
                   : "text-text-muted hover:text-text",
+                option.disabled && "opacity-40 cursor-not-allowed hover:text-text-muted",
               )}
+              title={option.disabled ? "未提供當日推介數據" : undefined}
             >
               {option.label}
             </button>
@@ -217,49 +224,107 @@ function TableLayout({
   );
 }
 
-function ColdBurstCard({
-  picks,
-  favWinNo,
-  favPlaceNo,
-  onSelect,
+function V18Banner({
+  entry,
+  recommend,
+  isPro,
 }: {
-  picks: ColdBurstRunner[];
-  favWinNo?: string;
-  favPlaceNo?: string;
-  onSelect?: (runner: Runner) => void;
+  entry: ReturnType<typeof getV18Entry>;
+  recommend: ReturnType<typeof getV18Recommend>;
+  isPro: boolean;
 }) {
+  if (!entry) return null;
+  const isPlay = entry.gate.action === "play" && recommend !== null;
+  if (!isPlay) {
+    return (
+      <div className="rounded-xl border border-border-subtle bg-bg-elevated px-3 py-2">
+        <div className="flex items-center gap-2">
+          <AlertTriangle className="h-4 w-4 text-text-muted shrink-0" />
+          <span className="text-xs font-bold text-text">V18</span>
+          <span className="text-[10px] text-text-muted">
+            風險 gate 跳過此場（{(entry.gate.riskFlags || []).slice(0, 2).join("、") || "唔過 V18 條件"}）
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  const tier = recommend?.tier ?? entry.gate.tier ?? "A";
+  const isS = tier === "S";
+  const isA = tier === "A";
+  const recT12 = recommend?.qinT12;
+  const recBanker = recommend?.qinBanker ?? [];
+  const stakeMul = recommend?.stakeMul ?? 1.0;
+  const reasons = entry.gate.reasons || [];
+
+  if (!isPro) {
+    return (
+      <PaywallOverlay
+        title="升級解鎖 V18 推介"
+        description={`Tier ${tier} — 連贏 / 位置Q 推介`}
+        className="min-h-[110px]"
+      >
+        <div className="rounded-xl border border-precision/40 bg-precision/5 px-3 py-2">
+          <div className="flex items-center gap-2">
+            <Target className="h-4 w-4 text-precision" />
+            <span className="text-xs font-bold text-text">V18 推介</span>
+          </div>
+        </div>
+      </PaywallOverlay>
+    );
+  }
+
   return (
-    <div className="rounded-xl border border-upset/30 bg-bg-elevated overflow-hidden shadow-[0_0_24px_-12px_rgba(139,92,246,0.5)]">
-      <div className="relative flex items-center gap-2.5 bg-gradient-to-r from-upset/25 via-upset/10 to-transparent px-3 py-2.5 border-b border-upset/20">
-        <span className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-upset-glow to-upset" />
-        <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-upset/20 ring-1 ring-upset/40">
-          <Sparkles className="h-3.5 w-3.5 text-upset-glow" />
+    <div
+      className={cn(
+        "rounded-xl border px-3 py-2",
+        isS
+          ? "border-precision bg-precision/10"
+          : isA
+            ? "border-precision/40 bg-precision/5"
+            : "border-border-subtle bg-bg-elevated",
+      )}
+    >
+      <div className="flex items-center gap-2">
+        <Target className="h-4 w-4 text-precision shrink-0" />
+        <span className="text-xs font-bold text-text">
+          V18 — Tier {tier} {isS && "★"}
         </span>
-        <h3 className="text-sm font-extrabold tracking-wide text-upset-glow">
-          冷門黑馬
-        </h3>
-        <span className="ml-auto rounded-md border border-upset/30 bg-upset/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-wider text-upset-glow uppercase">
-          隱藏爆點推介
+        <span className="ml-auto text-[10px] text-text-muted">
+          {isS
+            ? "ROI +25.5% (203 場)"
+            : isA
+              ? "ROI +45.3% (311 場)"
+              : "ROI +10.1% (183 場)"}
         </span>
       </div>
-      <TableLayout showProb>
-        <tbody className="divide-y divide-border-subtle">
-          {picks.map(({ runner }) => (
-            <RunnerRow
-              key={runner.no}
-              runner={runner}
-              favWinNo={favWinNo}
-              favPlaceNo={favPlaceNo}
-              onSelect={onSelect}
-            />
+      <div className="mt-2 flex flex-wrap gap-2 text-xs">
+        <span className="rounded-md bg-precision px-2 py-1 font-bold text-white">
+          連贏單注 {recT12?.label}
+        </span>
+        {recBanker.length > 0 && (
+          <span className="rounded-md bg-precision/80 px-2 py-1 font-bold text-white">
+            連贏膽拖 {recBanker.map((c) => c.label).join(" / ")}
+          </span>
+        )}
+        {recBanker.length > 0 && (
+          <span className="rounded-md bg-bg-subtle px-2 py-1 text-text-muted">
+            位置Q膽拖 {recBanker.map((c) => c.label).join(" / ")}
+          </span>
+        )}
+      </div>
+      {reasons.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-text-muted">
+          {reasons.slice(0, 5).map((r) => (
+            <span key={r} className="rounded bg-bg-subtle px-1.5 py-0.5">{r}</span>
           ))}
-        </tbody>
-      </TableLayout>
-      <div className="flex items-start gap-2 border-t border-warning/20 bg-warning/5 px-3 py-2">
-        <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-warning" />
-        <p className="text-[10px] leading-relaxed text-warning/90">
-          冷門爆點僅供參考,命中率較低、波動較大,請謹慎選擇。
-        </p>
+        </div>
+      )}
+      <div className="mt-1 flex items-center gap-2 text-[10px] text-text-muted">
+        {entry.fieldSize !== null && <span>field={entry.fieldSize}</span>}
+        {entry.gate.draw !== null && <span>檔={entry.gate.draw}</span>}
+        {entry.gate.class !== null && <span>第{entry.gate.class}班</span>}
+        <span className="ml-auto">注額 ×{stakeMul}</span>
       </div>
     </div>
   );

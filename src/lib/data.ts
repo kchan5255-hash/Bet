@@ -1,27 +1,5 @@
 import analysisByDate from "@/data/analysis-by-date.json";
-import coldBurstPicks from "@/data/cold-burst-picks.json";
 import type { AnalysisResults, Race, Runner } from "./types";
-
-interface ColdBurstPick {
-  no: string;
-  name: string;
-  coldBurstScore: number;
-  burstFactors: { factor: string; value: number }[];
-  risks: string[];
-  selectionTier: "burst" | "watch" | "backup";
-}
-
-interface ColdBurstRace {
-  raceNo: number;
-  picks: ColdBurstPick[];
-}
-
-interface ColdBurstData {
-  date: string;
-  generatedAt: string;
-  version: string;
-  races: ColdBurstRace[];
-}
 
 export interface MeetingMeta {
   date: string;
@@ -79,24 +57,6 @@ export function sortRunnersByProb(runners: Runner[]): Runner[] {
 
 export function sortRunnersByNo(runners: Runner[]): Runner[] {
   return [...runners].sort((a, b) => Number(a.no) - Number(b.no));
-}
-
-export interface ColdBurstRunner {
-  runner: Runner;
-  pick: ColdBurstPick;
-}
-
-export function getColdBurstPicks(race: Race): ColdBurstRunner[] {
-  const data = coldBurstPicks as ColdBurstData;
-  const entry = data.races.find((r) => r.raceNo === race.raceNo);
-  if (!entry) return [];
-  const byNo = new Map(race.runners.map((r) => [r.no, r]));
-  const picks: ColdBurstRunner[] = [];
-  for (const pick of entry.picks) {
-    const runner = byNo.get(pick.no);
-    if (runner) picks.push({ runner, pick });
-  }
-  return picks;
 }
 
 export function parseLast6(last6run: string): number[] {
