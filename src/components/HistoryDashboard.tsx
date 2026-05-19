@@ -587,10 +587,14 @@ function MeetingBlock({ meeting }: { meeting: HistoryMeeting }) {
   }, [meeting]);
 
   const meetingPnl = useMemo(() => calcMeetingPnl(meeting), [meeting]);
+  const meetingPnlCross = useMemo(() => calcMeetingPnlCross(meeting), [meeting]);
   const hasBet = meetingPnl.bets > 0;
   const profit = meetingPnl.pnl;
   const positive = profit > 0;
   const negative = profit < 0;
+  const profitCross = meetingPnlCross.pnl;
+  const positiveCross = profitCross > 0;
+  const negativeCross = profitCross < 0;
 
   return (
     <div className="rounded-2xl border border-border-subtle bg-bg-elevated overflow-hidden">
@@ -605,28 +609,52 @@ function MeetingBlock({ meeting }: { meeting: HistoryMeeting }) {
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           {hasBet && (
-            <div
-              className={cn(
-                "flex flex-col items-end rounded-md border px-2 py-1",
-                positive && "border-precision/30 bg-precision/10",
-                negative && "border-danger/30 bg-danger/10",
-                !positive && !negative && "border-border-subtle bg-bg-subtle",
-              )}
-            >
-              <span className="text-[9px] uppercase tracking-widest text-text-subtle leading-none">
-                P&L
-              </span>
-              <span
+            <>
+              <div
                 className={cn(
-                  "number-mono text-sm font-bold leading-tight",
-                  positive && "text-precision",
-                  negative && "text-danger",
-                  !positive && !negative && "text-text-muted",
+                  "flex flex-col items-end rounded-md border px-2 py-1",
+                  positive && "border-precision/30 bg-precision/10",
+                  negative && "border-danger/30 bg-danger/10",
+                  !positive && !negative && "border-border-subtle bg-bg-subtle",
                 )}
               >
-                {formatHk(profit, true)}
-              </span>
-            </div>
+                <span className="text-[9px] uppercase tracking-widest text-text-subtle leading-none">
+                  膽拖
+                </span>
+                <span
+                  className={cn(
+                    "number-mono text-sm font-bold leading-tight",
+                    positive && "text-precision",
+                    negative && "text-danger",
+                    !positive && !negative && "text-text-muted",
+                  )}
+                >
+                  {formatHk(profit, true)}
+                </span>
+              </div>
+              <div
+                className={cn(
+                  "flex flex-col items-end rounded-md border px-2 py-1",
+                  positiveCross && "border-precision/30 bg-precision/10",
+                  negativeCross && "border-danger/30 bg-danger/10",
+                  !positiveCross && !negativeCross && "border-border-subtle bg-bg-subtle",
+                )}
+              >
+                <span className="text-[9px] uppercase tracking-widest text-text-subtle leading-none">
+                  互穿
+                </span>
+                <span
+                  className={cn(
+                    "number-mono text-sm font-bold leading-tight",
+                    positiveCross && "text-precision",
+                    negativeCross && "text-danger",
+                    !positiveCross && !negativeCross && "text-text-muted",
+                  )}
+                >
+                  {formatHk(profitCross, true)}
+                </span>
+              </div>
+            </>
           )}
           {meetingStats.judged > 0 ? (
             <>
@@ -661,11 +689,15 @@ function RaceRow({ race, date }: { race: V19Race; date: string }) {
   const judged = isJudged(race);
   const hit = judged && isHit(picks, race.actualTop3);
   const racePnl = useMemo(() => calcRacePnl(date, race), [date, race]);
+  const racePnlCross = useMemo(() => calcRacePnlCross(date, race), [date, race]);
   const hasBet = racePnl.hasBet;
   const showPnl = hasBet && racePnl.judged;
   const profit = racePnl.pnl;
   const positive = profit > 0;
   const negative = profit < 0;
+  const profitCross = racePnlCross.pnl;
+  const positiveCross = profitCross > 0;
+  const negativeCross = profitCross < 0;
 
   return (
     <div
@@ -772,29 +804,57 @@ function RaceRow({ race, date }: { race: V19Race; date: string }) {
       </div>
 
       {showPnl && (
-        <div className="mt-2.5 flex items-center justify-between gap-3 flex-wrap rounded-lg border border-border-subtle/60 bg-bg-subtle/50 px-3 py-2">
-          <div className="flex items-center gap-3 text-[11px]">
-            <PoolLine label="連贏" pnl={racePnl.byPool["連贏"].pnl} />
-            <span className="text-text-subtle">·</span>
-            <PoolLine label="位Q" pnl={racePnl.byPool["位置Q"].pnl} />
+        <div className="mt-2.5 space-y-1.5">
+          <div className="flex items-center justify-between gap-3 flex-wrap rounded-lg border border-border-subtle/60 bg-bg-subtle/50 px-3 py-2">
+            <div className="flex items-center gap-3 text-[11px]">
+              <span className="text-[9px] uppercase tracking-widest text-text-subtle">膽拖</span>
+              <PoolLine label="連贏" pnl={racePnl.byPool["連贏"].pnl} />
+              <span className="text-text-subtle">·</span>
+              <PoolLine label="位Q" pnl={racePnl.byPool["位置Q"].pnl} />
+            </div>
+            <span
+              className={cn(
+                "number-mono inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-bold",
+                positive && "bg-precision/20 text-precision-glow",
+                negative && "bg-danger/20 text-danger",
+                !positive && !negative && "bg-bg-subtle text-text-muted",
+              )}
+            >
+              {positive ? (
+                <TrendingUp className="h-3 w-3" />
+              ) : negative ? (
+                <TrendingDown className="h-3 w-3" />
+              ) : (
+                <Wallet className="h-3 w-3" />
+              )}
+              合計 {formatHk(profit, true)}
+            </span>
           </div>
-          <span
-            className={cn(
-              "number-mono inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-bold",
-              positive && "bg-precision/20 text-precision-glow",
-              negative && "bg-danger/20 text-danger",
-              !positive && !negative && "bg-bg-subtle text-text-muted",
-            )}
-          >
-            {positive ? (
-              <TrendingUp className="h-3 w-3" />
-            ) : negative ? (
-              <TrendingDown className="h-3 w-3" />
-            ) : (
-              <Wallet className="h-3 w-3" />
-            )}
-            合計 {formatHk(profit, true)}
-          </span>
+          <div className="flex items-center justify-between gap-3 flex-wrap rounded-lg border border-border-subtle/60 bg-bg-subtle/50 px-3 py-2">
+            <div className="flex items-center gap-3 text-[11px]">
+              <span className="text-[9px] uppercase tracking-widest text-text-subtle">互穿</span>
+              <PoolLine label="連贏" pnl={racePnlCross.byPool["連贏"].pnl} />
+              <span className="text-text-subtle">·</span>
+              <PoolLine label="位Q" pnl={racePnlCross.byPool["位置Q"].pnl} />
+            </div>
+            <span
+              className={cn(
+                "number-mono inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-bold",
+                positiveCross && "bg-precision/20 text-precision-glow",
+                negativeCross && "bg-danger/20 text-danger",
+                !positiveCross && !negativeCross && "bg-bg-subtle text-text-muted",
+              )}
+            >
+              {positiveCross ? (
+                <TrendingUp className="h-3 w-3" />
+              ) : negativeCross ? (
+                <TrendingDown className="h-3 w-3" />
+              ) : (
+                <Wallet className="h-3 w-3" />
+              )}
+              合計 {formatHk(profitCross, true)}
+            </span>
+          </div>
         </div>
       )}
     </div>
