@@ -17,10 +17,19 @@ import {
   Sparkles,
   Trophy,
   Cpu,
+  Wallet,
+  TrendingUp,
+  TrendingDown,
 } from "lucide-react";
 import {
   calcStats,
   calcTrend,
+  calcOverallPnl,
+  calcOverallPnlCross,
+  calcMeetingPnl,
+  calcMeetingPnlCross,
+  calcRacePnl,
+  calcRacePnlCross,
   getHistoryMeetings,
   getTopPicks,
   isHit,
@@ -39,6 +48,8 @@ export function HistoryDashboard() {
   const meetings = useMemo(() => getHistoryMeetings(), []);
   const stats = useMemo(() => calcStats(meetings), [meetings]);
   const trend = useMemo(() => calcTrend(meetings), [meetings]);
+  const pnl = useMemo(() => calcOverallPnl(meetings), [meetings]);
+  const pnlCross = useMemo(() => calcOverallPnlCross(meetings), [meetings]);
   const peak = useMemo(
     () => trend.reduce((m, p) => (p.hitRate > m ? p.hitRate : m), 0),
     [trend],
@@ -60,6 +71,9 @@ export function HistoryDashboard() {
         judgedPct={judgedPct}
         peak={peak}
       />
+
+      <PnlPanel pnl={pnl} variant="banker" />
+      <PnlPanel pnl={pnlCross} variant="cross" />
 
       <TrendCard trend={trend} />
 
@@ -277,6 +291,192 @@ function KpiPill({
   );
 }
 
+function formatHk(amount: number, sign = false): string {
+  const abs = Math.abs(amount);
+  const formatted = abs.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+  if (!sign) return `$${formatted}`;
+  if (amount > 0) return `+$${formatted}`;
+  if (amount < 0) return `-$${formatted}`;
+  return `$${formatted}`;
+}
+
+function PnlPanel({
+  pnl,
+  variant = "banker",
+}: {
+  pnl: ReturnType<typeof calcOverallPnl>;
+  variant?: "banker" | "cross";
+}) {
+  const profit = pnl.pnl;
+  const positive = profit > 0;
+  const negative = profit < 0;
+  const isCross = variant === "cross";
+  const tagLabel = isCross
+    ? "互穿 (T1-T2 / T1-T3 / T2-T3) · $100/注"
+    : "膽拖 (T1-T2 / T1-T3) · $100/注";
+
+  return (
+    <section className="relative overflow-hidden rounded-2xl border border-border-subtle bg-bg-elevated">
+      <div
+        className={cn(
+          "absolute -top-20 -right-12 h-56 w-56 rounded-full blur-3xl pointer-events-none",
+          positive && "bg-precision/25",
+          negative && "bg-danger/20",
+          !positive && !negative && "bg-upset/15",
+        )}
+      />
+      <div className="relative p-5 md:p-6">
+        <div className="flex items-center gap-2 text-[10px] text-text-subtle uppercase tracking-[0.2em] mb-4">
+          <span className="h-px w-6 bg-border" />
+          Profit & Loss
+          <span className="ml-2 text-text-muted normal-case tracking-normal">{isCross ? "互穿" : "膽拖"}</span>
+          <span className="ml-auto inline-flex items-center gap-1 rounded-full border border-border-subtle bg-bg-subtle px-2 py-0.5 text-[10px] text-text-muted normal-case tracking-normal">
+            <Wallet className="h-3 w-3" />
+            {tagLabel}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-5 md:gap-8">
+          <div className="min-w-0 flex-1">
+            <div className="text-[11px] text-text-muted uppercase tracking-widest mb-1">
+              累計輸贏
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span
+                className={cn(
+                  "number-mono text-3xl md:text-4xl font-black leading-none",
+                  positive && "text-precision-glow",
+                  negative && "text-danger",
+                  !positive && !negative && "text-text",
+                )}
+              >
+                {formatHk(profit, true)}
+              </span>
+              {positive && (
+                <TrendingUp className="h-5 w-5 text-precision-glow" />
+              )}
+              {negative && (
+                <TrendingDown className="h-5 w-5 text-danger" />
+              )}
+            </div>
+            <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-text-muted">
+              <span>
+                投注{" "}
+                <span className="number-mono text-text">
+                  {formatHk(pnl.stake)}
+                </span>
+              </span>
+              <span className="text-text-subtle">·</span>
+              <span>
+                派彩{" "}
+                <span className="number-mono text-text">
+                  {formatHk(pnl.ret)}
+                </span>
+              </span>
+              <span className="text-text-subtle">·</span>
+              <span>
+                中{" "}
+                <span className="number-mono text-text">{pnl.wins}</span>/
+                <span className="number-mono">{pnl.bets}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-5 grid grid-cols-3 gap-2 md:gap-3">
+          <RoiPill roi={pnl.roi} wins={pnl.wins} bets={pnl.bets} />
+          <PoolPnlPill label="連贏" pool={pnl.byPool["連贏"]} />
+          <PoolPnlPill label="位置Q" pool={pnl.byPool["位置Q"]} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RoiPill({
+  roi,
+  wins,
+  bets,
+}: {
+  roi: number;
+  wins: number;
+  bets: number;
+}) {
+  const positive = roi > 0;
+  const negative = roi < 0;
+  return (
+    <div
+      className={cn(
+        "rounded-xl border p-3",
+        positive && "border-precision/40 bg-precision/10",
+        negative && "border-danger/40 bg-danger/10",
+        !positive && !negative && "border-border-subtle bg-bg-subtle",
+      )}
+    >
+      <div className="text-[10px] uppercase tracking-widest text-text-muted">
+        ROI
+      </div>
+      <div
+        className={cn(
+          "number-mono text-lg md:text-xl font-bold mt-1",
+          positive && "text-precision-glow",
+          negative && "text-danger",
+          !positive && !negative && "text-text",
+        )}
+      >
+        {roi >= 0 ? "+" : ""}
+        {(roi * 100).toFixed(1)}%
+      </div>
+      <div className="text-[10px] text-text-muted mt-0.5 number-mono">
+        {wins}/{bets} 中
+      </div>
+    </div>
+  );
+}
+
+function PoolPnlPill({
+  label,
+  pool,
+}: {
+  label: string;
+  pool: { bets: number; stake: number; ret: number; pnl: number; wins: number; roi: number };
+}) {
+  const positive = pool.pnl > 0;
+  const negative = pool.pnl < 0;
+  return (
+    <div
+      className={cn(
+        "rounded-xl border p-3",
+        positive && "border-precision/40 bg-precision/10",
+        negative && "border-danger/40 bg-danger/10",
+        !positive && !negative && "border-border-subtle bg-bg-subtle",
+      )}
+    >
+      <div className="text-[10px] uppercase tracking-widest text-text-muted">
+        {label}
+      </div>
+      <div
+        className={cn(
+          "number-mono text-lg md:text-xl font-bold mt-1",
+          positive && "text-precision-glow",
+          negative && "text-danger",
+          !positive && !negative && "text-text",
+        )}
+      >
+        {formatHk(pool.pnl, true)}
+      </div>
+      <div className="text-[10px] text-text-muted mt-0.5 number-mono">
+        {pool.wins}/{pool.bets} · {pool.roi >= 0 ? "+" : ""}
+        {(pool.roi * 100).toFixed(0)}%
+      </div>
+    </div>
+  );
+}
+
+
 function TrendCard({ trend }: { trend: ReturnType<typeof calcTrend> }) {
   const data = trend.length ? trend : placeholderTrend;
   const last = data[data.length - 1];
@@ -386,6 +586,12 @@ function MeetingBlock({ meeting }: { meeting: HistoryMeeting }) {
     };
   }, [meeting]);
 
+  const meetingPnl = useMemo(() => calcMeetingPnl(meeting), [meeting]);
+  const hasBet = meetingPnl.bets > 0;
+  const profit = meetingPnl.pnl;
+  const positive = profit > 0;
+  const negative = profit < 0;
+
   return (
     <div className="rounded-2xl border border-border-subtle bg-bg-elevated overflow-hidden">
       <div className="border-b border-border-subtle px-4 md:px-5 py-3 flex items-center justify-between gap-3">
@@ -397,46 +603,81 @@ function MeetingBlock({ meeting }: { meeting: HistoryMeeting }) {
             {meeting.venue === "ST" ? "沙田" : "跑馬地"} · {meeting.races.length} 場 · 已判定 {meetingStats.judged}
           </p>
         </div>
-        {meetingStats.judged > 0 ? (
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="text-right">
-              <div className="text-[10px] uppercase tracking-widest text-text-subtle">
-                Hit Rate
-              </div>
-              <div className="number-mono text-base font-bold ai-text-gradient">
-                {meetingStats.rate.toFixed(0)}%
-              </div>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {hasBet && (
+            <div
+              className={cn(
+                "flex flex-col items-end rounded-md border px-2 py-1",
+                positive && "border-precision/30 bg-precision/10",
+                negative && "border-danger/30 bg-danger/10",
+                !positive && !negative && "border-border-subtle bg-bg-subtle",
+              )}
+            >
+              <span className="text-[9px] uppercase tracking-widest text-text-subtle leading-none">
+                P&L
+              </span>
+              <span
+                className={cn(
+                  "number-mono text-sm font-bold leading-tight",
+                  positive && "text-precision",
+                  negative && "text-danger",
+                  !positive && !negative && "text-text-muted",
+                )}
+              >
+                {formatHk(profit, true)}
+              </span>
             </div>
-            <div className="number-mono rounded-md border border-precision/30 bg-precision/10 px-2 py-1 text-[11px] font-semibold text-precision">
-              {meetingStats.hit}/{meetingStats.judged}
-            </div>
-          </div>
-        ) : (
-          <span className="text-[11px] text-text-subtle flex-shrink-0">
-            待開賽
-          </span>
-        )}
+          )}
+          {meetingStats.judged > 0 ? (
+            <>
+              <div className="text-right">
+                <div className="text-[10px] uppercase tracking-widest text-text-subtle">
+                  Hit Rate
+                </div>
+                <div className="number-mono text-base font-bold ai-text-gradient">
+                  {meetingStats.rate.toFixed(0)}%
+                </div>
+              </div>
+              <div className="number-mono rounded-md border border-precision/30 bg-precision/10 px-2 py-1 text-[11px] font-semibold text-precision">
+                {meetingStats.hit}/{meetingStats.judged}
+              </div>
+            </>
+          ) : (
+            <span className="text-[11px] text-text-subtle">待開賽</span>
+          )}
+        </div>
       </div>
       <div className="divide-y divide-border-subtle">
         {meeting.races.map((race) => (
-          <RaceRow key={race.raceNo} race={race} />
+          <RaceRow key={race.raceNo} race={race} date={meeting.date} />
         ))}
       </div>
     </div>
   );
 }
 
-function RaceRow({ race }: { race: V19Race }) {
+function RaceRow({ race, date }: { race: V19Race; date: string }) {
   const picks = getTopPicks(race);
   const judged = isJudged(race);
   const hit = judged && isHit(picks, race.actualTop3);
+  const racePnl = useMemo(() => calcRacePnl(date, race), [date, race]);
+  const hasBet = racePnl.hasBet;
+  const showPnl = hasBet && racePnl.judged;
+  const profit = racePnl.pnl;
+  const positive = profit > 0;
+  const negative = profit < 0;
 
   return (
     <div
       className={cn(
-        "px-4 md:px-5 py-3 transition-colors",
-        judged && hit && "bg-precision/[0.04]",
-        judged && !hit && "bg-danger/[0.03]",
+        "relative px-4 md:px-5 py-3 transition-colors",
+        hasBet
+          ? "bg-warning/[0.07] border-l-2 border-warning/70"
+          : judged && hit
+            ? "bg-precision/[0.04]"
+            : judged && !hit
+              ? "bg-danger/[0.03]"
+              : "",
       )}
     >
       <div className="flex items-center justify-between gap-3 flex-wrap">
@@ -444,11 +685,13 @@ function RaceRow({ race }: { race: V19Race }) {
           <div
             className={cn(
               "number-mono flex h-8 w-8 items-center justify-center rounded-md text-xs font-bold flex-shrink-0",
-              judged && hit
-                ? "bg-precision/15 text-precision border border-precision/30"
-                : judged && !hit
-                  ? "bg-danger/10 text-danger border border-danger/30"
-                  : "bg-bg-subtle border border-border-subtle",
+              hasBet
+                ? "bg-warning/15 text-warning border border-warning/40"
+                : judged && hit
+                  ? "bg-precision/15 text-precision border border-precision/30"
+                  : judged && !hit
+                    ? "bg-danger/10 text-danger border border-danger/30"
+                    : "bg-bg-subtle border border-border-subtle",
             )}
           >
             R{race.raceNo}
@@ -480,6 +723,20 @@ function RaceRow({ race }: { race: V19Race }) {
                 );
               })}
             </div>
+            {racePnl.hasBet && (
+              <div className="text-[11px] text-text-subtle leading-relaxed mt-0.5">
+                <span className="text-text-muted">連贏+位置Q：</span>
+                {race.recommend?.qinBanker?.map((b, i, arr) => (
+                  <span key={b.combo} className="number-mono text-text-muted">
+                    {b.label}
+                    {i < arr.length - 1 && (
+                      <span className="text-text-subtle"> · </span>
+                    )}
+                  </span>
+                ))}
+                <span className="text-text-subtle"> · 注 {racePnl.bets}</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -513,6 +770,53 @@ function RaceRow({ race }: { race: V19Race }) {
           )}
         </div>
       </div>
+
+      {showPnl && (
+        <div className="mt-2.5 flex items-center justify-between gap-3 flex-wrap rounded-lg border border-border-subtle/60 bg-bg-subtle/50 px-3 py-2">
+          <div className="flex items-center gap-3 text-[11px]">
+            <PoolLine label="連贏" pnl={racePnl.byPool["連贏"].pnl} />
+            <span className="text-text-subtle">·</span>
+            <PoolLine label="位Q" pnl={racePnl.byPool["位置Q"].pnl} />
+          </div>
+          <span
+            className={cn(
+              "number-mono inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-bold",
+              positive && "bg-precision/20 text-precision-glow",
+              negative && "bg-danger/20 text-danger",
+              !positive && !negative && "bg-bg-subtle text-text-muted",
+            )}
+          >
+            {positive ? (
+              <TrendingUp className="h-3 w-3" />
+            ) : negative ? (
+              <TrendingDown className="h-3 w-3" />
+            ) : (
+              <Wallet className="h-3 w-3" />
+            )}
+            合計 {formatHk(profit, true)}
+          </span>
+        </div>
+      )}
     </div>
+  );
+}
+
+function PoolLine({ label, pnl }: { label: string; pnl: number }) {
+  const positive = pnl > 0;
+  const negative = pnl < 0;
+  return (
+    <span className="number-mono inline-flex items-baseline gap-1.5">
+      <span className="text-text-muted">{label}</span>
+      <span
+        className={cn(
+          "font-semibold",
+          positive && "text-precision-glow",
+          negative && "text-danger",
+          !positive && !negative && "text-text-muted",
+        )}
+      >
+        {formatHk(pnl, true)}
+      </span>
+    </span>
   );
 }
