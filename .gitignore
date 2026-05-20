@@ -1,0 +1,28 @@
+# secrets / node modules
+.env
+.env.*
+node_modules/
+.logs/
+
+# data (keep local)
+*.tmp
+*.png
+*.json
+!package.json
+!package-lock.json
+!advanced-model-config.json
+
+# temp files
+.tmp_*
+.archive/
+.claude/
+
+# large data files
+data/
+pnl-report.json
+profit-diagnostics-report.json
+compare-v9-profit-report.json
+pro-cold-potential-v1-2026-05-13.json
+claude-vs-v12-may-report.json
+results.json
+odds.json

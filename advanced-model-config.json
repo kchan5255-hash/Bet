@@ -1,0 +1,136 @@
+{
+  "modelName": "HKJC Pure Data Advanced Racing Model",
+  "version": "1.0.0",
+  "purpose": "Estimate each declared runner's winning probability from racing data only.",
+  "dataPolicy": {
+    "predictionUsesCurrentOdds": false,
+    "predictionUsesBettingPoolInvestment": false,
+    "oddsUsage": "Current odds and pool investment are excluded from modelProbability. They may only be used in a separate value-bet comparison layer after probabilities are produced.",
+    "historicalOddsUsage": "Historical win odds from past horse records are treated as one signal inside historical performance quality, not as current market influence."
+  },
+  "inputFiles": {
+    "racecard": "graphql-race-data.json",
+    "optionalApiCapture": "api-responses.json"
+  },
+  "externalSources": {
+    "horseProfileTemplate": "https://racing.hkjc.com/racing/information/English/Horse/Horse.aspx?HorseNo={horseCode}",
+    "declaredStarterVeterinaryRecords": "https://racing.hkjc.com/en-us/local/information/overecord"
+  },
+  "runnerFilter": {
+    "includedStatus": "Declared",
+    "excluded": ["Standby", "Scratched", "Withdrawn"]
+  },
+  "features": [
+    {
+      "key": "recent",
+      "weight": 0.18,
+      "description": "Weighted recent historical performance from the horse profile."
+    },
+    {
+      "key": "form",
+      "weight": 0.11,
+      "description": "Racecard last-six-runs form, with stronger weight on the most recent starts."
+    },
+    {
+      "key": "courseDistance",
+      "weight": 0.13,
+      "description": "Performance on same venue and near the same distance."
+    },
+    {
+      "key": "course",
+      "weight": 0.07,
+      "description": "Performance at the same racecourse."
+    },
+    {
+      "key": "distance",
+      "weight": 0.08,
+      "description": "Performance near the same distance."
+    },
+    {
+      "key": "class",
+      "weight": 0.07,
+      "description": "Performance in the same race class."
+    },
+    {
+      "key": "going",
+      "weight": 0.05,
+      "description": "Performance under compatible track going."
+    },
+    {
+      "key": "rating",
+      "weight": 0.1,
+      "description": "Relative current official rating inside the race."
+    },
+    {
+      "key": "draw",
+      "weight": 0.09,
+      "description": "Barrier draw advantage by venue and distance."
+    },
+    {
+      "key": "weight",
+      "weight": 0.05,
+      "description": "Relative handicap weight advantage inside the race."
+    },
+    {
+      "key": "freshness",
+      "weight": 0.03,
+      "description": "Days since last run and expected race fitness."
+    },
+    {
+      "key": "body",
+      "weight": 0.02,
+      "description": "Current body weight stability versus recent body weights."
+    },
+    {
+      "key": "career",
+      "weight": 0.01,
+      "description": "Career win and place record."
+    },
+    {
+      "key": "age",
+      "weight": 0.01,
+      "description": "Age suitability band."
+    }
+  ],
+  "penalties": [
+    {
+      "key": "veterinary",
+      "range": [0.06, 0.09],
+      "description": "Penalty for declared-starter veterinary or incident records."
+    }
+  ],
+  "normalization": {
+    "method": "softmax",
+    "temperature": {
+      "runnersUpTo9": 4.4,
+      "runners10OrMore": 4.8
+    },
+    "formula": "probability_i = exp(temperature * rawScore_i) / sum(exp(temperature * rawScore_all))"
+  },
+  "optionalValueLayer": {
+    "enabledInPrediction": false,
+    "marketProbabilityFormula": "marketProbability_i = (1 / odds_i) / sum(1 / odds_all)",
+    "edgeFormula": "edge_i = modelProbability_i - marketProbability_i",
+    "note": "Use this only after prediction to identify value. Do not feed edge back into the ranking model."
+  },
+  "outputs": {
+    "defaultJson": "analysis-results.json",
+    "runnerFields": [
+      "no",
+      "name",
+      "englishName",
+      "code",
+      "draw",
+      "handicapWeight",
+      "rating",
+      "jockey",
+      "trainer",
+      "features",
+      "rawScore",
+      "modelProbability",
+      "positives",
+      "negatives",
+      "veterinary"
+    ]
+  }
+}
