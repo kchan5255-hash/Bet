@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0F172A;
+  --color-bg-elevated: #1E293B;
+  --color-bg-subtle: #0B1220;
+  --color-border: #334155;
+  --color-border-subtle: #1F2937;
+
+  --color-text: #F1F5F9;
+  --color-text-muted: #94A3B8;
+  --color-text-subtle: #64748B;
+
+  --color-precision: #10B981;
+  --color-precision-glow: #34D399;
+  --color-upset: #8B5CF6;
+  --color-upset-glow: #A78BFA;
+  --color-ai-start: #6366F1;
+  --color-ai-end: #8B5CF6;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  --font-sans: "Inter", "Noto Sans TC", system-ui, sans-serif;
+  --font-mono: "Roboto Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --color-bg-card: #141E2E;
+  --color-border-glow: rgba(99, 102, 241, 0.25);
+  --color-border-precision-glow: rgba(16, 185, 129, 0.2);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(139, 92, 246, 0.06), transparent 40%);
+  background-attachment: fixed;
+}
+
+@utility glass {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+@utility ai-gradient {
+  background: linear-gradient(135deg, var(--color-ai-start), var(--color-ai-end));
+}
+
+@utility ai-text-gradient {
+  background: linear-gradient(135deg, var(--color-ai-start), var(--color-ai-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility number-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility bento-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-card);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+@utility bento-card-hover {
+  &:hover {
+    border-color: var(--color-border-glow);
+    box-shadow: 0 0 0 1px var(--color-border-glow), 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@utility bento-card-precision {
+  &:hover {
+    border-color: var(--color-border-precision-glow);
+    box-shadow: 0 0 0 1px var(--color-border-precision-glow), 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(139, 92, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+@utility animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(241, 245, 249, 0.08),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-subtle);
+}

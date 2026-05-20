@@ -11,11 +11,19 @@ node_modules/
 !package.json
 !package-lock.json
 !advanced-model-config.json
+!web/**/*.json
+!web/public/**
 
 # temp files
 .tmp_*
 .archive/
 .claude/
+
+# next.js build artifacts
+.next/
+out/
+*.tsbuildinfo
+*.log
 
 # large data files
 data/
