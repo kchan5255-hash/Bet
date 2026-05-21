@@ -157,7 +157,7 @@ jobs:
           fi
           git commit -m "admin: ${{ inputs.flow }} ${{ inputs.date }} ${{ inputs.venue }}"
           for i in 1 2 3; do
-            git pull --rebase origin master && git push origin master && exit 0
+            git pull --rebase origin main && git push origin main && exit 0
             sleep 5
           done
           exit 1
