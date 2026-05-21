@@ -1,0 +1,535 @@
+{
+  "date": "2025-03-19",
+  "venue": "HV",
+  "model": "v14-v12-v13-hybrid",
+  "policy": {
+    "v13": {
+      "consensus": true,
+      "v9T1ProbMin": 18,
+      "daysMin": 7,
+      "daysMax": 35
+    },
+    "ensembleStakeSplit": "50/50"
+  },
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "className": "第五班",
+        "distance": 1650,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "4",
+          "name": "加州活力",
+          "prob": 12.85
+        },
+        {
+          "no": "1",
+          "name": "風雲",
+          "prob": 10.58
+        },
+        {
+          "no": "8",
+          "name": "威威父子",
+          "prob": 9.43
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "4",
+            "t2": "1",
+            "t3": "8",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "4,1",
+          "label": "4-1"
+        }
+      },
+      "actualTop3": [
+        "8",
+        "1",
+        "11"
+      ]
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "className": "第三班",
+        "distance": 1000,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 9,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "年少多好",
+          "prob": 16.06
+        },
+        {
+          "no": "7",
+          "name": "英雄豪邁",
+          "prob": 14.52
+        },
+        {
+          "no": "3",
+          "name": "顏色之皇",
+          "prob": 13.95
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "2",
+            "t2": "7",
+            "t3": "3",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "2,7",
+          "label": "2-7"
+        }
+      },
+      "actualTop3": [
+        "3",
+        "2",
+        "1"
+      ]
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "電源之駒",
+          "prob": 11.22
+        },
+        {
+          "no": "2",
+          "name": "快搏",
+          "prob": 9.65
+        },
+        {
+          "no": "9",
+          "name": "競駿天下",
+          "prob": 9.35
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-suit:0.42",
+          "low-body-rel:0.46",
+          "low-top1-shape:0.47"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "1",
+        "4",
+        "12"
+      ]
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "精彩駿將",
+          "prob": 14.41
+        },
+        {
+          "no": "3",
+          "name": "東來欣賞",
+          "prob": 11.99
+        },
+        {
+          "no": "11",
+          "name": "祥勝力駒",
+          "prob": 9.55
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "1",
+            "t2": "3",
+            "t3": "11",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "1,3",
+          "label": "1-3"
+        }
+      },
+      "actualTop3": [
+        "11",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "className": "第四班",
+        "distance": 1650,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "12",
+          "name": "瀧澤飛駒",
+          "prob": 12.62
+        },
+        {
+          "no": "9",
+          "name": "卓越蒨鋒",
+          "prob": 10.82
+        },
+        {
+          "no": "1",
+          "name": "領航天子",
+          "prob": 10.48
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-strong"
+        ],
+        "reasons": [
+          "v12-strong"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "12",
+            "t2": "9",
+            "t3": "1",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "12,9",
+          "label": "12-9"
+        }
+      },
+      "actualTop3": [
+        "9",
+        "6",
+        "8"
+      ]
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "className": "第四班",
+        "distance": 1000,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "4",
+          "name": "勝萬金",
+          "prob": 13.33
+        },
+        {
+          "no": "7",
+          "name": "同滿滿",
+          "prob": 12.92
+        },
+        {
+          "no": "8",
+          "name": "超強六十",
+          "prob": 9.86
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "4",
+            "t2": "7",
+            "t3": "8",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "4,7",
+          "label": "4-7"
+        }
+      },
+      "actualTop3": [
+        "11",
+        "4",
+        "10"
+      ]
+    },
+    {
+      "raceNo": 7,
+      "meta": {
+        "className": "第三班",
+        "distance": 1650,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "10",
+          "name": "紅海勁",
+          "prob": 15.22
+        },
+        {
+          "no": "2",
+          "name": "星價",
+          "prob": 11.91
+        },
+        {
+          "no": "11",
+          "name": "非凡豪傑",
+          "prob": 10.54
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "10",
+            "t2": "2",
+            "t3": "11",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "10,2",
+          "label": "10-2"
+        }
+      },
+      "actualTop3": [
+        "1",
+        "10",
+        "2"
+      ]
+    },
+    {
+      "raceNo": 8,
+      "meta": {
+        "className": "第三班",
+        "distance": 1200,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "12",
+          "name": "千杯敬典",
+          "prob": 11.63
+        },
+        {
+          "no": "8",
+          "name": "時尚風趣",
+          "prob": 11.55
+        },
+        {
+          "no": "3",
+          "name": "添開心",
+          "prob": 10.64
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-top1-shape:0.53"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "1",
+        "8",
+        "11"
+      ]
+    },
+    {
+      "raceNo": 9,
+      "meta": {
+        "className": "第二班",
+        "distance": 1200,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "晨曦儷人",
+          "prob": 13.32
+        },
+        {
+          "no": "7",
+          "name": "駿步騰飛",
+          "prob": 10.8
+        },
+        {
+          "no": "9",
+          "name": "得道猴王",
+          "prob": 10.42
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "3",
+            "t2": "7",
+            "t3": "9",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "3,7",
+          "label": "3-7"
+        }
+      },
+      "actualTop3": [
+        "5",
+        "3",
+        "11"
+      ]
+    }
+  ]
+}

@@ -141,9 +141,15 @@ function main() {
     const s = races.filter(r => r.gate.tier === 'S').length;
     const a = races.filter(r => r.gate.tier === 'A').length;
     const b = races.filter(r => r.gate.tier === 'B').length;
-    byDate[date] = { date, venue: data.venue || '', races };
+    byDate[date] = {
+      date,
+      venue: data.venue || '',
+      mode: data.mode || 'post',
+      generatedAt: new Date().toISOString(),
+      races,
+    };
     totalRaces += races.length; totalPlay += play; totalS += s; totalA += a; totalB += b;
-    console.log(`  ${date}: ${races.length} races / ${play} play (S=${s} A=${a} B=${b})`);
+    console.log(`  ${date}: ${races.length} races / ${play} play (S=${s} A=${a} B=${b}) [mode=${data.mode || 'post'}]`);
   }
 
   const out = {

@@ -1,0 +1,525 @@
+{
+  "date": "2025-03-26",
+  "venue": "ST",
+  "model": "v19",
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "className": "第五班",
+        "distance": 1800,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "4",
+          "name": "精明選擇",
+          "prob": 11.22
+        },
+        {
+          "no": "2",
+          "name": "大利好運",
+          "prob": 10.41
+        },
+        {
+          "no": "11",
+          "name": "極速之子",
+          "prob": 7.96
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-v9-t1-prob:14.0%",
+          "low-top1-shape:0.64"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:59"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "4",
+        "12",
+        "2"
+      ],
+      "model": "v19-skip",
+      "v19": {
+        "action": "skip",
+        "reason": "no-pick"
+      }
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "className": "第五班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "11",
+          "name": "型到爆",
+          "prob": 10.5
+        },
+        {
+          "no": "9",
+          "name": "錶之多多",
+          "prob": 9.61
+        },
+        {
+          "no": "5",
+          "name": "辰速密碼",
+          "prob": 9.51
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:59"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "5",
+        "9",
+        "8"
+      ],
+      "model": "v19-skip",
+      "v19": {
+        "action": "skip",
+        "reason": "no-pick"
+      }
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "className": "第四班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "有派頭",
+          "prob": 10.14
+        },
+        {
+          "no": "8",
+          "name": "時間寶",
+          "prob": 9.16
+        },
+        {
+          "no": "5",
+          "name": "超加加",
+          "prob": 8.58
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": null,
+      "actualTop3": [
+        "5",
+        "8",
+        "11"
+      ],
+      "model": "v19-skip-distance",
+      "v18": {
+        "tier": "A",
+        "score": 1,
+        "stakeMul": 1,
+        "reasons": [
+          "jt-good",
+          "t-elite=10.1%"
+        ],
+        "flags": [
+          "draw-out=14"
+        ],
+        "jtCombo": "good",
+        "jWinRate": 0.08433734939759036,
+        "tWinRate": 0.1012987012987013,
+        "draw": 14,
+        "class": 4,
+        "lastBodyWeight": 1165,
+        "bodyDelta": 2,
+        "suppressedBy": "v19-distance"
+      },
+      "v19": {
+        "action": "skip",
+        "reason": "bad-distance=1650m",
+        "v18Tier": "A",
+        "v18Score": 1
+      }
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "className": "第五班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "火神神樂",
+          "prob": 13.55
+        },
+        {
+          "no": "7",
+          "name": "快馬加鞭",
+          "prob": 11.23
+        },
+        {
+          "no": "4",
+          "name": "漣心星",
+          "prob": 9.3
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-strong"
+        ],
+        "reasons": [
+          "v12-strong"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "2",
+            "t2": "7",
+            "t3": "4",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "2,7",
+          "label": "2-7"
+        }
+      },
+      "actualTop3": [
+        "10",
+        "2",
+        "9"
+      ],
+      "model": "v19",
+      "v18": {
+        "tier": "A",
+        "score": 1.5,
+        "stakeMul": 1,
+        "reasons": [
+          "jt-good",
+          "draw=2"
+        ],
+        "flags": [],
+        "jtCombo": "good",
+        "jWinRate": 0.08212996389891697,
+        "tWinRate": 0.07545367717287488,
+        "draw": 2,
+        "class": 5,
+        "lastBodyWeight": 1114,
+        "bodyDelta": -21
+      },
+      "v19": {
+        "action": "play",
+        "tier": "A",
+        "stakeMul": 1,
+        "boost": null,
+        "v18Tier": "A",
+        "v18Score": 1.5
+      }
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "贏得自然",
+          "prob": 12.26
+        },
+        {
+          "no": "10",
+          "name": "洛河",
+          "prob": 10.97
+        },
+        {
+          "no": "2",
+          "name": "實力哥",
+          "prob": 10.24
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "11",
+        "2",
+        "4"
+      ],
+      "model": "v19-skip",
+      "v19": {
+        "action": "skip",
+        "reason": "no-pick"
+      }
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "className": "第四班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "年年友福",
+          "prob": 10.25
+        },
+        {
+          "no": "10",
+          "name": "川河型駒",
+          "prob": 9.86
+        },
+        {
+          "no": "6",
+          "name": "爆熱",
+          "prob": 9.25
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-top1-shape:0.49"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:42"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "10",
+        "4",
+        "3"
+      ],
+      "model": "v19-skip-distance",
+      "v19": {
+        "action": "skip",
+        "reason": "bad-distance=1650m",
+        "v18Tier": null,
+        "v18Score": null
+      },
+      "v18": null
+    },
+    {
+      "raceNo": 7,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "星火燎原",
+          "prob": 11.43
+        },
+        {
+          "no": "1",
+          "name": "花果猴王",
+          "prob": 9.83
+        },
+        {
+          "no": "7",
+          "name": "日日獎",
+          "prob": 9.64
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "3",
+        "5",
+        "12"
+      ],
+      "model": "v19-skip",
+      "v19": {
+        "action": "skip",
+        "reason": "no-pick"
+      }
+    },
+    {
+      "raceNo": 8,
+      "meta": {
+        "className": "第三班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "11",
+          "name": "天威",
+          "prob": 12.42
+        },
+        {
+          "no": "10",
+          "name": "堅闖",
+          "prob": 10.96
+        },
+        {
+          "no": "12",
+          "name": "艾莉奧",
+          "prob": 9.28
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "1",
+        "11",
+        "14"
+      ],
+      "model": "v19-skip-distance",
+      "v19": {
+        "action": "skip",
+        "reason": "bad-distance=1650m",
+        "v18Tier": null,
+        "v18Score": null
+      },
+      "v18": null
+    },
+    {
+      "raceNo": 9,
+      "meta": {
+        "className": "第三班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "自強不息",
+          "prob": 11.2
+        },
+        {
+          "no": "6",
+          "name": "假面騎士",
+          "prob": 11.05
+        },
+        {
+          "no": "8",
+          "name": "德心知遇",
+          "prob": 10.2
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-top1-shape:0.51"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "8",
+        "10",
+        "5"
+      ],
+      "model": "v19-skip",
+      "v19": {
+        "action": "skip",
+        "reason": "no-pick"
+      }
+    }
+  ]
+}

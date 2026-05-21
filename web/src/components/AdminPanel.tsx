@@ -1,38 +1,93 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-type Flow = "results" | "history" | "prediction" | "scheduler";
+type Flow = "pre-prediction" | "results" | "post-prediction" | "history-rebuild";
 
 interface AdminPanelProps {
   secret: string;
 }
 
+interface RunInfo {
+  id: number;
+  status: string;
+  conclusion: string | null;
+  html_url: string;
+  created_at: string;
+  display_title?: string;
+}
+
 const VENUES = ["ST", "HV"];
+
+const FLOW_LABELS: Record<Flow, string> = {
+  "pre-prediction": "賽前預測",
+  "results": "賽果 + 派彩",
+  "post-prediction": "賽後重算",
+  "history-rebuild": "全期重建",
+};
+
+const FLOW_DESC: Record<Flow, string> = {
+  "pre-prediction": "賽日早上揀馬：抓 GraphQL → 跑 V19 → 匯出",
+  "results": "賽後爬 HKJC：results / dividends / 聚合",
+  "post-prediction": "賽後重算：用真實 results 重跑 V19 + actualTop3",
+  "history-rebuild": "全期重建（罕用）：重新算所有歷史 V19",
+};
+
+function statusBadge(status: string, conclusion: string | null): { text: string; color: string } {
+  if (status === "completed") {
+    if (conclusion === "success") return { text: "成功", color: "text-emerald-400" };
+    if (conclusion === "failure") return { text: "失敗", color: "text-red-400" };
+    if (conclusion === "cancelled") return { text: "取消", color: "text-zinc-400" };
+    return { text: conclusion || "已完成", color: "text-zinc-300" };
+  }
+  if (status === "in_progress") return { text: "執行中", color: "text-indigo-400" };
+  if (status === "queued") return { text: "排隊中", color: "text-yellow-400" };
+  return { text: status, color: "text-zinc-300" };
+}
+
+function relativeTime(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "剛剛";
+  if (m < 60) return `${m} 分鐘前`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h} 小時前`;
+  return `${Math.floor(h / 24)} 天前`;
+}
 
 export function AdminPanel({ secret }: AdminPanelProps) {
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [venue, setVenue] = useState("ST");
   const [races, setRaces] = useState("10");
-  const [running, setRunning] = useState(false);
-  const [logs, setLogs] = useState<string[]>([]);
-  const logRef = useRef<HTMLDivElement>(null);
+  const [dispatching, setDispatching] = useState<Flow | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [runs, setRuns] = useState<RunInfo[]>([]);
 
-  const appendLog = useCallback((line: string) => {
-    setLogs((prev) => [...prev, line]);
-    setTimeout(() => {
-      if (logRef.current) {
-        logRef.current.scrollTop = logRef.current.scrollHeight;
-      }
-    }, 0);
-  }, []);
+  const fetchRuns = useCallback(async () => {
+    try {
+      const res = await fetch("/api/admin/run-status?limit=5", {
+        headers: { "x-admin-secret": secret },
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      setRuns(data.runs || []);
+    } catch {
+      // ignore
+    }
+  }, [secret]);
 
-  const runFlow = useCallback(
+  useEffect(() => {
+    fetchRuns();
+    const hasInProgress = runs.some((r) => r.status !== "completed");
+    const interval = setInterval(fetchRuns, hasInProgress ? 5000 : 15000);
+    return () => clearInterval(interval);
+  }, [fetchRuns, runs]);
+
+  const dispatch = useCallback(
     async (flow: Flow) => {
-      if (running) return;
-      setRunning(true);
-      setLogs([]);
-
+      if (dispatching) return;
+      setDispatching(flow);
+      setError(null);
       try {
         const res = await fetch("/api/admin/run", {
           method: "POST",
@@ -42,68 +97,32 @@ export function AdminPanel({ secret }: AdminPanelProps) {
           },
           body: JSON.stringify({ flow, date, venue, races }),
         });
-
         if (!res.ok) {
           const err = await res.json().catch(() => ({ error: res.statusText }));
-          appendLog(`✗ 錯誤：${err.error ?? res.statusText}`);
-          setRunning(false);
-          return;
-        }
-
-        const reader = res.body?.getReader();
-        if (!reader) {
-          appendLog("✗ 無法讀取串流");
-          setRunning(false);
-          return;
-        }
-
-        const decoder = new TextDecoder();
-        let buf = "";
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buf += decoder.decode(value, { stream: true });
-          const parts = buf.split("\n\n");
-          buf = parts.pop() ?? "";
-          for (const part of parts) {
-            const line = part.replace(/^data: /, "").trim();
-            if (line) {
-              try {
-                appendLog(JSON.parse(line));
-              } catch {
-                appendLog(line);
-              }
-            }
-          }
+          setError(err.error || "Dispatch failed");
+        } else {
+          setTimeout(fetchRuns, 2000);
         }
       } catch (e) {
-        appendLog(`✗ 網路錯誤：${e instanceof Error ? e.message : String(e)}`);
+        setError(e instanceof Error ? e.message : String(e));
       } finally {
-        setRunning(false);
+        setDispatching(null);
       }
     },
-    [running, date, venue, races, secret, appendLog],
+    [dispatching, date, venue, races, secret, fetchRuns],
   );
-
-  const btnClass = (disabled: boolean) =>
-    `px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-      disabled
-        ? "bg-zinc-700 text-zinc-500 cursor-not-allowed"
-        : "bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer"
-    }`;
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 p-6">
-      <div className="max-w-2xl mx-auto space-y-6">
-        {/* Header */}
+      <div className="max-w-3xl mx-auto space-y-6">
         <div>
           <h1 className="text-xl font-semibold tracking-tight">Furlong Admin</h1>
-          <p className="text-zinc-500 text-sm mt-1">資料更新控制台</p>
+          <p className="text-zinc-500 text-sm mt-1">
+            觸發 GitHub Actions 跑 pipeline，完成後 Vercel 自動重新部署
+          </p>
         </div>
 
-        {/* Controls */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-4">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
           <div className="flex flex-wrap gap-3 items-end">
             <div className="flex flex-col gap-1">
               <label className="text-xs text-zinc-400">日期</label>
@@ -111,7 +130,7 @@ export function AdminPanel({ secret }: AdminPanelProps) {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                disabled={running}
+                disabled={!!dispatching}
                 className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-1.5 text-sm text-zinc-100 disabled:opacity-50"
               />
             </div>
@@ -120,7 +139,7 @@ export function AdminPanel({ secret }: AdminPanelProps) {
               <select
                 value={venue}
                 onChange={(e) => setVenue(e.target.value)}
-                disabled={running}
+                disabled={!!dispatching}
                 className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-1.5 text-sm text-zinc-100 disabled:opacity-50"
               >
                 {VENUES.map((v) => (
@@ -138,87 +157,86 @@ export function AdminPanel({ secret }: AdminPanelProps) {
                 max={12}
                 value={races}
                 onChange={(e) => setRaces(e.target.value)}
-                disabled={running}
+                disabled={!!dispatching}
                 className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-1.5 text-sm text-zinc-100 w-20 disabled:opacity-50"
               />
             </div>
           </div>
-
-          {/* Action buttons */}
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              onClick={() => runFlow("results")}
-              disabled={running}
-              className={btnClass(running)}
-            >
-              賽果 + 派彩更新
-            </button>
-            <button
-              onClick={() => runFlow("history")}
-              disabled={running}
-              className={btnClass(running)}
-            >
-              歷史記錄更新
-            </button>
-            <button
-              onClick={() => runFlow("prediction")}
-              disabled={running}
-              className={btnClass(running)}
-            >
-              勝率預測更新
-            </button>
-            <button
-              onClick={() => runFlow("scheduler")}
-              disabled={running}
-              className={btnClass(running)}
-            >
-              啟動逐場排程
-            </button>
-          </div>
         </div>
 
-        {/* Log panel */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {(Object.keys(FLOW_LABELS) as Flow[]).map((flow) => (
+            <button
+              key={flow}
+              onClick={() => dispatch(flow)}
+              disabled={!!dispatching}
+              className={`text-left p-4 rounded-xl border transition-colors ${
+                dispatching === flow
+                  ? "bg-indigo-700 border-indigo-500 text-white"
+                  : dispatching
+                    ? "bg-zinc-900 border-zinc-800 text-zinc-600 cursor-not-allowed"
+                    : "bg-zinc-900 border-zinc-800 hover:bg-zinc-800 hover:border-indigo-600 text-zinc-100"
+              }`}
+            >
+              <div className="font-medium text-sm flex items-center gap-2">
+                {FLOW_LABELS[flow]}
+                {dispatching === flow && (
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                )}
+              </div>
+              <div className="text-xs text-zinc-500 mt-1">{FLOW_DESC[flow]}</div>
+            </button>
+          ))}
+        </div>
+
+        {error && (
+          <div className="bg-red-950 border border-red-800 rounded-xl p-4 text-sm text-red-300">
+            <div className="font-medium mb-1">執行失敗</div>
+            <div className="text-red-200">{error}</div>
+            <div className="text-xs text-red-400 mt-2">
+              如 HKJC 封 Actions IP，請本機跑：
+              <code className="ml-1 bg-red-900 px-1.5 py-0.5 rounded">
+                node update-results.js {date} {venue} {races}
+              </code>
+            </div>
+          </div>
+        )}
+
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
           <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800">
-            <span className="text-xs text-zinc-400 font-medium">執行 Log</span>
-            {running && (
-              <span className="flex items-center gap-1.5 text-xs text-indigo-400">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-                執行中...
-              </span>
-            )}
-            {!running && logs.length > 0 && (
-              <button
-                onClick={() => setLogs([])}
-                className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
-              >
-                清除
-              </button>
-            )}
+            <span className="text-xs text-zinc-400 font-medium">最近執行</span>
+            <button onClick={fetchRuns} className="text-xs text-zinc-500 hover:text-zinc-300">
+              重新整理
+            </button>
           </div>
-          <div
-            ref={logRef}
-            className="h-72 overflow-y-auto p-4 font-mono text-xs text-zinc-300 space-y-0.5"
-          >
-            {logs.length === 0 ? (
-              <span className="text-zinc-600">點擊上方按鈕開始執行...</span>
+          <div className="divide-y divide-zinc-800">
+            {runs.length === 0 ? (
+              <div className="p-4 text-xs text-zinc-600">未有記錄</div>
             ) : (
-              logs.map((line, i) => (
-                <div
-                  key={i}
-                  className={
-                    line.startsWith("✓")
-                      ? "text-emerald-400"
-                      : line.startsWith("✗") || line.includes("[err]")
-                        ? "text-red-400"
-                        : line.startsWith("完成")
-                          ? "text-emerald-300 font-semibold"
-                          : "text-zinc-300"
-                  }
-                >
-                  {line}
-                </div>
-              ))
+              runs.map((r) => {
+                const badge = statusBadge(r.status, r.conclusion);
+                return (
+                  <a
+                    key={r.id}
+                    href={r.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between px-4 py-3 hover:bg-zinc-800 transition-colors"
+                  >
+                    <div className="min-w-0">
+                      <div className="text-sm text-zinc-200 truncate">
+                        {r.display_title || `Run #${r.id}`}
+                      </div>
+                      <div className="text-xs text-zinc-500 mt-0.5">
+                        {relativeTime(r.created_at)}
+                      </div>
+                    </div>
+                    <div className={`text-xs font-medium ${badge.color} shrink-0`}>
+                      {badge.text}
+                    </div>
+                  </a>
+                );
+              })
             )}
           </div>
         </div>

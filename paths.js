@@ -86,6 +86,15 @@ function resultsFullWritePath(date) {
   return path.join(dir, `results-full-${date}.json`);
 }
 
+function resultsPreRacePath(date) {
+  return path.join(DATA, 'results-pre', yearOf(date), `results-full-pre-${date}.json`);
+}
+
+function resultsPreRaceWritePath(date) {
+  const dir = ensureDir(path.join(DATA, 'results-pre', yearOf(date)));
+  return path.join(dir, `results-full-pre-${date}.json`);
+}
+
 function backtestWritePath(model, date) {
   const dir = ensureDir(path.join(DIRS.backtest, model, yearOf(date)));
   const filename = model === 'pro' ? `backtest-${date}.json` : `backtest-${model}-${date}.json`;
@@ -114,6 +123,8 @@ module.exports = {
   miscPath,
   mergedPath,
   resultsFullWritePath,
+  resultsPreRacePath,
+  resultsPreRaceWritePath,
   backtestWritePath,
   dividendsWritePath,
   horsesWritePath,

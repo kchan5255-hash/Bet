@@ -10,6 +10,7 @@ const fs = require('fs');
 const paths = require('./paths');
 
 const IN = process.env.IN || paths.miscPath('graphql-race-data.json');
+const PRE = process.argv.includes('--pre') || process.env.PRE === '1';
 
 const data = JSON.parse(fs.readFileSync(IN, 'utf8'));
 const meetingItem = data.find((x) => x.data?.data?.raceMeetings);
@@ -75,12 +76,13 @@ const races = (meeting.races || [])
   }))
   .sort((a, b) => a.raceNo - b.raceNo);
 
-const out = paths.resultsFullWritePath(date);
+const out = PRE ? paths.resultsPreRaceWritePath(date) : paths.resultsFullWritePath(date);
 const payload = {
   date,
   venue,
+  mode: PRE ? 'pre' : 'post',
   races,
 };
 fs.writeFileSync(out, JSON.stringify(payload, null, 2), 'utf8');
-console.log(`寫入 ${races.length} 場 → ${out}`);
+console.log(`寫入 ${races.length} 場 → ${out} (mode=${PRE ? 'pre' : 'post'})`);
 console.log(`venue: ${venue}`);

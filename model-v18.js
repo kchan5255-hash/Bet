@@ -19,7 +19,8 @@ const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 
-const ROOT = 'd:/AI/Bet';
+const ROOT = paths.ROOT;
+const USE_SUPABASE = process.argv.includes('--supabase') || process.env.USE_SUPABASE === '1';
 
 // ===== 載 j×t stats =====
 const JT_STATS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/jt-stats.json'), 'utf8'));
@@ -51,22 +52,43 @@ function trainerWR(trainer) {
   return s.wins / s.runs;
 }
 
-// ===== 載 horses 同 results =====
+// ===== 載 horses（本機模式）=====
 const HORSES_FILES = [
   'horses-all.json','horses-janmar.json','horses-apr5days.json',
   'horses-3days.json','horses-2026-05-09.json','horses-2026-05-17.json',
   'horses-513-missing.json',
 ];
 const horseByCode = new Map();
-for (const fn of HORSES_FILES) {
-  const fp = path.join(paths.DIRS.horses, fn);
-  if (!fs.existsSync(fp)) continue;
-  const data = JSON.parse(fs.readFileSync(fp, 'utf8'));
-  for (const h of data.horses || []) {
-    if (!horseByCode.has(h.code) || (h.records?.length || 0) > (horseByCode.get(h.code).records?.length || 0)) {
-      horseByCode.set(h.code, h);
+
+function loadHorsesLocal() {
+  for (const fn of HORSES_FILES) {
+    const fp = path.join(paths.DIRS.horses, fn);
+    if (!fs.existsSync(fp)) continue;
+    const data = JSON.parse(fs.readFileSync(fp, 'utf8'));
+    for (const h of data.horses || []) {
+      if (!horseByCode.has(h.code) || (h.records?.length || 0) > (horseByCode.get(h.code).records?.length || 0)) {
+        horseByCode.set(h.code, h);
+      }
     }
   }
+}
+
+if (!USE_SUPABASE) loadHorsesLocal();
+
+async function ensureHorsesForResults(resultsByDate) {
+  if (!USE_SUPABASE) return;
+  const { loadHorsesByCodes } = require('./supabase-data');
+  const codes = new Set();
+  for (const res of resultsByDate) {
+    for (const r of res?.races || []) {
+      for (const run of r.runners || []) {
+        if (run.code) codes.add(run.code);
+      }
+    }
+  }
+  if (!codes.size) return;
+  const sbMap = await loadHorsesByCodes([...codes]);
+  for (const [code, h] of sbMap) horseByCode.set(code, h);
 }
 
 // ===== 工具 =====
@@ -114,8 +136,18 @@ function loadV14(date) {
   return fs.existsSync(fp) ? JSON.parse(fs.readFileSync(fp, 'utf8')) : null;
 }
 
-function loadResults(date) {
-  return fs.existsSync(paths.resultsFullPath(date)) ? JSON.parse(fs.readFileSync(paths.resultsFullPath(date), 'utf8')) : null;
+function loadResultsAny(date) {
+  const real = paths.resultsFullPath(date);
+  if (fs.existsSync(real)) {
+    return { data: JSON.parse(fs.readFileSync(real, 'utf8')), mode: 'post' };
+  }
+  if (typeof paths.resultsPreRacePath === 'function') {
+    const pre = paths.resultsPreRacePath(date);
+    if (fs.existsSync(pre)) {
+      return { data: JSON.parse(fs.readFileSync(pre, 'utf8')), mode: 'pre' };
+    }
+  }
+  return null;
 }
 
 // ===== Score race level =====
@@ -222,10 +254,21 @@ function buildRaceEntry(v14Race, resultsRace, raceDate) {
   };
 }
 
-function processDate(date) {
+async function processDate(date) {
   const v14 = loadV14(date);
-  const res = loadResults(date);
-  if (!v14 || !res) return null;
+  if (!v14) return null;
+
+  const resInfo = loadResultsAny(date);
+  const res = resInfo?.data || null;
+  const mode = resInfo?.mode || 'post';
+
+  // graceful 降級：無 results 時直接返 V14（保留 v14 既有 recommend）
+  if (!res) {
+    return { date, venue: v14.venue, model: 'v14-passthrough', mode: 'pre-no-results', races: v14.races || [] };
+  }
+
+  if (USE_SUPABASE) await ensureHorsesForResults([res]);
+
   const raceDate = new Date(date + 'T00:00:00+08:00');
   const resByNo = new Map();
   for (const r of res.races || []) resByNo.set(r.raceNo, r);
@@ -236,11 +279,11 @@ function processDate(date) {
     return buildRaceEntry(v14Race, resultsRace, raceDate);
   });
 
-  return { date, venue: v14.venue, model: 'v18', races };
+  return { date, venue: v14.venue, model: 'v18', mode, races };
 }
 
-function main() {
-  const args = process.argv.slice(2);
+async function main() {
+  const args = process.argv.slice(2).filter(a => !a.startsWith('--'));
   const dates = [];
   if (args.length) dates.push(...args);
   else {
@@ -256,7 +299,7 @@ function main() {
   }
   let totalRaces = 0, totalS = 0, totalA = 0, totalB = 0, totalSkip = 0;
   for (const date of dates) {
-    const out = processDate(date);
+    const out = await processDate(date);
     if (!out) continue;
     for (const r of out.races) {
       totalRaces++;
@@ -270,5 +313,7 @@ function main() {
   console.log(`V18: ${dates.length} 日 / ${totalRaces} 場 / S=${totalS} / A=${totalA} / B=${totalB} / skip=${totalSkip}`);
 }
 
-if (require.main === module) main();
+if (require.main === module) {
+  main().catch((err) => { console.error(err); process.exit(1); });
+}
 module.exports = { processDate, buildRaceEntry, scoreRaceLevel, jtComboTier };

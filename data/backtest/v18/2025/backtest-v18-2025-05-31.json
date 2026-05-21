@@ -1,0 +1,641 @@
+{
+  "date": "2025-05-31",
+  "venue": "ST",
+  "model": "v18",
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "className": "第五班",
+        "distance": 1400,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "文明福星",
+          "prob": 11.2
+        },
+        {
+          "no": "1",
+          "name": "綫路神驊",
+          "prob": 10.22
+        },
+        {
+          "no": "6",
+          "name": "領創動力",
+          "prob": 9.32
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "2",
+            "t2": "1",
+            "t3": "6",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "2,1",
+          "label": "2-1"
+        }
+      },
+      "actualTop3": [
+        "2",
+        "1",
+        "4"
+      ],
+      "model": "v18",
+      "v18": {
+        "tier": "A",
+        "score": 1.5,
+        "stakeMul": 1,
+        "reasons": [
+          "jt-good",
+          "draw=1"
+        ],
+        "flags": [],
+        "jtCombo": "good",
+        "jWinRate": 0.11963882618510158,
+        "tWinRate": 0.09411764705882353,
+        "draw": 1,
+        "class": 5,
+        "lastBodyWeight": 1098,
+        "bodyDelta": -6
+      }
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "團結勇士",
+          "prob": 9.91
+        },
+        {
+          "no": "10",
+          "name": "金多囍",
+          "prob": 8.96
+        },
+        {
+          "no": "14",
+          "name": "巧眼光",
+          "prob": 7.8
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-rel:0.47",
+          "low-prob:9.9%"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "8",
+        "5",
+        "11"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "陸小鳳",
+          "prob": 10.06
+        },
+        {
+          "no": "5",
+          "name": "非凡時刻",
+          "prob": 9.37
+        },
+        {
+          "no": "2",
+          "name": "天天更好",
+          "prob": 7.94
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-rel:0.47",
+          "low-v9-t1-prob:13.1%",
+          "low-top1-shape:0.59"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "6",
+        "7",
+        "8"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "className": "第四班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "9",
+          "name": "大利好運",
+          "prob": 11.4
+        },
+        {
+          "no": "7",
+          "name": "年年友福",
+          "prob": 9.98
+        },
+        {
+          "no": "4",
+          "name": "川河型駒",
+          "prob": 8.74
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "9",
+            "t2": "7",
+            "t3": "4",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "9,7",
+          "label": "9-7"
+        }
+      },
+      "actualTop3": [
+        "1",
+        "5",
+        "9"
+      ],
+      "model": "v18",
+      "v18": {
+        "tier": "B",
+        "score": 0,
+        "stakeMul": 0.7,
+        "reasons": [
+          "t-elite=10.2%"
+        ],
+        "flags": [
+          "draw-out=11"
+        ],
+        "jtCombo": "avg",
+        "jWinRate": 0.07103321033210332,
+        "tWinRate": 0.10214655810510732,
+        "draw": 11,
+        "class": 4,
+        "lastBodyWeight": 1077,
+        "bodyDelta": 12
+      }
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "className": "第四班",
+        "distance": 1400,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "一定超",
+          "prob": 13.2
+        },
+        {
+          "no": "4",
+          "name": "紅衣醒目",
+          "prob": 9.56
+        },
+        {
+          "no": "3",
+          "name": "一定掂",
+          "prob": 9.56
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "1",
+            "t2": "4",
+            "t3": "3",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "1,4",
+          "label": "1-4"
+        }
+      },
+      "actualTop3": [
+        "1",
+        "7",
+        "9"
+      ],
+      "model": "v18",
+      "v18": {
+        "tier": "A",
+        "score": 1.5,
+        "stakeMul": 1,
+        "reasons": [
+          "jt-good",
+          "draw=3"
+        ],
+        "flags": [],
+        "jtCombo": "good",
+        "jWinRate": 0.080078125,
+        "tWinRate": 0.08321579689703808,
+        "draw": 3,
+        "class": 4,
+        "lastBodyWeight": 1134,
+        "bodyDelta": -8
+      }
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 11,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "陽光勇士",
+          "prob": 12.53
+        },
+        {
+          "no": "11",
+          "name": "和平波",
+          "prob": 11.44
+        },
+        {
+          "no": "9",
+          "name": "玩笑",
+          "prob": 11.39
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "11",
+        "2",
+        "3"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 7,
+      "meta": {
+        "className": "第三班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "耀寶",
+          "prob": 12.84
+        },
+        {
+          "no": "7",
+          "name": "正氣青驅",
+          "prob": 9.24
+        },
+        {
+          "no": "10",
+          "name": "至尊瑰寶",
+          "prob": 9.06
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "1",
+        "4",
+        "7"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 8,
+      "meta": {
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 11,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "手機錶霸",
+          "prob": 11.8
+        },
+        {
+          "no": "2",
+          "name": "驕陽明駒",
+          "prob": 10.68
+        },
+        {
+          "no": "11",
+          "name": "愛馬善",
+          "prob": 9.58
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:48"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "2",
+        "7",
+        "5"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 9,
+      "meta": {
+        "className": "第三班",
+        "distance": 1400,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "跨境寶馬",
+          "prob": 14.05
+        },
+        {
+          "no": "5",
+          "name": "元朗精英",
+          "prob": 12.69
+        },
+        {
+          "no": "8",
+          "name": "嘉應奇兵",
+          "prob": 10.12
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "low-top1-shape:0.53",
+          "low-draw-rel:0.46"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "1",
+            "t2": "5",
+            "t3": "8",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "1,5",
+          "label": "1-5"
+        }
+      },
+      "actualTop3": [
+        "8",
+        "3",
+        "5"
+      ],
+      "model": "v18",
+      "v18": {
+        "tier": "A",
+        "score": 1.5,
+        "stakeMul": 1,
+        "reasons": [
+          "jt-good",
+          "t-elite=10.2%"
+        ],
+        "flags": [],
+        "jtCombo": "good",
+        "jWinRate": 0.11963882618510158,
+        "tWinRate": 0.10214655810510732,
+        "draw": 7,
+        "class": 3,
+        "lastBodyWeight": 1200,
+        "bodyDelta": 8
+      }
+    },
+    {
+      "raceNo": 10,
+      "meta": {
+        "className": "第二班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 13,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "加州動員",
+          "prob": 11.26
+        },
+        {
+          "no": "6",
+          "name": "太陽勇士",
+          "prob": 10.35
+        },
+        {
+          "no": "10",
+          "name": "德心知遇",
+          "prob": 9.94
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "11",
+        "6",
+        "5"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 11,
+      "meta": {
+        "className": "第三班",
+        "distance": 1600,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "9",
+          "name": "昭易搵",
+          "prob": 10.73
+        },
+        {
+          "no": "3",
+          "name": "天威",
+          "prob": 10.25
+        },
+        {
+          "no": "1",
+          "name": "金勝名駒",
+          "prob": 9.34
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:48"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "2",
+        "4",
+        "11"
+      ],
+      "model": "v18-skip"
+    }
+  ]
+}

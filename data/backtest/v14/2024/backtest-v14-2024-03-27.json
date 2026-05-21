@@ -1,0 +1,440 @@
+{
+  "date": "2024-03-27",
+  "venue": "HV",
+  "model": "v14-v12-v13-hybrid",
+  "policy": {
+    "v13": {
+      "consensus": true,
+      "v9T1ProbMin": 18,
+      "daysMin": 7,
+      "daysMax": 35
+    },
+    "ensembleStakeSplit": "50/50"
+  },
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "className": "第四班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "同寶寶",
+          "prob": 13.39
+        },
+        {
+          "no": "8",
+          "name": "極速滿貫",
+          "prob": 11.45
+        },
+        {
+          "no": "7",
+          "name": "美麗歡聲",
+          "prob": 10.46
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "12",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "className": "第四班",
+        "distance": 2200,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "一支箭",
+          "prob": 15.34
+        },
+        {
+          "no": "1",
+          "name": "夢照發",
+          "prob": 13.88
+        },
+        {
+          "no": "8",
+          "name": "大登殿",
+          "prob": 8.47
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:49"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "5",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "className": "第五班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "9",
+          "name": "帝豪歡星",
+          "prob": 13.78
+        },
+        {
+          "no": "1",
+          "name": "獎星",
+          "prob": 11.82
+        },
+        {
+          "no": "7",
+          "name": "贏盡天下",
+          "prob": 11.37
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-body-rel:0.42",
+          "low-top1-shape:0.64"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:1184"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "1",
+        "3",
+        "7"
+      ]
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "快樂奇兵",
+          "prob": 14.3
+        },
+        {
+          "no": "6",
+          "name": "精明選擇",
+          "prob": 12.56
+        },
+        {
+          "no": "11",
+          "name": "三代同心",
+          "prob": 9.23
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-body-rel:0.38",
+          "low-top1-shape:0.47"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:1184"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "11",
+        "7",
+        "1"
+      ]
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "className": "第四班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "川河首駒",
+          "prob": 12.27
+        },
+        {
+          "no": "7",
+          "name": "都靈勇士",
+          "prob": 11.56
+        },
+        {
+          "no": "8",
+          "name": "金哥兒",
+          "prob": 9.18
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:1190"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "5",
+        "3",
+        "7"
+      ]
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "多利神駒",
+          "prob": 12.69
+        },
+        {
+          "no": "4",
+          "name": "健康心靈",
+          "prob": 11.08
+        },
+        {
+          "no": "10",
+          "name": "進優自在",
+          "prob": 10.3
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-suit:0.33",
+          "low-top1-shape:0.58"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "5",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "raceNo": 7,
+      "meta": {
+        "className": "第三班",
+        "distance": 1000,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "萬眾開心",
+          "prob": 14.89
+        },
+        {
+          "no": "4",
+          "name": "英雄豪邁",
+          "prob": 12.03
+        },
+        {
+          "no": "6",
+          "name": "美麗第一",
+          "prob": 11.39
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "5",
+            "t2": "4",
+            "t3": "6",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "5,4",
+          "label": "5-4"
+        }
+      },
+      "actualTop3": [
+        "6",
+        "7",
+        "4"
+      ]
+    },
+    {
+      "raceNo": 8,
+      "meta": {
+        "className": "第三班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "12",
+          "name": "飛漲",
+          "prob": 12.93
+        },
+        {
+          "no": "3",
+          "name": "錶之量子",
+          "prob": 10.91
+        },
+        {
+          "no": "10",
+          "name": "展宏圖",
+          "prob": 10.42
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-body-rel:0.42",
+          "low-top1-shape:0.18"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:1196"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "10",
+        "12",
+        "3"
+      ]
+    },
+    {
+      "raceNo": 9,
+      "meta": {
+        "className": "第三班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "草地 - \"A\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "人和家興",
+          "prob": 12.11
+        },
+        {
+          "no": "11",
+          "name": "旭日昇",
+          "prob": 11.87
+        },
+        {
+          "no": "6",
+          "name": "川河型駒",
+          "prob": 10.21
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "2",
+        "4",
+        "11"
+      ]
+    }
+  ]
+}

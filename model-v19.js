@@ -107,15 +107,15 @@ function applyDistanceFilter(v18Race) {
   };
 }
 
-function processDate(date) {
-  const v18Out = v18.processDate(date);
+async function processDate(date) {
+  const v18Out = await v18.processDate(date);
   if (!v18Out) return null;
   const races = (v18Out.races || []).map(applyDistanceFilter);
-  return { date, venue: v18Out.venue, model: 'v19', races };
+  return { date, venue: v18Out.venue, model: 'v19', mode: v18Out.mode || 'post', races };
 }
 
-function main() {
-  const args = process.argv.slice(2);
+async function main() {
+  const args = process.argv.slice(2).filter(a => !a.startsWith('--'));
   const dates = [];
   if (args.length) dates.push(...args);
   else {
@@ -133,7 +133,7 @@ function main() {
   let totalRaces = 0, totalPlay = 0, totalS = 0, totalA = 0, totalB = 0;
   let totalSkipDist = 0, totalSkipOther = 0;
   for (const date of dates) {
-    const out = processDate(date);
+    const out = await processDate(date);
     if (!out) continue;
     for (const r of out.races) {
       totalRaces++;
@@ -150,5 +150,7 @@ function main() {
   console.log(`V19: ${dates.length} 日 / ${totalRaces} 場 / play=${totalPlay} (S=${totalS} A=${totalA} B=${totalB}) / skip-dist=${totalSkipDist} / skip-other=${totalSkipOther}`);
 }
 
-if (require.main === module) main();
+if (require.main === module) {
+  main().catch((err) => { console.error(err); process.exit(1); });
+}
 module.exports = { processDate, applyDistanceFilter };

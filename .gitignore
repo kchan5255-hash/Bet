@@ -13,6 +13,7 @@ node_modules/
 !advanced-model-config.json
 !web/**/*.json
 !web/public/**
+!data/**/*.json
 
 # temp files
 .tmp_*
@@ -25,8 +26,17 @@ out/
 *.tsbuildinfo
 *.log
 
-# large data files
-/data/
+# large data files - 預設忽略全部 data/，再用 ! 例外解鎖必要的
+/data/*
+!/data/jt-stats.json
+!/data/results/
+!/data/results-pre/
+!/data/dividends/
+!/data/backtest/
+/data/backtest/*
+!/data/backtest/v14/
+!/data/backtest/v18/
+!/data/backtest/v19/
 pnl-report.json
 profit-diagnostics-report.json
 compare-v9-profit-report.json

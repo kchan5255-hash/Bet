@@ -1,0 +1,308 @@
+{
+  "date": "2024-05-29",
+  "venue": "ST",
+  "model": "v19",
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "className": "第二班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 5,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "電訊巴打",
+          "prob": 25.88
+        },
+        {
+          "no": "4",
+          "name": "魅影獵飛",
+          "prob": 23.86
+        },
+        {
+          "no": "2",
+          "name": "魅力寶駒",
+          "prob": 17.31
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "4",
+        "5",
+        "1"
+      ],
+      "model": "v19-skip-distance",
+      "v19": {
+        "action": "skip",
+        "reason": "bad-distance=1650m",
+        "v18Tier": null,
+        "v18Score": null
+      },
+      "v18": null
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "className": "第五班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "9",
+          "name": "日日獎",
+          "prob": 10.88
+        },
+        {
+          "no": "5",
+          "name": "鑽飾翱翔",
+          "prob": 10.11
+        },
+        {
+          "no": "4",
+          "name": "型到爆",
+          "prob": 10.03
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "9",
+        "2",
+        "4"
+      ],
+      "model": "v19-skip",
+      "v19": {
+        "action": "skip",
+        "reason": "no-pick"
+      }
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "10",
+          "name": "城中勇士",
+          "prob": 13.02
+        },
+        {
+          "no": "1",
+          "name": "德心知遇",
+          "prob": 12.94
+        },
+        {
+          "no": "11",
+          "name": "閃耀威龍",
+          "prob": 10.99
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-banker"
+        ],
+        "reasons": [
+          "v12-banker"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "banker",
+            "t1": "10",
+            "t2": "1",
+            "t3": "11",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "10,1",
+          "label": "10-1"
+        }
+      },
+      "actualTop3": [
+        "1",
+        "4",
+        "10"
+      ],
+      "model": "v19",
+      "v18": {
+        "tier": "S",
+        "score": 5,
+        "stakeMul": 1.5,
+        "reasons": [
+          "jt-elite",
+          "j-elite=21.6%",
+          "t-elite=10.1%",
+          "draw=3"
+        ],
+        "flags": [],
+        "jtCombo": "elite",
+        "jWinRate": 0.21636615811373092,
+        "tWinRate": 0.1012987012987013,
+        "draw": 3,
+        "class": 4,
+        "lastBodyWeight": 1044,
+        "bodyDelta": -2
+      },
+      "v19": {
+        "action": "play",
+        "tier": "S",
+        "stakeMul": 1.5,
+        "boost": null,
+        "v18Tier": "S",
+        "v18Score": 5
+      }
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "className": "第五班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "7",
+          "name": "桃花多",
+          "prob": 11.24
+        },
+        {
+          "no": "3",
+          "name": "堅有利",
+          "prob": 9.79
+        },
+        {
+          "no": "11",
+          "name": "怪獸豪俠",
+          "prob": 8.48
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-banker"
+        ],
+        "reasons": [
+          "v12-banker"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "12",
+        "3",
+        "11"
+      ],
+      "model": "v19-skip-distance",
+      "v18": {
+        "score": -0.5,
+        "reasons": [],
+        "flags": [
+          "t-weak=4.7%"
+        ],
+        "action": "skip",
+        "suppressedBy": "v19-distance"
+      },
+      "v19": {
+        "action": "skip",
+        "reason": "bad-distance=1650m",
+        "v18Tier": null,
+        "v18Score": -0.5
+      }
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "自強不息",
+          "prob": 12
+        },
+        {
+          "no": "11",
+          "name": "新強福盈",
+          "prob": 9.95
+        },
+        {
+          "no": "9",
+          "name": "機械騎士",
+          "prob": 9.85
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "3",
+        "7",
+        "9"
+      ],
+      "model": "v19-skip",
+      "v19": {
+        "action": "skip",
+        "reason": "no-pick"
+      }
+    }
+  ]
+}

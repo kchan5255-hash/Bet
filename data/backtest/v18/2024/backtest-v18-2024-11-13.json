@@ -1,0 +1,312 @@
+{
+  "date": "2024-11-13",
+  "venue": "HV",
+  "model": "v18",
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "className": "第五班",
+        "distance": 2200,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 9,
+      "proTop3": [
+        {
+          "no": "4",
+          "name": "竣誠駒",
+          "prob": 14.82
+        },
+        {
+          "no": "8",
+          "name": "皇金風速",
+          "prob": 13.71
+        },
+        {
+          "no": "3",
+          "name": "永勝金駒",
+          "prob": 13.19
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "4",
+        "6",
+        "1"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "className": "第四班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "11",
+          "name": "風起雲湧",
+          "prob": 11.7
+        },
+        {
+          "no": "2",
+          "name": "爆熱",
+          "prob": 11.13
+        },
+        {
+          "no": "12",
+          "name": "追風",
+          "prob": 10.47
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-top1-shape:0.41"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "4",
+        "11",
+        "2"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "className": "第四班",
+        "distance": 1650,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "客家之光",
+          "prob": 14.51
+        },
+        {
+          "no": "10",
+          "name": "齊歡最樂",
+          "prob": 10.87
+        },
+        {
+          "no": "4",
+          "name": "天天得樂",
+          "prob": 10.3
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:1418"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "4",
+        "7",
+        "8"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "className": "第四班",
+        "distance": 1000,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "精益大師",
+          "prob": 17.6
+        },
+        {
+          "no": "9",
+          "name": "銀刺勇士",
+          "prob": 11.05
+        },
+        {
+          "no": "1",
+          "name": "極光彗星",
+          "prob": 10.37
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "2",
+            "t2": "9",
+            "t3": "1",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "2,9",
+          "label": "2-9"
+        }
+      },
+      "actualTop3": [
+        "10",
+        "2",
+        "1"
+      ],
+      "model": "v18",
+      "v18": {
+        "tier": "B",
+        "score": 0.5,
+        "stakeMul": 0.7,
+        "reasons": [
+          "draw=1"
+        ],
+        "flags": [],
+        "jtCombo": "avg",
+        "jWinRate": 0.08583690987124463,
+        "tWinRate": 0.06451612903225806,
+        "draw": 1,
+        "class": 4,
+        "lastBodyWeight": 1097,
+        "bodyDelta": 29
+      }
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "11",
+          "name": "新幹線",
+          "prob": 10.79
+        },
+        {
+          "no": "7",
+          "name": "炯炯有神",
+          "prob": 10.42
+        },
+        {
+          "no": "5",
+          "name": "真心傳奇",
+          "prob": 9.11
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-body-rel:0.46",
+          "low-top1-shape:0.56"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:1421"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "7",
+        "5",
+        "1"
+      ],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "添喜運",
+          "prob": 12.67
+        },
+        {
+          "no": "4",
+          "name": "至合拍",
+          "prob": 12.58
+        },
+        {
+          "no": "9",
+          "name": "翠湖烈風",
+          "prob": 12.52
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-suit:0.54"
+        ],
+        "v13RiskFlags": [
+          "no-consensus"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "7",
+        "10",
+        "11"
+      ],
+      "model": "v18-skip"
+    }
+  ]
+}

@@ -947,7 +947,19 @@ function summarizeBacktest(backtest) {
 
 function runBacktest(options = {}) {
   const date = options.date || process.env.DATE || '2026-05-09';
-  const resultsFile = options.results || process.env.RESULTS || paths.resultsFullPath(date);
+  const PRE_RACE = process.env.PRE_RACE === '1' || options.preRace === true;
+  let resultsFile = options.results || process.env.RESULTS;
+  if (!resultsFile) {
+    if (PRE_RACE && fs.existsSync(paths.resultsPreRacePath(date))) {
+      resultsFile = paths.resultsPreRacePath(date);
+    } else if (fs.existsSync(paths.resultsFullPath(date))) {
+      resultsFile = paths.resultsFullPath(date);
+    } else if (fs.existsSync(paths.resultsPreRacePath(date))) {
+      resultsFile = paths.resultsPreRacePath(date);
+    } else {
+      throw new Error(`No results file for ${date}: tried ${paths.resultsFullPath(date)} and ${paths.resultsPreRacePath(date)}`);
+    }
+  }
   const horseFiles = options.horses
     || (process.env.HORSES
       ? process.env.HORSES.split(',').map((item) => paths.horsesPath(item.trim())).filter(Boolean)

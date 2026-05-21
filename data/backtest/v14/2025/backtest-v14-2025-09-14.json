@@ -1,0 +1,530 @@
+{
+  "date": "2025-09-14",
+  "venue": "ST",
+  "model": "v14-v12-v13-hybrid",
+  "policy": {
+    "v13": {
+      "consensus": true,
+      "v9T1ProbMin": 18,
+      "daysMin": 7,
+      "daysMax": 35
+    },
+    "ensembleStakeSplit": "50/50"
+  },
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "className": "第五班",
+        "distance": 1400,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "2",
+          "name": "威威父子",
+          "prob": 13.1
+        },
+        {
+          "no": "4",
+          "name": "綫路萬里",
+          "prob": 10.82
+        },
+        {
+          "no": "3",
+          "name": "添喜運",
+          "prob": 10.46
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-strong"
+        ],
+        "reasons": [
+          "v12-strong"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:67"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "2",
+            "t2": "4",
+            "t3": "3",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "2,4",
+          "label": "2-4"
+        }
+      },
+      "actualTop3": [
+        "10",
+        "4",
+        "2"
+      ]
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "className": "第五班",
+        "distance": 1400,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "凱旋幸運",
+          "prob": 10.32
+        },
+        {
+          "no": "7",
+          "name": "朗日雪峰",
+          "prob": 10.08
+        },
+        {
+          "no": "1",
+          "name": "銳一",
+          "prob": 9.92
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:63"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "6",
+        "5",
+        "1"
+      ]
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 10,
+      "proTop3": [
+        {
+          "no": "4",
+          "name": "五福星",
+          "prob": 14.43
+        },
+        {
+          "no": "7",
+          "name": "大利好運",
+          "prob": 13.13
+        },
+        {
+          "no": "1",
+          "name": "熾烈神駒",
+          "prob": 12.85
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:71"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "1",
+        "6",
+        "3"
+      ]
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "className": "第四班",
+        "distance": 1400,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 11,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "糖不甩",
+          "prob": 13.39
+        },
+        {
+          "no": "2",
+          "name": "醒目先駒",
+          "prob": 12.79
+        },
+        {
+          "no": "6",
+          "name": "天天更好",
+          "prob": 12.17
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-top1-shape:0.46",
+          "low-draw-rel:0.05"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:78"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "className": "第四班",
+        "distance": 1400,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 11,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "快樂高球",
+          "prob": 13.52
+        },
+        {
+          "no": "4",
+          "name": "勁沙塵",
+          "prob": 13.36
+        },
+        {
+          "no": "2",
+          "name": "博愛先鋒",
+          "prob": 11.02
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-strong"
+        ],
+        "reasons": [
+          "v12-strong"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "days-out-of-range:67"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "3",
+            "t2": "4",
+            "t3": "2",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "3,4",
+          "label": "3-4"
+        }
+      },
+      "actualTop3": [
+        "4",
+        "5",
+        "10"
+      ]
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "8",
+          "name": "高感",
+          "prob": 11.73
+        },
+        {
+          "no": "2",
+          "name": "當家精彩",
+          "prob": 8.52
+        },
+        {
+          "no": "1",
+          "name": "海綠寶",
+          "prob": 7.94
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v13"
+        ],
+        "reasons": [
+          "v13"
+        ],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": []
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "8",
+            "t2": "2",
+            "t3": "1",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "8,2",
+          "label": "8-2"
+        }
+      },
+      "actualTop3": [
+        "12",
+        "14",
+        "1"
+      ]
+    },
+    {
+      "raceNo": 7,
+      "meta": {
+        "className": "第三班",
+        "distance": 1000,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 11,
+      "proTop3": [
+        {
+          "no": "11",
+          "name": "駿馬之曲",
+          "prob": 14.1
+        },
+        {
+          "no": "6",
+          "name": "渾身解數",
+          "prob": 11.43
+        },
+        {
+          "no": "1",
+          "name": "會長之寶",
+          "prob": 10.33
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:84"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "9",
+        "1",
+        "7"
+      ]
+    },
+    {
+      "raceNo": 8,
+      "meta": {
+        "className": "第四班",
+        "distance": 1200,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "飛輪霸",
+          "prob": 10.6
+        },
+        {
+          "no": "10",
+          "name": "快活英雄",
+          "prob": 9.26
+        },
+        {
+          "no": "3",
+          "name": "同有運",
+          "prob": 8.59
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:71"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "10",
+        "8",
+        "2"
+      ]
+    },
+    {
+      "raceNo": 9,
+      "meta": {
+        "className": "第三班",
+        "distance": 1200,
+        "going": "好地",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "皇龍飛將",
+          "prob": 12.16
+        },
+        {
+          "no": "10",
+          "name": "勁先生",
+          "prob": 11.78
+        },
+        {
+          "no": "9",
+          "name": "哈羅威",
+          "prob": 11.13
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-strong"
+        ],
+        "reasons": [
+          "v12-strong"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "days-out-of-range:78"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "5",
+            "t2": "10",
+            "t3": "9",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "5,10",
+          "label": "5-10"
+        }
+      },
+      "actualTop3": [
+        "3",
+        "10",
+        "8"
+      ]
+    },
+    {
+      "raceNo": 10,
+      "meta": {
+        "className": "第三班",
+        "distance": 1400,
+        "going": "好地至快地",
+        "course": "草地 - \"B\" 賽道"
+      },
+      "fieldSize": 13,
+      "proTop3": [
+        {
+          "no": "4",
+          "name": "春風萬里",
+          "prob": 11.56
+        },
+        {
+          "no": "9",
+          "name": "勇冠群英",
+          "prob": 11.34
+        },
+        {
+          "no": "13",
+          "name": "一支箭",
+          "prob": 9.6
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-top1-shape:0.61"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:92"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [
+        "9",
+        "3",
+        "4"
+      ]
+    }
+  ]
+}

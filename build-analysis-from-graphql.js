@@ -12,6 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const F = require('./features-pro');
+const { loadHorsesByCodes } = require('./supabase-data');
 
 const ROOT = __dirname;
 const GRAPHQL_FILE = path.join(ROOT, 'data', 'misc', 'graphql-race-data.json');
@@ -19,6 +20,7 @@ const HORSES_DIR = path.join(ROOT, 'data', 'horses');
 const WEB_DATA_DIR = path.join(ROOT, 'web', 'src', 'data');
 
 const NO_REBUILD = process.argv.includes('--no-rebuild');
+const USE_SUPABASE = process.argv.includes('--supabase') || process.env.USE_SUPABASE === '1';
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -40,9 +42,19 @@ function loadMeeting() {
   return item.data.data.raceMeetings[0];
 }
 
-// ── load horses (merge all available files, newest wins) ─────────────────────
+// ── load horses (Supabase 模式優先；fallback 到本地 horses-*.json) ────────────
 
-function loadHorses() {
+function declaredCodesFromMeeting(meeting) {
+  const codes = new Set();
+  for (const race of meeting.races || []) {
+    for (const r of race.runners || []) {
+      if (r.status === 'Declared' && r.horse?.code) codes.add(r.horse.code);
+    }
+  }
+  return [...codes];
+}
+
+function loadHorsesLocal() {
   const files = fs.readdirSync(HORSES_DIR)
     .filter((f) => f.endsWith('.json') && f.startsWith('horses'))
     .map((f) => ({ name: f, path: path.join(HORSES_DIR, f) }))
@@ -57,6 +69,15 @@ function loadHorses() {
     }
   }
   return map;
+}
+
+async function loadHorses(meeting) {
+  if (USE_SUPABASE) {
+    const codes = declaredCodesFromMeeting(meeting);
+    console.log(`Loading ${codes.length} horses from Supabase...`);
+    return loadHorsesByCodes(codes);
+  }
+  return loadHorsesLocal();
 }
 
 // ── build runners from graphql race ──────────────────────────────────────────
@@ -174,7 +195,10 @@ function scoreRace(race, horsesMap) {
 
 function main() {
   const meeting = loadMeeting();
-  const horsesMap = loadHorses();
+  return loadHorses(meeting).then((horsesMap) => mainWithHorses(meeting, horsesMap));
+}
+
+function mainWithHorses(meeting, horsesMap) {
 
   const date = meeting.date;
   const venue = meeting.venueCode || '';
@@ -226,4 +250,7 @@ function main() {
   }
 }
 
-main();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

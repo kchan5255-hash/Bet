@@ -9,22 +9,49 @@ const paths = require('./paths');
 const F = require('./features-pro');
 
 const DATE = process.env.DATE || '2026-05-09';
-const RESULTS = process.env.RESULTS || paths.resultsFullPath(DATE);
+const PRE_RACE = process.env.PRE_RACE === '1';
+const USE_SUPABASE = process.env.USE_SUPABASE === '1' || process.argv.includes('--supabase');
+
+function pickResultsFile() {
+  if (process.env.RESULTS) return process.env.RESULTS;
+  if (PRE_RACE && fs.existsSync(paths.resultsPreRacePath(DATE))) return paths.resultsPreRacePath(DATE);
+  if (fs.existsSync(paths.resultsFullPath(DATE))) return paths.resultsFullPath(DATE);
+  if (fs.existsSync(paths.resultsPreRacePath(DATE))) return paths.resultsPreRacePath(DATE);
+  throw new Error(`No results file for ${DATE}`);
+}
+
+const RESULTS = pickResultsFile();
 const HORSES = process.env.HORSES || paths.horsesPath(`horses-${DATE}.json`);
 const OUT = process.env.OUT || paths.backtestWritePath('pro', DATE);
 
 const resultsData = JSON.parse(fs.readFileSync(RESULTS, 'utf8'));
-const horseFiles = HORSES.split(',').map((s) => paths.horsesPath(s.trim())).filter(Boolean);
 const horseByCode = new Map();
-horseFiles.forEach((f) => {
-  const h = JSON.parse(fs.readFileSync(f, 'utf8'));
-  h.horses.forEach((horse) => {
-    const existing = horseByCode.get(horse.code);
-    if (!existing || (horse.records?.length || 0) > (existing.records?.length || 0)) {
-      horseByCode.set(horse.code, horse);
-    }
+
+if (USE_SUPABASE) {
+  const { loadHorsesByCodes } = require('./supabase-data');
+  const codes = new Set();
+  for (const r of resultsData.races || []) {
+    for (const run of r.runners || []) if (run.code) codes.add(run.code);
+  }
+  // top-level await 不可用，改用 IIFE 包裝整個檔案
+  module.exports = (async () => {
+    const sbMap = await loadHorsesByCodes([...codes]);
+    for (const [code, h] of sbMap) horseByCode.set(code, h);
+    return runMain();
+  })();
+} else {
+  const horseFiles = HORSES.split(',').map((s) => paths.horsesPath(s.trim())).filter(Boolean);
+  horseFiles.forEach((f) => {
+    const h = JSON.parse(fs.readFileSync(f, 'utf8'));
+    h.horses.forEach((horse) => {
+      const existing = horseByCode.get(horse.code);
+      if (!existing || (horse.records?.length || 0) > (existing.records?.length || 0)) {
+        horseByCode.set(horse.code, horse);
+      }
+    });
   });
-});
+  runMain();
+}
 
 const RACE_DATE = new Date(DATE + 'T00:00:00+08:00');
 const VENUE = resultsData.venue;
@@ -82,78 +109,69 @@ function buildRunner(resultRunner) {
   };
 }
 
-const races = resultsData.races.map((race) => {
-  const enriched = race.runners.map(buildRunner).filter(Boolean);
-  const withFeatures = F.buildFeatures(enriched, {
-    venue: VENUE,
-    distance: F.numberValue(race.meta.distance),
-    classNo: raceClassNo(race.meta.className),
-    going: race.meta.going,
-    raceDate: RACE_DATE,
+function runMain() {
+  const races = resultsData.races.map((race) => {
+    const enriched = race.runners.map(buildRunner).filter(Boolean);
+    const withFeatures = F.buildFeatures(enriched, {
+      venue: VENUE,
+      distance: F.numberValue(race.meta.distance),
+      classNo: raceClassNo(race.meta.className),
+      going: race.meta.going,
+      raceDate: RACE_DATE,
+    });
+
+    const origRaw = withFeatures.map((r) => F.originalRawScore(r.features));
+    const origProb = F.softmaxProb(origRaw, withFeatures.length, 'orig');
+
+    const withPro = F.applyProfessional(withFeatures);
+    const proProb = F.softmaxProb(withPro.map((r) => r.proRawScore), withPro.length, 'pro');
+
+    const rows = withFeatures.map((r, i) => ({ ...r, origProb: origProb[i], proProb: proProb[i] }));
+
+    const origRanked = [...rows].sort((a, b) => b.origProb - a.origProb);
+    const proRanked = [...rows].sort((a, b) => b.proProb - a.proProb);
+    const actualTop3 = [...race.runners]
+      .filter((x) => /^\d+$/.test(x.plc))
+      .sort((a, b) => +a.plc - +b.plc)
+      .slice(0, 3)
+      .map((x) => x.no);
+
+    const summarize = (r, prob) => ({
+      no: r.no,
+      name: r.name,
+      prob: +prob.toFixed(2),
+      draw: r.draw,
+      rating: r.rating,
+      recordsCount: r.recordsCount,
+      plc: r.plc,
+      winOdds: r.winOdds,
+    });
+
+    return {
+      raceNo: race.raceNo,
+      meta: race.meta,
+      actualTop3,
+      origTop4: origRanked.slice(0, 4).map((x) => x.no),
+      proTop4: proRanked.slice(0, 4).map((x) => x.no),
+      origRanking: origRanked.map((r) => summarize(r, r.origProb)),
+      proRanking: proRanked.map((r) => summarize(r, r.proProb)),
+    };
   });
 
-  const origRaw = withFeatures.map((r) => F.originalRawScore(r.features));
-  const origProb = F.softmaxProb(origRaw, withFeatures.length, 'orig');
-
-  const withPro = F.applyProfessional(withFeatures);
-  const proProb = F.softmaxProb(withPro.map((r) => r.proRawScore), withPro.length, 'pro');
-
-  const rows = withFeatures.map((r, i) => ({ ...r, origProb: origProb[i], proProb: proProb[i] }));
-
-  const origRanked = [...rows].sort((a, b) => b.origProb - a.origProb);
-  const proRanked = [...rows].sort((a, b) => b.proProb - a.proProb);
-  const actualTop3 = [...race.runners]
-    .filter((x) => /^\d+$/.test(x.plc))
-    .sort((a, b) => +a.plc - +b.plc)
-    .slice(0, 3)
-    .map((x) => x.no);
-
-  const summarize = (r, prob) => ({
-    no: r.no,
-    name: r.name,
-    prob: +prob.toFixed(2),
-    draw: r.draw,
-    rating: r.rating,
-    recordsCount: r.recordsCount,
-    plc: r.plc,
-    winOdds: r.winOdds,
+  let origHit = 0, proHit = 0, origChamp = 0, proChamp = 0;
+  races.forEach((r) => {
+    if (r.origTop4.some((n) => r.actualTop3.includes(n))) origHit++;
+    if (r.proTop4.some((n) => r.actualTop3.includes(n))) proHit++;
+    if (r.origTop4.includes(r.actualTop3[0])) origChamp++;
+    if (r.proTop4.includes(r.actualTop3[0])) proChamp++;
   });
 
-  return {
-    raceNo: race.raceNo,
-    meta: race.meta,
-    actualTop3,
-    origTop4: origRanked.slice(0, 4).map((x) => x.no),
-    proTop4: proRanked.slice(0, 4).map((x) => x.no),
-    origRanking: origRanked.map((r) => summarize(r, r.origProb)),
-    proRanking: proRanked.map((r) => summarize(r, r.proProb)),
-  };
-});
+  console.log(`\n=== Backtest ${DATE} ${VENUE} 共 ${races.length} 場 (mode=${PRE_RACE ? 'pre' : 'post'}) ===`);
+  console.log(`Original     Top4 命中頭三任一: ${origHit}/${races.length} = ${(origHit / races.length * 100).toFixed(1)}%`);
+  console.log(`Professional Top4 命中頭三任一: ${proHit}/${races.length} = ${(proHit / races.length * 100).toFixed(1)}%`);
+  console.log(`Original     Top4 命中冠軍:     ${origChamp}/${races.length} = ${(origChamp / races.length * 100).toFixed(1)}%`);
+  console.log(`Professional Top4 命中冠軍:     ${proChamp}/${races.length} = ${(proChamp / races.length * 100).toFixed(1)}%`);
 
-let origHit = 0, proHit = 0, origChamp = 0, proChamp = 0;
-races.forEach((r) => {
-  if (r.origTop4.some((n) => r.actualTop3.includes(n))) origHit++;
-  if (r.proTop4.some((n) => r.actualTop3.includes(n))) proHit++;
-  if (r.origTop4.includes(r.actualTop3[0])) origChamp++;
-  if (r.proTop4.includes(r.actualTop3[0])) proChamp++;
-});
-
-console.log(`\n=== Backtest ${DATE} ${VENUE} 共 ${races.length} 場 ===`);
-console.log(`Original     Top4 命中頭三任一: ${origHit}/${races.length} = ${(origHit / races.length * 100).toFixed(1)}%`);
-console.log(`Professional Top4 命中頭三任一: ${proHit}/${races.length} = ${(proHit / races.length * 100).toFixed(1)}%`);
-console.log(`Original     Top4 命中冠軍:     ${origChamp}/${races.length} = ${(origChamp / races.length * 100).toFixed(1)}%`);
-console.log(`Professional Top4 命中冠軍:     ${proChamp}/${races.length} = ${(proChamp / races.length * 100).toFixed(1)}%`);
-
-console.log('\n=== 逐場 ===');
-races.forEach((r) => {
-  const hOrig = r.origTop4.filter((n) => r.actualTop3.includes(n)).length;
-  const hPro = r.proTop4.filter((n) => r.actualTop3.includes(n)).length;
-  const origChampRank = r.origRanking.findIndex((x) => x.no === r.actualTop3[0]) + 1;
-  const proChampRank = r.proRanking.findIndex((x) => x.no === r.actualTop3[0]) + 1;
-  console.log(
-    `R${r.raceNo} 實際=${r.actualTop3.join('-')} | Orig=${r.origTop4.join('-')}(${hOrig}) | Pro=${r.proTop4.join('-')}(${hPro}) | 冠軍 origRank=${origChampRank} proRank=${proChampRank}`,
-  );
-});
-
-fs.writeFileSync(OUT, JSON.stringify({ date: DATE, venue: VENUE, races }, null, 2), 'utf8');
-console.log(`\n細節寫入 ${OUT}`);
+  fs.writeFileSync(OUT, JSON.stringify({ date: DATE, venue: VENUE, mode: PRE_RACE ? 'pre' : 'post', races }, null, 2), 'utf8');
+  console.log(`\n細節寫入 ${OUT}`);
+}

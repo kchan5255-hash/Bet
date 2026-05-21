@@ -1,0 +1,163 @@
+name: Admin Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      flow:
+        description: 'Flow'
+        required: true
+        type: choice
+        options:
+          - pre-prediction
+          - results
+          - post-prediction
+          - history-rebuild
+      date:
+        description: 'Race date YYYY-MM-DD'
+        required: true
+        type: string
+      venue:
+        description: 'Venue'
+        required: false
+        default: ST
+        type: choice
+        options:
+          - ST
+          - HV
+      races:
+        description: 'Race count (for results flow)'
+        required: false
+        default: '10'
+        type: string
+
+concurrency:
+  group: admin-${{ inputs.flow }}-${{ inputs.date }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 30
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      USE_SUPABASE: '1'
+      DATE: ${{ inputs.date }}
+      VENUE: ${{ inputs.venue }}
+      RACES: ${{ inputs.races }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      # ─── PRE-PREDICTION ───
+      - name: '[pre] fetch graphql'
+        if: inputs.flow == 'pre-prediction'
+        run: node fetch-graphql.js
+      - name: '[pre] build pre-race results'
+        if: inputs.flow == 'pre-prediction'
+        run: node graphql-to-results-full.js --pre
+      - name: '[pre] build analysis'
+        if: inputs.flow == 'pre-prediction'
+        run: node build-analysis-from-graphql.js --supabase --no-rebuild
+      - name: '[pre] pro backtest'
+        if: inputs.flow == 'pre-prediction'
+        env:
+          PRE_RACE: '1'
+        run: node backtest.js
+      - name: '[pre] V9'
+        if: inputs.flow == 'pre-prediction'
+        env:
+          PRE_RACE: '1'
+        run: node model-v9.js
+      - name: '[pre] V12 V13 V14'
+        if: inputs.flow == 'pre-prediction'
+        run: |
+          node model-v12.js $DATE
+          node model-v13.js $DATE
+          node model-v14.js $DATE
+      - name: '[pre] V18'
+        if: inputs.flow == 'pre-prediction'
+        run: node model-v18.js $DATE
+      - name: '[pre] V19'
+        if: inputs.flow == 'pre-prediction'
+        run: node model-v19.js $DATE
+      - name: '[pre] export V19'
+        if: inputs.flow == 'pre-prediction'
+        run: node export-v19-to-web.js $DATE
+
+      # ─── RESULTS ───
+      - name: '[results] install chromium'
+        if: inputs.flow == 'results'
+        run: npx puppeteer browsers install chrome
+      - name: '[results] scrape race results'
+        if: inputs.flow == 'results'
+        env:
+          HEADLESS: 'true'
+        run: node results-full-scraper.js
+      - name: '[results] scrape dividends'
+        if: inputs.flow == 'results'
+        env:
+          HEADLESS: 'true'
+        run: node dividends-scraper.js
+      - name: '[results] aggregate race-results-by-date'
+        if: inputs.flow == 'results'
+        run: node build-race-results-by-date.js
+      - name: '[results] aggregate dividends-by-date'
+        if: inputs.flow == 'results'
+        run: node build-dividends-by-date.js
+
+      # ─── POST-PREDICTION ───
+      - name: '[post] pro backtest'
+        if: inputs.flow == 'post-prediction'
+        run: node backtest.js
+      - name: '[post] V9'
+        if: inputs.flow == 'post-prediction'
+        run: node model-v9.js
+      - name: '[post] V12 V13 V14'
+        if: inputs.flow == 'post-prediction'
+        run: |
+          node model-v12.js $DATE
+          node model-v13.js $DATE
+          node model-v14.js $DATE
+      - name: '[post] V18'
+        if: inputs.flow == 'post-prediction'
+        run: node model-v18.js $DATE
+      - name: '[post] V19'
+        if: inputs.flow == 'post-prediction'
+        run: node model-v19.js $DATE
+      - name: '[post] export V19'
+        if: inputs.flow == 'post-prediction'
+        run: node export-v19-to-web.js $DATE
+
+      # ─── HISTORY-REBUILD ───
+      - name: '[history] V19 full history'
+        if: inputs.flow == 'history-rebuild'
+        run: node model-v19.js
+      - name: '[history] export V19 full'
+        if: inputs.flow == 'history-rebuild'
+        run: node export-v19-to-web.js
+
+      # ─── COMMIT & PUSH ───
+      - name: Commit & push
+        run: |
+          git config user.name 'admin-bot'
+          git config user.email 'admin-bot@users.noreply.github.com'
+          git add web/src/data/ data/ || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "admin: ${{ inputs.flow }} ${{ inputs.date }} ${{ inputs.venue }}"
+          for i in 1 2 3; do
+            git pull --rebase origin master && git push origin master && exit 0
+            sleep 5
+          done
+          exit 1
