@@ -74,6 +74,11 @@ jobs:
         if: steps.detect.outputs.race_day == 'true'
         run: node build-analysis-from-graphql.js --supabase --no-rebuild
 
+      # ── 合併單日 analysis 入 analysis-by-date.json（前端日曆 + /races）──
+      - name: Merge analysis-by-date
+        if: steps.detect.outputs.race_day == 'true'
+        run: node merge-analysis-by-date.js ${{ steps.detect.outputs.date }} ${{ steps.detect.outputs.venue }}
+
       # ── 跑 Pro 基礎 backtest (PRE_RACE) ────────────────────────────
       - name: Run Pro backtest (pre-race)
         if: steps.detect.outputs.race_day == 'true'
