@@ -87,6 +87,7 @@ function toV19BannerView(date: string, raceNo: number): V19BannerView | null {
           qinBanker: entry.recommend.qinBanker,
           stakeMul: entry.recommend.stakeMul,
           boost: entry.recommend.boost,
+          commentary: entry.recommend.commentary ?? null,
         }
       : null,
   };

@@ -75,7 +75,9 @@ export function RaceViewer({ payload }: RaceViewerProps) {
         />
       </div>
 
-      {effectiveMode === "v19" && <V19Banner banner={v19Banner} />}
+      {effectiveMode === "v19" && (
+        <V19Banner banner={v19Banner} runners={race.runners} />
+      )}
 
       <RunnerList
         sorted={sorted}
@@ -204,7 +206,13 @@ function TableLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function V19Banner({ banner }: { banner: V19BannerView | null }) {
+function V19Banner({
+  banner,
+  runners,
+}: {
+  banner: V19BannerView | null;
+  runners: RaceRunnerView[];
+}) {
   if (!banner) return null;
 
   const isPlay = banner.gate.action === "play" && banner.recommend !== null;
@@ -213,9 +221,9 @@ function V19Banner({ banner }: { banner: V19BannerView | null }) {
       <div className="rounded-xl border-l-[3px] border-l-border border border-border-subtle bg-bg-card px-3 py-2">
         <div className="flex items-center gap-2">
           <AlertTriangle className="h-4 w-4 shrink-0 text-text-muted" />
-          <span className="text-xs font-bold text-text">V19</span>
+          <span className="text-xs font-bold text-text">V19 不推介本場</span>
           <span className="text-[10px] text-text-muted">
-            {banner.gate.reason ?? "Skipped for this race"}
+            {translateGateReason(banner.gate.reason)}
           </span>
         </div>
         {banner.gate.reasons.length > 0 && (
@@ -234,13 +242,21 @@ function V19Banner({ banner }: { banner: V19BannerView | null }) {
   const tier = banner.recommend?.tier ?? banner.gate.tier ?? "A";
   const isS = tier === "S";
   const isA = tier === "A";
-  const qinT12 = banner.recommend?.qinT12;
-  const qinBanker = banner.recommend?.qinBanker ?? [];
+  const stakeMul = banner.recommend?.stakeMul ?? 1;
+  const nameByNo = new Map(runners.map((r) => [String(r.no), r.name]));
+  const bankerPlay = buildBankerPlay(banner.recommend?.qinBanker ?? [], nameByNo);
+  const boxPlay = buildBoxPlay(
+    banner.recommend?.qinT12 ?? null,
+    banner.recommend?.qinBanker ?? [],
+    nameByNo,
+  );
+  const rationale = buildRationale(banner.gate.reasons, banner.gate.boost);
+  const commentary = banner.recommend?.commentary?.trim() || null;
 
   return (
     <div
       className={cn(
-        "rounded-xl border-l-[3px] border px-3 py-2",
+        "rounded-xl border-l-[3px] border px-3 py-3 space-y-3",
         isS
           ? "border-l-precision border-precision/40 bg-precision/10"
           : isA
@@ -250,47 +266,244 @@ function V19Banner({ banner }: { banner: V19BannerView | null }) {
     >
       <div className="flex items-center gap-2">
         <Target className="h-4 w-4 shrink-0 text-precision" />
-        <span className="text-xs font-bold text-text">V19 Tier {tier}</span>
-        {banner.gate.boost && (
-          <span className="rounded bg-bg-subtle px-1.5 py-0.5 text-[10px] text-text-muted">
-            {banner.gate.boost}
-          </span>
-        )}
+        <span className="text-xs font-bold text-text">
+          V19 推介 · {tierLabel(tier)}
+        </span>
+        <span className="ml-auto text-[10px] text-text-muted">
+          建議注碼 ×{stakeMul}
+        </span>
       </div>
 
-      <div className="mt-2 flex flex-wrap gap-2 text-xs">
-        {qinT12 && (
-          <span className="rounded-md bg-precision px-2 py-1 font-bold text-white">
-            T1-T2 {qinT12.label}
-          </span>
-        )}
-        {qinBanker.length > 0 && (
-          <span className="rounded-md bg-precision/80 px-2 py-1 font-bold text-white">
-            Banker {qinBanker.map((combo) => combo.label).join(" / ")}
-          </span>
-        )}
-      </div>
+      {bankerPlay && <BetSuggestion title="連贏膽拖" {...bankerPlay} />}
+      {boxPlay && <BetSuggestion title="連贏全串" {...boxPlay} />}
 
-      {banner.gate.reasons.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-text-muted">
-          {banner.gate.reasons.slice(0, 5).map((reason) => (
-            <span key={reason} className="rounded bg-bg-subtle px-1.5 py-0.5">
-              {reason}
+      {commentary ? (
+        <div className="rounded-lg border border-border-subtle bg-bg-card/60 px-3 py-2">
+          <div className="flex items-center gap-1.5 text-[11px] font-bold text-text">
+            <span>AI 點評</span>
+            <span className="rounded bg-bg-subtle px-1 py-0.5 text-[9px] font-normal text-text-muted">
+              Sonnet 4.6
             </span>
-          ))}
+          </div>
+          <p className="mt-1.5 text-[11px] leading-relaxed text-text-muted">
+            {commentary}
+          </p>
         </div>
-      )}
+      ) : rationale.length > 0 ? (
+        <div className="rounded-lg border border-border-subtle bg-bg-card/60 px-3 py-2">
+          <div className="text-[11px] font-bold text-text">為何推介</div>
+          <ul className="mt-1.5 space-y-1 text-[11px] text-text-muted">
+            {rationale.map((line) => (
+              <li key={line} className="flex gap-1.5">
+                <span className="text-precision">·</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
-      <div className="mt-2 flex flex-wrap items-center gap-2 text-[10px] text-text-muted">
-        {banner.fieldSize !== null && <span>field={banner.fieldSize}</span>}
-        {banner.gate.draw !== null && <span>draw={banner.gate.draw}</span>}
-        {banner.gate.class !== null && <span>class={banner.gate.class}</span>}
-        {banner.recommend?.stakeMul != null && (
-          <span className="ml-auto">stake x{banner.recommend.stakeMul}</span>
+function BetSuggestion({
+  title,
+  banker,
+  legs,
+  combos,
+  combosLabel,
+}: {
+  title: string;
+  banker?: { no: string; name: string } | null;
+  legs?: { no: string; name: string }[];
+  combos?: string[];
+  combosLabel?: string;
+}) {
+  return (
+    <div className="rounded-lg border border-border-subtle bg-bg-card/60 px-3 py-2">
+      <div className="text-[11px] font-bold text-text">{title}</div>
+      <div className="mt-1.5 space-y-1 text-xs">
+        {banker && (
+          <div className="flex items-baseline gap-2">
+            <span className="w-8 shrink-0 text-[10px] text-text-muted">膽</span>
+            <RunnerChip no={banker.no} name={banker.name} solid />
+          </div>
+        )}
+        {legs && legs.length > 0 && (
+          <div className="flex items-baseline gap-2">
+            <span className="w-8 shrink-0 text-[10px] text-text-muted">拖</span>
+            <span className="flex flex-wrap gap-1">
+              {legs.map((leg) => (
+                <RunnerChip key={leg.no} no={leg.no} name={leg.name} />
+              ))}
+            </span>
+          </div>
+        )}
+        {combos && combos.length > 0 && (
+          <div className="flex items-baseline gap-2">
+            <span className="w-8 shrink-0 text-[10px] text-text-muted">
+              {combosLabel ?? "組合"}
+            </span>
+            <span className="flex flex-wrap gap-1">
+              {combos.map((combo) => (
+                <span
+                  key={combo}
+                  className="rounded-md bg-precision px-2 py-0.5 font-bold text-white"
+                >
+                  {combo}
+                </span>
+              ))}
+            </span>
+          </div>
         )}
       </div>
     </div>
   );
+}
+
+function RunnerChip({
+  no,
+  name,
+  solid,
+}: {
+  no: string;
+  name: string;
+  solid?: boolean;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs",
+        solid
+          ? "bg-precision font-bold text-white"
+          : "border border-border-subtle bg-bg-subtle text-text",
+      )}
+    >
+      <span className="font-mono">#{no}</span>
+      <span>{name}</span>
+    </span>
+  );
+}
+
+function buildBankerPlay(
+  qinBanker: { combo: string; label: string }[],
+  nameByNo: Map<string, string>,
+): {
+  banker: { no: string; name: string };
+  legs: { no: string; name: string }[];
+} | null {
+  if (qinBanker.length === 0) return null;
+  const pairs = qinBanker
+    .map((c) => c.combo.split(",").map((n) => n.trim()))
+    .filter((p) => p.length === 2);
+  if (pairs.length === 0) return null;
+
+  const counts = new Map<string, number>();
+  for (const [a, b] of pairs) {
+    counts.set(a, (counts.get(a) ?? 0) + 1);
+    counts.set(b, (counts.get(b) ?? 0) + 1);
+  }
+  let bankerNo = pairs[0][0];
+  let max = 0;
+  for (const [no, count] of counts) {
+    if (count > max) {
+      max = count;
+      bankerNo = no;
+    }
+  }
+  const legSet = new Set<string>();
+  for (const [a, b] of pairs) {
+    if (a !== bankerNo) legSet.add(a);
+    if (b !== bankerNo) legSet.add(b);
+  }
+  return {
+    banker: { no: bankerNo, name: nameByNo.get(bankerNo) ?? "" },
+    legs: Array.from(legSet).map((no) => ({
+      no,
+      name: nameByNo.get(no) ?? "",
+    })),
+  };
+}
+
+function buildBoxPlay(
+  qinT12: { combo: string; label: string } | null,
+  qinBanker: { combo: string; label: string }[],
+  nameByNo: Map<string, string>,
+): { combos: string[]; combosLabel: string } | null {
+  const numbers = new Set<string>();
+  if (qinT12) {
+    qinT12.combo
+      .split(",")
+      .map((n) => n.trim())
+      .forEach((n) => numbers.add(n));
+  }
+  for (const c of qinBanker) {
+    c.combo
+      .split(",")
+      .map((n) => n.trim())
+      .forEach((n) => numbers.add(n));
+  }
+  const list = Array.from(numbers);
+  if (list.length < 2) return null;
+
+  const combos: string[] = [];
+  for (let i = 0; i < list.length; i++) {
+    for (let j = i + 1; j < list.length; j++) {
+      const a = list[i];
+      const b = list[j];
+      const aName = nameByNo.get(a) ?? "";
+      const bName = nameByNo.get(b) ?? "";
+      combos.push(`#${a} ${aName} - #${b} ${bName}`);
+    }
+  }
+  return { combos, combosLabel: `${list.length} 串 ${combos.length}` };
+}
+
+function tierLabel(tier: "S" | "A" | "B"): string {
+  if (tier === "S") return "高信心 Tier S";
+  if (tier === "A") return "中信心 Tier A";
+  return "低信心 Tier B";
+}
+
+function buildRationale(reasons: string[], boost: string | null): string[] {
+  const out: string[] = [];
+  for (const raw of reasons) {
+    const r = raw.trim();
+    const lower = r.toLowerCase();
+    if (lower.startsWith("draw=")) continue;
+    if (lower.startsWith("class=")) continue;
+    if (lower.startsWith("field=")) continue;
+    if (lower.startsWith("middle-boost")) continue;
+
+    if (lower === "jt-elite") {
+      out.push("騎師×練馬師組合屬精英級（勝率 ≥18%）");
+    } else if (lower === "jt-good") {
+      out.push("騎師×練馬師組合表現良好（勝率 ≥10%）");
+    } else if (lower.startsWith("j-elite")) {
+      const m = r.match(/=([\d.]+)%?/);
+      out.push(m ? `頭馬騎師勝率 ${m[1]}%（精英級）` : "頭馬騎師屬精英級");
+    } else if (lower.startsWith("t-elite")) {
+      const m = r.match(/=([\d.]+)%?/);
+      out.push(m ? `頭馬練馬師勝率 ${m[1]}%（精英級）` : "頭馬練馬師屬精英級");
+    } else {
+      out.push(r);
+    }
+  }
+  if (boost === "middle" || boost === "middle-boost" || boost === "middle-boost=1.5") {
+    out.push("距離 1400/1600 米 V19 強 alpha 區（+1.5 加成）");
+  }
+  return out;
+}
+
+function translateGateReason(reason: string | null): string {
+  if (!reason) return "本場跳過";
+  const map: Record<string, string> = {
+    "no-pick": "未達推介門檻",
+    "skip-distance": "跳過此距離",
+    "low-tier": "信心度不足",
+    "risk-flag": "風險警示",
+  };
+  return map[reason] ?? reason;
 }
 
 function RunnerList({

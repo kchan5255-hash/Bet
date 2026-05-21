@@ -37,6 +37,7 @@ interface V19Recommend {
   score: number;
   stakeMul: number;
   boost?: string | null;
+  commentary?: string | null;
 }
 
 interface V19RaceEntry {

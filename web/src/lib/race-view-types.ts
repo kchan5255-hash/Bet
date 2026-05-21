@@ -63,6 +63,7 @@ export interface V19BannerView {
     qinBanker: { combo: string; label: string }[];
     stakeMul: number;
     boost?: string | null;
+    commentary?: string | null;
   } | null;
 }
 

@@ -13,12 +13,15 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
+const { generateCommentary } = require('./commentary');
 
 const ARG_DATES = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const RECENT_N = parseInt(process.env.RECENT_N || '0', 10);
 const USE_SUPABASE = process.env.USE_SUPABASE === '1';
+const SKIP_COMMENTARY = process.env.SKIP_COMMENTARY === '1';
 
 const RACE_RESULTS_PATH = path.join(__dirname, 'web', 'src', 'data', 'race-results-by-date.json');
+const ANALYSIS_PATH = path.join(__dirname, 'web', 'src', 'data', 'analysis-by-date.json');
 const OUT_FILE = path.join(__dirname, 'web', 'src', 'data', 'v19.json');
 
 let _raceResultsByDate = null;
@@ -45,6 +48,28 @@ function getActualTop3FromResults(date, raceNo) {
 }
 
 function readJSON(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
+
+let _analysisByDate = null;
+function getAnalysisByDate() {
+  if (!_analysisByDate) {
+    try {
+      _analysisByDate = readJSON(ANALYSIS_PATH).byDate || {};
+    } catch { _analysisByDate = {}; }
+  }
+  return _analysisByDate;
+}
+
+function getNameByNo(date, raceNo) {
+  const races = getAnalysisByDate()[date];
+  if (!Array.isArray(races)) return new Map();
+  const race = races.find((r) => r.raceNo === raceNo);
+  if (!race) return new Map();
+  const map = new Map();
+  for (const r of race.runners || []) {
+    map.set(String(r.no), r.name || '');
+  }
+  return map;
+}
 
 // ── 從 daily JSON 嘅 race object 轉前端格式 ──────────────────────────────
 function convertRaceFromJson(race, date) {
@@ -239,6 +264,11 @@ async function main() {
   }
   Object.assign(mergedByDate, newByDate);
 
+  // 為有推介嘅場次生成 AI 點評（只 process 今次更新嘅日期，避免重跑歷史）
+  if (!SKIP_COMMENTARY) {
+    await attachCommentary(newByDate);
+  }
+
   let totalRaces = 0, totalPlay = 0, totalS = 0, totalA = 0, totalB = 0;
   for (const date of Object.keys(newByDate).sort()) {
     const races = newByDate[date].races;
@@ -264,3 +294,32 @@ async function main() {
 }
 
 main().catch((err) => { console.error(err); process.exit(1); });
+
+// ── AI 點評生成 ──────────────────────────────────────────────────────────
+async function attachCommentary(byDate) {
+  const tasks = [];
+  for (const date of Object.keys(byDate)) {
+    const day = byDate[date];
+    for (const race of day.races || []) {
+      if (race.recommend) tasks.push({ date, race });
+    }
+  }
+  if (tasks.length === 0) return;
+
+  console.log(`\n生成 AI 點評：${tasks.length} 場推介...`);
+  let ok = 0, fail = 0;
+  for (const { date, race } of tasks) {
+    try {
+      const nameByNo = getNameByNo(date, race.raceNo);
+      const commentary = await generateCommentary(race, nameByNo);
+      if (commentary) {
+        race.recommend.commentary = commentary;
+        ok++;
+      }
+    } catch (err) {
+      fail++;
+      console.warn(`  ${date} R${race.raceNo} 點評失敗：${err.message}`);
+    }
+  }
+  console.log(`  完成：${ok} 成功 / ${fail} 失敗`);
+}
