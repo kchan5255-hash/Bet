@@ -79,6 +79,8 @@ jobs:
         if: steps.detect.outputs.race_day == 'true'
         env:
           PRE_RACE: '1'
+          DATE: ${{ steps.detect.outputs.date }}
+          VENUE: ${{ steps.detect.outputs.venue }}
         run: node backtest.js
 
       # ── 跑 V9 模型 (PRE_RACE) ──────────────────────────────────────
@@ -86,6 +88,8 @@ jobs:
         if: steps.detect.outputs.race_day == 'true'
         env:
           PRE_RACE: '1'
+          DATE: ${{ steps.detect.outputs.date }}
+          VENUE: ${{ steps.detect.outputs.venue }}
         run: node model-v9.js
 
       # ── 跑 V12 / V13 / V14 模型（V14 係 V19 嘅 dependency）─────────
