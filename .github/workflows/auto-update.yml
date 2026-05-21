@@ -117,10 +117,14 @@ jobs:
         if: steps.detect.outputs.races_to_fetch != ''
         run: node model-v19.js ${{ steps.detect.outputs.date }}
 
-      # ── 最後一場才 export 到 web v19.json（避免每場都 churn 大檔）─────
+      # ── 最後一場才 export 到 web v19.json + v9-results.json ─────────
       - name: Export V19 to web (only at final race)
         if: steps.detect.outputs.is_last_race == 'true'
         run: node export-v19-to-web.js ${{ steps.detect.outputs.date }}
+
+      - name: Export V9 to web (only at final race)
+        if: steps.detect.outputs.is_last_race == 'true'
+        run: node export-v9-to-web.js ${{ steps.detect.outputs.date }}
 
       # ── Commit & push ──────────────────────────────────────────────
       - name: Commit & push

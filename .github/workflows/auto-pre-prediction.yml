@@ -120,6 +120,11 @@ jobs:
         if: steps.detect.outputs.race_day == 'true'
         run: node export-v19-to-web.js ${{ steps.detect.outputs.date }}
 
+      # ── Export V9 到 web（merge 進 v9-results.json）───────────────
+      - name: Export V9 to web
+        if: steps.detect.outputs.race_day == 'true'
+        run: node export-v9-to-web.js ${{ steps.detect.outputs.date }}
+
       # ── Commit & push ──────────────────────────────────────────────
       - name: Commit & push
         if: steps.detect.outputs.race_day == 'true'

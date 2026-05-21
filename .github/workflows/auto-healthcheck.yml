@@ -1,0 +1,43 @@
+name: Auto Health Check
+
+on:
+  schedule:
+    # HKT 凌晨 1:00 = UTC 17:00 每日 → 檢查昨日資料完整性
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: 'Check date (YYYY-MM-DD), 空白 = 昨日 HKT'
+        required: false
+        type: string
+
+concurrency:
+  group: auto-healthcheck
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      USE_SUPABASE: '1'
+      DATE_OVERRIDE: ${{ inputs.date_override }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run health check
+        run: node health-check.js
