@@ -23,15 +23,18 @@ const path = require('path');
 const ENDPOINT = 'https://info.cld.hkjc.com/graphql/base/';
 const QUERY_FILE = path.join(__dirname, '.graphql-query-cache.txt');
 const POST_BUFFER_MIN = parseInt(process.env.POST_BUFFER_MIN || '5', 10);
+const TARGET = (process.env.TARGET || 'today').toLowerCase(); // today | tomorrow
 
-// HKT (UTC+8) 今日
-function todayHKT() {
+// HKT (UTC+8) 今日；offset=1 = 明日，依此類推
+function dateHKT(offsetDays = 0) {
   const now = new Date();
   const hkt = new Date(now.getTime() + (8 * 60 - now.getTimezoneOffset()) * 60_000);
+  hkt.setUTCDate(hkt.getUTCDate() + offsetDays);
   return hkt.toISOString().slice(0, 10);
 }
 
-const DATE = process.env.DATE_OVERRIDE || todayHKT();
+const DATE = process.env.DATE_OVERRIDE
+  || (TARGET === 'tomorrow' ? dateHKT(1) : dateHKT(0));
 
 function setOutput(key, value) {
   const line = `${key}=${value}\n`;
@@ -76,7 +79,12 @@ async function fetchMeeting(venueCode) {
   try { json = await res.json(); } catch { return null; }
   const meetings = json?.data?.raceMeetings;
   if (!Array.isArray(meetings) || !meetings.length) return null;
-  return meetings[0];
+  const m = meetings[0];
+  // 過濾：只要本地賽事（ST/HV + meetingType='D'），唔要海外賽（venueCode='S1', meetingType='O'）
+  if (m.venueCode !== 'ST' && m.venueCode !== 'HV') return null;
+  if (m.meetingType && m.meetingType !== 'D') return null;
+  if (m.date !== DATE) return null; // HKJC 有時返回最近賽事，唔係查嘅日期
+  return m;
 }
 
 async function loadFetchedRaceNos(date) {

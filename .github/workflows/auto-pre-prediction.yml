@@ -1,0 +1,106 @@
+name: Auto Pre-Prediction (next race day)
+
+on:
+  schedule:
+    # HKT 18:00 = UTC 10:00 每日 → 偵測明日係咪比賽日
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: 'Override date (YYYY-MM-DD), 空白 = 明日 HKT'
+        required: false
+        type: string
+
+concurrency:
+  group: auto-pre-prediction
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 25
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      USE_SUPABASE: '1'
+      TARGET: tomorrow
+      DATE_OVERRIDE: ${{ inputs.date_override }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # ── 偵測明日是否賽馬日 ─────────────────────────────────────────
+      - name: Detect race day (tomorrow)
+        id: detect
+        run: node detect-race-day.js
+
+      - name: Skip (not a race day)
+        if: steps.detect.outputs.race_day != 'true'
+        run: |
+          echo "race_day=${{ steps.detect.outputs.race_day }}"
+          echo "Tomorrow is not a race day, exiting"
+
+      # ── Fetch GraphQL racecard（無 puppeteer，快）─────────────────
+      - name: Fetch GraphQL racecard
+        if: steps.detect.outputs.race_day == 'true'
+        env:
+          DATE: ${{ steps.detect.outputs.date }}
+          VENUE: ${{ steps.detect.outputs.venue }}
+        run: node fetch-graphql.js
+
+      # ── 建立賽前 results-full（pre-race，無賽果）─────────────────
+      - name: Build pre-race results
+        if: steps.detect.outputs.race_day == 'true'
+        env:
+          DATE: ${{ steps.detect.outputs.date }}
+          VENUE: ${{ steps.detect.outputs.venue }}
+        run: node graphql-to-results-full.js --pre
+
+      # ── 建立 analysis-by-date.json（feature 計算）──────────────────
+      - name: Build analysis from GraphQL
+        if: steps.detect.outputs.race_day == 'true'
+        run: node build-analysis-from-graphql.js --supabase --no-rebuild
+
+      # ── 跑 V19 模型（PRE_RACE=1，寫入 v19_predictions mode='pre'）──
+      - name: Run V19 model (pre-race)
+        if: steps.detect.outputs.race_day == 'true'
+        env:
+          PRE_RACE: '1'
+        run: node model-v19.js ${{ steps.detect.outputs.date }}
+
+      # ── Export V19 到 web（merge 進 v19.json）─────────────────────
+      - name: Export V19 to web
+        if: steps.detect.outputs.race_day == 'true'
+        run: node export-v19-to-web.js ${{ steps.detect.outputs.date }}
+
+      # ── Commit & push ──────────────────────────────────────────────
+      - name: Commit & push
+        if: steps.detect.outputs.race_day == 'true'
+        run: |
+          git config user.name 'auto-bot'
+          git config user.email 'auto-bot@users.noreply.github.com'
+          git add web/src/data/ data/ || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "auto: pre-prediction ${{ steps.detect.outputs.date }} ${{ steps.detect.outputs.venue }}"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin main && exit 0
+            echo "push failed, retry in 5s..."
+            sleep 5
+          done
+          exit 1
