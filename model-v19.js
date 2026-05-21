@@ -18,11 +18,16 @@
 // 用法：
 //   node model-v19.js
 //   node model-v19.js 2026-05-20
+//   USE_SUPABASE=1 node model-v19.js 2026-05-20             ← 寫結果入 v19_predictions
+//   USE_SUPABASE=1 node model-v19.js --skip-if-loaded       ← 賽果已入 + 已算過嘅日期跳過
 
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 const v18 = require('./model-v18');
+
+const USE_SUPABASE = process.env.USE_SUPABASE === '1';
+const SKIP_IF_LOADED = process.argv.includes('--skip-if-loaded');
 
 const SKIP_DISTANCES = new Set([1000, 1650, 2000, 2200]);
 const MIDDLE_DISTANCES = new Set([1400, 1600]);
@@ -107,6 +112,38 @@ function applyDistanceFilter(v18Race) {
   };
 }
 
+async function shouldSkip(date) {
+  if (!SKIP_IF_LOADED || !USE_SUPABASE) return false;
+  try {
+    const { isResultsLoaded, loadV19PredictionsByDate } = require('./supabase-data');
+    const resultsIn = await isResultsLoaded(date);
+    if (!resultsIn) return false;
+    const existing = await loadV19PredictionsByDate(date);
+    if (!existing.length) return false;
+    return existing.every(
+      (r) => r.mode === 'post' && Array.isArray(r.actual_top3) && r.actual_top3.length > 0,
+    );
+  } catch (err) {
+    console.warn(`shouldSkip(${date}): ${err.message}, fall back to recompute`);
+    return false;
+  }
+}
+
+async function writeToSupabase(date, out) {
+  if (!USE_SUPABASE) return;
+  try {
+    const { v19RowFromRace, upsertV19Predictions } = require('./supabase-data');
+    const rows = (out.races || []).map((r) =>
+      v19RowFromRace(date, out.venue, r, out.mode || 'post'),
+    );
+    if (!rows.length) return;
+    const { count } = await upsertV19Predictions(rows);
+    console.log(`  ↳ Supabase v19_predictions upsert ${count} rows`);
+  } catch (err) {
+    console.warn(`Supabase upsert failed for ${date}: ${err.message}`);
+  }
+}
+
 async function processDate(date) {
   const v18Out = await v18.processDate(date);
   if (!v18Out) return null;
@@ -131,8 +168,13 @@ async function main() {
   }
 
   let totalRaces = 0, totalPlay = 0, totalS = 0, totalA = 0, totalB = 0;
-  let totalSkipDist = 0, totalSkipOther = 0;
+  let totalSkipDist = 0, totalSkipOther = 0, totalSkipDates = 0;
   for (const date of dates) {
+    if (await shouldSkip(date)) {
+      totalSkipDates++;
+      console.log(`  ${date}: 已算過 (post + actualTop3 齊)，skip`);
+      continue;
+    }
     const out = await processDate(date);
     if (!out) continue;
     for (const r of out.races) {
@@ -146,8 +188,10 @@ async function main() {
       else totalSkipOther++;
     }
     fs.writeFileSync(paths.backtestWritePath('v19', date), JSON.stringify(out, null, 2), 'utf8');
+    await writeToSupabase(date, out);
   }
-  console.log(`V19: ${dates.length} 日 / ${totalRaces} 場 / play=${totalPlay} (S=${totalS} A=${totalA} B=${totalB}) / skip-dist=${totalSkipDist} / skip-other=${totalSkipOther}`);
+  const skipMsg = totalSkipDates ? ` / skip-dates=${totalSkipDates}` : '';
+  console.log(`V19: ${dates.length} 日 / ${totalRaces} 場 / play=${totalPlay} (S=${totalS} A=${totalA} B=${totalB}) / skip-dist=${totalSkipDist} / skip-other=${totalSkipOther}${skipMsg}`);
 }
 
 if (require.main === module) {

@@ -1,0 +1,146 @@
+name: Auto Update Race Day
+
+on:
+  schedule:
+    # 每 10 分鐘觸發一次（HKT 12:00–23:50 涵蓋所有比賽時段，UTC 04:00–15:50）
+    - cron: '*/10 4-15 * * *'
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: 'Override date (YYYY-MM-DD), 空白 = 今日 HKT'
+        required: false
+        type: string
+
+concurrency:
+  group: auto-update
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 25
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      USE_SUPABASE: '1'
+      HEADLESS: 'true'
+      DATE_OVERRIDE: ${{ inputs.date_override }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # ── 偵測今日是否賽馬日 + 哪些場可爬 ──────────────────────────────
+      - name: Detect race day
+        id: detect
+        run: node detect-race-day.js
+
+      - name: Skip (not race day or nothing to fetch)
+        if: steps.detect.outputs.race_day != 'true' || steps.detect.outputs.races_to_fetch == ''
+        run: |
+          echo "race_day=${{ steps.detect.outputs.race_day }}"
+          echo "races_to_fetch=${{ steps.detect.outputs.races_to_fetch }}"
+          echo "Nothing to do, exiting"
+
+      # ── 安裝 Chromium（要爬蟲先裝）─────────────────────────────────
+      - name: Install Chromium
+        if: steps.detect.outputs.races_to_fetch != ''
+        run: npx puppeteer browsers install chrome
+
+      # ── 爬賽果（重試 3 次）──────────────────────────────────────────
+      - name: Scrape race results (retry x3)
+        if: steps.detect.outputs.races_to_fetch != ''
+        env:
+          DATE: ${{ steps.detect.outputs.date }}
+          VENUE: ${{ steps.detect.outputs.venue }}
+          RACES: ${{ steps.detect.outputs.max_race_no }}
+        run: |
+          for i in 1 2 3; do
+            echo "── Attempt $i/3 ──"
+            if node results-full-scraper.js; then
+              break
+            fi
+            if [ $i -lt 3 ]; then
+              echo "Retry in 30s..."
+              sleep 30
+            else
+              echo "All retries failed"
+              exit 1
+            fi
+          done
+
+      # ── 爬派彩（重試 3 次）─────────────────────────────────────────
+      - name: Scrape dividends (retry x3)
+        if: steps.detect.outputs.races_to_fetch != ''
+        env:
+          DATE: ${{ steps.detect.outputs.date }}
+          VENUE: ${{ steps.detect.outputs.venue }}
+          RACES: ${{ steps.detect.outputs.max_race_no }}
+        run: |
+          for i in 1 2 3; do
+            echo "── Attempt $i/3 ──"
+            if node dividends-scraper.js; then
+              break
+            fi
+            if [ $i -lt 3 ]; then
+              echo "Retry in 30s..."
+              sleep 30
+            else
+              echo "All retries failed"
+              exit 1
+            fi
+          done
+
+      # ── 聚合到前端讀取格式 ─────────────────────────────────────────
+      - name: Aggregate race-results-by-date
+        if: steps.detect.outputs.races_to_fetch != ''
+        run: node build-race-results-by-date.js
+
+      - name: Aggregate dividends-by-date
+        if: steps.detect.outputs.races_to_fetch != ''
+        run: node build-dividends-by-date.js
+
+      # ── 重算當日 V19（寫 Supabase v19_predictions）───────────────────
+      - name: Run V19 model (write to Supabase)
+        if: steps.detect.outputs.races_to_fetch != ''
+        run: node model-v19.js ${{ steps.detect.outputs.date }}
+
+      # ── 最後一場才 export 到 web v19.json（避免每場都 churn 大檔）─────
+      - name: Export V19 to web (only at final race)
+        if: steps.detect.outputs.is_last_race == 'true'
+        run: node export-v19-to-web.js ${{ steps.detect.outputs.date }}
+
+      # ── Commit & push ──────────────────────────────────────────────
+      - name: Commit & push
+        if: steps.detect.outputs.races_to_fetch != ''
+        run: |
+          git config user.name 'auto-bot'
+          git config user.email 'auto-bot@users.noreply.github.com'
+          git add web/src/data/ data/ || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          MSG="auto: ${{ steps.detect.outputs.date }} R${{ steps.detect.outputs.races_to_fetch }}"
+          if [ "${{ steps.detect.outputs.is_last_race }}" = "true" ]; then
+            MSG="$MSG (final + V19 export)"
+          fi
+          git commit -m "$MSG"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin main && exit 0
+            echo "push failed, retry in 5s..."
+            sleep 5
+          done
+          exit 1

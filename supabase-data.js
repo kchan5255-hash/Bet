@@ -124,4 +124,139 @@ async function loadHorsesByCodes(codes) {
   return out;
 }
 
-module.exports = { loadHorsesByCodes };
+// ─────────────────────────────────────────────────────────────────────
+// V19 predictions：模型計算結果
+// ─────────────────────────────────────────────────────────────────────
+
+function v19RowFromRace(date, venue, race, mode) {
+  const internal = race.v18 || null;
+  const v19 = race.v19 || null;
+  const baseRecommend = race.recommend || null;
+  // 將 v19 嘅執行細節 (stakeMul / boost / v18Tier / v18Score) 合併入 recommend，
+  // 令 convertRaceFromDb 讀返出嚟同 daily JSON convertRaceFromJson 結果一致
+  const recommend = baseRecommend
+    ? {
+        ...baseRecommend,
+        stakeMul: v19?.stakeMul ?? baseRecommend.stakeMul ?? null,
+        boost: v19?.boost ?? baseRecommend.boost ?? null,
+        v18Tier: v19?.v18Tier ?? baseRecommend.v18Tier ?? null,
+        v18Score: v19?.v18Score ?? baseRecommend.v18Score ?? null,
+      }
+    : null;
+  // internal_extra：保留前端 gate 顯示需要嘅內部細節
+  const internalExtra = internal
+    ? {
+        jtCombo: internal.jtCombo ?? null,
+        jWinRate: internal.jWinRate ?? null,
+        tWinRate: internal.tWinRate ?? null,
+        draw: internal.draw ?? null,
+        class: internal.class ?? null,
+        lastBodyWeight: internal.lastBodyWeight ?? null,
+        bodyDelta: internal.bodyDelta ?? null,
+        stakeMul: internal.stakeMul ?? null,
+      }
+    : null;
+  // v19_extra：保留 distance-skip 等情境下嘅 v18Tier / v18Score（前端 gate 顯示用）
+  const v19Extra = v19
+    ? {
+        v18Tier: v19.v18Tier ?? null,
+        v18Score: v19.v18Score ?? null,
+        stakeMul: v19.stakeMul ?? null,
+      }
+    : null;
+  return {
+    date,
+    venue: venue || '',
+    race_no: race.raceNo,
+    mode: mode || 'post',
+    race_meta: race.meta || {},
+    field_size: race.fieldSize ?? null,
+    pro_top3: race.proTop3 || [],
+    internal_score: internal?.score ?? null,
+    internal_tier: internal?.tier ?? null,
+    internal_reasons: internal?.reasons || [],
+    internal_flags: internal?.flags || [],
+    internal_extra: internalExtra,
+    v19_action: v19?.action || (recommend ? 'play' : 'skip'),
+    v19_tier: v19?.tier ?? null,
+    v19_reason: v19?.reason ?? null,
+    v19_boost: v19?.boost ?? null,
+    v19_extra: v19Extra,
+    recommend,
+    actual_top3: race.actualTop3 || null,
+  };
+}
+
+async function upsertV19Predictions(rows) {
+  if (!rows?.length) return { count: 0 };
+  const sb = client();
+  const CHUNK = 500;
+  let total = 0;
+  for (let i = 0; i < rows.length; i += CHUNK) {
+    const slice = rows.slice(i, i + CHUNK);
+    const { error } = await sb
+      .from('v19_predictions')
+      .upsert(slice, { onConflict: 'date,venue,race_no' });
+    if (error) throw new Error(`v19_predictions upsert: ${error.message}`);
+    total += slice.length;
+  }
+  return { count: total };
+}
+
+async function loadV19PredictionsByDate(date) {
+  const sb = client();
+  const { data, error } = await sb
+    .from('v19_predictions')
+    .select('*')
+    .eq('date', date)
+    .order('race_no', { ascending: true });
+  if (error) throw new Error(`v19_predictions select: ${error.message}`);
+  return data || [];
+}
+
+async function loadAllV19Predictions(opts = {}) {
+  const sb = client();
+  let q = sb.from('v19_predictions').select('*');
+  if (opts.from) q = q.gte('date', opts.from);
+  if (opts.to) q = q.lte('date', opts.to);
+  q = q.order('date', { ascending: true }).order('race_no', { ascending: true });
+  const rows = await fetchInChunks(q, 1000);
+  if (opts.recentN && opts.recentN > 0) {
+    const dates = [...new Set(rows.map((r) => r.date))].sort();
+    const keep = new Set(dates.slice(-opts.recentN));
+    return rows.filter((r) => keep.has(r.date));
+  }
+  return rows;
+}
+
+// 賽果是否齊全：race_results 有該日 row → 視為已入
+async function isResultsLoaded(date) {
+  const sb = client();
+  const { count, error } = await sb
+    .from('race_results')
+    .select('*', { count: 'exact', head: true })
+    .eq('date', date);
+  if (error) throw new Error(`race_results count: ${error.message}`);
+  return (count || 0) > 0;
+}
+
+// 拎該日已有賽果嘅 race_no 集合（給 detect-race-day 用）
+async function loadResultRaceNos(date) {
+  const sb = client();
+  const { data, error } = await sb
+    .from('race_results')
+    .select('race_no')
+    .eq('date', date);
+  if (error) throw new Error(`race_results race_no: ${error.message}`);
+  return new Set((data || []).map((r) => Number(r.race_no)));
+}
+
+module.exports = {
+  loadHorsesByCodes,
+  v19RowFromRace,
+  upsertV19Predictions,
+  loadV19PredictionsByDate,
+  loadAllV19Predictions,
+  isResultsLoaded,
+  loadResultRaceNos,
+};

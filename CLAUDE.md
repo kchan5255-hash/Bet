@@ -185,13 +185,61 @@
 # 執行預測
 node model-v19.js
 node model-v19.js 2026-05-20
+USE_SUPABASE=1 node model-v19.js 2026-05-20 --skip-if-loaded   # 賽果已入兼算過就 skip
 
 # 回測
 DATE=2026-05-09 RESULTS=results-full-2026-05-09.json HORSES=horses-2026-05-09.json node backtest.js
 
 # 計算盈虧
 node pnl-engine.js
+
+# 一次性遷移：daily backtest JSON → Supabase v19_predictions
+USE_SUPABASE=1 node migrate-backtest-to-supabase.js
+
+# 偵測今日是否賽馬日（auto-update workflow 用）
+node detect-race-day.js
+DATE_OVERRIDE=2026-05-24 node detect-race-day.js     # 測試指定日
 ```
+
+---
+
+## 自動化流程
+
+### Auto-Update Workflow（雲端 cron）
+
+[.github/workflows/auto-update.yml](.github/workflows/auto-update.yml) 每 10 分鐘自動觸發（HKT 12:00–23:50）：
+
+1. **detect-race-day.js** — 並行查 HKJC GraphQL（ST + HV），無 raceMeetings 即 exit
+2. **比對 postTime + 5min ≤ now()** 且未在 `race_results` table，得出待爬場次
+3. **results-full-scraper + dividends-scraper** — 爬 R1...max_race_no（覆寫 idempotent，重試 3 次）
+4. **build-race-results-by-date + build-dividends-by-date** — 聚合到前端格式
+5. **model-v19.js \<date\>** — 重算當日 V19，upsert 入 `v19_predictions` table
+6. **最後一場後** — `export-v19-to-web.js \<date\>` merge 該日入 web/src/data/v19.json
+7. **commit & push** — `auto: <date> R3,4 (final + V19 export)`
+
+失敗時 GitHub 自動 email 通知（GitHub user 預設行為，無需配置）。
+
+### Supabase Schema
+
+| Table | 用途 |
+|---|---|
+| `horse_profiles` / `horse_records` | 馬匹檔案 + 往績（model-v18 用）|
+| `race_results` / `race_dividends` | 賽果 + 派彩（auto-update 寫入）|
+| `v19_predictions` | V19 模型計算結果（一場一行，UNIQUE date+venue+race_no）|
+| `odds` / `race_meta` | 賽前賠率快照 |
+
+[sql/supabase-schema-v19.sql](sql/supabase-schema-v19.sql) 為新增。Schema 演進：先 SQL Editor 執行，再跑 migrate script 灌入歷史資料。
+
+### 增量規則
+
+- **資料層** — 已在 `race_results` 嘅場 detect 唔會再叫 scraper
+- **模型層** — `model-v19.js --skip-if-loaded`：賽果齊全 + `v19_predictions` 已有該日 post-mode + actualTop3 非空 → skip
+
+### 手動 Fallback
+
+[.github/workflows/admin-pipeline.yml](.github/workflows/admin-pipeline.yml) 保留 4 個 flow（pre-prediction / results / post-prediction / history-rebuild），workflow_dispatch 手動觸發。auto-update 遇到問題時可由此手動補跑。
+
+舊模型（v9 / v12 / v13 / v14）只在 admin-pipeline post-prediction 跑，日常 auto-update 只跑 V19。
 
 ---
 
