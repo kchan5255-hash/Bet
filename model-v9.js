@@ -945,7 +945,7 @@ function summarizeBacktest(backtest) {
   };
 }
 
-function runBacktest(options = {}) {
+async function runBacktest(options = {}) {
   const date = options.date || process.env.DATE || '2026-05-09';
   const PRE_RACE = process.env.PRE_RACE === '1' || options.preRace === true;
   let resultsFile = options.results || process.env.RESULTS;
@@ -966,13 +966,24 @@ function runBacktest(options = {}) {
       : existingDefaultHorseFiles());
   const outFile = options.out || process.env.OUT || paths.backtestWritePath('v9', date);
   const quiet = Boolean(options.quiet);
+  const useSupabase = process.env.USE_SUPABASE === '1' || options.supabase === true;
 
-  if (!horseFiles.length) {
+  if (!horseFiles.length && !useSupabase) {
     throw new Error('No horse files found. Set HORSES=file1.json,file2.json or add the default horse files.');
   }
 
   const resultsData = readJson(resultsFile);
-  const horseByCode = loadHorseMap(horseFiles);
+  let horseByCode;
+  if (useSupabase) {
+    const { loadHorsesByCodes } = require('./supabase-data');
+    const codes = new Set();
+    for (const r of resultsData.races || []) {
+      for (const run of r.runners || []) if (run.code) codes.add(run.code);
+    }
+    horseByCode = await loadHorsesByCodes([...codes]);
+  } else {
+    horseByCode = loadHorseMap(horseFiles);
+  }
   const raceDate = new Date(`${date}T00:00:00+08:00`);
   const context = {
     date,
@@ -1023,5 +1034,5 @@ module.exports = {
 };
 
 if (require.main === module) {
-  runBacktest();
+  runBacktest().catch((err) => { console.error(err); process.exit(1); });
 }
