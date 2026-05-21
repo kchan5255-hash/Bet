@@ -74,11 +74,36 @@ jobs:
         if: steps.detect.outputs.race_day == 'true'
         run: node build-analysis-from-graphql.js --supabase --no-rebuild
 
-      # ── 跑 V19 模型（PRE_RACE=1，寫入 v19_predictions mode='pre'）──
-      - name: Run V19 model (pre-race)
+      # ── 跑 Pro 基礎 backtest (PRE_RACE) ────────────────────────────
+      - name: Run Pro backtest (pre-race)
         if: steps.detect.outputs.race_day == 'true'
         env:
           PRE_RACE: '1'
+        run: node backtest.js
+
+      # ── 跑 V9 模型 (PRE_RACE) ──────────────────────────────────────
+      - name: Run V9 model (pre-race)
+        if: steps.detect.outputs.race_day == 'true'
+        env:
+          PRE_RACE: '1'
+        run: node model-v9.js
+
+      # ── 跑 V12 / V13 / V14 模型（V14 係 V19 嘅 dependency）─────────
+      - name: Run V12 V13 V14 models
+        if: steps.detect.outputs.race_day == 'true'
+        run: |
+          node model-v12.js ${{ steps.detect.outputs.date }}
+          node model-v13.js ${{ steps.detect.outputs.date }}
+          node model-v14.js ${{ steps.detect.outputs.date }}
+
+      # ── 跑 V18 模型 ────────────────────────────────────────────────
+      - name: Run V18 model
+        if: steps.detect.outputs.race_day == 'true'
+        run: node model-v18.js ${{ steps.detect.outputs.date }}
+
+      # ── 跑 V19 模型（寫入 v19_predictions mode='pre'）──────────────
+      - name: Run V19 model
+        if: steps.detect.outputs.race_day == 'true'
         run: node model-v19.js ${{ steps.detect.outputs.date }}
 
       # ── Export V19 到 web（merge 進 v19.json）─────────────────────
