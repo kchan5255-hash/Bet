@@ -58,6 +58,7 @@ const QUERY = fs.readFileSync(QUERY_FILE, 'utf8');
   ];
 
   const outPath = paths.miscPath('graphql-race-data.json');
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, JSON.stringify(out, null, 2), 'utf8');
 
   const m = json.data.raceMeetings[0];
