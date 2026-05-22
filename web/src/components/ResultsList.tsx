@@ -47,18 +47,28 @@ export function ResultsList({ data }: ResultsListProps) {
 
   return (
     <div className="space-y-3">
-      {data.races.map((race, idx) => (
-        <Fragment key={race.raceNo}>
-          <RaceCard
-            race={race}
-            date={data.date}
-            onVideo={(kind) => openVideo(race, kind)}
-          />
-          {idx === 3 && data.races.length > 5 && (
-            <AdSlot slot="results-feed-mid" layout="in-feed" closable />
-          )}
-        </Fragment>
-      ))}
+      {data.races.map((race, idx) => {
+        const position = idx + 1;
+        // 每 4 場後插一個廣告，但最後一場後不插
+        const showAd =
+          position % 4 === 0 && position < data.races.length;
+        return (
+          <Fragment key={race.raceNo}>
+            <RaceCard
+              race={race}
+              date={data.date}
+              onVideo={(kind) => openVideo(race, kind)}
+            />
+            {showAd && (
+              <AdSlot
+                slot="results-list-banner"
+                layout="leaderboard"
+                closable
+              />
+            )}
+          </Fragment>
+        );
+      })}
 
       <VideoPlayerDialog
         target={videoTarget}
