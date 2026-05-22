@@ -2,27 +2,39 @@ import "server-only";
 
 import {
   QIN_POOLS,
+  calcDistanceBreakdown,
+  calcEquityCurve,
+  calcMaxDrawdown,
   calcMeetingPnl,
   calcMeetingPnlCross,
   calcOverallPnl,
   calcOverallPnlCross,
+  calcProfitFactor,
   calcRacePnl,
   calcRacePnlCross,
   calcStats,
+  calcStreaks,
+  calcTierBreakdown,
   calcTrend,
+  calcVenueBreakdown,
   getHistoryMeetings,
+  getRaceTier,
   getTopPicks,
   isHit,
   isJudged,
   pickByNo,
 } from "./history";
 import type {
+  BetMode,
+  EquityCurveSetView,
+  HistoryBreakdownView,
   HistoryDashboardData,
   HistoryMeetingView,
-  HistoryPoolView,
   HistoryPnlSummaryView,
+  HistoryPoolView,
   HistoryRacePnlView,
   HistoryRaceView,
+  RiskMetricsView,
 } from "./history-view-types";
 
 function toPoolView(pool: {
@@ -122,6 +134,7 @@ function toRaceView(date: string, race: Parameters<typeof isJudged>[0]): History
     raceNo: race.raceNo,
     className: race.meta.className,
     distance: race.meta.distance ?? null,
+    tier: getRaceTier(race),
     topPicks: topPicks.map((no) => ({
       no,
       name: pickByNo(race, no)?.name ?? "",
@@ -162,6 +175,52 @@ function toMeetingView(meeting: ReturnType<typeof getHistoryMeetings>[number]): 
   };
 }
 
+function buildBreakdown(
+  meetings: ReturnType<typeof getHistoryMeetings>,
+  mode: BetMode,
+): HistoryBreakdownView {
+  const overall = mode === "cross" ? calcOverallPnlCross(meetings) : calcOverallPnl(meetings);
+  return {
+    byVenue: calcVenueBreakdown(meetings, mode),
+    byDistance: calcDistanceBreakdown(meetings, mode),
+    byTier: calcTierBreakdown(meetings, mode).map((row) => ({
+      ...row,
+    })),
+    byPool: {
+      qin: toPoolView(overall.byPool[QIN_POOLS[0]]),
+      qinQ: toPoolView(overall.byPool[QIN_POOLS[1]]),
+    },
+  };
+}
+
+function buildRisk(
+  meetings: ReturnType<typeof getHistoryMeetings>,
+  mode: BetMode,
+): RiskMetricsView {
+  const equity = calcEquityCurve(meetings, mode);
+  const dd = calcMaxDrawdown(equity);
+  const pf = calcProfitFactor(meetings, mode);
+  const streaks = calcStreaks(meetings, mode);
+  return {
+    maxDrawdown: dd.maxDrawdown,
+    maxDrawdownPct: dd.maxDrawdownPct,
+    profitFactor: Number.isFinite(pf) ? pf : pf === Infinity ? 999 : 0,
+    streaks: {
+      longestWin: streaks.longestWin,
+      longestLoss: streaks.longestLoss,
+      currentType: streaks.currentType,
+      currentLen: streaks.currentLen,
+    },
+  };
+}
+
+function buildEquity(meetings: ReturnType<typeof getHistoryMeetings>): EquityCurveSetView {
+  return {
+    banker: calcEquityCurve(meetings, "banker"),
+    cross: calcEquityCurve(meetings, "cross"),
+  };
+}
+
 export function getHistoryDashboardData(): HistoryDashboardData {
   const meetings = getHistoryMeetings();
   const stats = calcStats(meetings);
@@ -179,5 +238,14 @@ export function getHistoryDashboardData(): HistoryDashboardData {
     bankerPnl: toSummaryView(calcOverallPnl(meetings)),
     crossPnl: toSummaryView(calcOverallPnlCross(meetings)),
     meetings: meetings.map(toMeetingView),
+    equity: buildEquity(meetings),
+    breakdown: {
+      banker: buildBreakdown(meetings, "banker"),
+      cross: buildBreakdown(meetings, "cross"),
+    },
+    risk: {
+      banker: buildRisk(meetings, "banker"),
+      cross: buildRisk(meetings, "cross"),
+    },
   };
 }

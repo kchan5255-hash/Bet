@@ -75,6 +75,9 @@ interface V19File {
 
 const AUTO_FROM = "2026-05-01";
 
+export const V19_SKIP_DISTANCES = [1000, 1650, 2000, 2200];
+export const V19_BOOST_DISTANCES = [1400, 1600];
+
 export function getHistoryMeetings(): HistoryMeeting[] {
   const FILE = readV19();
   return FILE.dates
@@ -411,4 +414,283 @@ function calcOverallPnlInternal(meetings: HistoryMeeting[], mode: BetMode): PnlS
     }
   }
   return finaliseSummary(sum);
+}
+
+export interface EquityPoint {
+  date: string;
+  cumPnl: number;
+  dailyPnl: number;
+  hitRate: number;
+  judged: number;
+  hit: number;
+  bets: number;
+}
+
+export function calcEquityCurve(meetings: HistoryMeeting[], mode: BetMode): EquityPoint[] {
+  const sorted = meetings
+    .slice()
+    .sort((a, b) => a.date.localeCompare(b.date));
+  let cum = 0;
+  const points: EquityPoint[] = [];
+  for (const meeting of sorted) {
+    let dailyPnl = 0;
+    let dailyBets = 0;
+    let judged = 0;
+    let hit = 0;
+    for (const race of meeting.races) {
+      const p = mode === "cross"
+        ? calcRacePnlCross(meeting.date, race)
+        : calcRacePnl(meeting.date, race);
+      if (p.hasBet && p.judged) {
+        dailyPnl += p.pnl;
+        dailyBets += p.bets;
+      }
+      if (isJudged(race)) {
+        judged += 1;
+        if (isHit(getTopPicks(race), race.actualTop3)) hit += 1;
+      }
+    }
+    cum += dailyPnl;
+    points.push({
+      date: meeting.date,
+      cumPnl: cum,
+      dailyPnl,
+      hitRate: judged > 0 ? (hit / judged) * 100 : 0,
+      judged,
+      hit,
+      bets: dailyBets,
+    });
+  }
+  return points;
+}
+
+export interface StreakInfo {
+  longestWin: number;
+  longestLoss: number;
+  currentType: "win" | "loss" | "none";
+  currentLen: number;
+}
+
+export function calcStreaks(meetings: HistoryMeeting[], mode: BetMode): StreakInfo {
+  const sorted = meetings
+    .slice()
+    .sort((a, b) => a.date.localeCompare(b.date));
+  let longestWin = 0;
+  let longestLoss = 0;
+  let curType: "win" | "loss" | "none" = "none";
+  let curLen = 0;
+  for (const meeting of sorted) {
+    for (const race of meeting.races) {
+      const p = mode === "cross"
+        ? calcRacePnlCross(meeting.date, race)
+        : calcRacePnl(meeting.date, race);
+      if (!p.hasBet || !p.judged) continue;
+      const isWin = p.pnl > 0;
+      const t: "win" | "loss" = isWin ? "win" : "loss";
+      if (curType === t) {
+        curLen += 1;
+      } else {
+        curType = t;
+        curLen = 1;
+      }
+      if (t === "win" && curLen > longestWin) longestWin = curLen;
+      if (t === "loss" && curLen > longestLoss) longestLoss = curLen;
+    }
+  }
+  return {
+    longestWin,
+    longestLoss,
+    currentType: curType,
+    currentLen: curLen,
+  };
+}
+
+export interface DrawdownInfo {
+  maxDrawdown: number;
+  maxDrawdownPct: number;
+}
+
+export function calcMaxDrawdown(equity: EquityPoint[]): DrawdownInfo {
+  let peak = 0;
+  let maxDd = 0;
+  let maxDdPct = 0;
+  for (const p of equity) {
+    if (p.cumPnl > peak) peak = p.cumPnl;
+    const dd = p.cumPnl - peak;
+    if (dd < maxDd) {
+      maxDd = dd;
+      maxDdPct = peak > 0 ? (dd / peak) * 100 : 0;
+    }
+  }
+  return { maxDrawdown: maxDd, maxDrawdownPct: maxDdPct };
+}
+
+export function calcProfitFactor(meetings: HistoryMeeting[], mode: BetMode): number {
+  let grossWin = 0;
+  let grossLoss = 0;
+  for (const meeting of meetings) {
+    for (const race of meeting.races) {
+      const p = mode === "cross"
+        ? calcRacePnlCross(meeting.date, race)
+        : calcRacePnl(meeting.date, race);
+      if (!p.hasBet || !p.judged) continue;
+      if (p.pnl > 0) grossWin += p.pnl;
+      else if (p.pnl < 0) grossLoss += -p.pnl;
+    }
+  }
+  if (grossLoss === 0) return grossWin > 0 ? Infinity : 0;
+  return grossWin / grossLoss;
+}
+
+export interface VenueBreakdown {
+  venue: string;
+  races: number;
+  judged: number;
+  hit: number;
+  rate: number;
+  bets: number;
+  stake: number;
+  pnl: number;
+  roi: number;
+}
+
+export function calcVenueBreakdown(meetings: HistoryMeeting[], mode: BetMode): VenueBreakdown[] {
+  const map = new Map<string, VenueBreakdown>();
+  for (const meeting of meetings) {
+    const v = meeting.venue || "—";
+    let row = map.get(v);
+    if (!row) {
+      row = { venue: v, races: 0, judged: 0, hit: 0, rate: 0, bets: 0, stake: 0, pnl: 0, roi: 0 };
+      map.set(v, row);
+    }
+    for (const race of meeting.races) {
+      row.races += 1;
+      if (isJudged(race)) {
+        row.judged += 1;
+        if (isHit(getTopPicks(race), race.actualTop3)) row.hit += 1;
+      }
+      const p = mode === "cross"
+        ? calcRacePnlCross(meeting.date, race)
+        : calcRacePnl(meeting.date, race);
+      if (p.hasBet && p.judged) {
+        row.bets += p.bets;
+        row.stake += p.stake;
+        row.pnl += p.pnl;
+      }
+    }
+  }
+  for (const row of map.values()) {
+    row.rate = row.judged > 0 ? (row.hit / row.judged) * 100 : 0;
+    row.roi = row.stake > 0 ? row.pnl / row.stake : 0;
+  }
+  return Array.from(map.values()).sort((a, b) => b.races - a.races);
+}
+
+export interface DistanceBreakdown {
+  distance: number;
+  isV19Skip: boolean;
+  isV19Boost: boolean;
+  races: number;
+  judged: number;
+  hit: number;
+  rate: number;
+  bets: number;
+  stake: number;
+  pnl: number;
+  roi: number;
+}
+
+export function calcDistanceBreakdown(meetings: HistoryMeeting[], mode: BetMode): DistanceBreakdown[] {
+  const map = new Map<number, DistanceBreakdown>();
+  for (const meeting of meetings) {
+    for (const race of meeting.races) {
+      const dist = race.meta.distance;
+      if (!dist) continue;
+      let row = map.get(dist);
+      if (!row) {
+        row = {
+          distance: dist,
+          isV19Skip: V19_SKIP_DISTANCES.includes(dist),
+          isV19Boost: V19_BOOST_DISTANCES.includes(dist),
+          races: 0,
+          judged: 0,
+          hit: 0,
+          rate: 0,
+          bets: 0,
+          stake: 0,
+          pnl: 0,
+          roi: 0,
+        };
+        map.set(dist, row);
+      }
+      row.races += 1;
+      if (isJudged(race)) {
+        row.judged += 1;
+        if (isHit(getTopPicks(race), race.actualTop3)) row.hit += 1;
+      }
+      const p = mode === "cross"
+        ? calcRacePnlCross(meeting.date, race)
+        : calcRacePnl(meeting.date, race);
+      if (p.hasBet && p.judged) {
+        row.bets += p.bets;
+        row.stake += p.stake;
+        row.pnl += p.pnl;
+      }
+    }
+  }
+  for (const row of map.values()) {
+    row.rate = row.judged > 0 ? (row.hit / row.judged) * 100 : 0;
+    row.roi = row.stake > 0 ? row.pnl / row.stake : 0;
+  }
+  return Array.from(map.values()).sort((a, b) => a.distance - b.distance);
+}
+
+export type TierBreakdownKey = "S" | "A" | "B" | "none";
+
+export interface TierBreakdown {
+  tier: TierBreakdownKey;
+  races: number;
+  judged: number;
+  hit: number;
+  rate: number;
+  bets: number;
+  stake: number;
+  pnl: number;
+  roi: number;
+}
+
+export function getRaceTier(race: V19Race): TierBreakdownKey {
+  return (race.recommend?.tier ?? "none") as TierBreakdownKey;
+}
+
+export function calcTierBreakdown(meetings: HistoryMeeting[], mode: BetMode): TierBreakdown[] {
+  const order: TierBreakdownKey[] = ["S", "A", "B", "none"];
+  const map = new Map<TierBreakdownKey, TierBreakdown>();
+  for (const t of order) {
+    map.set(t, { tier: t, races: 0, judged: 0, hit: 0, rate: 0, bets: 0, stake: 0, pnl: 0, roi: 0 });
+  }
+  for (const meeting of meetings) {
+    for (const race of meeting.races) {
+      const tier = getRaceTier(race);
+      const row = map.get(tier)!;
+      row.races += 1;
+      if (isJudged(race)) {
+        row.judged += 1;
+        if (isHit(getTopPicks(race), race.actualTop3)) row.hit += 1;
+      }
+      const p = mode === "cross"
+        ? calcRacePnlCross(meeting.date, race)
+        : calcRacePnl(meeting.date, race);
+      if (p.hasBet && p.judged) {
+        row.bets += p.bets;
+        row.stake += p.stake;
+        row.pnl += p.pnl;
+      }
+    }
+  }
+  for (const row of map.values()) {
+    row.rate = row.judged > 0 ? (row.hit / row.judged) * 100 : 0;
+    row.roi = row.stake > 0 ? row.pnl / row.stake : 0;
+  }
+  return order.map((t) => map.get(t)!).filter((row) => row.races > 0);
 }

@@ -1,5 +1,9 @@
 export type HistoryPoolKey = "qin" | "qinQ";
 
+export type BetMode = "banker" | "cross";
+
+export type TierKey = "S" | "A" | "B" | "none";
+
 export interface HistoryPoolView {
   bets: number;
   stake: number;
@@ -41,6 +45,7 @@ export interface HistoryRaceView {
   raceNo: number;
   className: string;
   distance: number | null;
+  tier: TierKey;
   topPicks: HistoryTopPickView[];
   actualTop3: string[];
   judged: boolean;
@@ -76,6 +81,85 @@ export interface HistoryTrendPointView {
   hit: number;
 }
 
+export interface EquityPointView {
+  date: string;
+  cumPnl: number;
+  dailyPnl: number;
+  hitRate: number;
+  judged: number;
+  hit: number;
+  bets: number;
+}
+
+export interface EquityCurveSetView {
+  banker: EquityPointView[];
+  cross: EquityPointView[];
+}
+
+export interface VenueBreakdownView {
+  venue: string;
+  races: number;
+  judged: number;
+  hit: number;
+  rate: number;
+  bets: number;
+  stake: number;
+  pnl: number;
+  roi: number;
+}
+
+export interface DistanceBreakdownView {
+  distance: number;
+  isV19Skip: boolean;
+  isV19Boost: boolean;
+  races: number;
+  judged: number;
+  hit: number;
+  rate: number;
+  bets: number;
+  stake: number;
+  pnl: number;
+  roi: number;
+}
+
+export interface TierBreakdownView {
+  tier: TierKey;
+  races: number;
+  judged: number;
+  hit: number;
+  rate: number;
+  bets: number;
+  stake: number;
+  pnl: number;
+  roi: number;
+}
+
+export interface PoolBreakdownView {
+  qin: HistoryPoolView;
+  qinQ: HistoryPoolView;
+}
+
+export interface HistoryBreakdownView {
+  byVenue: VenueBreakdownView[];
+  byDistance: DistanceBreakdownView[];
+  byTier: TierBreakdownView[];
+  byPool: PoolBreakdownView;
+}
+
+export interface StreakInfoView {
+  longestWin: number;
+  longestLoss: number;
+  currentType: "win" | "loss" | "none";
+  currentLen: number;
+}
+
+export interface RiskMetricsView {
+  maxDrawdown: number;
+  maxDrawdownPct: number;
+  profitFactor: number;
+  streaks: StreakInfoView;
+}
+
 export interface HistoryDashboardData {
   generatedAt: string;
   meetingCount: number;
@@ -84,4 +168,13 @@ export interface HistoryDashboardData {
   bankerPnl: HistoryPnlSummaryView;
   crossPnl: HistoryPnlSummaryView;
   meetings: HistoryMeetingView[];
+  equity: EquityCurveSetView;
+  breakdown: {
+    banker: HistoryBreakdownView;
+    cross: HistoryBreakdownView;
+  };
+  risk: {
+    banker: RiskMetricsView;
+    cross: RiskMetricsView;
+  };
 }
