@@ -8,6 +8,9 @@ import type { Race, Runner } from "./types";
 import type {
   RaceCardMeta,
   RaceRunnerView,
+  RaceTabMeta,
+  RaceTier,
+  RaceTierSummary,
   RaceView,
   RaceViewerPayload,
   V19BannerView,
@@ -37,6 +40,24 @@ function toRunnerView(runner: Runner): RaceRunnerView {
     trainerPreference: runner.trainerPreference,
     trumpCard: runner.trumpCard,
     priority: runner.priority,
+  };
+}
+
+function stripModelOutput(runner: RaceRunnerView): RaceRunnerView {
+  return {
+    ...runner,
+    rawScore: 0,
+    modelProbability: 0,
+    trainerPreference: undefined,
+    trumpCard: false,
+    priority: false,
+  };
+}
+
+function stripRaceModelOutput(race: RaceView): RaceView {
+  return {
+    ...race,
+    runners: race.runners.map(stripModelOutput),
   };
 }
 
@@ -93,13 +114,49 @@ function toV19BannerView(date: string, raceNo: number): V19BannerView | null {
   };
 }
 
-export function getRaceViewerPayload(date: string): RaceViewerPayload {
+export interface RaceViewerOptions {
+  authenticated: boolean;
+}
+
+export function getRaceViewerPayload(
+  date: string,
+  options: RaceViewerOptions = { authenticated: false },
+): RaceViewerPayload {
   const baseRaces = getRaces(date);
   const v19Available = isV19Available(date);
 
+  const cards = baseRaces.map(toRaceCardMeta);
+
+  if (!options.authenticated) {
+    const proStripped = baseRaces.map((race) =>
+      stripRaceModelOutput(toRaceView(applyProfessionalModel(race))),
+    );
+    const emptyBanners = Object.fromEntries(
+      cards.map((c) => [String(c.raceNo), null] as const),
+    );
+    return {
+      date,
+      authenticated: false,
+      cards,
+      models: {
+        pro: proStripped,
+        v9: proStripped,
+      },
+      v19Available: false,
+      v19Banners: emptyBanners,
+      tierSummary: buildTierSummary(emptyBanners),
+      tabs: buildRaceTabs(cards, emptyBanners),
+    };
+  }
+
+  const v19Banners = Object.fromEntries(
+    baseRaces.map((race) => [String(race.raceNo), toV19BannerView(date, race.raceNo)]),
+  );
+
   return {
     date,
-    cards: baseRaces.map(toRaceCardMeta),
+    authenticated: true,
+    cards,
     models: {
       pro: baseRaces.map((race) => toRaceView(applyProfessionalModel(race))),
       v9: baseRaces.map((race) => toRaceView(applyV9Model(race, date))),
@@ -110,8 +167,49 @@ export function getRaceViewerPayload(date: string): RaceViewerPayload {
         : {}),
     },
     v19Available,
-    v19Banners: Object.fromEntries(
-      baseRaces.map((race) => [String(race.raceNo), toV19BannerView(date, race.raceNo)]),
-    ),
+    v19Banners,
+    tierSummary: buildTierSummary(v19Banners),
+    tabs: buildRaceTabs(cards, v19Banners),
   };
+}
+
+function bannerTier(banner: V19BannerView | null): RaceTier | null {
+  if (!banner) return null;
+  if (banner.gate.action === "skip") return "skip";
+  return banner.recommend?.tier ?? banner.gate.tier ?? null;
+}
+
+export function buildTierSummary(
+  banners: Record<string, V19BannerView | null>,
+): RaceTierSummary {
+  const summary: RaceTierSummary = {
+    S: 0,
+    A: 0,
+    B: 0,
+    skip: 0,
+    total: Object.keys(banners).length,
+  };
+  for (const banner of Object.values(banners)) {
+    const tier = bannerTier(banner);
+    if (tier) summary[tier] += 1;
+  }
+  return summary;
+}
+
+export function buildRaceTabs(
+  cards: RaceCardMeta[],
+  banners: Record<string, V19BannerView | null>,
+  now: Date = new Date(),
+): RaceTabMeta[] {
+  return cards.map((card) => {
+    const banner = banners[String(card.raceNo)] ?? null;
+    const post = new Date(card.postTime);
+    const isPast =
+      !Number.isNaN(post.getTime()) && post.getTime() + 5 * 60_000 < now.getTime();
+    return {
+      ...card,
+      tier: bannerTier(banner),
+      isPast,
+    };
+  });
 }

@@ -4,10 +4,13 @@ import { LegalLayout, LegalSection } from "@/components/legal/LegalLayout";
 export const metadata: Metadata = {
   title: "服務條款 — Furlong",
   description: "Furlong 賽馬數據分析平台的使用條款、用戶責任及法律聲明。",
-  alternates: { canonical: "/terms" },
+  alternates: {
+    canonical: "/terms",
+    languages: { en: "/terms/en" },
+  },
 };
 
-const LAST_UPDATED = "2026-05-22";
+const LAST_UPDATED = "2026-05-23";
 
 export default function TermsPage() {
   return (
@@ -15,6 +18,9 @@ export default function TermsPage() {
       title="服務條款"
       subtitle="使用 Furlong 即表示你同意以下條款。請仔細閱讀。"
       lastUpdated={LAST_UPDATED}
+      locale="zh"
+      altLocaleHref="/terms/en"
+      altLocaleLabel="English"
     >
       <LegalSection id="nature" title="1. 服務性質">
         <p>
@@ -65,7 +71,46 @@ export default function TermsPage() {
         </ul>
       </LegalSection>
 
-      <LegalSection id="ip" title="6. 知識產權">
+      <LegalSection id="ai-tdm" title="6. 禁止自動化擷取與 AI 訓練">
+        <p>
+          除明文授權外，<strong className="text-text">嚴禁</strong>對本網站任何頁面、資料、API 端點或內部 JSON 進行下列任何行為：
+        </p>
+        <ul className="list-disc space-y-1.5 pl-5">
+          <li>使用爬蟲、機械人、無頭瀏覽器、自動化腳本或其他工具進行批量擷取。</li>
+          <li>繞過、停用或干擾本網站的存取控制、限速、challenge 或反爬蟲機制。</li>
+          <li>將本網站內容用於訓練、微調、評估、檢索增強（RAG）或以其他方式餵入任何人工智能、機器學習、神經網絡或大型語言模型——無論商業或非商業用途。</li>
+          <li>將本網站內容鏡像、再分發、轉售、嵌入第三方平台或併入任何衍生資料集。</li>
+        </ul>
+        <p>
+          根據歐盟《數位單一市場著作權指令》（DSM Directive 2019/790）第 4 條，
+          本網站經營者明確<strong className="text-text">保留所有文字與資料探勘權利</strong>（TDM rights reservation）。
+          此項保留以人類可讀形式（本條款）及機器可讀形式（
+          <code>robots.txt</code>、<code>ai.txt</code>、<code>X-Robots-Tag</code>、
+          <code>noai</code> meta 標籤）同時宣告。
+        </p>
+        <p>
+          違反本條款可能構成以下任何或全部違法行為：
+        </p>
+        <ul className="list-disc space-y-1.5 pl-5">
+          <li><strong className="text-text">香港《刑事罪行條例》（第 200 章）第 161 條</strong>：有犯罪或不誠實意圖而取用電腦。</li>
+          <li><strong className="text-text">香港《個人資料（私隱）條例》（第 486 章）</strong>：未經同意收集、處理或轉移個人資料。</li>
+          <li><strong className="text-text">美國《電腦詐騙與濫用法》（CFAA, 18 U.S.C. § 1030）</strong>：未經授權存取受保護電腦。</li>
+          <li>香港《版權條例》（第 528 章）下之版權侵權。</li>
+          <li>違反契約（即本條款）所應承擔之損害賠償責任。</li>
+        </ul>
+        <p>
+          授權查詢、DMCA 通知或商業使用許可，請透過{" "}
+          <a
+            className="text-precision-glow underline underline-offset-2 hover:opacity-80"
+            href="/contact"
+          >
+            聯絡頁
+          </a>
+          提交。
+        </p>
+      </LegalSection>
+
+      <LegalSection id="ip" title="7. 知識產權">
         <p>
           本網站所有內容，包括但不限於文字、模型、評分、圖表、介面設計、商標及程式碼，
           均為本網站或其授權人所擁有，並受香港及國際著作權法保護。
@@ -76,7 +121,7 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection id="thirdparty" title="7. 第三方資料">
+      <LegalSection id="thirdparty" title="8. 第三方資料">
         <p>
           本網站使用之賽事資料來源包括香港賽馬會公開資料及其他公共來源。
           本網站非賽馬會官方平台，亦未獲其背書、認可或合作。
@@ -84,7 +129,7 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection id="disclaimer" title="8. 免責聲明">
+      <LegalSection id="disclaimer" title="9. 免責聲明">
         <p>
           本網站之預測、評分及分析<strong className="text-text">僅供參考</strong>，
           不構成任何形式之投注建議、財務建議或投資建議。
@@ -103,7 +148,7 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection id="limitation" title="9. 責任限制">
+      <LegalSection id="limitation" title="10. 責任限制">
         <p>
           在法律允許之最大範圍內，本網站、其營運者及關聯方不就以下事項承擔任何責任：
         </p>
@@ -115,28 +160,28 @@ export default function TermsPage() {
         </ul>
       </LegalSection>
 
-      <LegalSection id="termination" title="10. 終止">
+      <LegalSection id="termination" title="11. 終止">
         <p>
           如你違反本條款，本網站有權在不另行通知下暫停或終止你的帳戶。
           終止後，相關條款（包括知識產權、免責聲明、責任限制）將繼續有效。
         </p>
       </LegalSection>
 
-      <LegalSection id="modifications" title="11. 條款修訂">
+      <LegalSection id="modifications" title="12. 條款修訂">
         <p>
           本網站可能不時修訂本條款。重大變更將於本頁面更新日期，並於必要時通過電郵或網站公告通知。
           若你在條款變更後繼續使用本網站，即視為接受變更後之條款。
         </p>
       </LegalSection>
 
-      <LegalSection id="law" title="12. 適用法律與管轄">
+      <LegalSection id="law" title="13. 適用法律與管轄">
         <p>
           本條款受香港特別行政區法律管轄並依其解釋。
           因本條款引起或與其有關之任何爭議，雙方同意提交香港法院為非專屬管轄法院。
         </p>
       </LegalSection>
 
-      <LegalSection id="contact" title="13. 聯絡我們">
+      <LegalSection id="contact" title="14. 聯絡我們">
         <p>
           如對本條款有任何疑問，請前往{" "}
           <a

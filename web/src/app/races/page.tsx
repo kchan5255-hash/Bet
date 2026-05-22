@@ -12,7 +12,8 @@ export default async function RacesPage({ searchParams }: RacesPageProps) {
   const validDates = new Set(meetings.map((m) => m.date));
   const targetDate =
     date && validDates.has(date) ? date : getLatestMeetingDate();
-  const payload = getRaceViewerPayload(targetDate);
+
+  const payload = getRaceViewerPayload(targetDate, { authenticated: true });
 
   return (
     <RacesPageClient payload={payload} date={targetDate} meetings={meetings} />

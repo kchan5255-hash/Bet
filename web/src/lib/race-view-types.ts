@@ -67,8 +67,24 @@ export interface V19BannerView {
   } | null;
 }
 
+export type RaceTier = "S" | "A" | "B" | "skip";
+
+export interface RaceTierSummary {
+  S: number;
+  A: number;
+  B: number;
+  skip: number;
+  total: number;
+}
+
+export interface RaceTabMeta extends RaceCardMeta {
+  tier: RaceTier | null;
+  isPast: boolean;
+}
+
 export interface RaceViewerPayload {
   date: string;
+  authenticated: boolean;
   cards: RaceCardMeta[];
   models: {
     pro: RaceView[];
@@ -77,4 +93,6 @@ export interface RaceViewerPayload {
   };
   v19Available: boolean;
   v19Banners: Record<string, V19BannerView | null>;
+  tierSummary: RaceTierSummary;
+  tabs: RaceTabMeta[];
 }

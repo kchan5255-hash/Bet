@@ -1,16 +1,18 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import type {
   BetMode,
   HistoryDashboardData,
+  HistoryMeetingView,
 } from "@/lib/history-view-types";
+import { AdSlot } from "./ads/AdSlot";
 import { EmptyState } from "./history/EmptyState";
 import { EquityCurveCard } from "./history/EquityCurveCard";
 import { FilterBar } from "./history/FilterBar";
 import { HeroSummary } from "./history/HeroSummary";
 import { KpiStrip } from "./history/KpiStrip";
-import { MeetingBlock } from "./history/MeetingBlock";
+import { MeetingMonthGroup } from "./history/MeetingMonthGroup";
 import { PerformanceBreakdown } from "./history/PerformanceBreakdown";
 import { useHistoryFilter } from "./history/useHistoryFilter";
 
@@ -27,7 +29,7 @@ export function HistoryDashboard({ data }: HistoryDashboardProps) {
 }
 
 function HistoryDashboardInner({ data }: HistoryDashboardProps) {
-  const [mode, setMode] = useState<BetMode>("banker");
+  const [mode, setMode] = useState<BetMode>("cross");
 
   const pnl = mode === "banker" ? data.bankerPnl : data.crossPnl;
   const equity = mode === "banker" ? data.equity.banker : data.equity.cross;
@@ -36,6 +38,33 @@ function HistoryDashboardInner({ data }: HistoryDashboardProps) {
 
   const { filter, setFilter, reset, filtered, isFiltered, monthOptions } =
     useHistoryFilter(data.meetings);
+
+  const monthGroups = useMemo(() => groupByMonth(filtered), [filtered]);
+  const latestMonth = monthGroups[0]?.month ?? null;
+
+  const [openMonths, setOpenMonths] = useState<Set<string>>(() =>
+    latestMonth ? new Set([latestMonth]) : new Set(),
+  );
+
+  useEffect(() => {
+    setOpenMonths(latestMonth ? new Set([latestMonth]) : new Set());
+  }, [
+    filter.venue,
+    filter.hit,
+    filter.tier,
+    filter.month,
+    filter.withBetOnly,
+    latestMonth,
+  ]);
+
+  const toggleMonth = (month: string) => {
+    setOpenMonths((prev) => {
+      const next = new Set(prev);
+      if (next.has(month)) next.delete(month);
+      else next.add(month);
+      return next;
+    });
+  };
 
   const noData = data.meetings.length === 0;
   const noJudged = !noData && data.stats.judgedRaces === 0;
@@ -52,6 +81,8 @@ function HistoryDashboardInner({ data }: HistoryDashboardProps) {
       />
 
       <KpiStrip stats={data.stats} pnl={pnl} meetingCount={data.meetingCount} />
+
+      <AdSlot slot="history-list-banner" layout="leaderboard" />
 
       <EquityCurveCard mode={mode} equity={equity} />
 
@@ -83,7 +114,7 @@ function HistoryDashboardInner({ data }: HistoryDashboardProps) {
                 </p>
               </div>
               <span className="text-[11px] text-text-subtle">
-                {filtered.length} / {data.meetingCount} 場
+                {filtered.length} / {data.meetingCount} 賽馬日
               </span>
             </div>
 
@@ -97,11 +128,15 @@ function HistoryDashboardInner({ data }: HistoryDashboardProps) {
               <EmptyState variant="no-judged" />
             ) : (
               <div className="space-y-4">
-                {filtered.map((meeting) => (
-                  <MeetingBlock
-                    key={meeting.date}
-                    meeting={meeting}
+                {monthGroups.map(({ month, meetings }, idx) => (
+                  <MeetingMonthGroup
+                    key={month}
+                    month={month}
+                    meetings={meetings}
                     mode={mode}
+                    isOpen={openMonths.has(month)}
+                    onToggle={() => toggleMonth(month)}
+                    showInFeedAd={idx === 0}
                   />
                 ))}
               </div>
@@ -115,4 +150,22 @@ function HistoryDashboardInner({ data }: HistoryDashboardProps) {
       </footer>
     </div>
   );
+}
+
+interface MonthGroup {
+  month: string;
+  meetings: HistoryMeetingView[];
+}
+
+function groupByMonth(meetings: HistoryMeetingView[]): MonthGroup[] {
+  const map = new Map<string, HistoryMeetingView[]>();
+  for (const m of meetings) {
+    const key = m.date.slice(0, 7);
+    const arr = map.get(key);
+    if (arr) arr.push(m);
+    else map.set(key, [m]);
+  }
+  return Array.from(map.entries())
+    .map(([month, list]) => ({ month, meetings: list }))
+    .sort((a, b) => b.month.localeCompare(a.month));
 }

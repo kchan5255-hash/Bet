@@ -62,3 +62,9 @@ export function tierLabel(tier: string): string {
   if (tier === "B") return "Tier B";
   return "未分級";
 }
+
+export function formatMonthLabel(month: string): string {
+  const [y, m] = month.split("-");
+  if (!y || !m) return month;
+  return `${y} 年 ${Number(m)} 月`;
+}

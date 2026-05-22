@@ -1,0 +1,15 @@
+# ai.txt — AI training / TDM (Text and Data Mining) reservation
+# Furlong (https://bet-teal-ten.vercel.app)
+#
+# We expressly reserve all rights against text and data mining (Article 4
+# of the EU Directive 2019/790 / DSM Directive) and against the use of any
+# content on this site for the training, fine-tuning, retrieval, or
+# evaluation of any artificial intelligence, machine learning, or large
+# language model — commercial or non-commercial.
+#
+# This file is the machine-readable counterpart to our Terms of Service.
+
+User-Agent: *
+Disallow: /
+Disallow-AI: /
+Disallow-AI-Training: /

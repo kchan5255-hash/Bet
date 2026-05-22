@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Target, Trophy, Wallet } from "lucide-react";
+import { Target, Trophy, Wallet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { HistoryPnlSummaryView, HistoryStatsView } from "@/lib/history-view-types";
 import { cn } from "@/lib/utils";
@@ -13,15 +13,12 @@ interface KpiStripProps {
 
 export function KpiStrip({ stats, pnl, meetingCount }: KpiStripProps) {
   const hitPct = (stats.hitRate * 100).toFixed(1);
-  const judgedPct = stats.totalRaces
-    ? Math.round((stats.judgedRaces / stats.totalRaces) * 100)
-    : 0;
   const winRate = pnl.judgedBets > 0 ? (pnl.wins / pnl.judgedBets) * 100 : 0;
 
   return (
     <section
       aria-label="關鍵指標"
-      className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3"
+      className="grid grid-cols-3 gap-2 md:gap-3"
     >
       <KpiTile
         icon={Target}
@@ -36,13 +33,6 @@ export function KpiStrip({ stats, pnl, meetingCount }: KpiStripProps) {
         value={`${winRate.toFixed(1)}%`}
         sub={`${pnl.wins}/${pnl.judgedBets} 注`}
         accent="upset"
-      />
-      <KpiTile
-        icon={Activity}
-        label="已判定覆蓋"
-        value={`${judgedPct}%`}
-        sub={`${stats.judgedRaces}/${stats.totalRaces} 場`}
-        accent="ai"
       />
       <KpiTile
         icon={Wallet}
@@ -78,17 +68,21 @@ function KpiTile({
   return (
     <div
       className={cn(
-        "rounded-xl border bg-bg-card p-3 transition-colors hover:border-border-glow md:p-4",
+        "rounded-xl border bg-bg-card p-2.5 transition-colors hover:border-border-glow md:p-4",
         accentMap[accent],
       )}
     >
-      <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-text-muted">
+      <div className="flex items-center gap-1 text-[9px] uppercase tracking-wider text-text-muted md:gap-2 md:text-[10px] md:tracking-widest">
         <Icon className="h-3 w-3" aria-hidden />
         {label}
       </div>
-      <div className="mt-2 number-mono text-2xl font-black md:text-3xl">{value}</div>
+      <div className="mt-1.5 number-mono text-lg font-black md:mt-2 md:text-3xl">
+        {value}
+      </div>
       {sub && (
-        <div className="mt-0.5 text-[10px] text-text-subtle number-mono">{sub}</div>
+        <div className="mt-0.5 text-[9px] text-text-subtle number-mono md:text-[10px]">
+          {sub}
+        </div>
       )}
     </div>
   );

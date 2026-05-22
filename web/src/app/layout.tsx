@@ -7,6 +7,7 @@ import { MobileTabBar } from "@/components/MobileTabBar";
 import { Footer } from "@/components/Footer";
 import { AgeWarningBanner } from "@/components/AgeWarningBanner";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { SideRailAds } from "@/components/ads/SideRailAds";
 
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
 
@@ -64,6 +65,12 @@ export const metadata: Metadata = {
   ...(ADSENSE_CLIENT && {
     other: {
       "google-adsense-account": ADSENSE_CLIENT,
+      robots: "noai, noimageai",
+    },
+  }),
+  ...(!ADSENSE_CLIENT && {
+    other: {
+      robots: "noai, noimageai",
     },
   }),
 };
@@ -92,6 +99,7 @@ export default function RootLayout({
         <NavBar />
         <main className="flex-1 pb-16 md:pb-0">{children}</main>
         <Footer />
+        <SideRailAds />
         <AdSlot
           slot="mobile-sticky-bottom"
           layout="sticky-mobile"

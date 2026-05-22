@@ -51,7 +51,7 @@ export function FilterBar({
   return (
     <section
       aria-label="賽事篩選"
-      className="sticky top-2 z-30 rounded-2xl border border-border-subtle bg-bg/85 p-3 backdrop-blur-md md:top-4 md:p-4"
+      className="sticky top-16 z-30 rounded-2xl border border-border-subtle bg-bg/85 p-3 backdrop-blur-md md:top-20 md:p-4"
     >
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-[10px] font-bold uppercase tracking-widest text-text-subtle">

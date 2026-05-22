@@ -35,6 +35,16 @@ export const AD_SLOTS: Record<string, AdSenseConfig> = {
     format: "fluid",
     layoutKey: "-ef+6k-30-ac+ty",
   },
+  "history-list-banner": {
+    adSenseSlot: "2188084172",
+    format: "horizontal",
+    fullWidthResponsive: true,
+  },
+  "history-feed-mid": {
+    adSenseSlot: "7643590833",
+    format: "fluid",
+    layoutKey: "-ef+6k-30-ac+ty",
+  },
   "result-detail-rectangle": {
     adSenseSlot: "1919427800",
     format: "rectangle",
@@ -44,6 +54,14 @@ export const AD_SLOTS: Record<string, AdSenseConfig> = {
     adSenseSlot: "1718826251",
     format: "auto",
     fullWidthResponsive: true,
+  },
+  "side-rail-left": {
+    adSenseSlot: "1718826251",
+    format: "vertical",
+  },
+  "side-rail-right": {
+    adSenseSlot: "1718826251",
+    format: "vertical",
   },
 };
 

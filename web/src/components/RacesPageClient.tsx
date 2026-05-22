@@ -1,12 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Calendar } from "lucide-react";
 import type { MeetingMeta } from "@/lib/meeting-utils";
-import { formatMeetingDate } from "@/lib/meeting-utils";
 import type { RaceViewerPayload } from "@/lib/race-view-types";
 import { AdSlot } from "./ads/AdSlot";
 import { DatePicker } from "./DatePicker";
+import { RaceHero } from "./races/RaceHero";
 import { RaceViewer } from "./RaceViewer";
 
 interface RacesPageClientProps {
@@ -28,38 +27,21 @@ export function RacesPageClient({
   };
 
   return (
-    <div className="mx-auto max-w-5xl px-3 md:px-6 py-3 md:py-6">
-      <header className="mb-3 md:mb-5 space-y-3">
-        <div className="hidden md:flex items-center gap-2 text-xs text-text-subtle uppercase tracking-widest">
-          <span className="h-px w-8 bg-border" />
-          本期賽事
-        </div>
+    <div className="mx-auto max-w-5xl px-3 md:px-6 py-3 md:py-6 space-y-3 md:space-y-5">
+      <RaceHero
+        date={date}
+        venueName={meta?.venueName}
+        tierSummary={payload.tierSummary}
+        v19Available={payload.v19Available}
+      />
 
-        <div className="hidden md:flex items-center justify-between gap-3">
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight">
-            勝率預測
-          </h1>
-          <div className="flex items-center gap-2 rounded-lg border border-border-subtle bg-bg-elevated px-3 py-1.5 text-xs">
-            <Calendar className="h-3.5 w-3.5 text-text-muted" />
-            <span className="text-text-muted">賽馬日</span>
-            <span className="font-semibold">{formatMeetingDate(date)}</span>
-            {meta?.venueName && (
-              <>
-                <span className="text-text-subtle">·</span>
-                <span className="text-text-muted">{meta.venueName}</span>
-              </>
-            )}
-          </div>
-        </div>
+      <DatePicker
+        selectedDate={date}
+        meetingDates={meetings}
+        onChange={onChangeDate}
+      />
 
-        <DatePicker
-          selectedDate={date}
-          meetingDates={meetings}
-          onChange={onChangeDate}
-        />
-      </header>
-
-      <AdSlot slot="races-list-banner" layout="leaderboard" className="mb-3" />
+      <AdSlot slot="races-list-banner" layout="leaderboard" />
 
       <RaceViewer payload={payload} />
     </div>

@@ -13,7 +13,8 @@ export type AdLayout =
   | "in-feed"
   | "native-bento"
   | "sticky-mobile"
-  | "mobile-banner";
+  | "mobile-banner"
+  | "sidebar";
 
 const LAYOUT_HEIGHT: Record<AdLayout, string> = {
   leaderboard: "h-[60px] md:h-[110px]",
@@ -22,6 +23,7 @@ const LAYOUT_HEIGHT: Record<AdLayout, string> = {
   "native-bento": "min-h-[140px]",
   "sticky-mobile": "h-[60px]",
   "mobile-banner": "h-[60px] md:h-[100px]",
+  sidebar: "h-[600px] w-[160px]",
 };
 
 export interface AdSlotProps {

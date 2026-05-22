@@ -7,23 +7,45 @@ interface LegalLayoutProps {
   subtitle?: string;
   lastUpdated: string;
   children: ReactNode;
+  locale?: "zh" | "en";
+  altLocaleHref?: string;
+  altLocaleLabel?: string;
 }
+
+const COPY = {
+  zh: { back: "返回首頁", lastUpdated: "最後更新" },
+  en: { back: "Back to home", lastUpdated: "Last updated" },
+} as const;
 
 export function LegalLayout({
   title,
   subtitle,
   lastUpdated,
   children,
+  locale = "zh",
+  altLocaleHref,
+  altLocaleLabel,
 }: LegalLayoutProps) {
+  const copy = COPY[locale];
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 md:px-6 md:py-14">
-      <Link
-        href="/"
-        className="mb-6 inline-flex items-center gap-1.5 text-xs text-text-subtle hover:text-text"
-      >
-        <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
-        返回首頁
-      </Link>
+      <div className="mb-6 flex items-center justify-between">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-xs text-text-subtle hover:text-text"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
+          {copy.back}
+        </Link>
+        {altLocaleHref && altLocaleLabel && (
+          <Link
+            href={altLocaleHref}
+            className="text-xs text-text-subtle hover:text-text"
+          >
+            {altLocaleLabel}
+          </Link>
+        )}
+      </div>
 
       <header className="mb-8 border-b border-border-subtle pb-6">
         <h1 className="text-2xl font-black tracking-tight md:text-3xl">
@@ -35,7 +57,7 @@ export function LegalLayout({
           </p>
         )}
         <p className="mt-3 text-[11px] uppercase tracking-widest text-text-subtle">
-          最後更新：{lastUpdated}
+          {copy.lastUpdated}：{lastUpdated}
         </p>
       </header>
 

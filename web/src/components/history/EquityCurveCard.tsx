@@ -6,7 +6,6 @@ import {
   Brush,
   CartesianGrid,
   ComposedChart,
-  Line,
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,
@@ -15,7 +14,6 @@ import {
 } from "recharts";
 import { LineChart } from "lucide-react";
 import type { BetMode, EquityPointView } from "@/lib/history-view-types";
-import { cn } from "@/lib/utils";
 import { RangeToggle, type EquityRange } from "./RangeToggle";
 import { formatHk, formatHkCompact, strategyLabel } from "./format";
 import { useIsMobile, useReducedMotion } from "./hooks";
@@ -33,7 +31,6 @@ const RANGE_DAYS: Record<EquityRange, number | null> = {
 
 export function EquityCurveCard({ mode, equity }: EquityCurveCardProps) {
   const [range, setRange] = useState<EquityRange>("all");
-  const [showHitRate, setShowHitRate] = useState(false);
   const reduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
 
@@ -108,19 +105,6 @@ export function EquityCurveCard({ mode, equity }: EquityCurveCardProps) {
                 tickFormatter={(value: number) => formatHkCompact(value)}
                 width={48}
               />
-              {showHitRate && (
-                <YAxis
-                  yAxisId="hit"
-                  orientation="right"
-                  stroke="#A78BFA"
-                  fontSize={11}
-                  tickLine={false}
-                  axisLine={false}
-                  domain={[0, 100]}
-                  tickFormatter={(value: number) => `${value}%`}
-                  width={36}
-                />
-              )}
               <Tooltip
                 cursor={{ stroke: "#475569", strokeDasharray: "2 4" }}
                 contentStyle={{
@@ -134,8 +118,6 @@ export function EquityCurveCard({ mode, equity }: EquityCurveCardProps) {
                 formatter={(value, name) => {
                   if (name === "cumPnl")
                     return [formatHk(Number(value), true), "累積盈虧"];
-                  if (name === "hitRate")
-                    return [`${Number(value).toFixed(1)}%`, "命中率"];
                   return [String(value), String(name)];
                 }}
               />
@@ -157,18 +139,6 @@ export function EquityCurveCard({ mode, equity }: EquityCurveCardProps) {
                 dot={false}
                 activeDot={{ r: 5, fill: "#34D399", stroke: "#0F172A", strokeWidth: 2 }}
               />
-              {showHitRate && (
-                <Line
-                  yAxisId="hit"
-                  type="monotone"
-                  dataKey="hitRate"
-                  stroke="#A78BFA"
-                  strokeWidth={1.5}
-                  strokeDasharray="4 3"
-                  dot={false}
-                  isAnimationActive={!reduceMotion}
-                />
-              )}
               {range === "all" && !isMobile && data.length > 8 && (
                 <Brush
                   dataKey="date"
@@ -189,29 +159,6 @@ export function EquityCurveCard({ mode, equity }: EquityCurveCardProps) {
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
-        <button
-          type="button"
-          role="switch"
-          aria-checked={showHitRate}
-          aria-pressed={showHitRate}
-          onClick={() => setShowHitRate((v) => !v)}
-          className={cn(
-            "min-h-[32px] inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ai-start/70",
-            showHitRate
-              ? "border-upset/40 bg-upset/15 text-upset-glow"
-              : "border-border-subtle bg-bg-subtle text-text-muted hover:text-text",
-          )}
-        >
-          <span
-            className={cn(
-              "inline-block h-1.5 w-3 rounded-full",
-              showHitRate ? "bg-upset-glow" : "bg-border",
-            )}
-            aria-hidden
-          />
-          顯示命中率
-        </button>
         {range === "all" && !isMobile && data.length > 8 && (
           <span className="text-[10px] text-text-subtle">
             提示：拖動底部 brush 可放大區段
