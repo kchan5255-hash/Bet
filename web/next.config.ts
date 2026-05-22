@@ -4,8 +4,8 @@ import type { NextConfig } from "next";
 const scriptSrc = [
   "'self'",
   "'unsafe-inline'",
+  "'unsafe-eval'",
   "https:",
-  ...(process.env.NODE_ENV === "production" ? [] : ["'unsafe-eval'"]),
 ].join(" ");
 
 const securityHeaders = [

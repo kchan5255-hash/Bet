@@ -34,11 +34,12 @@ export function getClientIp(request: NextRequest): string {
 function buildContentSecurityPolicy(): string {
   // 廣告網絡（AdSense / Adsterra）動態載入大量第三方域名，
   // 用 https: 通配讓廣告聯盟生態正常運作；其餘 directive 維持嚴格。
+  // 'unsafe-eval' 因 Adsterra invoke.js 內含 eval() 而開啟。
   const scriptSrc = [
     "'self'",
     "'unsafe-inline'",
+    "'unsafe-eval'",
     "https:",
-    ...(process.env.NODE_ENV === "production" ? [] : ["'unsafe-eval'"]),
   ].join(" ");
 
   return [
