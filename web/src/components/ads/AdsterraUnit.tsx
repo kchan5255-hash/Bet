@@ -25,9 +25,9 @@ export function AdsterraUnit({ config }: Props) {
     if (!config.key) return;
     injected.current = true;
 
-    if (config.format === "banner") {
-      const container = containerRef.current;
+    const container = containerRef.current;
 
+    if (config.format === "banner") {
       const optScript = document.createElement("script");
       optScript.type = "text/javascript";
       optScript.text = `var atOptions={'key':'${config.key}','format':'iframe','height':${config.height ?? 90},'width':${config.width ?? 728},'params':{}};`;
@@ -42,14 +42,20 @@ export function AdsterraUnit({ config }: Props) {
       script.async = true;
       script.setAttribute("data-cfasync", "false");
       script.src = config.key;
-      document.body.appendChild(script);
+      container.appendChild(script);
     }
   }, [mounted, config]);
+
+  // Server render 統一返回空 div，避免 hydration mismatch
+  if (!mounted) {
+    return <div suppressHydrationWarning />;
+  }
 
   if (config.format === "banner") {
     return (
       <div
         ref={containerRef}
+        suppressHydrationWarning
         style={{
           width: config.width ?? 728,
           height: config.height ?? 90,
@@ -61,7 +67,7 @@ export function AdsterraUnit({ config }: Props) {
   }
 
   return (
-    <div ref={containerRef} className="w-full">
+    <div ref={containerRef} className="w-full" suppressHydrationWarning>
       <div id={NATIVE_CONTAINER_ID} />
     </div>
   );
