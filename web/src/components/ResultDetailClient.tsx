@@ -82,7 +82,7 @@ export function ResultDetailClient({
 
       {dividends.length > 0 && (
         <>
-          <AdSlot slot="result-detail-rectangle" layout="leaderboard" />
+          <AdSlot slot="result-detail-rectangle" layout="rectangle" />
           <DividendsTable groups={dividends} />
         </>
       )}

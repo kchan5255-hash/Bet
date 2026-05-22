@@ -19,7 +19,7 @@ export type AdLayout =
 
 const LAYOUT_HEIGHT: Record<AdLayout, string> = {
   leaderboard: "h-[60px] md:h-[110px]",
-  rectangle: "min-h-[260px]",
+  rectangle: "min-h-[60px] md:min-h-[260px]",
   "in-feed": "min-h-[120px]",
   "native-bento": "min-h-[140px]",
   "sticky-mobile": "h-[60px]",

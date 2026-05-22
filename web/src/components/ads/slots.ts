@@ -91,6 +91,7 @@ const AD_SLOTS: Record<string, AdSenseConfig> = {
 const AT_728x90 = process.env.NEXT_PUBLIC_ADSTERRA_728x90 ?? "";
 const AT_320x50 = process.env.NEXT_PUBLIC_ADSTERRA_320x50 ?? "";
 const AT_160x600 = process.env.NEXT_PUBLIC_ADSTERRA_160x600 ?? "";
+const AT_300x250 = process.env.NEXT_PUBLIC_ADSTERRA_300x250 ?? "";
 const AT_NATIVE = process.env.NEXT_PUBLIC_ADSTERRA_NATIVE_SRC ?? "";
 
 const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
@@ -116,7 +117,7 @@ const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
   },
   "result-detail-rectangle": {
     provider: "adsterra", format: "banner",
-    key: AT_728x90, width: 728, height: 90,
+    key: AT_300x250, width: 300, height: 250,
     mobile: { key: AT_320x50, width: 320, height: 50 },
   },
   "mobile-sticky-bottom": {
