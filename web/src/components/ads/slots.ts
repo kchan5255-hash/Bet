@@ -19,6 +19,12 @@ export interface AdsterraConfig {
   key: string;
   width?: number;
   height?: number;
+  // 手機版 banner 替換尺寸（< 768px 時使用）
+  mobile?: {
+    key: string;
+    width: number;
+    height: number;
+  };
 }
 
 export type AnyAdConfig = AdSenseConfig | AdsterraConfig;
@@ -91,22 +97,27 @@ const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
   "home-hero-leaderboard": {
     provider: "adsterra", format: "banner",
     key: AT_728x90, width: 728, height: 90,
+    mobile: { key: AT_320x50, width: 320, height: 50 },
   },
   "races-list-banner": {
     provider: "adsterra", format: "banner",
     key: AT_728x90, width: 728, height: 90,
+    mobile: { key: AT_320x50, width: 320, height: 50 },
   },
   "results-list-banner": {
     provider: "adsterra", format: "banner",
     key: AT_728x90, width: 728, height: 90,
+    mobile: { key: AT_320x50, width: 320, height: 50 },
   },
   "history-list-banner": {
     provider: "adsterra", format: "banner",
     key: AT_728x90, width: 728, height: 90,
+    mobile: { key: AT_320x50, width: 320, height: 50 },
   },
   "result-detail-rectangle": {
     provider: "adsterra", format: "banner",
     key: AT_728x90, width: 728, height: 90,
+    mobile: { key: AT_320x50, width: 320, height: 50 },
   },
   "mobile-sticky-bottom": {
     provider: "adsterra", format: "banner",
