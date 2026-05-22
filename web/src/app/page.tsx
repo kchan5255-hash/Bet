@@ -36,8 +36,11 @@ export default function LandingPage() {
           解構每一場賽事
         </h1>
         <p className="mt-6 text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
-          14 項特徵因子加權、獸醫警示、歷史命中追蹤——從 Bloomberg 級介面出發，
-          讓你看見數據背後的信號，而非噪音。
+          14 項特徵因子加權、賽事級評分、歷史回測追蹤——以數據呈現賽事資訊。
+          <br />
+          <span className="text-sm text-text-subtle">
+            本網站僅供參考，不構成投注建議。請理性投注，量力而為。
+          </span>
         </p>
 
         <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">

@@ -1,17 +1,17 @@
 import type { MetadataRoute } from "next";
 
-const HIGH_VALUE_PATHS = [
-  "/races",
-  "/results",
-  "/history",
-  "/auth/",
+const APP_URL = process.env.APP_URL ?? "https://bet-teal-ten.vercel.app";
+
+const PRIVATE_PATHS = [
   "/account",
+  "/admin",
+  "/api/",
+  "/auth/",
   "/login",
   "/signup",
   "/verify-email",
   "/forgot-password",
   "/reset-password",
-  "/api/",
 ];
 
 const AI_BOTS = [
@@ -33,12 +33,27 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        disallow: HIGH_VALUE_PATHS,
+        allow: "/",
+        disallow: PRIVATE_PATHS,
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: PRIVATE_PATHS,
+      },
+      {
+        userAgent: "Mediapartners-Google",
+        allow: "/",
+      },
+      {
+        userAgent: "AdsBot-Google",
+        allow: "/",
       },
       ...AI_BOTS.map((userAgent) => ({
         userAgent,
         disallow: "/",
       })),
     ],
+    sitemap: `${APP_URL}/sitemap.xml`,
   };
 }

@@ -4,6 +4,8 @@ import { Inter, Noto_Sans_TC, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/components/NavBar";
 import { MobileTabBar } from "@/components/MobileTabBar";
+import { Footer } from "@/components/Footer";
+import { AgeWarningBanner } from "@/components/AgeWarningBanner";
 import { AdSlot } from "@/components/ads/AdSlot";
 
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
@@ -25,8 +27,40 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Furlong — 賽馬數據智能",
-  description: "量化分析香港賽馬，以數據洞察每一場賽事",
+  title: {
+    default: "Furlong — 香港賽馬量化分析平台",
+    template: "%s — Furlong",
+  },
+  description:
+    "Furlong 以量化模型分析香港賽馬，提供本期預測、歷史回測與賽果派彩資訊。內容僅供 18 歲以上人士參考，不構成投注建議。",
+  keywords: [
+    "香港賽馬",
+    "賽馬數據",
+    "賽馬分析",
+    "賽馬預測",
+    "量化模型",
+    "Furlong",
+  ],
+  applicationName: "Furlong",
+  authors: [{ name: "Furlong" }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "zh_HK",
+    siteName: "Furlong",
+    title: "Furlong — 香港賽馬量化分析平台",
+    description:
+      "以量化數據分析香港賽馬，提供本期預測、歷史回測與賽果派彩。本網站僅供 18 歲以上人士參考。",
+  },
   ...(ADSENSE_CLIENT && {
     other: {
       "google-adsense-account": ADSENSE_CLIENT,
@@ -54,8 +88,10 @@ export default function RootLayout({
             crossOrigin="anonymous"
           />
         )}
+        <AgeWarningBanner />
         <NavBar />
         <main className="flex-1 pb-16 md:pb-0">{children}</main>
+        <Footer />
         <AdSlot
           slot="mobile-sticky-bottom"
           layout="sticky-mobile"
@@ -63,14 +99,6 @@ export default function RootLayout({
           proHidden
         />
         <MobileTabBar />
-        <a
-          href="/api/trap?__trap=1&source=layout"
-          tabIndex={-1}
-          aria-hidden="true"
-          className="sr-only"
-        >
-          Hidden crawl trap
-        </a>
       </body>
     </html>
   );
