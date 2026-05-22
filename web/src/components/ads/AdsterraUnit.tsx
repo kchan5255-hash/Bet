@@ -67,13 +67,26 @@ export function AdsterraUnit({ config }: Props) {
       iframe.style.border = "0";
       iframe.style.width = `${banner.width}px`;
       iframe.style.height = `${banner.height}px`;
-      iframe.style.maxWidth = "100%";
       iframe.style.display = "block";
       iframe.style.margin = "0 auto";
+      // 窄螢幕（<container width）自動等比縮小，避免被裁切
+      iframe.style.transformOrigin = "top center";
       iframe.scrolling = "no";
       iframe.setAttribute("aria-hidden", "true");
       iframe.srcdoc = buildBannerHtml(banner);
       container.appendChild(iframe);
+
+      // 監聽 container 寬度，動態 scale iframe
+      const applyScale = () => {
+        const cw = container.clientWidth;
+        if (cw <= 0) return;
+        const scale = Math.min(1, cw / banner.width);
+        iframe.style.transform = `scale(${scale})`;
+        container.style.height = `${banner.height * scale}px`;
+      };
+      applyScale();
+      const ro = new ResizeObserver(applyScale);
+      ro.observe(container);
     } else {
       const script = document.createElement("script");
       script.async = true;
@@ -94,10 +107,11 @@ export function AdsterraUnit({ config }: Props) {
         ref={containerRef}
         suppressHydrationWarning
         style={{
-          width: banner.width,
+          width: "100%",
+          maxWidth: banner.width,
           height: banner.height,
-          maxWidth: "100%",
           margin: "0 auto",
+          overflow: "hidden",
         }}
       />
     );

@@ -115,7 +115,7 @@ export function AdSlot({
         className,
       )}
     >
-      <div className="absolute right-2 top-2 z-20 flex items-center gap-1.5">
+      <div className="absolute right-2 top-1 z-20 flex items-center gap-1.5 md:top-2">
         <span className="text-[9px] uppercase tracking-wider text-text-subtle">
           {label}
         </span>
@@ -138,7 +138,7 @@ export function AdSlot({
         )}
       </div>
 
-      <div className={cn("h-full w-full", isSticky ? "p-2 pr-12" : "p-3 pt-6")}>
+      <div className={cn("h-full w-full", isSticky ? "p-2 pr-12" : "px-1 py-1 md:p-3 md:pt-6")}>
         {visible ? (
           <AdContent slot={slot} layout={layout} />
         ) : (
