@@ -84,6 +84,7 @@ const AD_SLOTS: Record<string, AdSenseConfig> = {
 // 填入從 Adsterra Dashboard → Ad Units 取得的 key / src
 const AT_728x90 = process.env.NEXT_PUBLIC_ADSTERRA_728x90 ?? "";
 const AT_320x50 = process.env.NEXT_PUBLIC_ADSTERRA_320x50 ?? "";
+const AT_160x600 = process.env.NEXT_PUBLIC_ADSTERRA_160x600 ?? "";
 const AT_NATIVE = process.env.NEXT_PUBLIC_ADSTERRA_NATIVE_SRC ?? "";
 
 const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
@@ -119,6 +120,14 @@ const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
   },
   "history-feed-mid": {
     provider: "adsterra", format: "native", key: AT_NATIVE,
+  },
+  "side-rail-left": {
+    provider: "adsterra", format: "banner",
+    key: AT_160x600, width: 160, height: 600,
+  },
+  "side-rail-right": {
+    provider: "adsterra", format: "banner",
+    key: AT_160x600, width: 160, height: 600,
   },
 };
 
