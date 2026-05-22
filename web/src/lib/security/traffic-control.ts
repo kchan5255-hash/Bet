@@ -35,6 +35,13 @@ function buildContentSecurityPolicy(): string {
   const scriptSrc = [
     "'self'",
     "'unsafe-inline'",
+    // AdSense
+    "https://pagead2.googlesyndication.com",
+    "https://adservice.google.com",
+    // Adsterra
+    "https://www.highperformanceformat.com",
+    "https://pl29526548.effectivecpmnetwork.com",
+    "https://pl29526549.effectivecpmnetwork.com",
     ...(process.env.NODE_ENV === "production" ? [] : ["'unsafe-eval'"]),
   ].join(" ");
 
@@ -44,8 +51,8 @@ function buildContentSecurityPolicy(): string {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https://fonts.gstatic.com",
-    "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
-    "frame-src 'self' https://racing.hkjc.com",
+    "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://pagead2.googlesyndication.com https://*.effectivecpmnetwork.com",
+    "frame-src 'self' https://racing.hkjc.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.effectivecpmnetwork.com",
     "frame-ancestors 'none'",
     "form-action 'self' https://*.supabase.co",
     "base-uri 'self'",
