@@ -101,6 +101,8 @@ export function AdSlot({
       aria-label="廣告"
       className={cn(
         "relative overflow-hidden",
+        // Native ads（in-feed / native-bento）在手機隱藏 — 廣告主常推海報式創意，太佔空間
+        (layout === "native-bento" || layout === "in-feed") && "hidden md:block",
         isInFeed
           ? "rounded-xl border-l-4 border-l-upset border border-border-subtle bg-bg-elevated"
           : isNativeBento
