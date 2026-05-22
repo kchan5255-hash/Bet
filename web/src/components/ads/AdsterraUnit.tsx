@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { AdsterraConfig } from "./slots";
 
 const NATIVE_CONTAINER_ID = "container-7133bd7ce73b0da55d872950552dc5ca";
@@ -12,8 +12,14 @@ interface Props {
 export function AdsterraUnit({ config }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     if (injected.current) return;
     if (!containerRef.current) return;
     if (!config.key) return;
@@ -32,14 +38,13 @@ export function AdsterraUnit({ config }: Props) {
       invokeScript.src = `//www.highperformanceformat.com/${config.key}/invoke.js`;
       container.appendChild(invokeScript);
     } else {
-      // native: script goes to document body, renders into #container-xxx
       const script = document.createElement("script");
       script.async = true;
       script.setAttribute("data-cfasync", "false");
       script.src = config.key;
       document.body.appendChild(script);
     }
-  }, [config]);
+  }, [mounted, config]);
 
   if (config.format === "banner") {
     return (
@@ -55,7 +60,6 @@ export function AdsterraUnit({ config }: Props) {
     );
   }
 
-  // native: Adsterra renders into the div with the specific container id
   return (
     <div ref={containerRef} className="w-full">
       <div id={NATIVE_CONTAINER_ID} />
