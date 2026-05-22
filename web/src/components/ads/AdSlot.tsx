@@ -48,6 +48,7 @@ export function AdSlot({
   const [closed, setClosed] = useState(false);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const hasConfig = !!getAdConfig(slot);
 
   useEffect(() => {
     if (!closable) return;
@@ -85,6 +86,7 @@ export function AdSlot({
 
   if (closed) return null;
   if (subReady && isPro && proHidden) return null;
+  if (!hasConfig) return null;
 
   const isSticky = layout === "sticky-mobile";
   const isInFeed = layout === "in-feed";
@@ -161,14 +163,8 @@ function AdContent({ slot, layout }: { slot: string; layout: AdLayout }) {
     return <AdSenseUnit config={config} />;
   }
 
-  return (
-    <div className="flex h-full w-full items-center justify-center rounded-md border border-dashed border-border-subtle bg-bg-subtle/60 text-[11px] text-text-subtle">
-      <div className="text-center leading-tight">
-        <div className="number-mono font-bold text-text-muted">{slot}</div>
-        <div className="text-[10px] uppercase tracking-wider">{layout}</div>
-      </div>
-    </div>
-  );
+  // 無對應廣告 config，不顯示 placeholder
+  return null;
 }
 
 function closeKey(slot: string) {
