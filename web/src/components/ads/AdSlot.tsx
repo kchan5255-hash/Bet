@@ -5,7 +5,8 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSubscription } from "@/lib/subscription";
 import { AdSenseUnit } from "./AdSenseUnit";
-import { getAdConfig } from "./slots";
+import { AdsterraUnit } from "./AdsterraUnit";
+import { getAdConfig, isAdsterra } from "./slots";
 
 export type AdLayout =
   | "leaderboard"
@@ -156,6 +157,7 @@ function AdContent({ slot, layout }: { slot: string; layout: AdLayout }) {
   const config = getAdConfig(slot);
 
   if (config) {
+    if (isAdsterra(config)) return <AdsterraUnit config={config} />;
     return <AdSenseUnit config={config} />;
   }
 

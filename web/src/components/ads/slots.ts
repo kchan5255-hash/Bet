@@ -1,3 +1,4 @@
+// AdSense
 export const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
 
 export type AdFormat = "auto" | "fluid" | "rectangle" | "horizontal" | "vertical";
@@ -9,7 +10,21 @@ export interface AdSenseConfig {
   fullWidthResponsive?: boolean;
 }
 
-export const AD_SLOTS: Record<string, AdSenseConfig> = {
+// Adsterra
+export interface AdsterraConfig {
+  provider: "adsterra";
+  format: "banner" | "native";
+  // banner: atOptions key (e.g. "abc123def456")
+  // native: full invoke.js src URL
+  key: string;
+  width?: number;
+  height?: number;
+}
+
+export type AnyAdConfig = AdSenseConfig | AdsterraConfig;
+
+// ── AdSense slots ──────────────────────────────────────────────────────────
+const AD_SLOTS: Record<string, AdSenseConfig> = {
   "home-hero-leaderboard": {
     adSenseSlot: "6656749168",
     format: "horizontal",
@@ -65,10 +80,61 @@ export const AD_SLOTS: Record<string, AdSenseConfig> = {
   },
 };
 
-export function getAdConfig(slot: string): AdSenseConfig | null {
-  const config = AD_SLOTS[slot];
-  if (!config) return null;
-  if (!ADSENSE_CLIENT) return null;
-  if (!config.adSenseSlot) return null;
-  return config;
+// ── Adsterra slots ─────────────────────────────────────────────────────────
+// 填入從 Adsterra Dashboard → Ad Units 取得的 key / src
+const AT_728x90 = process.env.NEXT_PUBLIC_ADSTERRA_728x90 ?? "";
+const AT_320x50 = process.env.NEXT_PUBLIC_ADSTERRA_320x50 ?? "";
+const AT_NATIVE = process.env.NEXT_PUBLIC_ADSTERRA_NATIVE_SRC ?? "";
+
+const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
+  "home-hero-leaderboard": {
+    provider: "adsterra", format: "banner",
+    key: AT_728x90, width: 728, height: 90,
+  },
+  "races-list-banner": {
+    provider: "adsterra", format: "banner",
+    key: AT_728x90, width: 728, height: 90,
+  },
+  "results-list-banner": {
+    provider: "adsterra", format: "banner",
+    key: AT_728x90, width: 728, height: 90,
+  },
+  "history-list-banner": {
+    provider: "adsterra", format: "banner",
+    key: AT_728x90, width: 728, height: 90,
+  },
+  "result-detail-rectangle": {
+    provider: "adsterra", format: "banner",
+    key: AT_728x90, width: 728, height: 90,
+  },
+  "mobile-sticky-bottom": {
+    provider: "adsterra", format: "banner",
+    key: AT_320x50, width: 320, height: 50,
+  },
+  "home-bento-native": {
+    provider: "adsterra", format: "native", key: AT_NATIVE,
+  },
+  "results-feed-mid": {
+    provider: "adsterra", format: "native", key: AT_NATIVE,
+  },
+  "history-feed-mid": {
+    provider: "adsterra", format: "native", key: AT_NATIVE,
+  },
+};
+
+// ── resolver ───────────────────────────────────────────────────────────────
+export function getAdConfig(slot: string): AnyAdConfig | null {
+  // AdSense 優先（已審批時啟用）
+  if (ADSENSE_CLIENT) {
+    const cfg = AD_SLOTS[slot];
+    if (cfg?.adSenseSlot) return cfg;
+  }
+  // Adsterra fallback
+  const at = ADSTERRA_SLOTS[slot];
+  if (at?.key) return at;
+  return null;
+}
+
+export function isAdsterra(cfg: AnyAdConfig): cfg is AdsterraConfig {
+  return "provider" in cfg && cfg.provider === "adsterra";
 }

@@ -10,6 +10,7 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import { SideRailAds } from "@/components/ads/SideRailAds";
 
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
+const AT_SOCIAL_BAR  = process.env.NEXT_PUBLIC_ADSTERRA_SOCIAL_BAR_SRC ?? "";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -93,6 +94,13 @@ export default function RootLayout({
             strategy="afterInteractive"
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
             crossOrigin="anonymous"
+          />
+        )}
+        {AT_SOCIAL_BAR && (
+          <Script
+            id="adsterra-social-bar"
+            strategy="afterInteractive"
+            src={AT_SOCIAL_BAR}
           />
         )}
         <AgeWarningBanner />
