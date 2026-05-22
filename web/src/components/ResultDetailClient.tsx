@@ -80,9 +80,12 @@ export function ResultDetailClient({
 
       <ResultsTable top4={top4} v19Available={v19Available} />
 
-      {dividends.length > 0 && <DividendsTable groups={dividends} />}
-
-      <AdSlot slot="result-detail-rectangle" layout="rectangle" />
+      {dividends.length > 0 && (
+        <>
+          <AdSlot slot="result-detail-rectangle" layout="leaderboard" />
+          <DividendsTable groups={dividends} />
+        </>
+      )}
     </div>
   );
 }
