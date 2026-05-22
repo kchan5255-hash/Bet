@@ -16,12 +16,12 @@ export type AdLayout =
   | "mobile-banner";
 
 const LAYOUT_HEIGHT: Record<AdLayout, string> = {
-  leaderboard: "min-h-[100px] md:min-h-[110px]",
+  leaderboard: "h-[60px] md:h-[110px]",
   rectangle: "min-h-[260px]",
   "in-feed": "min-h-[120px]",
   "native-bento": "min-h-[140px]",
-  "sticky-mobile": "min-h-[60px]",
-  "mobile-banner": "min-h-[110px]",
+  "sticky-mobile": "h-[60px]",
+  "mobile-banner": "h-[60px] md:h-[100px]",
 };
 
 export interface AdSlotProps {

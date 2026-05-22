@@ -12,7 +12,7 @@ export interface AdSenseConfig {
 export const AD_SLOTS: Record<string, AdSenseConfig> = {
   "home-hero-leaderboard": {
     adSenseSlot: "6656749168",
-    format: "auto",
+    format: "horizontal",
     fullWidthResponsive: true,
   },
   "home-bento-native": {
@@ -22,12 +22,12 @@ export const AD_SLOTS: Record<string, AdSenseConfig> = {
   },
   "races-list-banner": {
     adSenseSlot: "2188084172",
-    format: "auto",
+    format: "horizontal",
     fullWidthResponsive: true,
   },
   "results-list-banner": {
     adSenseSlot: "7248839167",
-    format: "auto",
+    format: "horizontal",
     fullWidthResponsive: true,
   },
   "results-feed-mid": {
