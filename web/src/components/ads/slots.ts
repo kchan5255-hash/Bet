@@ -11,37 +11,37 @@ export interface AdSenseConfig {
 
 export const AD_SLOTS: Record<string, AdSenseConfig> = {
   "home-hero-leaderboard": {
-    adSenseSlot: "",
+    adSenseSlot: "6656749168",
     format: "auto",
     fullWidthResponsive: true,
   },
   "home-bento-native": {
-    adSenseSlot: "",
+    adSenseSlot: "3895917514",
     format: "fluid",
-    layoutKey: "",
+    layoutKey: "-6t+ed+2i-1n-4w",
   },
   "races-list-banner": {
-    adSenseSlot: "",
+    adSenseSlot: "2188084172",
     format: "auto",
     fullWidthResponsive: true,
   },
   "results-list-banner": {
-    adSenseSlot: "",
+    adSenseSlot: "7248839167",
     format: "auto",
     fullWidthResponsive: true,
   },
   "results-feed-mid": {
-    adSenseSlot: "",
+    adSenseSlot: "7643590833",
     format: "fluid",
-    layoutKey: "",
+    layoutKey: "-ef+6k-30-ac+ty",
   },
   "result-detail-rectangle": {
-    adSenseSlot: "",
+    adSenseSlot: "1919427800",
     format: "rectangle",
     fullWidthResponsive: true,
   },
   "mobile-sticky-bottom": {
-    adSenseSlot: "",
+    adSenseSlot: "1718826251",
     format: "auto",
     fullWidthResponsive: true,
   },
