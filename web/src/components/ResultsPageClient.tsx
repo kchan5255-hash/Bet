@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Trophy, MapPin } from "lucide-react";
 import type { DateMeta } from "@/lib/meeting-utils";
 import type { ResultsPayload } from "@/lib/results-shared";
+import { AdSlot } from "./ads/AdSlot";
 import { ResultsList } from "./ResultsList";
 import { DatePicker } from "./DatePicker";
 
@@ -51,6 +52,8 @@ export function ResultsPageClient({
           onChange={onChangeDate}
         />
       </header>
+
+      <AdSlot slot="results-list-banner" layout="leaderboard" className="mb-3" />
 
       <ResultsList data={data} />
     </div>

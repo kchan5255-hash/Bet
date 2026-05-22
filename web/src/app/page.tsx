@@ -8,6 +8,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { getRaces, getMeetingDate, formatMeetingDate } from "@/lib/data";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 export default function LandingPage() {
   const races = getRaces();
@@ -61,6 +62,9 @@ export default function LandingPage() {
           </Link>
         </div>
       </section>
+
+      {/* Hero 後 leaderboard 廣告 */}
+      <AdSlot slot="home-hero-leaderboard" layout="leaderboard" className="mb-10" />
 
       {/* Bento Grid */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-16">
@@ -154,6 +158,14 @@ export default function LandingPage() {
             </Link>
           </div>
         </div>
+
+        {/* Native bento 廣告，跨 3 欄融入 grid */}
+        <AdSlot
+          slot="home-bento-native"
+          layout="native-bento"
+          proHidden={false}
+          className="md:col-span-3"
+        />
       </section>
     </div>
   );

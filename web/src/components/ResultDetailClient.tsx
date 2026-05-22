@@ -7,6 +7,7 @@ import { ChevronLeft, Trophy, Wallet } from "lucide-react";
 import type { PoolGroup } from "@/lib/results-shared";
 import { formatPostTimeShort } from "@/lib/results-shared";
 import { cn } from "@/lib/utils";
+import { AdSlot } from "./ads/AdSlot";
 
 interface RaceMeta {
   raceNo: number;
@@ -80,6 +81,8 @@ export function ResultDetailClient({
       <ResultsTable top4={top4} v19Available={v19Available} />
 
       {dividends.length > 0 && <DividendsTable groups={dividends} />}
+
+      <AdSlot slot="result-detail-rectangle" layout="rectangle" />
     </div>
   );
 }

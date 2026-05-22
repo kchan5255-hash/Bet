@@ -226,15 +226,6 @@ function V19Banner({
             {translateGateReason(banner.gate.reason)}
           </span>
         </div>
-        {banner.gate.reasons.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-text-muted">
-            {banner.gate.reasons.slice(0, 5).map((reason) => (
-              <span key={reason} className="rounded bg-bg-subtle px-1.5 py-0.5">
-                {reason}
-              </span>
-            ))}
-          </div>
-        )}
       </div>
     );
   }
@@ -497,13 +488,15 @@ function buildRationale(reasons: string[], boost: string | null): string[] {
 
 function translateGateReason(reason: string | null): string {
   if (!reason) return "本場跳過";
-  const map: Record<string, string> = {
-    "no-pick": "未達推介門檻",
-    "skip-distance": "跳過此距離",
-    "low-tier": "信心度不足",
-    "risk-flag": "風險警示",
-  };
-  return map[reason] ?? reason;
+  const lower = reason.toLowerCase();
+  if (lower === "no-pick") return "未達推介門檻";
+  if (lower === "v18-skip") return "信心度不足";
+  if (lower === "unknown-distance") return "距離未知，跳過";
+  if (lower.startsWith("bad-distance=")) {
+    const m = reason.match(/=(\d+)/);
+    return m ? `${m[1]} 米回測 ROI 為負，V19 跳過` : "距離回測為負，V19 跳過";
+  }
+  return reason;
 }
 
 function RunnerList({
@@ -522,13 +515,13 @@ function RunnerList({
       <TableLayout>
         <thead>
           <tr className="border-b border-border-subtle bg-bg-subtle text-[10px] uppercase tracking-wider text-text-subtle sticky top-0 z-10 backdrop-blur-sm">
-            <Th className="pl-2 text-left">No.</Th>
-            <Th className="text-left">Runner</Th>
-            <Th>Draw</Th>
-            <Th>Prob</Th>
-            <Th>Score</Th>
-            <Th>Win</Th>
-            <Th>Place</Th>
+            <Th className="pl-2 text-left">馬號</Th>
+            <Th className="text-left">馬匹</Th>
+            <Th>檔位</Th>
+            <Th>勝率</Th>
+            <Th>評分</Th>
+            <Th>獨贏</Th>
+            <Th>位置</Th>
           </tr>
         </thead>
         <tbody className="divide-y divide-border-subtle">

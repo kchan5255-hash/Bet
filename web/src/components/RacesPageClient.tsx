@@ -5,6 +5,7 @@ import { Calendar } from "lucide-react";
 import type { MeetingMeta } from "@/lib/meeting-utils";
 import { formatMeetingDate } from "@/lib/meeting-utils";
 import type { RaceViewerPayload } from "@/lib/race-view-types";
+import { AdSlot } from "./ads/AdSlot";
 import { DatePicker } from "./DatePicker";
 import { RaceViewer } from "./RaceViewer";
 
@@ -57,6 +58,8 @@ export function RacesPageClient({
           onChange={onChangeDate}
         />
       </header>
+
+      <AdSlot slot="races-list-banner" layout="leaderboard" className="mb-3" />
 
       <RaceViewer payload={payload} />
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import {
   Trophy,
@@ -15,6 +15,7 @@ import {
   type ResultsPayload,
   type VideoKind,
 } from "@/lib/results-shared";
+import { AdSlot } from "./ads/AdSlot";
 import {
   VideoPlayerDialog,
   type VideoTarget,
@@ -46,13 +47,17 @@ export function ResultsList({ data }: ResultsListProps) {
 
   return (
     <div className="space-y-3">
-      {data.races.map((race) => (
-        <RaceCard
-          key={race.raceNo}
-          race={race}
-          date={data.date}
-          onVideo={(kind) => openVideo(race, kind)}
-        />
+      {data.races.map((race, idx) => (
+        <Fragment key={race.raceNo}>
+          <RaceCard
+            race={race}
+            date={data.date}
+            onVideo={(kind) => openVideo(race, kind)}
+          />
+          {idx === 3 && data.races.length > 5 && (
+            <AdSlot slot="results-feed-mid" layout="in-feed" closable />
+          )}
+        </Fragment>
       ))}
 
       <VideoPlayerDialog
