@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { OddsPayload, RaceOdds, RunnerOdds } from "./types";
 import { getSupabase } from "./supabase";
 
-const VENUE = process.env.NEXT_PUBLIC_VENUE || "HV";
+const FALLBACK_VENUE = process.env.NEXT_PUBLIC_VENUE || "HV";
 
 interface OddsRow {
   date: string;
@@ -65,7 +65,8 @@ function applyMetaRow(races: RaceMap, row: MetaRow) {
   races.set(row.race_no, { ...existing, lastUpdate: row.last_update });
 }
 
-export function useLiveOdds(date: string) {
+export function useLiveOdds(date: string, venueArg?: string) {
+  const venue = venueArg && venueArg.length > 0 ? venueArg : FALLBACK_VENUE;
   const [odds, setOdds] = useState<OddsPayload | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -74,9 +75,9 @@ export function useLiveOdds(date: string) {
   const scrapedAtRef = useRef<string | null>(null);
 
   const flush = useCallback(() => {
-    setOdds(raceMapToPayload(date, VENUE, scrapedAtRef.current, racesRef.current));
+    setOdds(raceMapToPayload(date, venue, scrapedAtRef.current, racesRef.current));
     setUpdatedAt(new Date().toISOString());
-  }, [date]);
+  }, [date, venue]);
 
   const refresh = useCallback(async () => {
     if (!date) return;
@@ -89,12 +90,12 @@ export function useLiveOdds(date: string) {
           .from("odds")
           .select("*")
           .eq("date", date)
-          .eq("venue", VENUE),
+          .eq("venue", venue),
         supabase
           .from("race_meta")
           .select("*")
           .eq("date", date)
-          .eq("venue", VENUE),
+          .eq("venue", venue),
       ]);
 
       if (oddsRes.error) throw oddsRes.error;
@@ -117,7 +118,7 @@ export function useLiveOdds(date: string) {
     } finally {
       setLoading(false);
     }
-  }, [date, flush]);
+  }, [date, venue, flush]);
 
   useEffect(() => {
     if (!date) return;
@@ -126,13 +127,13 @@ export function useLiveOdds(date: string) {
     const supabase = getSupabase();
     const filter = `date=eq.${date}`;
     const channel = supabase
-      .channel(`live-odds-${date}-${VENUE}`)
+      .channel(`live-odds-${date}-${venue}`)
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "odds", filter },
         (payload) => {
           const row = (payload.new ?? payload.old) as OddsRow | undefined;
-          if (!row || row.venue !== VENUE) return;
+          if (!row || row.venue !== venue) return;
           applyOddsRow(racesRef.current, row);
           scrapedAtRef.current = new Date().toISOString();
           flush();
@@ -143,7 +144,7 @@ export function useLiveOdds(date: string) {
         { event: "*", schema: "public", table: "race_meta", filter },
         (payload) => {
           const row = (payload.new ?? payload.old) as MetaRow | undefined;
-          if (!row || row.venue !== VENUE) return;
+          if (!row || row.venue !== venue) return;
           applyMetaRow(racesRef.current, row);
           scrapedAtRef.current = row.scraped_at ?? scrapedAtRef.current;
           flush();
@@ -154,7 +155,7 @@ export function useLiveOdds(date: string) {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [date, refresh, flush]);
+  }, [date, venue, refresh, flush]);
 
   return { odds, loading, error, updatedAt, refresh };
 }

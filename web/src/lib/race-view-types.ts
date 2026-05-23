@@ -84,6 +84,7 @@ export interface RaceTabMeta extends RaceCardMeta {
 
 export interface RaceViewerPayload {
   date: string;
+  venue: string;
   authenticated: boolean;
   cards: RaceCardMeta[];
   models: {

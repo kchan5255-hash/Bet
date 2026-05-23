@@ -42,7 +42,7 @@ function RaceViewerInner({ payload }: RaceViewerProps) {
   });
 
   const [selectedRunner, setSelectedRunner] = useState<RaceRunnerView | null>(null);
-  const liveOdds = useLiveOdds(payload.date);
+  const liveOdds = useLiveOdds(payload.date, payload.venue);
 
   const effectiveMode: RaceModelKey =
     modelMode === "v19" && !payload.v19Available ? "pro" : modelMode;

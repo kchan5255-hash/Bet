@@ -1,6 +1,6 @@
 import "server-only";
 
-import { getRaces } from "./data";
+import { getRaces, getMeetings } from "./data";
 import { applyProfessionalModel } from "./professional-model";
 import { applyV9Model } from "./v9-model";
 import { applyV19Model, getV19Entry, isV19Available } from "./v19-model";
@@ -124,6 +124,7 @@ export function getRaceViewerPayload(
 ): RaceViewerPayload {
   const baseRaces = getRaces(date);
   const v19Available = isV19Available(date);
+  const venue = getMeetings().find((m) => m.date === date)?.venue ?? "";
 
   const cards = baseRaces.map(toRaceCardMeta);
 
@@ -136,6 +137,7 @@ export function getRaceViewerPayload(
     );
     return {
       date,
+      venue,
       authenticated: false,
       cards,
       models: {
@@ -155,6 +157,7 @@ export function getRaceViewerPayload(
 
   return {
     date,
+    venue,
     authenticated: true,
     cards,
     models: {
