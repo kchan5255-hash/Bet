@@ -104,6 +104,9 @@ export function AdSlot({
         "relative overflow-hidden",
         // Native ads（in-feed / native-bento）在手機隱藏 — 廣告主常推海報式創意，太佔空間
         (layout === "native-bento" || layout === "in-feed") && "hidden md:block",
+        // Leaderboard 在手機隱藏 — AdSense horizontal 廣告於窄螢幕會撐成大方塊，UX 差
+        // 手機由底部 sticky-mobile 320×50 覆蓋
+        layout === "leaderboard" && "hidden md:block",
         isInFeed
           ? "rounded-xl border-l-4 border-l-upset border border-border-subtle bg-bg-elevated"
           : isNativeBento

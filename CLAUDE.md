@@ -241,6 +241,20 @@ DATE_OVERRIDE=2026-05-24 node detect-race-day.js     # 測試指定日
 
 舊模型（v9 / v12 / v13 / v14）只在 admin-pipeline post-prediction 跑，日常 auto-update 只跑 V19。
 
+### Odds Refresh Workflow（雲端 cron）
+
+[.github/workflows/odds-refresh.yml](.github/workflows/odds-refresh.yml) 每 5 分鐘觸發（HKT 11:00–23:55）：
+
+1. **detect-odds-window.js** — 並行查 HKJC GraphQL，揾出 `postTime - 30min ≤ now < postTime + 1min` 嘅場
+2. **odds-scraper.js**（`RACES=3,4,5` env）— puppeteer 只爬窗口內場次，upsert `odds` + `race_meta`
+3. 失敗只 log warn 唔 fail，下一輪 cron 自動 retry
+
+非比賽日 / 唔喺窗口 → workflow 開頭 detect 完即 exit，唔裝 chromium。
+
+同 auto-update concurrency 獨立（group: `odds-refresh`），互不干擾。前端 [use-live-odds.ts](web/src/lib/use-live-odds.ts) 用 Supabase Realtime postgres_changes 自動接收 odds + race_meta 變動。
+
+本機保留 [auto-refresh-odds.js](auto-refresh-odds.js) 做 debug fallback（`npm run odds:auto`）。
+
 ---
 
 ## 用戶背景

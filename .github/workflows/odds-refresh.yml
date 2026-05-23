@@ -1,0 +1,79 @@
+name: Refresh Live Odds
+
+on:
+  schedule:
+    # 每 5 分鐘觸發（HKT 11:00–23:55，UTC 03:00–15:55）
+    - cron: '*/5 3-15 * * *'
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: 'Override date (YYYY-MM-DD)，空白 = 今日 HKT'
+        required: false
+        type: string
+
+concurrency:
+  group: odds-refresh
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      USE_SUPABASE: '1'
+      HEADLESS: 'true'
+      DATE_OVERRIDE: ${{ inputs.date_override }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # ── 偵測賠率刷新窗口（postTime - 30min ≤ now < postTime + 1min）──
+      - name: Detect odds window
+        id: window
+        run: node detect-odds-window.js
+
+      - name: Skip (not in window)
+        if: steps.window.outputs.in_window != 'true'
+        run: |
+          echo "in_window=${{ steps.window.outputs.in_window }}"
+          echo "races_in_window=${{ steps.window.outputs.races_in_window }}"
+          echo "Nothing to refresh, exiting"
+
+      # ── 安裝 Chromium（要爬蟲先裝）──
+      - name: Install Chromium
+        if: steps.window.outputs.in_window == 'true'
+        run: npx puppeteer browsers install chrome
+
+      # ── 刷新賠率（重試 2 次；失敗 exit 0，下一輪 cron 自動接手）──
+      - name: Refresh live odds (retry x2)
+        if: steps.window.outputs.in_window == 'true'
+        env:
+          DATE: ${{ steps.window.outputs.date }}
+          VENUE: ${{ steps.window.outputs.venue }}
+          RACES: ${{ steps.window.outputs.races_in_window }}
+        run: |
+          for i in 1 2; do
+            echo "── Attempt $i/2 ──"
+            if node odds-scraper.js; then
+              exit 0
+            fi
+            if [ $i -lt 2 ]; then
+              echo "Retry in 15s..."
+              sleep 15
+            else
+              echo "All retries failed (non-fatal — next cron will retry)"
+              exit 0
+            fi
+          done

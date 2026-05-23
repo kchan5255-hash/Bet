@@ -19,6 +19,10 @@ const OUT = process.env.OUT || 'odds.json';
 const MERGE = process.env.MERGE || '';
 const NAV_TIMEOUT = Number(process.env.NAV_TIMEOUT || 60000);
 const ODDS_WAIT_MS = Number(process.env.ODDS_WAIT_MS || 8000);
+const RACES_FILTER = (process.env.RACES || '')
+  .split(',')
+  .map((s) => parseInt(s.trim(), 10))
+  .filter((n) => Number.isFinite(n) && n > 0);
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -196,8 +200,14 @@ async function main() {
   await page.setRequestInterception(true);
 
   const raceCount = await readRaceCount();
+  const raceList = RACES_FILTER.length
+    ? [...RACES_FILTER].sort((a, b) => a - b)
+    : Array.from({ length: raceCount }, (_, i) => i + 1);
+  if (RACES_FILTER.length) {
+    console.log(`RACES filter active：只爬 ${raceList.join(',')}`);
+  }
   const results = [];
-  for (let raceNo = 1; raceNo <= raceCount; raceNo++) {
+  for (const raceNo of raceList) {
     process.stdout.write(`R${raceNo}/${raceCount} … `);
     let attempt = 0;
     let finalResult = null;
