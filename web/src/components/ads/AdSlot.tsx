@@ -17,13 +17,13 @@ export type AdLayout =
   | "sidebar";
 
 const LAYOUT_HEIGHT: Record<AdLayout, string> = {
-  leaderboard: "h-[60px] md:h-[110px]",
+  leaderboard: "min-h-[60px] md:min-h-[110px]",
   rectangle: "min-h-[60px] md:min-h-[260px]",
   "in-feed": "min-h-[120px]",
   "native-bento": "min-h-[140px]",
   "sticky-mobile": "h-[60px]",
-  "mobile-banner": "h-[60px] md:h-[100px]",
-  sidebar: "h-[600px] w-[160px]",
+  "mobile-banner": "min-h-[60px] md:min-h-[100px]",
+  sidebar: "min-h-[600px] w-[160px]",
 };
 
 export interface AdSlotProps {
@@ -45,6 +45,7 @@ export function AdSlot({
 }: AdSlotProps) {
   const { isPro, ready: subReady } = useSubscription();
   const [closed, setClosed] = useState(false);
+  const [unfilled, setUnfilled] = useState(false);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const hasConfig = !!getAdConfig(slot);
@@ -86,6 +87,7 @@ export function AdSlot({
   if (closed) return null;
   if (subReady && isPro && proHidden) return null;
   if (!hasConfig) return null;
+  if (unfilled) return null;
 
   const isSticky = layout === "sticky-mobile";
   const isInFeed = layout === "in-feed";
@@ -139,7 +141,7 @@ export function AdSlot({
 
       <div className={cn("h-full w-full", isSticky ? "p-2 pr-12" : "px-1 py-1 md:p-3 md:pt-6")}>
         {visible ? (
-          <AdContent slot={slot} />
+          <AdContent slot={slot} onUnfilled={() => setUnfilled(true)} />
         ) : (
           <AdSkeleton />
         )}
@@ -156,9 +158,15 @@ function AdSkeleton() {
   );
 }
 
-function AdContent({ slot }: { slot: string }) {
+function AdContent({
+  slot,
+  onUnfilled,
+}: {
+  slot: string;
+  onUnfilled?: () => void;
+}) {
   const config = getAdConfig(slot);
-  if (config) return <AdSenseUnit config={config} />;
+  if (config) return <AdSenseUnit config={config} onUnfilled={onUnfilled} />;
   return null;
 }
 
