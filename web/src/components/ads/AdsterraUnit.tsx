@@ -69,10 +69,15 @@ export function AdsterraUnit({ config }: Props) {
       iframe.style.height = `${banner.height}px`;
       iframe.style.display = "block";
       iframe.style.margin = "0 auto";
-      // 窄螢幕（<container width）自動等比縮小，避免被裁切
       iframe.style.transformOrigin = "top center";
       iframe.scrolling = "no";
       iframe.setAttribute("aria-hidden", "true");
+      // Sandbox: 允許 script 跑廣告，但禁止 top-level navigation（防 auto-redirect）
+      // 點擊廣告會在新分頁打開（allow-popups），不會劫持當前頁面
+      iframe.setAttribute(
+        "sandbox",
+        "allow-scripts allow-popups allow-popups-to-escape-sandbox allow-same-origin",
+      );
       iframe.srcdoc = buildBannerHtml(banner);
       container.appendChild(iframe);
 
