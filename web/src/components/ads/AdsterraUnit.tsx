@@ -72,8 +72,14 @@ export function AdsterraUnit({ config }: Props) {
       iframe.style.transformOrigin = "top center";
       iframe.scrolling = "no";
       iframe.setAttribute("aria-hidden", "true");
-      // referrerpolicy 限縮 referrer 洩漏；不用 sandbox 因為會擋住 Adsterra invoke.js 跨域載入
       iframe.referrerPolicy = "no-referrer-when-downgrade";
+      // Sandbox 不含 allow-same-origin → iframe 是 unique origin，
+      // 廣告 script 無法透過 top.location 劫持父頁面跳轉。
+      // allow-popups-to-escape-sandbox: 點擊廣告能正常開新分頁。
+      iframe.setAttribute(
+        "sandbox",
+        "allow-scripts allow-popups allow-popups-to-escape-sandbox allow-forms",
+      );
       iframe.srcdoc = buildBannerHtml(banner);
       container.appendChild(iframe);
 
