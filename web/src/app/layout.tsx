@@ -10,6 +10,7 @@ import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { SideRailAds } from "@/components/ads/SideRailAds";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
 
@@ -87,7 +88,16 @@ export default function RootLayout({
       lang="zh-HK"
       className={`${inter.variable} ${notoTC.variable} ${robotoMono.variable} h-full antialiased`}
     >
+      <GoogleTagManager gtmId="GTM-KKX3HRJH" />
       <body className="min-h-full flex flex-col">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KKX3HRJH"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {ADSENSE_CLIENT && (
           <Script
             id="adsense-script"
