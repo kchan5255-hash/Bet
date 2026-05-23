@@ -29,9 +29,9 @@ export function AdSenseUnit({ config, onUnfilled }: AdSenseUnitProps) {
       console.warn("[AdSense] push failed", err);
     }
 
-    // 監看 data-ad-status — AdSense 載完會設 "filled" 或 "unfilled"
-    // unfilled 時通知父層隱藏容器，避免顯示一大塊空白
     const node = insRef.current;
+
+    // 監看 data-ad-status — AdSense 載完會設 "filled" 或 "unfilled"
     const obs = new MutationObserver(() => {
       const status = node.getAttribute("data-ad-status");
       if (status === "unfilled") {
@@ -42,7 +42,20 @@ export function AdSenseUnit({ config, onUnfilled }: AdSenseUnitProps) {
       }
     });
     obs.observe(node, { attributes: true, attributeFilter: ["data-ad-status"] });
-    return () => obs.disconnect();
+
+    // 安全網：5 秒內若仍未填充（審批中 / AdSense 未回應 / 廣告主庫存空），視為 unfilled
+    const timeout = window.setTimeout(() => {
+      const status = node.getAttribute("data-ad-status");
+      if (status !== "filled") {
+        setUnfilled(true);
+        onUnfilled?.();
+      }
+    }, 5000);
+
+    return () => {
+      obs.disconnect();
+      window.clearTimeout(timeout);
+    };
   }, [onUnfilled]);
 
   return (
