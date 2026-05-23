@@ -15,7 +15,7 @@ interface PaywallOverlayProps {
 export function PaywallOverlay({
   children,
   title = "升級解鎖 AI 預測",
-  description = "訂閱 Pro 方案查看完整 AI 評分、四大數據推介、冷門黑馬、正負因素分析",
+  description = "訂閱 Pro 方案查看完整 AI 評分、四大數據排序、正負因素分析",
   className,
 }: PaywallOverlayProps) {
   return (

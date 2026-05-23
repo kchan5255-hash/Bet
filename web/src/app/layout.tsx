@@ -6,6 +6,7 @@ import { NavBar } from "@/components/NavBar";
 import { MobileTabBar } from "@/components/MobileTabBar";
 import { Footer } from "@/components/Footer";
 import { AgeWarningBanner } from "@/components/AgeWarningBanner";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { SideRailAds } from "@/components/ads/SideRailAds";
 
@@ -107,6 +108,7 @@ export default function RootLayout({
           proHidden
         />
         <MobileTabBar />
+        <CookieConsentBanner />
       </body>
     </html>
   );

@@ -49,6 +49,33 @@ const TIMELINE = [
   { ver: "V19", focus: "距離過濾，跳過低 EV 距離、加成特定距離" },
 ];
 
+const FAQS = [
+  {
+    q: "這是投注網站嗎？",
+    a: "不是。Furlong 是獨立的香港賽馬量化分析平台，不接受投注、不撮合投注，也不與任何博彩機構從屬。",
+  },
+  {
+    q: "我可以依靠這些預測下注嗎？",
+    a: "不建議。所有模型輸出為統計分析結果，不構成投注、財務或投資建議。歷史回測表現不代表未來結果，使用者須自行判斷並承擔自身決定之後果。",
+  },
+  {
+    q: "預測準確度如何計算？",
+    a: "採用 Walk-forward 回測：模型於每場賽事使用該日之前的歷史資料訓練，賽後驗證命中率、ROI、最大回撤等指標。完整回測結果公開於「歷史記錄」頁。",
+  },
+  {
+    q: "數據來源是什麼？",
+    a: "公開的香港賽馬會賽事資料，加上自建的歷史結構化資料庫。我們並非 HKJC 官方或任何附屬機構。",
+  },
+  {
+    q: "與香港賽馬會有關係嗎？",
+    a: "沒有任何從屬、贊助或商業合作關係。Furlong 為獨立第三方研究與資訊呈現平台。",
+  },
+  {
+    q: "如何聯絡你們？",
+    a: "請瀏覽「聯絡我們」頁查看電郵與聯絡方式，內容糾錯、私隱查詢與一般查詢均可透過該頁提交。",
+  },
+];
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 md:px-6 md:py-14">
@@ -132,6 +159,36 @@ export default function AboutPage() {
             。
           </li>
         </ul>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-xs font-bold uppercase tracking-widest text-text-muted">
+          常見問題
+        </h2>
+        <p className="mt-1 text-[12px] text-text-subtle">
+          關於本網站定位、資料來源與使用方式的常見問答。
+        </p>
+        <div className="mt-5 space-y-2">
+          {FAQS.map((item) => (
+            <details
+              key={item.q}
+              className="group rounded-lg border border-border-subtle bg-bg-card/40 px-4 py-3 open:bg-bg-card/60"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[13px] font-bold text-text">
+                <span>{item.q}</span>
+                <span
+                  aria-hidden
+                  className="text-text-subtle transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-2 text-[12px] leading-relaxed text-text-muted">
+                {item.a}
+              </p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <section className="mt-10 flex flex-wrap items-center gap-3">

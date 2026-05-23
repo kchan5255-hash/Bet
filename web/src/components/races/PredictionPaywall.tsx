@@ -24,7 +24,7 @@ export function PredictionPaywall() {
           登入即可解鎖 V19 預測
         </h3>
         <p className="text-sm leading-relaxed text-text-muted">
-          量化模型評分、Tier 等級、連贏組合與膽拖建議僅向已登入會員開放。
+          量化模型評分、Tier 等級、連贏組合與膽拖組合僅向已登入會員開放。
           馬匹基本資料、賠率與賽果保持公開。
         </p>
         <div className="flex flex-wrap gap-2 pt-1">

@@ -3,7 +3,6 @@ import {
   Sparkles,
   TrendingUp,
   Target,
-  Zap,
   LineChart,
   ArrowRight,
 } from "lucide-react";
@@ -71,15 +70,15 @@ export default function LandingPage() {
 
       {/* Bento Grid */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-16">
-        {/* 大卡片：四大數據推介 */}
+        {/* 大卡片：四大數據排序 */}
         <div className="md:col-span-2 bento-card bento-card-precision p-6 flex flex-col gap-4">
           <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-precision/30 bg-precision/10 text-precision">
             <Target className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-2">四大數據推介</h3>
+            <h3 className="text-lg font-bold mb-2">四大數據排序</h3>
             <p className="text-sm text-text-muted leading-relaxed">
-              每場 Top 4 精準選馬，基於 14 項特徵加權評分，給你最清晰的主線。
+              每場 Top 4 量化排名，基於 14 項特徵加權評分，協助理解模型主線。
             </p>
           </div>
           <div className="mt-auto flex items-center gap-6 pt-4 border-t border-border-subtle">
@@ -97,19 +96,6 @@ export default function LandingPage() {
                 <span className="text-xs text-text-muted">匹</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* 小卡片：冷門黑馬 */}
-        <div className="bento-card bento-card-hover p-6 flex flex-col gap-4">
-          <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-upset/30 bg-upset/10 text-upset-glow">
-            <Zap className="h-5 w-5" />
-          </div>
-          <div>
-            <h3 className="text-base font-bold mb-2">冷門黑馬挖掘</h3>
-            <p className="text-sm text-text-muted leading-relaxed">
-              篩選被市場低估、正面因子足夠的爆冷標的，尋找價值缺口。
-            </p>
           </div>
         </div>
 
@@ -150,7 +136,7 @@ export default function LandingPage() {
             </div>
             <h2 className="text-xl font-bold mb-2">解鎖完整預測引擎</h2>
             <p className="text-sm text-text-muted leading-relaxed">
-              AI 概率評分、四大推介、冷門黑馬、正負因素標籤、歷史命中率。
+              AI 概率評分、四大數據排序、正負因素標籤、歷史命中率。
             </p>
             <Link
               href="/account"

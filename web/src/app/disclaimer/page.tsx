@@ -38,7 +38,7 @@ export default function DisclaimerPage() {
       <LegalSection id="purpose" title="1. 資訊性質">
         <p>
           Furlong（下稱「本網站」）是一個提供香港賽馬<strong className="text-text">量化分析資訊</strong>的平台。
-          所有預測、評分、Tier 分級、四大推介、冷門黑馬等內容，均為基於歷史數據及統計模型之分析結果。
+          所有預測、評分、Tier 分級、四大數據排序等內容，均為基於歷史數據及統計模型之分析結果。
         </p>
         <p>本網站內容：</p>
         <ul className="list-disc space-y-1.5 pl-5">

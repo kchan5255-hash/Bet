@@ -15,7 +15,7 @@ const PLAN_FEATURES_FREE = [
 
 const PLAN_FEATURES_PRO = [
   "AI 概率評分與 rawScore",
-  "四大數據推介 + 冷門黑馬",
+  "四大數據排序",
   "正/負面因素標籤",
   "獸醫警示風險標記",
   "歷史命中率追蹤",
@@ -72,7 +72,7 @@ export function PlansClient({ isAuthed }: { isAuthed: boolean }) {
           features={PLAN_FEATURES_FREE}
           mutedFeatures={[
             "AI 概率評分",
-            "四大數據推介 + 冷門黑馬",
+            "四大數據排序",
             "歷史命中率追蹤",
           ]}
           ctaLabel={isAuthed && !isPro ? "目前方案" : "選擇免費"}

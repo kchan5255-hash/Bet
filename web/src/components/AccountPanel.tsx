@@ -411,7 +411,7 @@ function PlansEntry({ isPro }: { isPro: boolean }) {
             <p className="mt-1 text-xs md:text-sm text-text-muted leading-relaxed">
               {isPro
                 ? "查看訂閱狀態、付款記錄與方案切換"
-                : "解鎖 AI 概率評分、四大推介、冷門黑馬與歷史命中率"}
+                : "解鎖 AI 概率評分、四大數據排序與歷史命中率"}
             </p>
 
             <div className="mt-3 flex items-center gap-3 text-[11px] md:text-xs text-text-muted">
@@ -421,7 +421,7 @@ function PlansEntry({ isPro }: { isPro: boolean }) {
               </span>
               <span className="inline-flex items-center gap-1">
                 <Check className="h-3 w-3 text-precision" />
-                冷門黑馬
+                四大數據排序
               </span>
               <span className="hidden md:inline-flex items-center gap-1">
                 <Check className="h-3 w-3 text-precision" />

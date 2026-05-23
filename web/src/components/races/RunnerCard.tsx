@@ -113,11 +113,13 @@ export function RunnerCard({
                   size="sm"
                 />
               </div>
+              <div className="flex flex-col items-center gap-0.5">
+                <span className="text-[9px] uppercase tracking-wider text-text-subtle leading-none">
+                  評分
+                </span>
+                <ScoreRing value={rawScore100} size={28} />
+              </div>
             </div>
-          </div>
-
-          <div className="mt-2 flex items-center justify-end">
-            <ScoreRing value={rawScore100} size={28} />
           </div>
         </div>
       </div>

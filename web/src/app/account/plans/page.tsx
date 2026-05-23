@@ -29,7 +29,7 @@ export default async function PlansPage() {
           選擇你的<span className="ai-text-gradient"> 預測引擎</span>
         </h1>
         <p className="text-sm md:text-base text-text-muted max-w-2xl md:mx-0 mx-auto leading-relaxed">
-          每場 14 項特徵加權、AI 概率評分、冷門黑馬挖掘──
+          每場 14 項特徵加權、AI 概率評分──
           以量化數據看穿每一場賽事。
         </p>
       </header>
