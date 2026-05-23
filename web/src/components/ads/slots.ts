@@ -10,24 +10,7 @@ export interface AdSenseConfig {
   fullWidthResponsive?: boolean;
 }
 
-// Adsterra
-export interface AdsterraConfig {
-  provider: "adsterra";
-  format: "banner" | "native";
-  // banner: atOptions key (e.g. "abc123def456")
-  // native: full invoke.js src URL
-  key: string;
-  width?: number;
-  height?: number;
-  // 手機版 banner 替換尺寸（< 768px 時使用）
-  mobile?: {
-    key: string;
-    width: number;
-    height: number;
-  };
-}
-
-export type AnyAdConfig = AdSenseConfig | AdsterraConfig;
+export type AnyAdConfig = AdSenseConfig;
 
 // ── AdSense slots ──────────────────────────────────────────────────────────
 const AD_SLOTS: Record<string, AdSenseConfig> = {
@@ -86,72 +69,10 @@ const AD_SLOTS: Record<string, AdSenseConfig> = {
   },
 };
 
-// ── Adsterra slots ─────────────────────────────────────────────────────────
-// 填入從 Adsterra Dashboard → Ad Units 取得的 key / src
-const AT_728x90 = process.env.NEXT_PUBLIC_ADSTERRA_728x90 ?? "";
-const AT_320x50 = process.env.NEXT_PUBLIC_ADSTERRA_320x50 ?? "";
-const AT_160x600 = process.env.NEXT_PUBLIC_ADSTERRA_160x600 ?? "";
-const AT_300x250 = process.env.NEXT_PUBLIC_ADSTERRA_300x250 ?? "";
-// Native 已關閉 — 經常自動跳轉
-// const AT_NATIVE = process.env.NEXT_PUBLIC_ADSTERRA_NATIVE_SRC ?? "";
-
-const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
-  "home-hero-leaderboard": {
-    provider: "adsterra", format: "banner",
-    key: AT_728x90, width: 728, height: 90,
-    mobile: { key: AT_320x50, width: 320, height: 50 },
-  },
-  "races-list-banner": {
-    provider: "adsterra", format: "banner",
-    key: AT_728x90, width: 728, height: 90,
-    mobile: { key: AT_320x50, width: 320, height: 50 },
-  },
-  "results-list-banner": {
-    provider: "adsterra", format: "banner",
-    key: AT_728x90, width: 728, height: 90,
-    mobile: { key: AT_320x50, width: 320, height: 50 },
-  },
-  "history-list-banner": {
-    provider: "adsterra", format: "banner",
-    key: AT_728x90, width: 728, height: 90,
-    mobile: { key: AT_320x50, width: 320, height: 50 },
-  },
-  "result-detail-rectangle": {
-    provider: "adsterra", format: "banner",
-    key: AT_300x250, width: 300, height: 250,
-    mobile: { key: AT_320x50, width: 320, height: 50 },
-  },
-  "mobile-sticky-bottom": {
-    provider: "adsterra", format: "banner",
-    key: AT_320x50, width: 320, height: 50,
-  },
-  // Native ads 已關閉 — 經常自動跳轉，UX 太差
-  // "home-bento-native": { provider: "adsterra", format: "native", key: AT_NATIVE },
-  // "results-feed-mid":  { provider: "adsterra", format: "native", key: AT_NATIVE },
-  // "history-feed-mid":  { provider: "adsterra", format: "native", key: AT_NATIVE },
-  "side-rail-left": {
-    provider: "adsterra", format: "banner",
-    key: AT_160x600, width: 160, height: 600,
-  },
-  "side-rail-right": {
-    provider: "adsterra", format: "banner",
-    key: AT_160x600, width: 160, height: 600,
-  },
-};
-
 // ── resolver ───────────────────────────────────────────────────────────────
 export function getAdConfig(slot: string): AnyAdConfig | null {
-  // AdSense 優先（已審批時啟用）
-  if (ADSENSE_CLIENT) {
-    const cfg = AD_SLOTS[slot];
-    if (cfg?.adSenseSlot) return cfg;
-  }
-  // Adsterra fallback
-  const at = ADSTERRA_SLOTS[slot];
-  if (at?.key) return at;
+  if (!ADSENSE_CLIENT) return null;
+  const cfg = AD_SLOTS[slot];
+  if (cfg?.adSenseSlot) return cfg;
   return null;
-}
-
-export function isAdsterra(cfg: AnyAdConfig): cfg is AdsterraConfig {
-  return "provider" in cfg && cfg.provider === "adsterra";
 }

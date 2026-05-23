@@ -4,8 +4,8 @@ import type { NextConfig } from "next";
 const scriptSrc = [
   "'self'",
   "'unsafe-inline'",
-  "'unsafe-eval'",
   "https:",
+  ...(process.env.NODE_ENV === "production" ? [] : ["'unsafe-eval'"]),
 ].join(" ");
 
 const securityHeaders = [
@@ -18,7 +18,7 @@ const securityHeaders = [
       "img-src 'self' data: blob: https:",
       "font-src 'self' data: https://fonts.gstatic.com",
       "connect-src 'self' https: wss://*.supabase.co",
-      "frame-src 'self' https:",
+      "frame-src 'self' https://racing.hkjc.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
       "frame-ancestors 'none'",
       "form-action 'self' https://*.supabase.co",
       "base-uri 'self'",

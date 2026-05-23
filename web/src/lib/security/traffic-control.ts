@@ -32,14 +32,13 @@ export function getClientIp(request: NextRequest): string {
 }
 
 function buildContentSecurityPolicy(): string {
-  // 廣告網絡（AdSense / Adsterra）動態載入大量第三方域名，
-  // 用 https: 通配讓廣告聯盟生態正常運作；其餘 directive 維持嚴格。
-  // 'unsafe-eval' 因 Adsterra invoke.js 內含 eval() 而開啟。
+  // AdSense 用 https: 通配，因為廣告主域名動態變化。
+  // 'unsafe-inline' 為 Next.js / AdSense 必需。
   const scriptSrc = [
     "'self'",
     "'unsafe-inline'",
-    "'unsafe-eval'",
     "https:",
+    ...(process.env.NODE_ENV === "production" ? [] : ["'unsafe-eval'"]),
   ].join(" ");
 
   return [
@@ -49,7 +48,7 @@ function buildContentSecurityPolicy(): string {
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https://fonts.gstatic.com",
     "connect-src 'self' https: wss://*.supabase.co",
-    "frame-src 'self' https:",
+    "frame-src 'self' https://racing.hkjc.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
     "frame-ancestors 'none'",
     "form-action 'self' https://*.supabase.co",
     "base-uri 'self'",

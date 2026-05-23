@@ -5,8 +5,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSubscription } from "@/lib/subscription";
 import { AdSenseUnit } from "./AdSenseUnit";
-import { AdsterraUnit } from "./AdsterraUnit";
-import { getAdConfig, isAdsterra } from "./slots";
+import { getAdConfig } from "./slots";
 
 export type AdLayout =
   | "leaderboard"
@@ -140,7 +139,7 @@ export function AdSlot({
 
       <div className={cn("h-full w-full", isSticky ? "p-2 pr-12" : "px-1 py-1 md:p-3 md:pt-6")}>
         {visible ? (
-          <AdContent slot={slot} layout={layout} />
+          <AdContent slot={slot} />
         ) : (
           <AdSkeleton />
         )}
@@ -157,15 +156,9 @@ function AdSkeleton() {
   );
 }
 
-function AdContent({ slot, layout }: { slot: string; layout: AdLayout }) {
+function AdContent({ slot }: { slot: string }) {
   const config = getAdConfig(slot);
-
-  if (config) {
-    if (isAdsterra(config)) return <AdsterraUnit config={config} />;
-    return <AdSenseUnit config={config} />;
-  }
-
-  // 無對應廣告 config，不顯示 placeholder
+  if (config) return <AdSenseUnit config={config} />;
   return null;
 }
 

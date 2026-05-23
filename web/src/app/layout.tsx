@@ -8,7 +8,6 @@ import { Footer } from "@/components/Footer";
 import { AgeWarningBanner } from "@/components/AgeWarningBanner";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { SideRailAds } from "@/components/ads/SideRailAds";
-import { AdHijackGuard } from "@/components/ads/AdHijackGuard";
 
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
 
@@ -87,7 +86,6 @@ export default function RootLayout({
       className={`${inter.variable} ${notoTC.variable} ${robotoMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <AdHijackGuard />
         {ADSENSE_CLIENT && (
           <Script
             id="adsense-script"
