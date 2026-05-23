@@ -92,7 +92,8 @@ const AT_728x90 = process.env.NEXT_PUBLIC_ADSTERRA_728x90 ?? "";
 const AT_320x50 = process.env.NEXT_PUBLIC_ADSTERRA_320x50 ?? "";
 const AT_160x600 = process.env.NEXT_PUBLIC_ADSTERRA_160x600 ?? "";
 const AT_300x250 = process.env.NEXT_PUBLIC_ADSTERRA_300x250 ?? "";
-const AT_NATIVE = process.env.NEXT_PUBLIC_ADSTERRA_NATIVE_SRC ?? "";
+// Native 已關閉 — 經常自動跳轉
+// const AT_NATIVE = process.env.NEXT_PUBLIC_ADSTERRA_NATIVE_SRC ?? "";
 
 const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
   "home-hero-leaderboard": {
@@ -124,15 +125,10 @@ const ADSTERRA_SLOTS: Record<string, AdsterraConfig> = {
     provider: "adsterra", format: "banner",
     key: AT_320x50, width: 320, height: 50,
   },
-  "home-bento-native": {
-    provider: "adsterra", format: "native", key: AT_NATIVE,
-  },
-  "results-feed-mid": {
-    provider: "adsterra", format: "native", key: AT_NATIVE,
-  },
-  "history-feed-mid": {
-    provider: "adsterra", format: "native", key: AT_NATIVE,
-  },
+  // Native ads 已關閉 — 經常自動跳轉，UX 太差
+  // "home-bento-native": { provider: "adsterra", format: "native", key: AT_NATIVE },
+  // "results-feed-mid":  { provider: "adsterra", format: "native", key: AT_NATIVE },
+  // "history-feed-mid":  { provider: "adsterra", format: "native", key: AT_NATIVE },
   "side-rail-left": {
     provider: "adsterra", format: "banner",
     key: AT_160x600, width: 160, height: 600,
