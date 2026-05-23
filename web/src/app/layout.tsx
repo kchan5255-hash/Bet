@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Noto_Sans_TC, Roboto_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { NavBar } from "@/components/NavBar";
 import { MobileTabBar } from "@/components/MobileTabBar";
@@ -109,6 +110,7 @@ export default function RootLayout({
         />
         <MobileTabBar />
         <CookieConsentBanner />
+        <Analytics />
       </body>
     </html>
   );
