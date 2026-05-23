@@ -87,6 +87,12 @@ export function RunnerCard({
             <div className="flex shrink-0 items-start gap-1.5">
               <div className="flex flex-col items-center gap-0.5">
                 <span className="text-[9px] uppercase tracking-wider text-text-subtle leading-none">
+                  勝率
+                </span>
+                <ProbabilityBar value={runner.modelProbability} size="sm" />
+              </div>
+              <div className="flex flex-col items-center gap-0.5">
+                <span className="text-[9px] uppercase tracking-wider text-text-subtle leading-none">
                   獨贏
                 </span>
                 <OddsCell
@@ -110,12 +116,7 @@ export function RunnerCard({
             </div>
           </div>
 
-          <div className="mt-2 flex items-center gap-3">
-            <ProbabilityBar
-              value={runner.modelProbability}
-              size="sm"
-              className="flex-1"
-            />
+          <div className="mt-2 flex items-center justify-end">
             <ScoreRing value={rawScore100} size={28} />
           </div>
         </div>

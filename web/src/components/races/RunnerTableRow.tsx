@@ -93,7 +93,7 @@ export function RunnerTableRow({
         {runner.draw}
       </td>
 
-      <td className="px-1.5 py-2.5">
+      <td className="px-1.5 py-2.5 text-center">
         <ProbabilityBar value={runner.modelProbability} size="sm" />
       </td>
 

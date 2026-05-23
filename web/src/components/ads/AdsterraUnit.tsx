@@ -73,6 +73,21 @@ export function AdsterraUnit({ config }: Props) {
       iframe.scrolling = "no";
       iframe.setAttribute("aria-hidden", "true");
       iframe.referrerPolicy = "no-referrer-when-downgrade";
+      // 精準 sandbox：
+      // - allow-scripts: invoke.js 能跑
+      // - allow-popups + allow-popups-to-escape-sandbox: 用戶點廣告開新分頁
+      // - allow-top-navigation-by-user-activation: 只在用戶點擊時才能跳轉父頁
+      //   → 自動跳轉（無 user activation）會被瀏覽器層級擋下
+      // 不加 allow-same-origin: iframe 是 null origin，廣告 script 無法存取主頁
+      iframe.setAttribute(
+        "sandbox",
+        [
+          "allow-scripts",
+          "allow-popups",
+          "allow-popups-to-escape-sandbox",
+          "allow-top-navigation-by-user-activation",
+        ].join(" "),
+      );
       iframe.srcdoc = buildBannerHtml(banner);
       container.appendChild(iframe);
 
