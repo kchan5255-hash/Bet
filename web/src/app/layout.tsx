@@ -9,6 +9,7 @@ import { AgeWarningBanner } from "@/components/AgeWarningBanner";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { SideRailAds } from "@/components/ads/SideRailAds";
 import { AdHijackGuard } from "@/components/ads/AdHijackGuard";
+import { Analytics } from "@vercel/analytics/next";
 
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
 
@@ -109,6 +110,7 @@ export default function RootLayout({
           proHidden
         />
         <MobileTabBar />
+        <Analytics />
       </body>
     </html>
   );
