@@ -110021,16 +110021,16 @@
       "date": "2026-05-24",
       "venue": "ST",
       "mode": "post",
-      "generatedAt": "2026-05-24T06:31:25.352Z",
+      "generatedAt": "2026-05-24T10:58:11.186Z",
       "races": [
         {
           "raceNo": 1,
           "meta": {
-            "titleBlock": "第 1 場",
-            "className": "第五班",
-            "distance": 1600,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1600,
+            "className": "第五班",
+            "titleBlock": "第 1 場"
           },
           "proTop3": [
             {
@@ -110076,11 +110076,11 @@
         {
           "raceNo": 2,
           "meta": {
-            "titleBlock": "第 2 場",
-            "className": "第四班",
-            "distance": 1400,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1400,
+            "className": "第四班",
+            "titleBlock": "第 2 場"
           },
           "proTop3": [
             {
@@ -110137,8 +110137,7 @@
             ],
             "score": 2,
             "stakeMul": 1,
-            "boost": "middle",
-            "commentary": "嵐臣佔內檔之利，1400 米係 V19 模型確認強區，兩項因素疊加支撐信心。拖腳包裝明將、隋我同來屬合理配搭，惟缺騎練精英加成，屬中信心玩法。"
+            "boost": "middle"
           },
           "actualTop3": [
             "14",
@@ -110149,11 +110148,11 @@
         {
           "raceNo": 3,
           "meta": {
-            "titleBlock": "第 3 場",
-            "className": "第四班",
-            "distance": 1200,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1200,
+            "className": "第四班",
+            "titleBlock": "第 3 場"
           },
           "proTop3": [
             {
@@ -110199,11 +110198,11 @@
         {
           "raceNo": 4,
           "meta": {
-            "titleBlock": "第 4 場",
-            "className": "第四班",
-            "distance": 1200,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1200,
+            "className": "第四班",
+            "titleBlock": "第 4 場"
           },
           "proTop3": [
             {
@@ -110259,8 +110258,7 @@
             ],
             "score": 0.5,
             "stakeMul": 0.7,
-            "boost": null,
-            "commentary": "應龍飛影入選理由單薄，僅擋位略佔優勢，無騎練勝率或距離強區支撐，屬投機性推介。細注試水可以，重注膽拖風險偏高。"
+            "boost": null
           },
           "actualTop3": [
             "3",
@@ -110271,11 +110269,11 @@
         {
           "raceNo": 5,
           "meta": {
-            "titleBlock": "第 5 場",
-            "className": "第四班",
-            "distance": 1600,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1600,
+            "className": "第四班",
+            "titleBlock": "第 5 場"
           },
           "proTop3": [
             {
@@ -110298,9 +110296,11 @@
           "gate": {
             "action": "skip",
             "tier": null,
-            "reason": "no-pick",
+            "reason": "v18-skip",
             "reasons": [],
-            "riskFlags": [],
+            "riskFlags": [
+              "j-weak=6.4%"
+            ],
             "jtCombo": null,
             "jWinRate": null,
             "tWinRate": null,
@@ -110312,16 +110312,20 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "2",
+            "13",
+            "4"
+          ]
         },
         {
           "raceNo": 6,
           "meta": {
-            "titleBlock": "第 6 場",
-            "className": "第四班",
-            "distance": 1400,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1400,
+            "className": "第四班",
+            "titleBlock": "第 6 場"
           },
           "proTop3": [
             {
@@ -110358,16 +110362,20 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "5",
+            "8",
+            "9"
+          ]
         },
         {
           "raceNo": 7,
           "meta": {
-            "titleBlock": "第 7 場",
-            "className": "第三班",
-            "distance": 1800,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1800,
+            "className": "第三班",
+            "titleBlock": "第 7 場"
           },
           "proTop3": [
             {
@@ -110404,16 +110412,20 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "12",
+            "13",
+            "8"
+          ]
         },
         {
           "raceNo": 8,
           "meta": {
-            "titleBlock": "第 8 場",
-            "className": "一級賽",
-            "distance": 2400,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 2400,
+            "className": "一級賽",
+            "titleBlock": "第 8 場"
           },
           "proTop3": [
             {
@@ -110450,16 +110462,20 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "1",
+            "5",
+            "2"
+          ]
         },
         {
           "raceNo": 9,
           "meta": {
-            "titleBlock": "第 9 場",
-            "className": "第二班",
-            "distance": 1400,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1400,
+            "className": "第二班",
+            "titleBlock": "第 9 場"
           },
           "proTop3": [
             {
@@ -110482,9 +110498,14 @@
           "gate": {
             "action": "skip",
             "tier": null,
-            "reason": "no-pick",
-            "reasons": [],
-            "riskFlags": [],
+            "reason": "v18-skip",
+            "reasons": [
+              "class=2"
+            ],
+            "riskFlags": [
+              "jt-below",
+              "j-weak=6.4%"
+            ],
             "jtCombo": null,
             "jWinRate": null,
             "tWinRate": null,
@@ -110496,16 +110517,20 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "5",
+            "11",
+            "7"
+          ]
         },
         {
           "raceNo": 10,
           "meta": {
-            "titleBlock": "第 10 場",
-            "className": "第三班",
-            "distance": 1200,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1200,
+            "className": "第三班",
+            "titleBlock": "第 10 場"
           },
           "proTop3": [
             {
@@ -110542,16 +110567,20 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "5",
+            "13",
+            "1"
+          ]
         },
         {
           "raceNo": 11,
           "meta": {
-            "titleBlock": "第 11 場",
-            "className": "第三班",
-            "distance": 1400,
             "going": "好地",
-            "course": "草地 - \"A\" 賽道"
+            "course": "草地 - \"A\" 賽道",
+            "distance": 1400,
+            "className": "第三班",
+            "titleBlock": "第 11 場"
           },
           "proTop3": [
             {
@@ -110588,11 +110617,15 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "6",
+            "4",
+            "5"
+          ]
         }
       ]
     }
   },
-  "generatedAt": "2026-05-24T06:31:25.413Z",
+  "generatedAt": "2026-05-24T10:58:11.552Z",
   "notes": "V19 = V18 + distance filter (skip 1000/1650/2000+/unknown, +1.5 boost for 1400/1600). 11 races / 2 play (S=0 A=1 B=1). 三年連贏膽拖 ROI +52.6% / 盈虧 +$64,076 / 三年皆正 (2024 +38% / 2025 +64% / 2026 +57%)."
 }
