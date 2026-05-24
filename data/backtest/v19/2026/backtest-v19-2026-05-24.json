@@ -2,7 +2,7 @@
   "date": "2026-05-24",
   "venue": "ST",
   "model": "v19",
-  "mode": "pre",
+  "mode": "post",
   "races": [
     {
       "raceNo": 1,
@@ -107,31 +107,9 @@
         }
       },
       "actualTop3": [],
-      "model": "v19",
-      "v18": {
-        "tier": "A",
-        "score": 2,
-        "stakeMul": 1,
-        "reasons": [
-          "draw=1",
-          "middle-boost=1.5"
-        ],
-        "flags": [],
-        "jtCombo": "unknown",
-        "jWinRate": null,
-        "tWinRate": 0.08262108262108261,
-        "draw": 1,
-        "class": 4,
-        "lastBodyWeight": 1154,
-        "bodyDelta": -3
-      },
       "v19": {
-        "action": "play",
-        "tier": "A",
-        "stakeMul": 1,
-        "boost": "middle",
-        "v18Tier": "B",
-        "v18Score": 0.5
+        "action": "skip",
+        "reason": "no-pick"
       }
     },
     {
@@ -239,30 +217,9 @@
         }
       },
       "actualTop3": [],
-      "model": "v19",
-      "v18": {
-        "tier": "B",
-        "score": 0.5,
-        "stakeMul": 0.7,
-        "reasons": [
-          "draw=3"
-        ],
-        "flags": [],
-        "jtCombo": "avg",
-        "jWinRate": 0.08433734939759036,
-        "tWinRate": 0.060073260073260075,
-        "draw": 3,
-        "class": 4,
-        "lastBodyWeight": 1165,
-        "bodyDelta": 15
-      },
       "v19": {
-        "action": "play",
-        "tier": "B",
-        "stakeMul": 0.7,
-        "boost": null,
-        "v18Tier": "B",
-        "v18Score": 0.5
+        "action": "skip",
+        "reason": "no-pick"
       }
     },
     {
@@ -305,20 +262,26 @@
         ],
         "v13RiskFlags": []
       },
-      "recommend": null,
-      "actualTop3": [],
-      "model": "v19-skip",
-      "v18": {
-        "score": -1,
-        "reasons": [],
-        "flags": [
-          "j-weak=6.4%"
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "2",
+            "t2": "7",
+            "t3": "1",
+            "stakeMultiplier": 0.5
+          }
         ],
-        "action": "skip"
+        "qinT12": {
+          "combo": "2,7",
+          "label": "2-7"
+        }
       },
+      "actualTop3": [],
       "v19": {
         "action": "skip",
-        "reason": "v18-skip"
+        "reason": "no-pick"
       }
     },
     {
@@ -502,23 +465,26 @@
         ],
         "v13RiskFlags": []
       },
-      "recommend": null,
-      "actualTop3": [],
-      "model": "v19-skip",
-      "v18": {
-        "score": -2.5,
-        "reasons": [
-          "class=2"
+      "recommend": {
+        "bets": [
+          {
+            "source": "v13",
+            "tier": "banker",
+            "t1": "5",
+            "t2": "7",
+            "t3": "9",
+            "stakeMultiplier": 0.5
+          }
         ],
-        "flags": [
-          "jt-below",
-          "j-weak=6.4%"
-        ],
-        "action": "skip"
+        "qinT12": {
+          "combo": "5,7",
+          "label": "5-7"
+        }
       },
+      "actualTop3": [],
       "v19": {
         "action": "skip",
-        "reason": "v18-skip"
+        "reason": "no-pick"
       }
     },
     {
