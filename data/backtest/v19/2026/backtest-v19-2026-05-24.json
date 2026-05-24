@@ -305,26 +305,20 @@
         ],
         "v13RiskFlags": []
       },
-      "recommend": {
-        "bets": [
-          {
-            "source": "v13",
-            "tier": "banker",
-            "t1": "2",
-            "t2": "7",
-            "t3": "1",
-            "stakeMultiplier": 0.5
-          }
-        ],
-        "qinT12": {
-          "combo": "2,7",
-          "label": "2-7"
-        }
-      },
+      "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
+      "v18": {
+        "score": -1,
+        "reasons": [],
+        "flags": [
+          "j-weak=6.4%"
+        ],
+        "action": "skip"
+      },
       "v19": {
         "action": "skip",
-        "reason": "no-pick"
+        "reason": "v18-skip"
       }
     },
     {
@@ -369,6 +363,7 @@
       },
       "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
       "v19": {
         "action": "skip",
         "reason": "no-pick"
