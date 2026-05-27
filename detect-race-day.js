@@ -82,7 +82,7 @@ async function fetchMeeting(venueCode) {
   const m = meetings[0];
   // 過濾：只要本地賽事（ST/HV + meetingType='D'），唔要海外賽（venueCode='S1', meetingType='O'）
   if (m.venueCode !== 'ST' && m.venueCode !== 'HV') return null;
-  if (m.meetingType && m.meetingType !== 'D') return null;
+  if (m.meetingType && m.meetingType !== 'D' && m.meetingType !== 'N') return null;
   if (m.date !== DATE) return null; // HKJC 有時返回最近賽事，唔係查嘅日期
   return m;
 }

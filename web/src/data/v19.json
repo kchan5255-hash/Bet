@@ -203,7 +203,8 @@
     "2026-05-13",
     "2026-05-17",
     "2026-05-20",
-    "2026-05-24"
+    "2026-05-24",
+    "2026-05-27"
   ],
   "byDate": {
     "2024-01-07": {
@@ -110624,8 +110625,503 @@
           ]
         }
       ]
+    },
+    "2026-05-27": {
+      "date": "2026-05-27",
+      "venue": "HV",
+      "mode": "pre",
+      "generatedAt": "2026-05-27T07:50:11.737Z",
+      "races": [
+        {
+          "raceNo": 1,
+          "meta": {
+            "titleBlock": "第 1 場",
+            "className": "第五班",
+            "distance": 1200,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "2",
+              "name": "魅力星",
+              "prob": 12.84
+            },
+            {
+              "no": "3",
+              "name": "洛河",
+              "prob": 10.33
+            },
+            {
+              "no": "10",
+              "name": "星之願",
+              "prob": 9.14
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "play",
+            "tier": "A",
+            "reason": null,
+            "reasons": [
+              "jt-good",
+              "t-elite=10.2%",
+              "draw=2"
+            ],
+            "riskFlags": [],
+            "jtCombo": "good",
+            "jWinRate": 0.08590604026845637,
+            "tWinRate": 0.10214655810510732,
+            "draw": 2,
+            "class": 5,
+            "lastBodyWeight": 1200,
+            "bodyDelta": 16,
+            "v18Tier": "A",
+            "boost": null
+          },
+          "recommend": {
+            "tier": "A",
+            "qinT12": {
+              "combo": "2,3",
+              "label": "2-3"
+            },
+            "qinBanker": [
+              {
+                "combo": "2,3",
+                "label": "2-3"
+              },
+              {
+                "combo": "2,10",
+                "label": "2-10"
+              }
+            ],
+            "score": 2,
+            "stakeMul": 1,
+            "boost": null,
+            "commentary": "魅力星騎練勝率達標，練馬師近期勝率 10.2% 屬精英水平，二號擋位起步流暢，三項信號同時具備屬 Tier A 標準。洛河、星之願作拖腳，組合結構穩健。"
+          },
+          "actualTop3": []
+        },
+        {
+          "raceNo": 2,
+          "meta": {
+            "titleBlock": "第 2 場",
+            "className": "第五班",
+            "distance": 2200,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "6",
+              "name": "開心三多",
+              "prob": 10.52
+            },
+            {
+              "no": "8",
+              "name": "幸運同行",
+              "prob": 9.95
+            },
+            {
+              "no": "1",
+              "name": "管之友",
+              "prob": 9.7
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "bad-distance=2200m",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 3,
+          "meta": {
+            "titleBlock": "第 3 場",
+            "className": "第四班",
+            "distance": 1650,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "1",
+              "name": "魅力知耀",
+              "prob": 13.24
+            },
+            {
+              "no": "3",
+              "name": "大千雄心",
+              "prob": 11.41
+            },
+            {
+              "no": "6",
+              "name": "紅衣醒目",
+              "prob": 10.12
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "bad-distance=1650m",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 4,
+          "meta": {
+            "titleBlock": "第 4 場",
+            "className": "第四班",
+            "distance": 1200,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "1",
+              "name": "紅愛舍",
+              "prob": 11.49
+            },
+            {
+              "no": "5",
+              "name": "朗日自強",
+              "prob": 10.15
+            },
+            {
+              "no": "3",
+              "name": "你知我得",
+              "prob": 10.01
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 5,
+          "meta": {
+            "titleBlock": "第 5 場",
+            "className": "第三班",
+            "distance": 1650,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "2",
+              "name": "穿甲金鷹",
+              "prob": 16.55
+            },
+            {
+              "no": "8",
+              "name": "凡凡有餘",
+              "prob": 13.57
+            },
+            {
+              "no": "9",
+              "name": "榮利雙收",
+              "prob": 10.64
+            }
+          ],
+          "fieldSize": 10,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "bad-distance=1650m",
+            "reasons": [
+              "jt-elite",
+              "j-elite=21.6%",
+              "draw=3"
+            ],
+            "riskFlags": [],
+            "jtCombo": "elite",
+            "jWinRate": 0.21636615811373092,
+            "tWinRate": 0.09608540925266904,
+            "draw": 3,
+            "class": 3,
+            "lastBodyWeight": 1059,
+            "bodyDelta": -9,
+            "v18Tier": "S",
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 6,
+          "meta": {
+            "titleBlock": "第 6 場",
+            "className": "第四班",
+            "distance": 1200,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "8",
+              "name": "花好月盈",
+              "prob": 12.23
+            },
+            {
+              "no": "5",
+              "name": "環球英雄",
+              "prob": 11.41
+            },
+            {
+              "no": "6",
+              "name": "彩虹七色",
+              "prob": 11.25
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "play",
+            "tier": "B",
+            "reason": null,
+            "reasons": [
+              "draw=1"
+            ],
+            "riskFlags": [],
+            "jtCombo": "avg",
+            "jWinRate": 0.08212996389891697,
+            "tWinRate": 0.06009389671361502,
+            "draw": 1,
+            "class": 4,
+            "lastBodyWeight": 1195,
+            "bodyDelta": -23,
+            "v18Tier": "B",
+            "boost": null
+          },
+          "recommend": {
+            "tier": "B",
+            "qinT12": {
+              "combo": "8,5",
+              "label": "8-5"
+            },
+            "qinBanker": [
+              {
+                "combo": "8,5",
+                "label": "8-5"
+              },
+              {
+                "combo": "8,6",
+                "label": "8-6"
+              }
+            ],
+            "score": 0.5,
+            "stakeMul": 0.7,
+            "boost": null,
+            "commentary": "花好月盈僅憑內檔優勢入選，未見騎練勝率或距離強區等核心信號支撐，屬投機性推介。細注試水可以，重注膽拖風險偏高。"
+          },
+          "actualTop3": []
+        },
+        {
+          "raceNo": 7,
+          "meta": {
+            "titleBlock": "第 7 場",
+            "className": "第四班",
+            "distance": 1200,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "2",
+              "name": "逍遙人生",
+              "prob": 9.87
+            },
+            {
+              "no": "9",
+              "name": "幸運愉快",
+              "prob": 9.86
+            },
+            {
+              "no": "3",
+              "name": "千杯敬典",
+              "prob": 9.63
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 8,
+          "meta": {
+            "titleBlock": "第 8 場",
+            "className": "第三班",
+            "distance": 1000,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "10",
+              "name": "飛龍在天",
+              "prob": 11.08
+            },
+            {
+              "no": "2",
+              "name": "燭光晚餐",
+              "prob": 10.31
+            },
+            {
+              "no": "9",
+              "name": "長勝金剛",
+              "prob": 9.8
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "bad-distance=1000m",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 9,
+          "meta": {
+            "titleBlock": "第 9 場",
+            "className": "第三班",
+            "distance": 1200,
+            "going": "好地",
+            "course": "草地 - \"B\" 賽道 - 向後移欄"
+          },
+          "proTop3": [
+            {
+              "no": "11",
+              "name": "官金騏",
+              "prob": 12.04
+            },
+            {
+              "no": "9",
+              "name": "可靠大師",
+              "prob": 11.75
+            },
+            {
+              "no": "7",
+              "name": "富心星",
+              "prob": 10.78
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "play",
+            "tier": "A",
+            "reason": null,
+            "reasons": [
+              "jt-good",
+              "draw=1"
+            ],
+            "riskFlags": [],
+            "jtCombo": "good",
+            "jWinRate": 0.09949164851125636,
+            "tWinRate": 0.08708708708708708,
+            "draw": 1,
+            "class": 3,
+            "lastBodyWeight": 1136,
+            "bodyDelta": 3,
+            "v18Tier": "A",
+            "boost": null
+          },
+          "recommend": {
+            "tier": "A",
+            "qinT12": {
+              "combo": "11,9",
+              "label": "11-9"
+            },
+            "qinBanker": [
+              {
+                "combo": "11,9",
+                "label": "11-9"
+              },
+              {
+                "combo": "11,7",
+                "label": "11-7"
+              }
+            ],
+            "score": 1.5,
+            "stakeMul": 1,
+            "boost": null,
+            "commentary": "官金騏騎練勝率達標加上內檔起步，第3班 1200 米具備出閘即佔位優勢。可靠大師、富心星作拖腳組合合理，整體信心屬中等水平。"
+          },
+          "actualTop3": []
+        }
+      ]
     }
   },
-  "generatedAt": "2026-05-24T15:10:59.729Z",
-  "notes": "V19 = V18 + distance filter (skip 1000/1650/2000+/unknown, +1.5 boost for 1400/1600). 11 races / 2 play (S=0 A=1 B=1). 三年連贏膽拖 ROI +52.6% / 盈虧 +$64,076 / 三年皆正 (2024 +38% / 2025 +64% / 2026 +57%)."
+  "generatedAt": "2026-05-27T07:50:35.858Z",
+  "notes": "V19 = V18 + distance filter (skip 1000/1650/2000+/unknown, +1.5 boost for 1400/1600). 9 races / 3 play (S=0 A=2 B=1). 三年連贏膽拖 ROI +52.6% / 盈虧 +$64,076 / 三年皆正 (2024 +38% / 2025 +64% / 2026 +57%)."
 }

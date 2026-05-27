@@ -85,7 +85,7 @@ async function fetchMeeting(venueCode) {
   if (!Array.isArray(meetings) || !meetings.length) return null;
   const m = meetings[0];
   if (m.venueCode !== 'ST' && m.venueCode !== 'HV') return null;
-  if (m.meetingType && m.meetingType !== 'D') return null;
+  if (m.meetingType && m.meetingType !== 'D' && m.meetingType !== 'N') return null;
   if (m.date !== DATE) return null;
   return m;
 }
