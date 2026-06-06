@@ -80,9 +80,10 @@ async function fetchMeeting(venueCode) {
   const meetings = json?.data?.raceMeetings;
   if (!Array.isArray(meetings) || !meetings.length) return null;
   const m = meetings[0];
-  // 過濾：只要本地賽事（ST/HV + meetingType='D'），唔要海外賽（venueCode='S1', meetingType='O'）
+  // 過濾：只要本地賽事（ST/HV），唔要海外賽（venueCode='S1'/'S2'/'S3', meetingType='O'）
+  // meetingType：D=日場 / N=夜場 / T=暑期黃昏賽（Twilight，6-7月沙田）
   if (m.venueCode !== 'ST' && m.venueCode !== 'HV') return null;
-  if (m.meetingType && m.meetingType !== 'D' && m.meetingType !== 'N') return null;
+  if (m.meetingType && !['D', 'N', 'T'].includes(m.meetingType)) return null;
   if (m.date !== DATE) return null; // HKJC 有時返回最近賽事，唔係查嘅日期
   return m;
 }
