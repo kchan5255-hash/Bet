@@ -239,13 +239,32 @@
       "recommend": null,
       "actualTop3": [],
       "model": "v19-skip-distance",
+      "v18": {
+        "tier": "B",
+        "score": 0,
+        "stakeMul": 0.7,
+        "reasons": [
+          "t-elite=10.1%",
+          "draw=4"
+        ],
+        "flags": [
+          "j-weak=5.6%"
+        ],
+        "jtCombo": "avg",
+        "jWinRate": 0.05601469237832874,
+        "tWinRate": 0.1012987012987013,
+        "draw": 4,
+        "class": 4,
+        "lastBodyWeight": 1058,
+        "bodyDelta": 3,
+        "suppressedBy": "v19-distance"
+      },
       "v19": {
         "action": "skip",
         "reason": "bad-distance=1650m",
-        "v18Tier": null,
-        "v18Score": null
-      },
-      "v18": null
+        "v18Tier": "B",
+        "v18Score": 0
+      }
     },
     {
       "raceNo": 6,
@@ -304,9 +323,31 @@
         }
       },
       "actualTop3": [],
+      "model": "v19",
+      "v18": {
+        "tier": "A",
+        "score": 1,
+        "stakeMul": 1,
+        "reasons": [
+          "t-elite=11.4%",
+          "draw=2"
+        ],
+        "flags": [],
+        "jtCombo": "unknown",
+        "jWinRate": null,
+        "tWinRate": 0.11433447098976109,
+        "draw": 2,
+        "class": 4,
+        "lastBodyWeight": 1009,
+        "bodyDelta": -7
+      },
       "v19": {
-        "action": "skip",
-        "reason": "no-pick"
+        "action": "play",
+        "tier": "A",
+        "stakeMul": 1,
+        "boost": null,
+        "v18Tier": "A",
+        "v18Score": 1
       }
     },
     {
@@ -349,26 +390,24 @@
         ],
         "v13RiskFlags": []
       },
-      "recommend": {
-        "bets": [
-          {
-            "source": "v13",
-            "tier": "banker",
-            "t1": "3",
-            "t2": "2",
-            "t3": "1",
-            "stakeMultiplier": 0.5
-          }
-        ],
-        "qinT12": {
-          "combo": "3,2",
-          "label": "3-2"
-        }
-      },
+      "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
+      "v18": {
+        "score": -3,
+        "reasons": [
+          "draw=3"
+        ],
+        "flags": [
+          "jt-below",
+          "j-weak=6.4%",
+          "t-weak=5.2%"
+        ],
+        "action": "skip"
+      },
       "v19": {
         "action": "skip",
-        "reason": "no-pick"
+        "reason": "v18-skip"
       }
     },
     {
@@ -413,6 +452,7 @@
       },
       "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
       "v19": {
         "action": "skip",
         "reason": "no-pick"
