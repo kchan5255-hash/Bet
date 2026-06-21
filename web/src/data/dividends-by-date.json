@@ -1259,6 +1259,12 @@
       "venue": "ST",
       "venueName": "沙田",
       "raceCount": 11
+    },
+    {
+      "date": "2026-06-21",
+      "venue": "ST",
+      "venueName": "沙田",
+      "raceCount": 2
     }
   ],
   "byDate": {
@@ -186003,6 +186009,152 @@
               {
                 "combo": "1/3/2/10/2/12",
                 "amount": 597309
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2026-06-21": {
+      "date": "2026-06-21",
+      "venue": "ST",
+      "venueName": "沙田",
+      "scrapedAt": "",
+      "races": [
+        {
+          "raceNo": 1,
+          "dividends": {
+            "獨贏": [
+              {
+                "combo": "5",
+                "amount": 92.5
+              }
+            ],
+            "位置": [
+              {
+                "combo": "5",
+                "amount": 25.5
+              },
+              {
+                "combo": "7",
+                "amount": 14.5
+              },
+              {
+                "combo": "9",
+                "amount": 63
+              }
+            ],
+            "連贏": [
+              {
+                "combo": "5,7",
+                "amount": 128
+              }
+            ],
+            "位置Q": [
+              {
+                "combo": "5,7",
+                "amount": 47
+              },
+              {
+                "combo": "5,9",
+                "amount": 303
+              },
+              {
+                "combo": "7,9",
+                "amount": 149
+              }
+            ],
+            "二重彩": [
+              {
+                "combo": "5,7",
+                "amount": 346
+              }
+            ],
+            "三重彩": [
+              {
+                "combo": "5,7,9",
+                "amount": 7622
+              }
+            ],
+            "單T": [
+              {
+                "combo": "5,7,9",
+                "amount": 1196
+              }
+            ],
+            "四連環": [
+              {
+                "combo": "5,7,8,9",
+                "amount": 740
+              }
+            ],
+            "四重彩": [
+              {
+                "combo": "5,7,9,8",
+                "amount": 23585
+              }
+            ]
+          }
+        },
+        {
+          "raceNo": 2,
+          "dividends": {
+            "獨贏": [
+              {
+                "combo": "2",
+                "amount": 40
+              }
+            ],
+            "位置": [
+              {
+                "combo": "2",
+                "amount": 17.5
+              },
+              {
+                "combo": "9",
+                "amount": 18.5
+              },
+              {
+                "combo": "12",
+                "amount": 42
+              }
+            ],
+            "連贏": [
+              {
+                "combo": "2,9",
+                "amount": 78
+              }
+            ],
+            "位置Q": [
+              {
+                "combo": "2,9",
+                "amount": 35.5
+              },
+              {
+                "combo": "2,12",
+                "amount": 119.5
+              },
+              {
+                "combo": "9,12",
+                "amount": 122.5
+              }
+            ],
+            "二重彩": [
+              {
+                "combo": "2,9",
+                "amount": 159
+              }
+            ],
+            "三重彩": [
+              {
+                "combo": "2,9,12",
+                "amount": 2262
+              }
+            ],
+            "單T": [
+              {
+                "combo": "2,9,12",
+                "amount": 564
               }
             ]
           }
