@@ -12,7 +12,8 @@
     "2026-06-13",
     "2026-06-21",
     "2026-06-24",
-    "2026-06-27"
+    "2026-06-27",
+    "2026-07-01"
   ],
   "byDate": {
     "2026-05-03": {
@@ -50363,7 +50364,4366 @@
           ]
         }
       ]
+    },
+    "2026-07-01": {
+      "date": "2026-07-01",
+      "venue": "ST",
+      "model": "v9-percentile-reliability",
+      "races": [
+        {
+          "raceNo": 1,
+          "v9Temp": 5.005,
+          "v9Top4": [
+            "12",
+            "10",
+            "11",
+            "8"
+          ],
+          "signals": {
+            "fieldSize": 14,
+            "distance": 1600,
+            "className": "第五班",
+            "coreDistance": false,
+            "topGap": 1.63,
+            "secondGap": 0.97,
+            "top2Reliability": 0.734,
+            "top2Suitability": 0.828,
+            "top1Shape": 0.407,
+            "top1Prob": 12.33
+          },
+          "runners": [
+            {
+              "no": "12",
+              "rank": 1,
+              "rawScore": 0.6154,
+              "modelProbability": 12.33,
+              "reliability": 0.748,
+              "groups": {
+                "formCycle": 0.6607,
+                "provenAbility": 0.425,
+                "suitability": 0.9643,
+                "raceShape": 0.4071,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.1068
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0434
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0203
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 2,
+              "rawScore": 0.5871,
+              "modelProbability": 10.7,
+              "reliability": 0.72,
+              "groups": {
+                "formCycle": 0.6607,
+                "provenAbility": 0.515,
+                "suitability": 0.6914,
+                "raceShape": 0.5357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.044
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0434
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.005
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 3,
+              "rawScore": 0.5682,
+              "modelProbability": 9.73,
+              "reliability": 0.696,
+              "groups": {
+                "formCycle": 0.7129,
+                "provenAbility": 0.395,
+                "suitability": 0.6264,
+                "raceShape": 0.6571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0575
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0291
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0283
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 4,
+              "rawScore": 0.5581,
+              "modelProbability": 9.25,
+              "reliability": 0.681,
+              "groups": {
+                "formCycle": 0.6407,
+                "provenAbility": 0.4464,
+                "suitability": 0.5236,
+                "raceShape": 0.7857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.04
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.038
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0145
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 5,
+              "rawScore": 0.5479,
+              "modelProbability": 8.79,
+              "reliability": 0.675,
+              "groups": {
+                "formCycle": 0.6436,
+                "provenAbility": 0.5321,
+                "suitability": 0.5629,
+                "raceShape": 0.4929,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0388
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0145
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0087
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 6,
+              "rawScore": 0.5223,
+              "modelProbability": 7.73,
+              "reliability": 0.681,
+              "groups": {
+                "formCycle": 0.4064,
+                "provenAbility": 0.5321,
+                "suitability": 0.5914,
+                "raceShape": 0.7143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.03
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0253
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.021
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 7,
+              "rawScore": 0.521,
+              "modelProbability": 7.68,
+              "reliability": 0.743,
+              "groups": {
+                "formCycle": 0.6529,
+                "provenAbility": 0.4936,
+                "suitability": 0.3014,
+                "raceShape": 0.7571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0457
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0413
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.036
+                }
+              ]
+            },
+            {
+              "no": "13",
+              "rank": 8,
+              "rawScore": 0.5126,
+              "modelProbability": 7.37,
+              "reliability": 0.727,
+              "groups": {
+                "formCycle": 0.4621,
+                "provenAbility": 0.5536,
+                "suitability": 0.6343,
+                "raceShape": 0.4143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0309
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0145
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.012
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 9,
+              "rawScore": 0.4724,
+              "modelProbability": 6.03,
+              "reliability": 0.696,
+              "groups": {
+                "formCycle": 0.3529,
+                "provenAbility": 0.5493,
+                "suitability": 0.6764,
+                "raceShape": 0.2786,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0406
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0397
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.031
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 10,
+              "rawScore": 0.4527,
+              "modelProbability": 5.46,
+              "reliability": 0.727,
+              "groups": {
+                "formCycle": 0.3436,
+                "provenAbility": 0.6179,
+                "suitability": 0.4479,
+                "raceShape": 0.4,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0422
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0318
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.014
+                }
+              ]
+            },
+            {
+              "no": "14",
+              "rank": 11,
+              "rawScore": 0.4421,
+              "modelProbability": 5.18,
+              "reliability": 0.722,
+              "groups": {
+                "formCycle": 0.3621,
+                "provenAbility": 0.6564,
+                "suitability": 0.3793,
+                "raceShape": 0.3286,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0422
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0372
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0278
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 12,
+              "rawScore": 0.3632,
+              "modelProbability": 3.49,
+              "reliability": 0.692,
+              "groups": {
+                "formCycle": 0.22,
+                "provenAbility": 0.5364,
+                "suitability": 0.2536,
+                "raceShape": 0.4857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0756
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0567
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0098
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 13,
+              "rawScore": 0.3437,
+              "modelProbability": 3.16,
+              "reliability": 0.661,
+              "groups": {
+                "formCycle": 0.4671,
+                "provenAbility": 0.4121,
+                "suitability": 0.1514,
+                "raceShape": 0.2857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0802
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.03
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0237
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 14,
+              "rawScore": 0.3396,
+              "modelProbability": 3.1,
+              "reliability": 0.583,
+              "groups": {
+                "formCycle": 0.4143,
+                "provenAbility": 0.335,
+                "suitability": 0.1957,
+                "raceShape": 0.4571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.07
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0445
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0231
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 2,
+          "v9Temp": 5.005,
+          "v9Top4": [
+            "4",
+            "7",
+            "10",
+            "12"
+          ],
+          "signals": {
+            "fieldSize": 14,
+            "distance": 1400,
+            "className": "第五班",
+            "coreDistance": true,
+            "topGap": 6.03,
+            "secondGap": 1.32,
+            "top2Reliability": 0.714,
+            "top2Suitability": 0.836,
+            "top1Shape": 0.643,
+            "top1Prob": 17.99
+          },
+          "runners": [
+            {
+              "no": "4",
+              "rank": 1,
+              "rawScore": 0.7052,
+              "modelProbability": 17.99,
+              "reliability": 0.714,
+              "groups": {
+                "formCycle": 0.7293,
+                "provenAbility": 0.6093,
+                "suitability": 0.9243,
+                "raceShape": 0.6429,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0976
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0619
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0295
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 2,
+              "rawScore": 0.6236,
+              "modelProbability": 11.96,
+              "reliability": 0.714,
+              "groups": {
+                "formCycle": 0.8014,
+                "provenAbility": 0.5579,
+                "suitability": 0.7471,
+                "raceShape": 0.3429,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0814
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0568
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.022
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 3,
+              "rawScore": 0.6003,
+              "modelProbability": 10.64,
+              "reliability": 0.729,
+              "groups": {
+                "formCycle": 0.4757,
+                "provenAbility": 0.6264,
+                "suitability": 0.9021,
+                "raceShape": 0.3857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0925
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0341
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.016
+                }
+              ]
+            },
+            {
+              "no": "12",
+              "rank": 4,
+              "rawScore": 0.5749,
+              "modelProbability": 9.37,
+              "reliability": 0.722,
+              "groups": {
+                "formCycle": 0.5179,
+                "provenAbility": 0.6307,
+                "suitability": 0.7271,
+                "raceShape": 0.4357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0522
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0353
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.009
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 5,
+              "rawScore": 0.5499,
+              "modelProbability": 8.27,
+              "reliability": 0.727,
+              "groups": {
+                "formCycle": 0.5371,
+                "provenAbility": 0.5579,
+                "suitability": 0.8064,
+                "raceShape": 0.2143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0705
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.04
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0156
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 6,
+              "rawScore": 0.5286,
+              "modelProbability": 7.43,
+              "reliability": 0.636,
+              "groups": {
+                "formCycle": 0.5536,
+                "provenAbility": 0.5193,
+                "suitability": 0.4886,
+                "raceShape": 0.6857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.026
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0145
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0052
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 7,
+              "rawScore": 0.4877,
+              "modelProbability": 6.06,
+              "reliability": 0.621,
+              "groups": {
+                "formCycle": 0.6057,
+                "provenAbility": 0.425,
+                "suitability": 0.4157,
+                "raceShape": 0.6,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0285
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0203
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0194
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 8,
+              "rawScore": 0.4873,
+              "modelProbability": 6.05,
+              "reliability": 0.621,
+              "groups": {
+                "formCycle": 0.5171,
+                "provenAbility": 0.4936,
+                "suitability": 0.5679,
+                "raceShape": 0.3857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.016
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0156
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0046
+                }
+              ]
+            },
+            {
+              "no": "14",
+              "rank": 9,
+              "rawScore": 0.4688,
+              "modelProbability": 5.51,
+              "reliability": 0.696,
+              "groups": {
+                "formCycle": 0.5729,
+                "provenAbility": 0.3821,
+                "suitability": 0.3564,
+                "raceShape": 0.6857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.033
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0318
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.026
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 10,
+              "rawScore": 0.4139,
+              "modelProbability": 4.19,
+              "reliability": 0.72,
+              "groups": {
+                "formCycle": 0.41,
+                "provenAbility": 0.5193,
+                "suitability": 0.3486,
+                "raceShape": 0.35,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0348
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0243
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.021
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 11,
+              "rawScore": 0.4109,
+              "modelProbability": 4.12,
+              "reliability": 0.636,
+              "groups": {
+                "formCycle": 0.3393,
+                "provenAbility": 0.4079,
+                "suitability": 0.3857,
+                "raceShape": 0.6429,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0434
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0263
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0249
+                }
+              ]
+            },
+            {
+              "no": "13",
+              "rank": 12,
+              "rawScore": 0.363,
+              "modelProbability": 3.25,
+              "reliability": 0.692,
+              "groups": {
+                "formCycle": 0.3014,
+                "provenAbility": 0.4336,
+                "suitability": 0.1557,
+                "raceShape": 0.6857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0792
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0536
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.026
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 13,
+              "rawScore": 0.3229,
+              "modelProbability": 2.65,
+              "reliability": 0.669,
+              "groups": {
+                "formCycle": 0.3379,
+                "provenAbility": 0.3779,
+                "suitability": 0.1386,
+                "raceShape": 0.4714,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0831
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0438
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.033
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 14,
+              "rawScore": 0.3109,
+              "modelProbability": 2.5,
+              "reliability": 0.661,
+              "groups": {
+                "formCycle": 0.3007,
+                "provenAbility": 0.4593,
+                "suitability": 0.0357,
+                "raceShape": 0.4714,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.1068
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0538
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.011
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 3,
+          "v9Temp": 4.131,
+          "v9Top4": [
+            "14",
+            "1",
+            "9",
+            "7"
+          ],
+          "signals": {
+            "fieldSize": 14,
+            "distance": 1400,
+            "className": "第四班",
+            "coreDistance": true,
+            "topGap": 1.38,
+            "secondGap": 6.41,
+            "top2Reliability": 0.688,
+            "top2Suitability": 0.929,
+            "top1Shape": 0.679,
+            "top1Prob": 16.62
+          },
+          "runners": [
+            {
+              "no": "14",
+              "rank": 1,
+              "rawScore": 0.7231,
+              "modelProbability": 16.62,
+              "reliability": 0.675,
+              "groups": {
+                "formCycle": 0.8543,
+                "provenAbility": 0.53,
+                "suitability": 0.9329,
+                "raceShape": 0.6786,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0996
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0957
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.025
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 2,
+              "rawScore": 0.7022,
+              "modelProbability": 15.24,
+              "reliability": 0.7,
+              "groups": {
+                "formCycle": 0.5607,
+                "provenAbility": 0.65,
+                "suitability": 0.9243,
+                "raceShape": 0.85,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0976
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.049
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0405
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 3,
+              "rawScore": 0.5699,
+              "modelProbability": 8.83,
+              "reliability": 0.497,
+              "groups": {
+                "formCycle": 0.6264,
+                "provenAbility": 0.59,
+                "suitability": 0.6357,
+                "raceShape": 0.5,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0341
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0312
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0243
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 4,
+              "rawScore": 0.5494,
+              "modelProbability": 8.11,
+              "reliability": 0.722,
+              "groups": {
+                "formCycle": 0.4179,
+                "provenAbility": 0.6414,
+                "suitability": 0.6821,
+                "raceShape": 0.5071,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0419
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0382
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0222
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 5,
+              "rawScore": 0.5241,
+              "modelProbability": 7.3,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.6261,
+                "provenAbility": 0.4593,
+                "suitability": 0.6957,
+                "raceShape": 0.5571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0294
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0154
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0151
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 6,
+              "rawScore": 0.5167,
+              "modelProbability": 7.08,
+              "reliability": 0.752,
+              "groups": {
+                "formCycle": 0.6829,
+                "provenAbility": 0.5836,
+                "suitability": 0.3507,
+                "raceShape": 0.4214,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0494
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0343
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0226
+                }
+              ]
+            },
+            {
+              "no": "13",
+              "rank": 7,
+              "rawScore": 0.4828,
+              "modelProbability": 6.16,
+              "reliability": 0.497,
+              "groups": {
+                "formCycle": 0.5664,
+                "provenAbility": 0.3886,
+                "suitability": 0.5871,
+                "raceShape": 0.4643,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0301
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.02
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0179
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 8,
+              "rawScore": 0.4721,
+              "modelProbability": 5.89,
+              "reliability": 0.675,
+              "groups": {
+                "formCycle": 0.4586,
+                "provenAbility": 0.5814,
+                "suitability": 0.41,
+                "raceShape": 0.4643,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.022
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0207
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0112
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 9,
+              "rawScore": 0.4344,
+              "modelProbability": 5.04,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.2332,
+                "provenAbility": 0.5043,
+                "suitability": 0.2557,
+                "raceShape": 0.6071,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0366
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.032
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0289
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 10,
+              "rawScore": 0.4312,
+              "modelProbability": 4.98,
+              "reliability": 0.455,
+              "groups": {
+                "formCycle": 0.4364,
+                "provenAbility": 0.3971,
+                "suitability": 0.4607,
+                "raceShape": 0.55,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0278
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0172
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.009
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 11,
+              "rawScore": 0.3721,
+              "modelProbability": 3.9,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.3082,
+                "provenAbility": 0.4486,
+                "suitability": 0.3357,
+                "raceShape": 0.3357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0444
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0246
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.023
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 12,
+              "rawScore": 0.3687,
+              "modelProbability": 3.85,
+              "reliability": 0.402,
+              "groups": {
+                "formCycle": 0.3182,
+                "provenAbility": 0.41,
+                "suitability": 0.2957,
+                "raceShape": 0.5929,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0491
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.047
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0243
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 13,
+              "rawScore": 0.3581,
+              "modelProbability": 3.68,
+              "reliability": 0.692,
+              "groups": {
+                "formCycle": 0.3964,
+                "provenAbility": 0.3757,
+                "suitability": 0.2779,
+                "raceShape": 0.3786,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0511
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0336
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.028
+                }
+              ]
+            },
+            {
+              "no": "12",
+              "rank": 14,
+              "rawScore": 0.3327,
+              "modelProbability": 3.31,
+              "reliability": 0.531,
+              "groups": {
+                "formCycle": 0.5143,
+                "provenAbility": 0.44,
+                "suitability": 0.1557,
+                "raceShape": 0.0929,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0792
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.057
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0162
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 4,
+          "v9Temp": 3.843,
+          "v9Top4": [
+            "13",
+            "1",
+            "3",
+            "6"
+          ],
+          "signals": {
+            "fieldSize": 14,
+            "distance": 1000,
+            "className": "第四班",
+            "coreDistance": false,
+            "topGap": 0.03,
+            "secondGap": 5.66,
+            "top2Reliability": 0.665,
+            "top2Suitability": 0.726,
+            "top1Shape": 0.621,
+            "top1Prob": 15.23
+          },
+          "runners": [
+            {
+              "no": "13",
+              "rank": 1,
+              "rawScore": 0.7088,
+              "modelProbability": 15.23,
+              "reliability": 0.669,
+              "groups": {
+                "formCycle": 0.9021,
+                "provenAbility": 0.7143,
+                "suitability": 0.7171,
+                "raceShape": 0.6214,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.1005
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0514
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0434
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 2,
+              "rawScore": 0.7083,
+              "modelProbability": 15.2,
+              "reliability": 0.661,
+              "groups": {
+                "formCycle": 0.9007,
+                "provenAbility": 0.6629,
+                "suitability": 0.7343,
+                "raceShape": 0.6643,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.1002
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0469
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0391
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 3,
+              "rawScore": 0.5871,
+              "modelProbability": 9.54,
+              "reliability": 0.711,
+              "groups": {
+                "formCycle": 0.4914,
+                "provenAbility": 0.6029,
+                "suitability": 0.5307,
+                "raceShape": 0.8357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0671
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0247
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0061
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 4,
+              "rawScore": 0.5477,
+              "modelProbability": 8.2,
+              "reliability": 0.661,
+              "groups": {
+                "formCycle": 0.4064,
+                "provenAbility": 0.7014,
+                "suitability": 0.7193,
+                "raceShape": 0.45,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0483
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0439
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0234
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 5,
+              "rawScore": 0.5003,
+              "modelProbability": 6.83,
+              "reliability": 0.636,
+              "groups": {
+                "formCycle": 0.4293,
+                "provenAbility": 0.5686,
+                "suitability": 0.845,
+                "raceShape": 0.2071,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.069
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0586
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0177
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 6,
+              "rawScore": 0.4931,
+              "modelProbability": 6.65,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4407,
+                "provenAbility": 0.4186,
+                "suitability": 0.4257,
+                "raceShape": 0.7071,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0559
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0147
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0111
+                }
+              ]
+            },
+            {
+              "no": "12",
+              "rank": 7,
+              "rawScore": 0.4695,
+              "modelProbability": 6.07,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4407,
+                "provenAbility": 0.4186,
+                "suitability": 0.4257,
+                "raceShape": 0.6214,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0328
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0147
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0111
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 8,
+              "rawScore": 0.4463,
+              "modelProbability": 5.55,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4407,
+                "provenAbility": 0.4186,
+                "suitability": 0.4257,
+                "raceShape": 0.5357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0147
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0111
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0096
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 9,
+              "rawScore": 0.4348,
+              "modelProbability": 5.31,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4407,
+                "provenAbility": 0.4186,
+                "suitability": 0.4257,
+                "raceShape": 0.4929,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0147
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0111
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0071
+                }
+              ]
+            },
+            {
+              "no": "14",
+              "rank": 10,
+              "rawScore": 0.3992,
+              "modelProbability": 4.63,
+              "reliability": 0.559,
+              "groups": {
+                "formCycle": 0.3443,
+                "provenAbility": 0.44,
+                "suitability": 0.0479,
+                "raceShape": 0.7929,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0904
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0586
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0389
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 11,
+              "rawScore": 0.3931,
+              "modelProbability": 4.53,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4407,
+                "provenAbility": 0.38,
+                "suitability": 0.4257,
+                "raceShape": 0.3643,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0366
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0216
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0111
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 12,
+              "rawScore": 0.3885,
+              "modelProbability": 4.45,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4407,
+                "provenAbility": 0.4186,
+                "suitability": 0.4257,
+                "raceShape": 0.3214,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0482
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0147
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0111
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 13,
+              "rawScore": 0.3653,
+              "modelProbability": 4.07,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4407,
+                "provenAbility": 0.4186,
+                "suitability": 0.4257,
+                "raceShape": 0.2357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0714
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0147
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0111
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 14,
+              "rawScore": 0.3422,
+              "modelProbability": 3.72,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4407,
+                "provenAbility": 0.4186,
+                "suitability": 0.4257,
+                "raceShape": 0.15,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0945
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0147
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0111
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 5,
+          "v9Temp": 5.005,
+          "v9Top4": [
+            "6",
+            "2",
+            "5",
+            "7"
+          ],
+          "signals": {
+            "fieldSize": 10,
+            "distance": 1400,
+            "className": "第二班",
+            "coreDistance": true,
+            "topGap": 3.75,
+            "secondGap": 5.46,
+            "top2Reliability": 0.675,
+            "top2Suitability": 0.756,
+            "top1Shape": 0.7,
+            "top1Prob": 23.07
+          },
+          "runners": [
+            {
+              "no": "6",
+              "rank": 1,
+              "rawScore": 0.693,
+              "modelProbability": 23.07,
+              "reliability": 0.675,
+              "groups": {
+                "formCycle": 0.779,
+                "provenAbility": 0.518,
+                "suitability": 0.894,
+                "raceShape": 0.7,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0906
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0753
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.028
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 2,
+              "rawScore": 0.6575,
+              "modelProbability": 19.32,
+              "reliability": 0.675,
+              "groups": {
+                "formCycle": 0.894,
+                "provenAbility": 0.548,
+                "suitability": 0.619,
+                "raceShape": 0.67,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.1064
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0274
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0238
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 3,
+              "rawScore": 0.5912,
+              "modelProbability": 13.86,
+              "reliability": 0.636,
+              "groups": {
+                "formCycle": 0.4685,
+                "provenAbility": 0.662,
+                "suitability": 0.706,
+                "raceShape": 0.65,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0474
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0437
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.021
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 4,
+              "rawScore": 0.5256,
+              "modelProbability": 9.98,
+              "reliability": 0.636,
+              "groups": {
+                "formCycle": 0.4575,
+                "provenAbility": 0.464,
+                "suitability": 0.873,
+                "raceShape": 0.28,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0858
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0308
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0115
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 5,
+              "rawScore": 0.506,
+              "modelProbability": 9.05,
+              "reliability": 0.687,
+              "groups": {
+                "formCycle": 0.609,
+                "provenAbility": 0.53,
+                "suitability": 0.527,
+                "raceShape": 0.32,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0294
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0252
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0081
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 6,
+              "rawScore": 0.4208,
+              "modelProbability": 5.91,
+              "reliability": 0.669,
+              "groups": {
+                "formCycle": 0.489,
+                "provenAbility": 0.404,
+                "suitability": 0.29,
+                "raceShape": 0.58,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0483
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0259
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0112
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 7,
+              "rawScore": 0.4074,
+              "modelProbability": 5.52,
+              "reliability": 0.559,
+              "groups": {
+                "formCycle": 0.386,
+                "provenAbility": 0.386,
+                "suitability": 0.454,
+                "raceShape": 0.48,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0308
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0308
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0106
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 8,
+              "rawScore": 0.4053,
+              "modelProbability": 5.47,
+              "reliability": 0.687,
+              "groups": {
+                "formCycle": 0.245,
+                "provenAbility": 0.572,
+                "suitability": 0.376,
+                "raceShape": 0.47,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0689
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0285
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0194
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 9,
+              "rawScore": 0.3446,
+              "modelProbability": 4.03,
+              "reliability": 0.735,
+              "groups": {
+                "formCycle": 0.361,
+                "provenAbility": 0.38,
+                "suitability": 0.211,
+                "raceShape": 0.44,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0665
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0375
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0324
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 10,
+              "rawScore": 0.3321,
+              "modelProbability": 3.79,
+              "reliability": 0.738,
+              "groups": {
+                "formCycle": 0.311,
+                "provenAbility": 0.536,
+                "suitability": 0.05,
+                "raceShape": 0.41,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.1035
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.051
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0126
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 6,
+          "v9Temp": 3.843,
+          "v9Top4": [
+            "3",
+            "1",
+            "7",
+            "2"
+          ],
+          "signals": {
+            "fieldSize": 12,
+            "distance": 1200,
+            "className": "第四班",
+            "coreDistance": true,
+            "topGap": 9.15,
+            "secondGap": 2.85,
+            "top2Reliability": 0.692,
+            "top2Suitability": 0.756,
+            "top1Shape": 0.817,
+            "top1Prob": 21.03
+          },
+          "runners": [
+            {
+              "no": "3",
+              "rank": 1,
+              "rawScore": 0.7503,
+              "modelProbability": 21.03,
+              "reliability": 0.675,
+              "groups": {
+                "formCycle": 0.8442,
+                "provenAbility": 0.5775,
+                "suitability": 0.9258,
+                "raceShape": 0.8167,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.086
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0852
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0633
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 2,
+              "rawScore": 0.6017,
+              "modelProbability": 11.88,
+              "reliability": 0.708,
+              "groups": {
+                "formCycle": 0.625,
+                "provenAbility": 0.5875,
+                "suitability": 0.5858,
+                "raceShape": 0.7167,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0433
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0313
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.021
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 3,
+              "rawScore": 0.5303,
+              "modelProbability": 9.03,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.5158,
+                "provenAbility": 0.4375,
+                "suitability": 0.6475,
+                "raceShape": 0.675,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0472
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0221
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0113
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 4,
+              "rawScore": 0.4972,
+              "modelProbability": 7.95,
+              "reliability": 0.7,
+              "groups": {
+                "formCycle": 0.525,
+                "provenAbility": 0.5825,
+                "suitability": 0.72,
+                "raceShape": 0.1833,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0633
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.044
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0198
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 5,
+              "rawScore": 0.4776,
+              "modelProbability": 7.37,
+              "reliability": 0.692,
+              "groups": {
+                "formCycle": 0.6908,
+                "provenAbility": 0.4175,
+                "suitability": 0.3517,
+                "raceShape": 0.4583,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0477
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0297
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0198
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 6,
+              "rawScore": 0.4628,
+              "modelProbability": 6.97,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.5158,
+                "provenAbility": 0.4375,
+                "suitability": 0.6475,
+                "raceShape": 0.425,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0221
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0203
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0113
+                }
+              ]
+            },
+            {
+              "no": "12",
+              "rank": 7,
+              "rawScore": 0.458,
+              "modelProbability": 6.84,
+              "reliability": 0.621,
+              "groups": {
+                "formCycle": 0.4333,
+                "provenAbility": 0.4875,
+                "suitability": 0.3225,
+                "raceShape": 0.6417,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0355
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0283
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0167
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 8,
+              "rawScore": 0.4436,
+              "modelProbability": 6.47,
+              "reliability": 0.704,
+              "groups": {
+                "formCycle": 0.36,
+                "provenAbility": 0.7075,
+                "suitability": 0.3617,
+                "raceShape": 0.3417,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0498
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.035
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0317
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 9,
+              "rawScore": 0.4427,
+              "modelProbability": 6.45,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.3592,
+                "provenAbility": 0.4075,
+                "suitability": 0.4892,
+                "raceShape": 0.5167,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0169
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0167
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0045
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 10,
+              "rawScore": 0.4204,
+              "modelProbability": 5.92,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.2025,
+                "provenAbility": 0.4975,
+                "suitability": 0.0417,
+                "raceShape": 0.6917,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0687
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0517
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0357
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 11,
+              "rawScore": 0.3953,
+              "modelProbability": 5.37,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.5158,
+                "provenAbility": 0.4375,
+                "suitability": 0.6475,
+                "raceShape": 0.175,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0877
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0221
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0113
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 12,
+              "rawScore": 0.3612,
+              "modelProbability": 4.71,
+              "reliability": 0.455,
+              "groups": {
+                "formCycle": 0.4125,
+                "provenAbility": 0.4225,
+                "suitability": 0.2592,
+                "raceShape": 0.3583,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0482
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0283
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0219
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 7,
+          "v9Temp": 4.768,
+          "v9Top4": [
+            "12",
+            "2",
+            "6",
+            "14"
+          ],
+          "signals": {
+            "fieldSize": 14,
+            "distance": 1000,
+            "className": "第三班",
+            "coreDistance": false,
+            "topGap": 0.48,
+            "secondGap": 0.6,
+            "top2Reliability": 0.648,
+            "top2Suitability": 0.81,
+            "top1Shape": 0.793,
+            "top1Prob": 13.79
+          },
+          "runners": [
+            {
+              "no": "12",
+              "rank": 1,
+              "rawScore": 0.6571,
+              "modelProbability": 13.79,
+              "reliability": 0.583,
+              "groups": {
+                "formCycle": 0.6793,
+                "provenAbility": 0.5407,
+                "suitability": 0.7736,
+                "raceShape": 0.7929,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0586
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0547
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0448
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 2,
+              "rawScore": 0.6496,
+              "modelProbability": 13.31,
+              "reliability": 0.714,
+              "groups": {
+                "formCycle": 0.7029,
+                "provenAbility": 0.4721,
+                "suitability": 0.8471,
+                "raceShape": 0.7071,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0694
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0507
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0414
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 3,
+              "rawScore": 0.6398,
+              "modelProbability": 12.71,
+              "reliability": 0.681,
+              "groups": {
+                "formCycle": 0.6264,
+                "provenAbility": 0.6264,
+                "suitability": 0.8843,
+                "raceShape": 0.5357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0769
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0316
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0303
+                }
+              ]
+            },
+            {
+              "no": "14",
+              "rank": 4,
+              "rawScore": 0.5849,
+              "modelProbability": 9.78,
+              "reliability": 0.738,
+              "groups": {
+                "formCycle": 0.6121,
+                "provenAbility": 0.6693,
+                "suitability": 0.4764,
+                "raceShape": 0.6571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0406
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0314
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.028
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 5,
+              "rawScore": 0.5313,
+              "modelProbability": 7.57,
+              "reliability": 0.559,
+              "groups": {
+                "formCycle": 0.6243,
+                "provenAbility": 0.6221,
+                "suitability": 0.71,
+                "raceShape": 0.2214,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0557
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.042
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0311
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 6,
+              "rawScore": 0.523,
+              "modelProbability": 7.28,
+              "reliability": 0.531,
+              "groups": {
+                "formCycle": 0.6114,
+                "provenAbility": 0.3607,
+                "suitability": 0.8443,
+                "raceShape": 0.3643,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0689
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0334
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0279
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 7,
+              "rawScore": 0.4845,
+              "modelProbability": 6.06,
+              "reliability": 0.72,
+              "groups": {
+                "formCycle": 0.5086,
+                "provenAbility": 0.2964,
+                "suitability": 0.4636,
+                "raceShape": 0.7429,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0489
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0486
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0073
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 8,
+              "rawScore": 0.4787,
+              "modelProbability": 5.9,
+              "reliability": 0.717,
+              "groups": {
+                "formCycle": 0.3114,
+                "provenAbility": 0.7121,
+                "suitability": 0.3171,
+                "raceShape": 0.6143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0509
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0471
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0366
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 9,
+              "rawScore": 0.4462,
+              "modelProbability": 5.05,
+              "reliability": 0.681,
+              "groups": {
+                "formCycle": 0.4107,
+                "provenAbility": 0.5236,
+                "suitability": 0.385,
+                "raceShape": 0.4929,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.023
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0223
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0057
+                }
+              ]
+            },
+            {
+              "no": "13",
+              "rank": 10,
+              "rawScore": 0.4246,
+              "modelProbability": 4.55,
+              "reliability": 0.722,
+              "groups": {
+                "formCycle": 0.4036,
+                "provenAbility": 0.6371,
+                "suitability": 0.1486,
+                "raceShape": 0.4857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0703
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0329
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0241
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 11,
+              "rawScore": 0.4113,
+              "modelProbability": 4.27,
+              "reliability": 0.717,
+              "groups": {
+                "formCycle": 0.4214,
+                "provenAbility": 0.3521,
+                "suitability": 0.4386,
+                "raceShape": 0.45,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0355
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0196
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0123
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 12,
+              "rawScore": 0.3845,
+              "modelProbability": 3.76,
+              "reliability": 0.725,
+              "groups": {
+                "formCycle": 0.4864,
+                "provenAbility": 0.4914,
+                "suitability": 0.1907,
+                "raceShape": 0.3143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0619
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0371
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0034
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 13,
+              "rawScore": 0.3665,
+              "modelProbability": 3.45,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.2129,
+                "provenAbility": 0.3779,
+                "suitability": 0.0357,
+                "raceShape": 0.5714,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0696
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0345
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.022
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 14,
+              "rawScore": 0.2997,
+              "modelProbability": 2.51,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.3886,
+                "provenAbility": 0.3179,
+                "suitability": 0.485,
+                "raceShape": 0.05,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.1215
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0328
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0134
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 8,
+          "v9Temp": 4.019,
+          "v9Top4": [
+            "1",
+            "3",
+            "7",
+            "8"
+          ],
+          "signals": {
+            "fieldSize": 14,
+            "distance": 1400,
+            "className": "第四班",
+            "coreDistance": true,
+            "topGap": 0.88,
+            "secondGap": 4.33,
+            "top2Reliability": 0.673,
+            "top2Suitability": 0.929,
+            "top1Shape": 0.329,
+            "top1Prob": 14.49
+          },
+          "runners": [
+            {
+              "no": "1",
+              "rank": 1,
+              "rawScore": 0.6828,
+              "modelProbability": 14.49,
+              "reliability": 0.711,
+              "groups": {
+                "formCycle": 0.7893,
+                "provenAbility": 0.5921,
+                "suitability": 0.9643,
+                "raceShape": 0.3286,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.1068
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0781
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0249
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 2,
+              "rawScore": 0.6672,
+              "modelProbability": 13.61,
+              "reliability": 0.636,
+              "groups": {
+                "formCycle": 0.775,
+                "provenAbility": 0.605,
+                "suitability": 0.8929,
+                "raceShape": 0.3714,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0904
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0743
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0283
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 3,
+              "rawScore": 0.5718,
+              "modelProbability": 9.28,
+              "reliability": 0.72,
+              "groups": {
+                "formCycle": 0.5361,
+                "provenAbility": 0.605,
+                "suitability": 0.8136,
+                "raceShape": 0.2714,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0721
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.032
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0283
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 4,
+              "rawScore": 0.5311,
+              "modelProbability": 7.88,
+              "reliability": 0.681,
+              "groups": {
+                "formCycle": 0.6443,
+                "provenAbility": 0.4207,
+                "suitability": 0.3929,
+                "raceShape": 0.8429,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.048
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.039
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0246
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 5,
+              "rawScore": 0.5127,
+              "modelProbability": 7.31,
+              "reliability": 0.749,
+              "groups": {
+                "formCycle": 0.5657,
+                "provenAbility": 0.6264,
+                "suitability": 0.295,
+                "raceShape": 0.6286,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0472
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0341
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.018
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 6,
+              "rawScore": 0.4933,
+              "modelProbability": 6.77,
+              "reliability": 0.455,
+              "groups": {
+                "formCycle": 0.4746,
+                "provenAbility": 0.5343,
+                "suitability": 0.6793,
+                "raceShape": 0.2857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0412
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.03
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0093
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 7,
+              "rawScore": 0.4825,
+              "modelProbability": 6.48,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4964,
+                "provenAbility": 0.4121,
+                "suitability": 0.5914,
+                "raceShape": 0.5571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0158
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0154
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0137
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 8,
+              "rawScore": 0.4709,
+              "modelProbability": 6.18,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4964,
+                "provenAbility": 0.4121,
+                "suitability": 0.5914,
+                "raceShape": 0.5143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0158
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0137
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0039
+                }
+              ]
+            },
+            {
+              "no": "14",
+              "rank": 9,
+              "rawScore": 0.4589,
+              "modelProbability": 5.89,
+              "reliability": 0.745,
+              "groups": {
+                "formCycle": 0.3164,
+                "provenAbility": 0.5107,
+                "suitability": 0.4157,
+                "raceShape": 0.7429,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0496
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.034
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0194
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 10,
+              "rawScore": 0.433,
+              "modelProbability": 5.31,
+              "reliability": 0.559,
+              "groups": {
+                "formCycle": 0.4957,
+                "provenAbility": 0.4121,
+                "suitability": 0.2014,
+                "raceShape": 0.8,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0687
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.042
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0237
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 11,
+              "rawScore": 0.4114,
+              "modelProbability": 4.87,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.2636,
+                "provenAbility": 0.5064,
+                "suitability": 0.32,
+                "raceShape": 0.4714,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0284
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.027
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0077
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 12,
+              "rawScore": 0.4015,
+              "modelProbability": 4.68,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4964,
+                "provenAbility": 0.4121,
+                "suitability": 0.5914,
+                "raceShape": 0.2571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0656
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0158
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0137
+                }
+              ]
+            },
+            {
+              "no": "12",
+              "rank": 13,
+              "rawScore": 0.3746,
+              "modelProbability": 4.2,
+              "reliability": 0.497,
+              "groups": {
+                "formCycle": 0.3993,
+                "provenAbility": 0.4979,
+                "suitability": 0.215,
+                "raceShape": 0.4143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0656
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0272
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.012
+                }
+              ]
+            },
+            {
+              "no": "13",
+              "rank": 14,
+              "rawScore": 0.2951,
+              "modelProbability": 3.05,
+              "reliability": 0.497,
+              "groups": {
+                "formCycle": 0.2507,
+                "provenAbility": 0.4529,
+                "suitability": 0.0357,
+                "raceShape": 0.5143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.1068
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0673
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0127
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 9,
+          "v9Temp": 4.579,
+          "v9Top4": [
+            "13",
+            "8",
+            "5",
+            "12"
+          ],
+          "signals": {
+            "fieldSize": 14,
+            "distance": 1600,
+            "className": "第四班",
+            "coreDistance": false,
+            "topGap": 1.5,
+            "secondGap": 1.87,
+            "top2Reliability": 0.65,
+            "top2Suitability": 0.705,
+            "top1Shape": 0.743,
+            "top1Prob": 13.32
+          },
+          "runners": [
+            {
+              "no": "13",
+              "rank": 1,
+              "rawScore": 0.652,
+              "modelProbability": 13.32,
+              "reliability": 0.717,
+              "groups": {
+                "formCycle": 0.76,
+                "provenAbility": 0.6843,
+                "suitability": 0.5357,
+                "raceShape": 0.7429,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0702
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0498
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.034
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 2,
+              "rawScore": 0.6258,
+              "modelProbability": 11.82,
+              "reliability": 0.583,
+              "groups": {
+                "formCycle": 0.7729,
+                "provenAbility": 0.4207,
+                "suitability": 0.8736,
+                "raceShape": 0.4857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0859
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0737
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0214
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 3,
+              "rawScore": 0.5881,
+              "modelProbability": 9.95,
+              "reliability": 0.636,
+              "groups": {
+                "formCycle": 0.5886,
+                "provenAbility": 0.56,
+                "suitability": 0.7414,
+                "raceShape": 0.5286,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0555
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0239
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0162
+                }
+              ]
+            },
+            {
+              "no": "12",
+              "rank": 4,
+              "rawScore": 0.5812,
+              "modelProbability": 9.64,
+              "reliability": 0.72,
+              "groups": {
+                "formCycle": 0.5386,
+                "provenAbility": 0.4593,
+                "suitability": 0.6857,
+                "raceShape": 0.8286,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.046
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0427
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.011
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 5,
+              "rawScore": 0.5629,
+              "modelProbability": 8.86,
+              "reliability": 0.583,
+              "groups": {
+                "formCycle": 0.5043,
+                "provenAbility": 0.6179,
+                "suitability": 0.8436,
+                "raceShape": 0.2286,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.079
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.038
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0318
+                }
+              ]
+            },
+            {
+              "no": "14",
+              "rank": 6,
+              "rawScore": 0.5378,
+              "modelProbability": 7.9,
+              "reliability": 0.738,
+              "groups": {
+                "formCycle": 0.6864,
+                "provenAbility": 0.6264,
+                "suitability": 0.4643,
+                "raceShape": 0.3,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0503
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0341
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.028
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 7,
+              "rawScore": 0.4922,
+              "modelProbability": 6.41,
+              "reliability": 0.636,
+              "groups": {
+                "formCycle": 0.64,
+                "provenAbility": 0.5043,
+                "suitability": 0.3429,
+                "raceShape": 0.5286,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0378
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0361
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.004
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 8,
+              "rawScore": 0.4896,
+              "modelProbability": 6.33,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.4821,
+                "provenAbility": 0.3736,
+                "suitability": 0.4914,
+                "raceShape": 0.6571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0424
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0228
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0021
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 9,
+              "rawScore": 0.4717,
+              "modelProbability": 5.84,
+              "reliability": 0.559,
+              "groups": {
+                "formCycle": 0.3114,
+                "provenAbility": 0.5493,
+                "suitability": 0.435,
+                "raceShape": 0.7857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0509
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.04
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.015
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 10,
+              "rawScore": 0.4468,
+              "modelProbability": 5.21,
+              "reliability": 0.621,
+              "groups": {
+                "formCycle": 0.2964,
+                "provenAbility": 0.6371,
+                "suitability": 0.5257,
+                "raceShape": 0.3143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.055
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.037
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.026
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 11,
+              "rawScore": 0.4295,
+              "modelProbability": 4.81,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.2964,
+                "provenAbility": 0.3671,
+                "suitability": 0.3243,
+                "raceShape": 0.6143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0309
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0264
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0244
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 12,
+              "rawScore": 0.4093,
+              "modelProbability": 4.39,
+              "reliability": 0.714,
+              "groups": {
+                "formCycle": 0.4843,
+                "provenAbility": 0.4529,
+                "suitability": 0.3421,
+                "raceShape": 0.3143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0363
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.026
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0127
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 13,
+              "rawScore": 0.329,
+              "modelProbability": 3.04,
+              "reliability": 0.455,
+              "groups": {
+                "formCycle": 0.3679,
+                "provenAbility": 0.335,
+                "suitability": 0.2871,
+                "raceShape": 0.3571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.049
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0446
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0357
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 14,
+              "rawScore": 0.2857,
+              "modelProbability": 2.49,
+              "reliability": 0.692,
+              "groups": {
+                "formCycle": 0.2707,
+                "provenAbility": 0.4121,
+                "suitability": 0.1071,
+                "raceShape": 0.3143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0904
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0619
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.026
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 10,
+          "v9Temp": 4.407,
+          "v9Top4": [
+            "2",
+            "6",
+            "3",
+            "1"
+          ],
+          "signals": {
+            "fieldSize": 14,
+            "distance": 1600,
+            "className": "第三班",
+            "coreDistance": false,
+            "topGap": 0.36,
+            "secondGap": 6.43,
+            "top2Reliability": 0.557,
+            "top2Suitability": 0.929,
+            "top1Shape": 0.729,
+            "top1Prob": 17.6
+          },
+          "runners": [
+            {
+              "no": "2",
+              "rank": 1,
+              "rawScore": 0.7331,
+              "modelProbability": 17.6,
+              "reliability": 0.583,
+              "groups": {
+                "formCycle": 0.8107,
+                "provenAbility": 0.6329,
+                "suitability": 0.8929,
+                "raceShape": 0.7286,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0904
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0839
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0359
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 2,
+              "rawScore": 0.7285,
+              "modelProbability": 17.24,
+              "reliability": 0.531,
+              "groups": {
+                "formCycle": 0.8729,
+                "provenAbility": 0.6157,
+                "suitability": 0.9643,
+                "raceShape": 0.5,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.1068
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.1007
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0312
+                }
+              ]
+            },
+            {
+              "no": "3",
+              "rank": 3,
+              "rawScore": 0.6225,
+              "modelProbability": 10.81,
+              "reliability": 0.696,
+              "groups": {
+                "formCycle": 0.5036,
+                "provenAbility": 0.5686,
+                "suitability": 0.7814,
+                "raceShape": 0.8143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0647
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.044
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0185
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 4,
+              "rawScore": 0.6119,
+              "modelProbability": 10.31,
+              "reliability": 0.708,
+              "groups": {
+                "formCycle": 0.7593,
+                "provenAbility": 0.5986,
+                "suitability": 0.7271,
+                "raceShape": 0.3,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": 0.07
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0522
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.028
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 5,
+              "rawScore": 0.5145,
+              "modelProbability": 6.72,
+              "reliability": 0.711,
+              "groups": {
+                "formCycle": 0.5536,
+                "provenAbility": 0.5214,
+                "suitability": 0.595,
+                "raceShape": 0.3857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0219
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.016
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0145
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 6,
+              "rawScore": 0.4901,
+              "modelProbability": 6.03,
+              "reliability": 0.692,
+              "groups": {
+                "formCycle": 0.3779,
+                "provenAbility": 0.5557,
+                "suitability": 0.5407,
+                "raceShape": 0.5786,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.033
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.015
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.011
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 7,
+              "rawScore": 0.4811,
+              "modelProbability": 5.8,
+              "reliability": 0.497,
+              "groups": {
+                "formCycle": 0.52,
+                "provenAbility": 0.4657,
+                "suitability": 0.6179,
+                "raceShape": 0.3429,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0271
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.022
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0093
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 8,
+              "rawScore": 0.4413,
+              "modelProbability": 4.86,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.5,
+                "provenAbility": 0.3779,
+                "suitability": 0.5479,
+                "raceShape": 0.45,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.022
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0135
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0072
+                }
+              ]
+            },
+            {
+              "no": "12",
+              "rank": 9,
+              "rawScore": 0.3973,
+              "modelProbability": 4.01,
+              "reliability": 0.704,
+              "groups": {
+                "formCycle": 0.3357,
+                "provenAbility": 0.5986,
+                "suitability": 0.33,
+                "raceShape": 0.2571,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0444
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0391
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.034
+                }
+              ]
+            },
+            {
+              "no": "13",
+              "rank": 10,
+              "rawScore": 0.396,
+              "modelProbability": 3.98,
+              "reliability": 0.497,
+              "groups": {
+                "formCycle": 0.5786,
+                "provenAbility": 0.4186,
+                "suitability": 0.2386,
+                "raceShape": 0.3357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0601
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.023
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.022
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 11,
+              "rawScore": 0.3701,
+              "modelProbability": 3.55,
+              "reliability": 0.741,
+              "groups": {
+                "formCycle": 0.3143,
+                "provenAbility": 0.4164,
+                "suitability": 0.1829,
+                "raceShape": 0.6857,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0729
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0501
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.026
+                }
+              ]
+            },
+            {
+              "no": "14",
+              "rank": 12,
+              "rawScore": 0.3501,
+              "modelProbability": 3.25,
+              "reliability": 0.402,
+              "groups": {
+                "formCycle": 0.2686,
+                "provenAbility": 0.4571,
+                "suitability": 0.2657,
+                "raceShape": 0.5143,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0625
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0539
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0116
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 13,
+              "rawScore": 0.3408,
+              "modelProbability": 3.12,
+              "reliability": 0.402,
+              "groups": {
+                "formCycle": 0.2036,
+                "provenAbility": 0.4229,
+                "suitability": 0.2679,
+                "raceShape": 0.6357,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "formCycle",
+                  "impact": -0.08
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.0534
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0208
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 14,
+              "rawScore": 0.309,
+              "modelProbability": 2.71,
+              "reliability": 0.603,
+              "groups": {
+                "formCycle": 0.4014,
+                "provenAbility": 0.35,
+                "suitability": 0.0479,
+                "raceShape": 0.4714,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.104
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0405
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0266
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "raceNo": 11,
+          "v9Temp": 3.925,
+          "v9Top4": [
+            "3",
+            "7",
+            "4",
+            "2"
+          ],
+          "signals": {
+            "fieldSize": 12,
+            "distance": 1200,
+            "className": "第三班",
+            "coreDistance": true,
+            "topGap": 0.7,
+            "secondGap": 1.54,
+            "top2Reliability": 0.504,
+            "top2Suitability": 0.791,
+            "top1Shape": 0.783,
+            "top1Prob": 14.1
+          },
+          "runners": [
+            {
+              "no": "3",
+              "rank": 1,
+              "rawScore": 0.6324,
+              "modelProbability": 14.1,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.6629,
+                "provenAbility": 0.4425,
+                "suitability": 0.9258,
+                "raceShape": 0.7833,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0765
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0639
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0196
+                }
+              ]
+            },
+            {
+              "no": "7",
+              "rank": 2,
+              "rawScore": 0.6194,
+              "modelProbability": 13.4,
+              "reliability": 0.675,
+              "groups": {
+                "formCycle": 0.6092,
+                "provenAbility": 0.6925,
+                "suitability": 0.6567,
+                "raceShape": 0.6333,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0462
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0313
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0273
+                }
+              ]
+            },
+            {
+              "no": "4",
+              "rank": 3,
+              "rawScore": 0.5883,
+              "modelProbability": 11.86,
+              "reliability": 0.559,
+              "groups": {
+                "formCycle": 0.6292,
+                "provenAbility": 0.6925,
+                "suitability": 0.8425,
+                "raceShape": 0.2667,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0685
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0467
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0462
+                }
+              ]
+            },
+            {
+              "no": "2",
+              "rank": 4,
+              "rawScore": 0.5333,
+              "modelProbability": 9.56,
+              "reliability": 0.333,
+              "groups": {
+                "formCycle": 0.7112,
+                "provenAbility": 0.4325,
+                "suitability": 0.7071,
+                "raceShape": 0.55,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": 0.0311
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0253
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0135
+                }
+              ]
+            },
+            {
+              "no": "6",
+              "rank": 5,
+              "rawScore": 0.5264,
+              "modelProbability": 9.3,
+              "reliability": 0.714,
+              "groups": {
+                "formCycle": 0.5308,
+                "provenAbility": 0.5025,
+                "suitability": 0.355,
+                "raceShape": 0.7833,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0567
+                },
+                {
+                  "factor": "suitability",
+                  "impact": -0.029
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": 0.0077
+                }
+              ]
+            },
+            {
+              "no": "9",
+              "rank": 6,
+              "rawScore": 0.4943,
+              "modelProbability": 8.2,
+              "reliability": 0.603,
+              "groups": {
+                "formCycle": 0.4375,
+                "provenAbility": 0.6575,
+                "suitability": 0.5817,
+                "raceShape": 0.3583,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0378
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0283
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0163
+                }
+              ]
+            },
+            {
+              "no": "5",
+              "rank": 7,
+              "rawScore": 0.4911,
+              "modelProbability": 8.1,
+              "reliability": 0.603,
+              "groups": {
+                "formCycle": 0.5183,
+                "provenAbility": 0.5825,
+                "suitability": 0.7025,
+                "raceShape": 0.2,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.06
+                },
+                {
+                  "factor": "suitability",
+                  "impact": 0.0405
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": 0.0198
+                }
+              ]
+            },
+            {
+              "no": "1",
+              "rank": 8,
+              "rawScore": 0.4283,
+              "modelProbability": 6.33,
+              "reliability": 0.74,
+              "groups": {
+                "formCycle": 0.4675,
+                "provenAbility": 0.4825,
+                "suitability": 0.1883,
+                "raceShape": 0.5667,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0623
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0133
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0081
+                }
+              ]
+            },
+            {
+              "no": "12",
+              "rank": 9,
+              "rawScore": 0.386,
+              "modelProbability": 5.36,
+              "reliability": 0.455,
+              "groups": {
+                "formCycle": 0.3008,
+                "provenAbility": 0.3775,
+                "suitability": 0.215,
+                "raceShape": 0.7167,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.057
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0498
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": 0.0433
+                }
+              ]
+            },
+            {
+              "no": "8",
+              "rank": 10,
+              "rawScore": 0.3643,
+              "modelProbability": 4.92,
+              "reliability": 0.24,
+              "groups": {
+                "formCycle": 0.4213,
+                "provenAbility": 0.3575,
+                "suitability": 0.5121,
+                "raceShape": 0.2333,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "raceShape",
+                  "impact": -0.072
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0256
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.0094
+                }
+              ]
+            },
+            {
+              "no": "10",
+              "rank": 11,
+              "rawScore": 0.3532,
+              "modelProbability": 4.71,
+              "reliability": 0.402,
+              "groups": {
+                "formCycle": 0.4513,
+                "provenAbility": 0.4025,
+                "suitability": 0.2717,
+                "raceShape": 0.2917,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0457
+                },
+                {
+                  "factor": "raceShape",
+                  "impact": -0.0417
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0234
+                }
+              ]
+            },
+            {
+              "no": "11",
+              "rank": 12,
+              "rawScore": 0.3205,
+              "modelProbability": 4.15,
+              "reliability": 0.455,
+              "groups": {
+                "formCycle": 0.26,
+                "provenAbility": 0.3775,
+                "suitability": 0.0417,
+                "raceShape": 0.6167,
+                "humanEdge": 0.5
+              },
+              "topFactors": [
+                {
+                  "factor": "suitability",
+                  "impact": -0.0917
+                },
+                {
+                  "factor": "formCycle",
+                  "impact": -0.06
+                },
+                {
+                  "factor": "provenAbility",
+                  "impact": -0.0294
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   },
-  "generatedAt": "2026-06-27T15:43:57.279Z"
+  "generatedAt": "2026-06-30T12:05:40.637Z"
 }
