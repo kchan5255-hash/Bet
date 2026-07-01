@@ -1277,6 +1277,12 @@
       "venue": "ST",
       "venueName": "沙田",
       "raceCount": 11
+    },
+    {
+      "date": "2026-07-01",
+      "venue": "ST",
+      "venueName": "沙田",
+      "raceCount": 1
     }
   ],
   "byDate": {
@@ -188880,6 +188886,89 @@
               {
                 "combo": "8/6/4/1/6/5",
                 "amount": 2111085
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "2026-07-01": {
+      "date": "2026-07-01",
+      "venue": "ST",
+      "venueName": "沙田",
+      "scrapedAt": "",
+      "races": [
+        {
+          "raceNo": 1,
+          "dividends": {
+            "獨贏": [
+              {
+                "combo": "3",
+                "amount": 82
+              }
+            ],
+            "位置": [
+              {
+                "combo": "3",
+                "amount": 25.5
+              },
+              {
+                "combo": "10",
+                "amount": 23
+              },
+              {
+                "combo": "7",
+                "amount": 50
+              }
+            ],
+            "連贏": [
+              {
+                "combo": "3,10",
+                "amount": 312
+              }
+            ],
+            "位置Q": [
+              {
+                "combo": "3,10",
+                "amount": 102.5
+              },
+              {
+                "combo": "3,7",
+                "amount": 240
+              },
+              {
+                "combo": "7,10",
+                "amount": 221
+              }
+            ],
+            "二重彩": [
+              {
+                "combo": "3,10",
+                "amount": 568
+              }
+            ],
+            "三重彩": [
+              {
+                "combo": "3,10,7",
+                "amount": 8587
+              }
+            ],
+            "單T": [
+              {
+                "combo": "3,7,10",
+                "amount": 1523
+              }
+            ],
+            "四連環": [
+              {
+                "combo": "3,7,10,11",
+                "amount": 876
+              }
+            ],
+            "四重彩": [
+              {
+                "combo": "3,10,7,11",
+                "amount": 28766
               }
             ]
           }

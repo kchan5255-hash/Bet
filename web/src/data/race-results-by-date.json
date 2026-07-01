@@ -1277,6 +1277,12 @@
       "venue": "ST",
       "venueName": "沙田",
       "raceCount": 11
+    },
+    {
+      "date": "2026-07-01",
+      "venue": "ST",
+      "venueName": "沙田",
+      "raceCount": 1
     }
   ],
   "byDate": {
@@ -390081,6 +390087,26 @@
               "finishTime": ""
             }
           ]
+        }
+      ]
+    },
+    "2026-07-01": {
+      "date": "2026-07-01",
+      "venue": "ST",
+      "venueName": "沙田",
+      "scrapedAt": "2026-07-01T08:14:19.411Z",
+      "races": [
+        {
+          "raceNo": 1,
+          "titleBlock": "第 1 場 (816)",
+          "raceName": "馬照跑1600米讓賽",
+          "className": "第五班",
+          "distance": 1600,
+          "going": "好地",
+          "course": "草地 - \"C\" 賽道",
+          "postTime": "2026-07-01T16:00:00+08:00",
+          "top4": [],
+          "runners": []
         }
       ]
     }
