@@ -473,6 +473,7 @@
       },
       "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
       "v19": {
         "action": "skip",
         "reason": "no-pick"
@@ -520,26 +521,23 @@
           "days-out-of-range:83"
         ]
       },
-      "recommend": {
-        "bets": [
-          {
-            "source": "v12",
-            "tier": "strong",
-            "t1": "8",
-            "t2": "5",
-            "t3": "3",
-            "stakeMultiplier": 0.5
-          }
-        ],
-        "qinT12": {
-          "combo": "8,5",
-          "label": "8-5"
-        }
-      },
+      "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
+      "v18": {
+        "score": -2.5,
+        "reasons": [
+          "draw=2"
+        ],
+        "flags": [
+          "jt-below",
+          "j-weak=6.4%"
+        ],
+        "action": "skip"
+      },
       "v19": {
         "action": "skip",
-        "reason": "no-pick"
+        "reason": "v18-skip"
       }
     }
   ]
