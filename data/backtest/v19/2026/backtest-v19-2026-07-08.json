@@ -250,26 +250,23 @@
           "days-out-of-range:70"
         ]
       },
-      "recommend": {
-        "bets": [
-          {
-            "source": "v12",
-            "tier": "strong",
-            "t1": "9",
-            "t2": "3",
-            "t3": "11",
-            "stakeMultiplier": 0.5
-          }
-        ],
-        "qinT12": {
-          "combo": "9,3",
-          "label": "9-3"
-        }
-      },
+      "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
+      "v18": {
+        "score": -1,
+        "reasons": [
+          "t-elite=10.1%",
+          "draw=1"
+        ],
+        "flags": [
+          "jt-below"
+        ],
+        "action": "skip"
+      },
       "v19": {
         "action": "skip",
-        "reason": "no-pick"
+        "reason": "v18-skip"
       }
     },
     {
@@ -312,26 +309,22 @@
           "days-out-of-range:70"
         ]
       },
-      "recommend": {
-        "bets": [
-          {
-            "source": "v12",
-            "tier": "strong",
-            "t1": "9",
-            "t2": "4",
-            "t3": "5",
-            "stakeMultiplier": 0.5
-          }
-        ],
-        "qinT12": {
-          "combo": "9,4",
-          "label": "9-4"
-        }
-      },
+      "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
+      "v18": {
+        "score": -0.5,
+        "reasons": [
+          "draw=1"
+        ],
+        "flags": [
+          "j-weak=5.9%"
+        ],
+        "action": "skip"
+      },
       "v19": {
         "action": "skip",
-        "reason": "no-pick"
+        "reason": "v18-skip"
       }
     },
     {
@@ -424,6 +417,7 @@
       },
       "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
       "v19": {
         "action": "skip",
         "reason": "no-pick"
@@ -469,6 +463,7 @@
       },
       "recommend": null,
       "actualTop3": [],
+      "model": "v19-skip",
       "v19": {
         "action": "skip",
         "reason": "no-pick"
