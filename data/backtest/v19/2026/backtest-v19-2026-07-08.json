@@ -2,7 +2,7 @@
   "date": "2026-07-08",
   "venue": "HV",
   "model": "v19",
-  "mode": "pre",
+  "mode": "post",
   "races": [
     {
       "raceNo": 1,
@@ -250,23 +250,26 @@
           "days-out-of-range:70"
         ]
       },
-      "recommend": null,
-      "actualTop3": [],
-      "model": "v19-skip",
-      "v18": {
-        "score": -1,
-        "reasons": [
-          "t-elite=10.1%",
-          "draw=1"
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "9",
+            "t2": "3",
+            "t3": "11",
+            "stakeMultiplier": 0.5
+          }
         ],
-        "flags": [
-          "jt-below"
-        ],
-        "action": "skip"
+        "qinT12": {
+          "combo": "9,3",
+          "label": "9-3"
+        }
       },
+      "actualTop3": [],
       "v19": {
         "action": "skip",
-        "reason": "v18-skip"
+        "reason": "no-pick"
       }
     },
     {
@@ -309,22 +312,26 @@
           "days-out-of-range:70"
         ]
       },
-      "recommend": null,
-      "actualTop3": [],
-      "model": "v19-skip",
-      "v18": {
-        "score": -0.5,
-        "reasons": [
-          "draw=1"
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "9",
+            "t2": "4",
+            "t3": "5",
+            "stakeMultiplier": 0.5
+          }
         ],
-        "flags": [
-          "j-weak=5.9%"
-        ],
-        "action": "skip"
+        "qinT12": {
+          "combo": "9,4",
+          "label": "9-4"
+        }
       },
+      "actualTop3": [],
       "v19": {
         "action": "skip",
-        "reason": "v18-skip"
+        "reason": "no-pick"
       }
     },
     {
@@ -417,7 +424,6 @@
       },
       "recommend": null,
       "actualTop3": [],
-      "model": "v19-skip",
       "v19": {
         "action": "skip",
         "reason": "no-pick"
@@ -463,7 +469,6 @@
       },
       "recommend": null,
       "actualTop3": [],
-      "model": "v19-skip",
       "v19": {
         "action": "skip",
         "reason": "no-pick"
