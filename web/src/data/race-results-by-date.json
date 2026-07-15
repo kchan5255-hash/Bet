@@ -1306,7 +1306,7 @@
       "date": "2026-07-15",
       "venue": "HV",
       "venueName": "跑馬地",
-      "raceCount": 3
+      "raceCount": 7
     }
   ],
   "byDate": {
@@ -398124,7 +398124,7 @@
       "date": "2026-07-15",
       "venue": "HV",
       "venueName": "跑馬地",
-      "scrapedAt": "2026-07-15T12:02:01.743Z",
+      "scrapedAt": "2026-07-15T14:05:45.626Z",
       "races": [
         {
           "raceNo": 1,
@@ -398667,6 +398667,734 @@
               "jockey": "潘明輝",
               "trainer": "賀賢",
               "draw": 10,
+              "lbw": "",
+              "finishTime": ""
+            }
+          ]
+        },
+        {
+          "raceNo": 4,
+          "titleBlock": "第 4 場 (861)",
+          "raceName": "甜橙讓賽",
+          "className": "第四班",
+          "distance": 1650,
+          "going": "好地",
+          "course": "草地 - \"C\" 賽道",
+          "postTime": "2026-07-15T20:00:00+08:00",
+          "top4": [
+            {
+              "plc": "1",
+              "no": "6",
+              "name": "劍飛聲",
+              "code": "L097",
+              "jockey": "霍宏聲",
+              "trainer": "告東尼",
+              "draw": 12
+            },
+            {
+              "plc": "2",
+              "no": "1",
+              "name": "深心星",
+              "code": "K041",
+              "jockey": "莫雷拉",
+              "trainer": "方嘉柏",
+              "draw": 3
+            },
+            {
+              "plc": "3",
+              "no": "9",
+              "name": "瑞祺威楓",
+              "code": "K009",
+              "jockey": "田泰安",
+              "trainer": "姚本輝",
+              "draw": 9
+            },
+            {
+              "plc": "4",
+              "no": "4",
+              "name": "先到先得",
+              "code": "J098",
+              "jockey": "艾道拿",
+              "trainer": "蔡約翰",
+              "draw": 7
+            }
+          ],
+          "runners": [
+            {
+              "plc": "1",
+              "no": "6",
+              "name": "劍飛聲",
+              "code": "L097",
+              "jockey": "霍宏聲",
+              "trainer": "告東尼",
+              "draw": 12,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "2",
+              "no": "1",
+              "name": "深心星",
+              "code": "K041",
+              "jockey": "莫雷拉",
+              "trainer": "方嘉柏",
+              "draw": 3,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "3",
+              "no": "9",
+              "name": "瑞祺威楓",
+              "code": "K009",
+              "jockey": "田泰安",
+              "trainer": "姚本輝",
+              "draw": 9,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "4",
+              "no": "4",
+              "name": "先到先得",
+              "code": "J098",
+              "jockey": "艾道拿",
+              "trainer": "蔡約翰",
+              "draw": 7,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "5",
+              "no": "7",
+              "name": "越駿齊歡",
+              "code": "L079",
+              "jockey": "巴度",
+              "trainer": "羅富全",
+              "draw": 4,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "6",
+              "no": "10",
+              "name": "同心",
+              "code": "K253",
+              "jockey": "何澤堯",
+              "trainer": "呂健威",
+              "draw": 11,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "7",
+              "no": "12",
+              "name": "寫我其誰",
+              "code": "L048",
+              "jockey": "鍾易禮",
+              "trainer": "葉楚航",
+              "draw": 8,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "8",
+              "no": "8",
+              "name": "華麗再贏",
+              "code": "L087",
+              "jockey": "潘頓",
+              "trainer": "沈集成",
+              "draw": 10,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "9",
+              "no": "3",
+              "name": "光年程祥",
+              "code": "K204",
+              "jockey": "布文",
+              "trainer": "游達榮",
+              "draw": 5,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "10",
+              "no": "2",
+              "name": "大學生",
+              "code": "H116",
+              "jockey": "金誠剛",
+              "trainer": "韋達",
+              "draw": 2,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "11",
+              "no": "5",
+              "name": "凱皇寶",
+              "code": "K396",
+              "jockey": "蔡明紹",
+              "trainer": "巫偉傑",
+              "draw": 1,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "12",
+              "no": "11",
+              "name": "傲然",
+              "code": "K383",
+              "jockey": "巫顯東",
+              "trainer": "鄭俊偉",
+              "draw": 6,
+              "lbw": "",
+              "finishTime": ""
+            }
+          ]
+        },
+        {
+          "raceNo": 5,
+          "titleBlock": "第 5 場 (862)",
+          "raceName": "輝煌星讓賽",
+          "className": "第四班",
+          "distance": 1200,
+          "going": "好地",
+          "course": "草地 - \"C\" 賽道",
+          "postTime": "2026-07-15T20:30:00+08:00",
+          "top4": [
+            {
+              "plc": "1",
+              "no": "12",
+              "name": "過關勇士",
+              "code": "K429",
+              "jockey": "希威森",
+              "trainer": "沈集成",
+              "draw": 8
+            },
+            {
+              "plc": "2",
+              "no": "9",
+              "name": "大才",
+              "code": "G192",
+              "jockey": "潘明輝",
+              "trainer": "葉楚航",
+              "draw": 3
+            },
+            {
+              "plc": "3",
+              "no": "1",
+              "name": "葳莉非凡",
+              "code": "K297",
+              "jockey": "莫雷拉",
+              "trainer": "方嘉柏",
+              "draw": 4
+            },
+            {
+              "plc": "4",
+              "no": "3",
+              "name": "快樂神駒",
+              "code": "L050",
+              "jockey": "霍宏聲",
+              "trainer": "廖康銘",
+              "draw": 11
+            }
+          ],
+          "runners": [
+            {
+              "plc": "1",
+              "no": "12",
+              "name": "過關勇士",
+              "code": "K429",
+              "jockey": "希威森",
+              "trainer": "沈集成",
+              "draw": 8,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "2",
+              "no": "9",
+              "name": "大才",
+              "code": "G192",
+              "jockey": "潘明輝",
+              "trainer": "葉楚航",
+              "draw": 3,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "3",
+              "no": "1",
+              "name": "葳莉非凡",
+              "code": "K297",
+              "jockey": "莫雷拉",
+              "trainer": "方嘉柏",
+              "draw": 4,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "4",
+              "no": "3",
+              "name": "快樂神駒",
+              "code": "L050",
+              "jockey": "霍宏聲",
+              "trainer": "廖康銘",
+              "draw": 11,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "5",
+              "no": "5",
+              "name": "文采風流",
+              "code": "L021",
+              "jockey": "奧爾民",
+              "trainer": "蘇偉賢",
+              "draw": 2,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "6",
+              "no": "11",
+              "name": "久久為軍",
+              "code": "K231",
+              "jockey": "鍾易禮",
+              "trainer": "告東尼",
+              "draw": 9,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "7",
+              "no": "6",
+              "name": "盛勢威楓",
+              "code": "K111",
+              "jockey": "艾兆禮",
+              "trainer": "賀賢",
+              "draw": 1,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "8",
+              "no": "10",
+              "name": "威威神駒",
+              "code": "K565",
+              "jockey": "田泰安",
+              "trainer": "韋達",
+              "draw": 5,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "9",
+              "no": "2",
+              "name": "凝聚美麗",
+              "code": "J299",
+              "jockey": "巴度",
+              "trainer": "巫偉傑",
+              "draw": 10,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "10",
+              "no": "4",
+              "name": "笑必勝",
+              "code": "L274",
+              "jockey": "楊明綸",
+              "trainer": "黎昭昇",
+              "draw": 6,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "11",
+              "no": "8",
+              "name": "帶贏來",
+              "code": "K558",
+              "jockey": "黃智弘",
+              "trainer": "大衛希斯",
+              "draw": 7,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "12",
+              "no": "7",
+              "name": "喜意",
+              "code": "L197",
+              "jockey": "梁家俊",
+              "trainer": "呂健威",
+              "draw": 12,
+              "lbw": "",
+              "finishTime": ""
+            }
+          ]
+        },
+        {
+          "raceNo": 6,
+          "titleBlock": "第 6 場 (863)",
+          "raceName": "超級綠洲讓賽",
+          "className": "第四班",
+          "distance": 1200,
+          "going": "好地",
+          "course": "草地 - \"C\" 賽道",
+          "postTime": "2026-07-15T21:00:00+08:00",
+          "top4": [
+            {
+              "plc": "1",
+              "no": "6",
+              "name": "時時開心",
+              "code": "K550",
+              "jockey": "金誠剛",
+              "trainer": "游達榮",
+              "draw": 3
+            },
+            {
+              "plc": "2",
+              "no": "11",
+              "name": "領袖勁力",
+              "code": "L034",
+              "jockey": "田泰安",
+              "trainer": "徐雨石",
+              "draw": 11
+            },
+            {
+              "plc": "3",
+              "no": "9",
+              "name": "精彩勇將",
+              "code": "L275",
+              "jockey": "莫雷拉",
+              "trainer": "方嘉柏",
+              "draw": 10
+            },
+            {
+              "plc": "4",
+              "no": "1",
+              "name": "穿甲戰鷹",
+              "code": "J039",
+              "jockey": "艾兆禮",
+              "trainer": "廖康銘",
+              "draw": 6
+            }
+          ],
+          "runners": [
+            {
+              "plc": "1",
+              "no": "6",
+              "name": "時時開心",
+              "code": "K550",
+              "jockey": "金誠剛",
+              "trainer": "游達榮",
+              "draw": 3,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "2",
+              "no": "11",
+              "name": "領袖勁力",
+              "code": "L034",
+              "jockey": "田泰安",
+              "trainer": "徐雨石",
+              "draw": 11,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "3",
+              "no": "9",
+              "name": "精彩勇將",
+              "code": "L275",
+              "jockey": "莫雷拉",
+              "trainer": "方嘉柏",
+              "draw": 10,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "4",
+              "no": "1",
+              "name": "穿甲戰鷹",
+              "code": "J039",
+              "jockey": "艾兆禮",
+              "trainer": "廖康銘",
+              "draw": 6,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "5",
+              "no": "4",
+              "name": "合夥飛馳",
+              "code": "K342",
+              "jockey": "何澤堯",
+              "trainer": "呂健威",
+              "draw": 1,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "6",
+              "no": "10",
+              "name": "神異金剛",
+              "code": "K109",
+              "jockey": "鍾易禮",
+              "trainer": "葉楚航",
+              "draw": 9,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "7",
+              "no": "2",
+              "name": "添開心",
+              "code": "H203",
+              "jockey": "希威森",
+              "trainer": "伍鵬志",
+              "draw": 7,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "8",
+              "no": "12",
+              "name": "閃電武士",
+              "code": "L062",
+              "jockey": "楊明綸",
+              "trainer": "大衛希斯",
+              "draw": 12,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "9",
+              "no": "5",
+              "name": "日馳千里",
+              "code": "J143",
+              "jockey": "潘明輝",
+              "trainer": "姚本輝",
+              "draw": 8,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "10",
+              "no": "7",
+              "name": "升升雙息",
+              "code": "L291",
+              "jockey": "布文",
+              "trainer": "沈集成",
+              "draw": 2,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "11",
+              "no": "8",
+              "name": "小魔怪",
+              "code": "K391",
+              "jockey": "梁家俊",
+              "trainer": "巫偉傑",
+              "draw": 5,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "12",
+              "no": "3",
+              "name": "君子",
+              "code": "K534",
+              "jockey": "巫顯東",
+              "trainer": "文家良",
+              "draw": 4,
+              "lbw": "",
+              "finishTime": ""
+            }
+          ]
+        },
+        {
+          "raceNo": 7,
+          "titleBlock": "第 7 場 (864)",
+          "raceName": "安遇讓賽",
+          "className": "第三班",
+          "distance": 1650,
+          "going": "好地",
+          "course": "草地 - \"C\" 賽道",
+          "postTime": "2026-07-15T21:35:00+08:00",
+          "top4": [
+            {
+              "plc": "1",
+              "no": "11",
+              "name": "富國兄弟",
+              "code": "J396",
+              "jockey": "田泰安",
+              "trainer": "葉楚航",
+              "draw": 8
+            },
+            {
+              "plc": "2",
+              "no": "4",
+              "name": "傲視同群",
+              "code": "K357",
+              "jockey": "奧爾民",
+              "trainer": "文家良",
+              "draw": 10
+            },
+            {
+              "plc": "3",
+              "no": "8",
+              "name": "勁好運",
+              "code": "H481",
+              "jockey": "蔡明紹",
+              "trainer": "廖康銘",
+              "draw": 11
+            },
+            {
+              "plc": "4",
+              "no": "1",
+              "name": "又龍串鳳",
+              "code": "E461",
+              "jockey": "巴度",
+              "trainer": "告東尼",
+              "draw": 6
+            }
+          ],
+          "runners": [
+            {
+              "plc": "1",
+              "no": "11",
+              "name": "富國兄弟",
+              "code": "J396",
+              "jockey": "田泰安",
+              "trainer": "葉楚航",
+              "draw": 8,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "2",
+              "no": "4",
+              "name": "傲視同群",
+              "code": "K357",
+              "jockey": "奧爾民",
+              "trainer": "文家良",
+              "draw": 10,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "3",
+              "no": "8",
+              "name": "勁好運",
+              "code": "H481",
+              "jockey": "蔡明紹",
+              "trainer": "廖康銘",
+              "draw": 11,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "4",
+              "no": "1",
+              "name": "又龍串鳳",
+              "code": "E461",
+              "jockey": "巴度",
+              "trainer": "告東尼",
+              "draw": 6,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "5",
+              "no": "10",
+              "name": "棒棒糖",
+              "code": "J503",
+              "jockey": "莫雷拉",
+              "trainer": "方嘉柏",
+              "draw": 1,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "6",
+              "no": "3",
+              "name": "有財有勢",
+              "code": "H037",
+              "jockey": "艾兆禮",
+              "trainer": "蔡約翰",
+              "draw": 12,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "7",
+              "no": "12",
+              "name": "摯友勝",
+              "code": "L092",
+              "jockey": "楊明綸",
+              "trainer": "丁冠豪",
+              "draw": 3,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "8",
+              "no": "7",
+              "name": "喜豐年",
+              "code": "L185",
+              "jockey": "希威森",
+              "trainer": "韋達",
+              "draw": 9,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "9",
+              "no": "9",
+              "name": "大文豪",
+              "code": "L134",
+              "jockey": "黃智弘",
+              "trainer": "姚本輝",
+              "draw": 2,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "10",
+              "no": "2",
+              "name": "傲聖",
+              "code": "L384",
+              "jockey": "潘明輝",
+              "trainer": "賀賢",
+              "draw": 7,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "11",
+              "no": "6",
+              "name": "勝兄弟",
+              "code": "L381",
+              "jockey": "黃寶妮",
+              "trainer": "徐雨石",
+              "draw": 5,
+              "lbw": "",
+              "finishTime": ""
+            },
+            {
+              "plc": "12",
+              "no": "5",
+              "name": "我做到",
+              "code": "H381",
+              "jockey": "梁家俊",
+              "trainer": "伍鵬志",
+              "draw": 4,
               "lbw": "",
               "finishTime": ""
             }
