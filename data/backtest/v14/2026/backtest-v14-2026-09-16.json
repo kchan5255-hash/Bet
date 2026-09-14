@@ -1,0 +1,373 @@
+{
+  "date": "2026-09-16",
+  "venue": "HV",
+  "model": "v14-v12-v13-hybrid",
+  "policy": {
+    "v13": {
+      "consensus": true,
+      "v9T1ProbMin": 18,
+      "daysMin": 7,
+      "daysMax": 35
+    },
+    "ensembleStakeSplit": "50/50"
+  },
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "titleBlock": "第 1 場",
+        "className": "第五班",
+        "distance": 1000,
+        "going": "",
+        "course": "草地 - \"B\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "7",
+          "name": "銀亮濠俠",
+          "prob": 10.4
+        },
+        {
+          "no": "12",
+          "name": "洛河",
+          "prob": 9.69
+        },
+        {
+          "no": "11",
+          "name": "辣得金",
+          "prob": 9.66
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:133"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "titleBlock": "第 2 場",
+        "className": "第四班",
+        "distance": 1200,
+        "going": "",
+        "course": "草地 - \"B\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "8",
+          "name": "花好月盈",
+          "prob": 12.82
+        },
+        {
+          "no": "7",
+          "name": "加州勇勝",
+          "prob": 9.69
+        },
+        {
+          "no": "12",
+          "name": "智勝攻略",
+          "prob": 9.3
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-body-rel:0.13",
+          "low-top1-shape:0.54"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:175"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "titleBlock": "第 3 場",
+        "className": "第四班",
+        "distance": 1800,
+        "going": "",
+        "course": "草地 - \"B\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "7",
+          "name": "夢照發",
+          "prob": 11.79
+        },
+        {
+          "no": "10",
+          "name": "禾道威",
+          "prob": 10.04
+        },
+        {
+          "no": "12",
+          "name": "蜜蜜送",
+          "prob": 9.57
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-strong"
+        ],
+        "reasons": [
+          "v12-strong"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:140"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "7",
+            "t2": "10",
+            "t3": "12",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "7,10",
+          "label": "7-10"
+        }
+      },
+      "actualTop3": []
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "titleBlock": "第 4 場",
+        "className": "第四班",
+        "distance": 1200,
+        "going": "",
+        "course": "草地 - \"B\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "維港激流",
+          "prob": 12.24
+        },
+        {
+          "no": "12",
+          "name": "有你有我",
+          "prob": 10.64
+        },
+        {
+          "no": "3",
+          "name": "烈焰光芒",
+          "prob": 10.6
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:157"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "titleBlock": "第 5 場",
+        "className": "第四班",
+        "distance": 1200,
+        "going": "",
+        "course": "草地 - \"B\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "8",
+          "name": "老鼠斑",
+          "prob": 11.74
+        },
+        {
+          "no": "7",
+          "name": "紅錢到",
+          "prob": 11.6
+        },
+        {
+          "no": "10",
+          "name": "團結戰靈",
+          "prob": 10.55
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:130"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "titleBlock": "第 6 場",
+        "className": "第三班",
+        "distance": 1650,
+        "going": "",
+        "course": "草地 - \"B\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "一定超",
+          "prob": 12.34
+        },
+        {
+          "no": "9",
+          "name": "榮利雙收",
+          "prob": 11.19
+        },
+        {
+          "no": "3",
+          "name": "浪漫鬥士",
+          "prob": 9.35
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:178"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 7,
+      "meta": {
+        "titleBlock": "第 7 場",
+        "className": "第三班",
+        "distance": 1000,
+        "going": "",
+        "course": "草地 - \"B\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "馬力",
+          "prob": 10.5
+        },
+        {
+          "no": "5",
+          "name": "品德寶寶",
+          "prob": 10.32
+        },
+        {
+          "no": "2",
+          "name": "燭光晚餐",
+          "prob": 8.83
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:147"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 8,
+      "meta": {
+        "titleBlock": "第 8 場",
+        "className": "第二班",
+        "distance": 1650,
+        "going": "",
+        "course": "草地 - \"B\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "大浪圖田",
+          "prob": 12.52
+        },
+        {
+          "no": "8",
+          "name": "勁沙塵",
+          "prob": 11.8
+        },
+        {
+          "no": "1",
+          "name": "勁速威龍",
+          "prob": 9.56
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-top1-shape:0.62"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:203"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    }
+  ]
+}
