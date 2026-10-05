@@ -1,0 +1,428 @@
+{
+  "date": "2026-10-07",
+  "venue": "HV",
+  "model": "v14-v12-v13-hybrid",
+  "policy": {
+    "v13": {
+      "consensus": true,
+      "v9T1ProbMin": 18,
+      "daysMin": 7,
+      "daysMax": 35
+    },
+    "ensembleStakeSplit": "50/50"
+  },
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "titleBlock": "第 1 場",
+        "className": "第五班",
+        "distance": 1800,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "獎星",
+          "prob": 10.66
+        },
+        {
+          "no": "3",
+          "name": "鴻圖大展",
+          "prob": 10.51
+        },
+        {
+          "no": "2",
+          "name": "一支箭",
+          "prob": 9.64
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:147"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "titleBlock": "第 2 場",
+        "className": "第四班",
+        "distance": 1200,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "環球英雄",
+          "prob": 13.04
+        },
+        {
+          "no": "10",
+          "name": "天下寵兒",
+          "prob": 10.9
+        },
+        {
+          "no": "6",
+          "name": "千杯敬典",
+          "prob": 8.84
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:147"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "titleBlock": "第 3 場",
+        "className": "第四班",
+        "distance": 1650,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "有情有義",
+          "prob": 12.69
+        },
+        {
+          "no": "10",
+          "name": "康昌之星",
+          "prob": 10.66
+        },
+        {
+          "no": "7",
+          "name": "滿洛城",
+          "prob": 10.02
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:151"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "titleBlock": "第 4 場",
+        "className": "第四班",
+        "distance": 1650,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "11",
+          "name": "焦點",
+          "prob": 12.88
+        },
+        {
+          "no": "4",
+          "name": "先到先得",
+          "prob": 11
+        },
+        {
+          "no": "2",
+          "name": "深心星",
+          "prob": 10.78
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-strong"
+        ],
+        "reasons": [
+          "v12-strong"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:147"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "11",
+            "t2": "4",
+            "t3": "2",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "11,4",
+          "label": "11-4"
+        }
+      },
+      "actualTop3": []
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "titleBlock": "第 5 場",
+        "className": "第四班",
+        "distance": 1000,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "銳目",
+          "prob": 10.79
+        },
+        {
+          "no": "4",
+          "name": "巴閉王",
+          "prob": 10.54
+        },
+        {
+          "no": "8",
+          "name": "佐治傳奇",
+          "prob": 9.91
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:147"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "titleBlock": "第 6 場",
+        "className": "第四班",
+        "distance": 1200,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "加州勇勝",
+          "prob": 12.88
+        },
+        {
+          "no": "9",
+          "name": "後無來者",
+          "prob": 10.37
+        },
+        {
+          "no": "8",
+          "name": "萬眾開心",
+          "prob": 10.2
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:154"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 7,
+      "meta": {
+        "titleBlock": "第 7 場",
+        "className": "第三班",
+        "distance": 1200,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "快活英雄",
+          "prob": 11.88
+        },
+        {
+          "no": "2",
+          "name": "東來欣賞",
+          "prob": 10.71
+        },
+        {
+          "no": "4",
+          "name": "幸運星球",
+          "prob": 10.64
+        }
+      ],
+      "recommendations": {
+        "action": "play",
+        "tiers": [
+          "v12-strong"
+        ],
+        "reasons": [
+          "v12-strong"
+        ],
+        "v12RiskFlags": [],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:151"
+        ]
+      },
+      "recommend": {
+        "bets": [
+          {
+            "source": "v12",
+            "tier": "strong",
+            "t1": "3",
+            "t2": "2",
+            "t3": "4",
+            "stakeMultiplier": 0.5
+          }
+        ],
+        "qinT12": {
+          "combo": "3,2",
+          "label": "3-2"
+        }
+      },
+      "actualTop3": []
+    },
+    {
+      "raceNo": 8,
+      "meta": {
+        "titleBlock": "第 8 場",
+        "className": "第三班",
+        "distance": 1650,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "11",
+          "name": "開心三寶",
+          "prob": 12.03
+        },
+        {
+          "no": "1",
+          "name": "一定超",
+          "prob": 10.4
+        },
+        {
+          "no": "2",
+          "name": "幸運派彩",
+          "prob": 10.24
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:171"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    },
+    {
+      "raceNo": 9,
+      "meta": {
+        "titleBlock": "第 9 場",
+        "className": "第三班",
+        "distance": 1200,
+        "going": "",
+        "course": "草地 - \"C+3\" 賽道 - 向後移欄"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "8",
+          "name": "可靠大師",
+          "prob": 11.92
+        },
+        {
+          "no": "11",
+          "name": "勇霸龍",
+          "prob": 11.11
+        },
+        {
+          "no": "7",
+          "name": "星運少爵",
+          "prob": 10.07
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:161"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": []
+    }
+  ]
+}
