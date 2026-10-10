@@ -18,7 +18,7 @@
         "titleBlock": "第 1 場",
         "className": "第五班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "全天候跑道"
       },
       "fieldSize": 12,
@@ -26,16 +26,16 @@
         {
           "no": "10",
           "name": "喜行",
-          "prob": 11.48
-        },
-        {
-          "no": "9",
-          "name": "勇者無敵",
-          "prob": 10.32
+          "prob": 11.36
         },
         {
           "no": "4",
           "name": "良駒好友",
+          "prob": 10.22
+        },
+        {
+          "no": "9",
+          "name": "勇者無敵",
           "prob": 10.18
         }
       ],
@@ -59,14 +59,14 @@
             "source": "v12",
             "tier": "strong",
             "t1": "10",
-            "t2": "9",
-            "t3": "4",
+            "t2": "4",
+            "t3": "9",
             "stakeMultiplier": 0.5
           }
         ],
         "qinT12": {
-          "combo": "10,9",
-          "label": "10-9"
+          "combo": "10,4",
+          "label": "10-4"
         }
       },
       "actualTop3": []
@@ -77,7 +77,7 @@
         "titleBlock": "第 2 場",
         "className": "第五班",
         "distance": 1000,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"C\" 賽道"
       },
       "fieldSize": 14,
@@ -85,12 +85,12 @@
         {
           "no": "11",
           "name": "迅意",
-          "prob": 8.87
+          "prob": 8.85
         },
         {
           "no": "12",
           "name": "不勞而獲",
-          "prob": 8.08
+          "prob": 8.11
         },
         {
           "no": "5",
@@ -120,7 +120,7 @@
         "titleBlock": "第 3 場",
         "className": "第四班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"C\" 賽道"
       },
       "fieldSize": 12,
@@ -128,17 +128,17 @@
         {
           "no": "1",
           "name": "跨境駿馬",
-          "prob": 13.22
+          "prob": 13.17
         },
         {
           "no": "7",
           "name": "馬寶寶",
-          "prob": 10.55
+          "prob": 10.46
         },
         {
           "no": "2",
           "name": "龍之悅",
-          "prob": 10.53
+          "prob": 10.42
         }
       ],
       "recommendations": {
@@ -150,6 +150,7 @@
           "low-top1-shape:0.60"
         ],
         "v13RiskFlags": [
+          "v9-t1-prob<18%",
           "days-out-of-range:165"
         ]
       },
@@ -162,7 +163,7 @@
         "titleBlock": "第 4 場",
         "className": "第三班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "全天候跑道"
       },
       "fieldSize": 9,
@@ -170,17 +171,17 @@
         {
           "no": "7",
           "name": "價值傳承",
-          "prob": 13.66
+          "prob": 13.68
         },
         {
           "no": "10",
           "name": "皇仁歡星",
-          "prob": 13.04
+          "prob": 13.06
         },
         {
           "no": "4",
           "name": "富心星",
-          "prob": 12.7
+          "prob": 12.72
         }
       ],
       "recommendations": {
@@ -204,7 +205,7 @@
         "titleBlock": "第 5 場",
         "className": "第四班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "全天候跑道"
       },
       "fieldSize": 12,
@@ -212,17 +213,17 @@
         {
           "no": "9",
           "name": "老鼠斑",
-          "prob": 11.95
+          "prob": 11.98
         },
         {
           "no": "1",
           "name": "起舞奜奜",
-          "prob": 9.57
+          "prob": 9.37
         },
         {
           "no": "12",
           "name": "魅力星",
-          "prob": 9.26
+          "prob": 9.29
         }
       ],
       "recommendations": {
@@ -246,7 +247,7 @@
         "titleBlock": "第 6 場",
         "className": "第四班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"C\" 賽道"
       },
       "fieldSize": 12,
@@ -259,12 +260,12 @@
         {
           "no": "2",
           "name": "創寶駒",
-          "prob": 10.68
+          "prob": 10.66
         },
         {
           "no": "9",
           "name": "快樂共濟",
-          "prob": 10.26
+          "prob": 10.32
         }
       ],
       "recommendations": {
@@ -291,7 +292,7 @@
         "titleBlock": "第 7 場",
         "className": "第四班",
         "distance": 1400,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"C\" 賽道"
       },
       "fieldSize": 14,
@@ -299,17 +300,17 @@
         {
           "no": "10",
           "name": "天福",
-          "prob": 9.65
+          "prob": 9.46
         },
         {
           "no": "3",
           "name": "活力精神",
-          "prob": 8.55
+          "prob": 8.47
         },
         {
           "no": "14",
           "name": "開心五月",
-          "prob": 8.43
+          "prob": 8.1
         }
       ],
       "recommendations": {
@@ -333,7 +334,7 @@
         "titleBlock": "第 8 場",
         "className": "第四班",
         "distance": 1600,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"C\" 賽道"
       },
       "fieldSize": 14,
@@ -341,7 +342,7 @@
         {
           "no": "9",
           "name": "金鑽精靈",
-          "prob": 9.47
+          "prob": 9.46
         },
         {
           "no": "4",
@@ -375,7 +376,7 @@
         "titleBlock": "第 9 場",
         "className": "第三班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"C\" 賽道"
       },
       "fieldSize": 12,
@@ -383,17 +384,17 @@
         {
           "no": "7",
           "name": "大愛無疆",
-          "prob": 11.06
+          "prob": 11.05
         },
         {
           "no": "4",
           "name": "冷娃",
-          "prob": 10.77
+          "prob": 10.76
         },
         {
           "no": "3",
           "name": "開心指數",
-          "prob": 10.76
+          "prob": 10.75
         }
       ],
       "recommendations": {
@@ -418,7 +419,7 @@
         "titleBlock": "第 10 場",
         "className": "第三班",
         "distance": 1400,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"C\" 賽道"
       },
       "fieldSize": 14,
@@ -426,17 +427,17 @@
         {
           "no": "10",
           "name": "做好自己",
-          "prob": 12.35
+          "prob": 12.32
         },
         {
           "no": "3",
           "name": "一世美麗",
-          "prob": 10.84
+          "prob": 10.81
         },
         {
           "no": "5",
           "name": "重情重義",
-          "prob": 8.82
+          "prob": 8.91
         }
       ],
       "recommendations": {
@@ -459,7 +460,7 @@
         "titleBlock": "第 11 場",
         "className": "第二班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"C\" 賽道"
       },
       "fieldSize": 12,
@@ -467,17 +468,17 @@
         {
           "no": "6",
           "name": "興馳千里",
-          "prob": 12.69
+          "prob": 12.68
         },
         {
           "no": "2",
           "name": "扶搖勢勁",
-          "prob": 11.21
+          "prob": 11.12
         },
         {
           "no": "9",
           "name": "熾烈神駒",
-          "prob": 10.94
+          "prob": 10.81
         }
       ],
       "recommendations": {
