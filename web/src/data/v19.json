@@ -228,7 +228,8 @@
     "2026-10-04",
     "2026-10-07",
     "2026-10-11",
-    "2026-10-14"
+    "2026-10-14",
+    "2026-10-19"
   ],
   "byDate": {
     "2024-01-07": {
@@ -123657,8 +123658,522 @@
           "actualTop3": []
         }
       ]
+    },
+    "2026-10-19": {
+      "date": "2026-10-19",
+      "venue": "ST",
+      "mode": "pre",
+      "generatedAt": "2026-10-18T13:43:10.553Z",
+      "races": [
+        {
+          "raceNo": 1,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1800,
+            "className": "第五班",
+            "titleBlock": "第 1 場"
+          },
+          "proTop3": [
+            {
+              "no": "1",
+              "name": "禾道威",
+              "prob": 10.05
+            },
+            {
+              "no": "3",
+              "name": "獎星",
+              "prob": 9.96
+            },
+            {
+              "no": "4",
+              "name": "竣誠駒",
+              "prob": 9.76
+            }
+          ],
+          "fieldSize": 13,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 2,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1400,
+            "className": "第四班",
+            "titleBlock": "第 2 場"
+          },
+          "proTop3": [
+            {
+              "no": "11",
+              "name": "盛勢威楓",
+              "prob": 11.61
+            },
+            {
+              "no": "10",
+              "name": "將傲",
+              "prob": 9.67
+            },
+            {
+              "no": "8",
+              "name": "確好勁",
+              "prob": 9.03
+            }
+          ],
+          "fieldSize": 14,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 3,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1800,
+            "className": "第四班",
+            "titleBlock": "第 3 場"
+          },
+          "proTop3": [
+            {
+              "no": "7",
+              "name": "風火恆雲",
+              "prob": 11.59
+            },
+            {
+              "no": "14",
+              "name": "齊歡最樂",
+              "prob": 8.94
+            },
+            {
+              "no": "8",
+              "name": "夢照發",
+              "prob": 8.37
+            }
+          ],
+          "fieldSize": 14,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 4,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1400,
+            "className": "第四班",
+            "titleBlock": "第 4 場"
+          },
+          "proTop3": [
+            {
+              "no": "12",
+              "name": "隋我同來",
+              "prob": 11.05
+            },
+            {
+              "no": "8",
+              "name": "風繼續吹",
+              "prob": 8.59
+            },
+            {
+              "no": "14",
+              "name": "久久為軍",
+              "prob": 8.38
+            }
+          ],
+          "fieldSize": 14,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 5,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1200,
+            "className": "第四班",
+            "titleBlock": "第 5 場"
+          },
+          "proTop3": [
+            {
+              "no": "10",
+              "name": "星光大道",
+              "prob": 12.39
+            },
+            {
+              "no": "11",
+              "name": "雷神太保",
+              "prob": 12.36
+            },
+            {
+              "no": "9",
+              "name": "機不可失",
+              "prob": 9.85
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 6,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1000,
+            "className": "第四班",
+            "titleBlock": "第 6 場"
+          },
+          "proTop3": [
+            {
+              "no": "1",
+              "name": "當家精彩",
+              "prob": 9.35
+            },
+            {
+              "no": "8",
+              "name": "飛來霸",
+              "prob": 9.1
+            },
+            {
+              "no": "4",
+              "name": "飛來閃耀",
+              "prob": 8.68
+            }
+          ],
+          "fieldSize": 14,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "bad-distance=1000m",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 7,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1200,
+            "className": "第四班",
+            "titleBlock": "第 7 場"
+          },
+          "proTop3": [
+            {
+              "no": "11",
+              "name": "星光快驅",
+              "prob": 10.84
+            },
+            {
+              "no": "1",
+              "name": "鼓浪好友",
+              "prob": 10.52
+            },
+            {
+              "no": "7",
+              "name": "非凡時刻",
+              "prob": 9.8
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 8,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1600,
+            "className": "二級賽",
+            "titleBlock": "第 8 場"
+          },
+          "proTop3": [
+            {
+              "no": "10",
+              "name": "首飾天空",
+              "prob": 12.54
+            },
+            {
+              "no": "2",
+              "name": "祝願",
+              "prob": 11.54
+            },
+            {
+              "no": "3",
+              "name": "驕陽明駒",
+              "prob": 11.36
+            }
+          ],
+          "fieldSize": 11,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 9,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1200,
+            "className": "第三班",
+            "titleBlock": "第 9 場"
+          },
+          "proTop3": [
+            {
+              "no": "7",
+              "name": "金金小子",
+              "prob": 12.38
+            },
+            {
+              "no": "2",
+              "name": "醒目高球",
+              "prob": 10.94
+            },
+            {
+              "no": "10",
+              "name": "逍遙人生",
+              "prob": 10.04
+            }
+          ],
+          "fieldSize": 12,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 10,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1600,
+            "className": "第三班",
+            "titleBlock": "第 10 場"
+          },
+          "proTop3": [
+            {
+              "no": "2",
+              "name": "榮駿大道",
+              "prob": 10.19
+            },
+            {
+              "no": "14",
+              "name": "八仟好運",
+              "prob": 10
+            },
+            {
+              "no": "8",
+              "name": "火焰閃爍",
+              "prob": 9.54
+            }
+          ],
+          "fieldSize": 14,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        },
+        {
+          "raceNo": 11,
+          "meta": {
+            "going": "好地",
+            "course": "草地 - \"C+3\" 賽道",
+            "distance": 1400,
+            "className": "第三班",
+            "titleBlock": "第 11 場"
+          },
+          "proTop3": [
+            {
+              "no": "8",
+              "name": "櫻花酒杯",
+              "prob": 9.89
+            },
+            {
+              "no": "2",
+              "name": "極上紗瓏",
+              "prob": 9.53
+            },
+            {
+              "no": "1",
+              "name": "美麗星晨",
+              "prob": 8.76
+            }
+          ],
+          "fieldSize": 14,
+          "gate": {
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
+            "riskFlags": [],
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
+            "boost": null
+          },
+          "recommend": null,
+          "actualTop3": []
+        }
+      ]
     }
   },
-  "generatedAt": "2026-10-12T19:33:34.096Z",
-  "notes": "V19 = V18 + distance filter (skip 1000/1650/2000+/unknown, +1.5 boost for 1400/1600). 9 races / 2 play (S=1 A=1 B=0). 三年連贏膽拖 ROI +52.6% / 盈虧 +$64,076 / 三年皆正 (2024 +38% / 2025 +64% / 2026 +57%)."
+  "generatedAt": "2026-10-18T13:43:10.661Z",
+  "notes": "V19 = V18 + distance filter (skip 1000/1650/2000+/unknown, +1.5 boost for 1400/1600). 11 races / 0 play (S=0 A=0 B=0). 三年連贏膽拖 ROI +52.6% / 盈虧 +$64,076 / 三年皆正 (2024 +38% / 2025 +64% / 2026 +57%)."
 }
