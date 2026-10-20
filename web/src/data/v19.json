@@ -124178,12 +124178,12 @@
       "date": "2026-10-21",
       "venue": "HV",
       "mode": "pre",
-      "generatedAt": "2026-10-19T16:44:52.483Z",
+      "generatedAt": "2026-10-20T14:36:39.567Z",
       "races": [
         {
           "raceNo": 1,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1650,
             "className": "第四班",
@@ -124191,22 +124191,22 @@
           },
           "proTop3": [
             {
-              "no": "9",
-              "name": "創科群英",
-              "prob": 14.33
+              "no": "2",
+              "name": "本領非凡",
+              "prob": 14.01
             },
             {
               "no": "11",
               "name": "幸福約定",
-              "prob": 12.38
+              "prob": 13.78
             },
             {
-              "no": "2",
-              "name": "本領非凡",
-              "prob": 11.42
+              "no": "6",
+              "name": "部族高手",
+              "prob": 11.79
             }
           ],
-          "fieldSize": 11,
+          "fieldSize": 10,
           "gate": {
             "action": "skip",
             "tier": null,
@@ -124229,7 +124229,7 @@
         {
           "raceNo": 2,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1200,
             "className": "第五班",
@@ -124254,50 +124254,28 @@
           ],
           "fieldSize": 12,
           "gate": {
-            "action": "play",
-            "tier": "A",
-            "reason": null,
-            "reasons": [
-              "j-elite=15.1%",
-              "draw=2"
-            ],
+            "action": "skip",
+            "tier": null,
+            "reason": "no-pick",
+            "reasons": [],
             "riskFlags": [],
-            "jtCombo": "unknown",
-            "jWinRate": 0.1509433962264151,
-            "tWinRate": 0.08372827804107424,
-            "draw": 2,
-            "class": 5,
-            "lastBodyWeight": 1085,
-            "bodyDelta": -1,
-            "v18Tier": "A",
+            "jtCombo": null,
+            "jWinRate": null,
+            "tWinRate": null,
+            "draw": null,
+            "class": null,
+            "lastBodyWeight": null,
+            "bodyDelta": null,
+            "v18Tier": null,
             "boost": null
           },
-          "recommend": {
-            "tier": "A",
-            "qinT12": {
-              "combo": "9,1",
-              "label": "9-1"
-            },
-            "qinBanker": [
-              {
-                "combo": "9,1",
-                "label": "9-1"
-              },
-              {
-                "combo": "9,11",
-                "label": "9-11"
-              }
-            ],
-            "score": 1.5,
-            "stakeMul": 1,
-            "boost": null
-          },
+          "recommend": null,
           "actualTop3": []
         },
         {
           "raceNo": 3,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1650,
             "className": "第四班",
@@ -124317,7 +124295,7 @@
             {
               "no": "5",
               "name": "先到先得",
-              "prob": 11.39
+              "prob": 11.4
             }
           ],
           "fieldSize": 10,
@@ -124343,7 +124321,7 @@
         {
           "raceNo": 4,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1200,
             "className": "第四班",
@@ -124358,7 +124336,7 @@
             {
               "no": "2",
               "name": "多多好馬",
-              "prob": 11.06
+              "prob": 11.05
             },
             {
               "no": "3",
@@ -124389,7 +124367,7 @@
         {
           "raceNo": 5,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1000,
             "className": "第四班",
@@ -124399,17 +124377,17 @@
             {
               "no": "12",
               "name": "馬運高",
-              "prob": 11.01
+              "prob": 11.03
             },
             {
               "no": "10",
               "name": "超強六十",
-              "prob": 10.8
+              "prob": 10.79
             },
             {
               "no": "11",
               "name": "皇金合",
-              "prob": 10.57
+              "prob": 10.56
             }
           ],
           "fieldSize": 12,
@@ -124435,7 +124413,7 @@
         {
           "raceNo": 6,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1000,
             "className": "第二班",
@@ -124445,17 +124423,17 @@
             {
               "no": "9",
               "name": "好評如潮",
-              "prob": 13.63
+              "prob": 13.65
             },
             {
               "no": "5",
               "name": "俏眼光",
-              "prob": 12.97
+              "prob": 12.99
             },
             {
               "no": "2",
               "name": "樂勝天下",
-              "prob": 11.98
+              "prob": 11.8
             }
           ],
           "fieldSize": 10,
@@ -124481,7 +124459,7 @@
         {
           "raceNo": 7,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1200,
             "className": "第四班",
@@ -124491,17 +124469,17 @@
             {
               "no": "2",
               "name": "賢知友您",
-              "prob": 10.79
+              "prob": 10.83
             },
             {
               "no": "10",
               "name": "飛躍成就",
-              "prob": 10.77
+              "prob": 10.75
             },
             {
               "no": "3",
               "name": "合夥飛馳",
-              "prob": 10.34
+              "prob": 10.32
             }
           ],
           "fieldSize": 12,
@@ -124527,7 +124505,7 @@
         {
           "raceNo": 8,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1200,
             "className": "第三班",
@@ -124573,7 +124551,7 @@
         {
           "raceNo": 9,
           "meta": {
-            "going": "",
+            "going": "好地",
             "course": "草地 - \"B\" 賽道 - 向後移欄",
             "distance": 1650,
             "className": "第三班",
@@ -124588,7 +124566,7 @@
             {
               "no": "4",
               "name": "一定掂",
-              "prob": 10.69
+              "prob": 10.65
             },
             {
               "no": "9",
@@ -124619,6 +124597,6 @@
       ]
     }
   },
-  "generatedAt": "2026-10-19T16:44:52.732Z",
-  "notes": "V19 = V18 + distance filter (skip 1000/1650/2000+/unknown, +1.5 boost for 1400/1600). 9 races / 1 play (S=0 A=1 B=0). 三年連贏膽拖 ROI +52.6% / 盈虧 +$64,076 / 三年皆正 (2024 +38% / 2025 +64% / 2026 +57%)."
+  "generatedAt": "2026-10-20T14:36:39.650Z",
+  "notes": "V19 = V18 + distance filter (skip 1000/1650/2000+/unknown, +1.5 boost for 1400/1600). 9 races / 0 play (S=0 A=0 B=0). 三年連贏膽拖 ROI +52.6% / 盈虧 +$64,076 / 三年皆正 (2024 +38% / 2025 +64% / 2026 +57%)."
 }

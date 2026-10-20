@@ -206950,7 +206950,7 @@
         "raceName": "競賽精神讓賽",
         "distance": 1650,
         "className": "第四班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T18:40:00+08:00",
         "runners": [
@@ -206959,7 +206959,7 @@
             "name": "太子",
             "englishName": "REFUSETOBEENGLISH",
             "code": "K362",
-            "draw": 7,
+            "draw": 6,
             "handicapWeight": 135,
             "bodyWeight": 1076,
             "rating": 60,
@@ -206995,7 +206995,7 @@
             "daysSinceLastRun": 192,
             "recordsCount": 10,
             "rawScore": 0.5220535638730737,
-            "modelProbability": 8.941831444208523,
+            "modelProbability": 9.801217662107874,
             "positives": [
               "rating-edge"
             ],
@@ -207008,7 +207008,7 @@
             "name": "本領非凡",
             "englishName": "GLORIOUS JOURNEY",
             "code": "J137",
-            "draw": 4,
+            "draw": 3,
             "handicapWeight": 134,
             "bodyWeight": 1053,
             "rating": 59,
@@ -207032,9 +207032,9 @@
               "course": 0.5468517464789489,
               "distance": 0.5731128449036268,
               "class": 0.5731128449036268,
-              "going": 0.5731128449036268,
+              "going": 0.5468517464789489,
               "rating": 0.9444444444444444,
-              "draw": 0.84,
+              "draw": 1,
               "weight": 0.05555555555555558,
               "freshness": 0.35,
               "body": 0.82,
@@ -207043,8 +207043,8 @@
             },
             "daysSinceLastRun": 182,
             "recordsCount": 28,
-            "rawScore": 0.6021864311801343,
-            "modelProbability": 12.92743267453055,
+            "rawScore": 0.6201949481132161,
+            "modelProbability": 15.393679401521467,
             "positives": [
               "rating-edge",
               "draw-edge",
@@ -207059,7 +207059,7 @@
             "name": "爆笑",
             "englishName": "VIVA GRACIOUSNESS",
             "code": "J079",
-            "draw": 10,
+            "draw": 9,
             "handicapWeight": 133,
             "bodyWeight": 1096,
             "rating": 58,
@@ -207095,7 +207095,7 @@
             "daysSinceLastRun": 175,
             "recordsCount": 32,
             "rawScore": 0.47928485111588737,
-            "modelProbability": 7.344886442967906,
+            "modelProbability": 8.050792634613986,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -207111,7 +207111,7 @@
             "name": "佳登",
             "englishName": "RAGGA BOMB",
             "code": "K162",
-            "draw": 11,
+            "draw": 10,
             "handicapWeight": 132,
             "bodyWeight": 1051,
             "rating": 57,
@@ -207137,7 +207137,7 @@
               "class": 0.5306288190332277,
               "going": 0.4855548806095796,
               "rating": 0.8333333333333334,
-              "draw": 0.18,
+              "draw": 0.34,
               "weight": 0.16666666666666663,
               "freshness": 0.35,
               "body": 0.82,
@@ -207146,8 +207146,8 @@
             },
             "daysSinceLastRun": 189,
             "recordsCount": 15,
-            "rawScore": 0.4943889496265598,
-            "modelProbability": 7.873346561336965,
+            "rawScore": 0.5129489496265598,
+            "modelProbability": 9.399207748593593,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -207161,7 +207161,7 @@
             "name": "龍文瑞安",
             "englishName": "WELL ENOUGH",
             "code": "L029",
-            "draw": 6,
+            "draw": 5,
             "handicapWeight": 132,
             "bodyWeight": 1162,
             "rating": 57,
@@ -207187,7 +207187,7 @@
               "class": 0.5,
               "going": 0.5,
               "rating": 0.8333333333333334,
-              "draw": 0.58,
+              "draw": 0.84,
               "weight": 0.16666666666666663,
               "freshness": 0.55,
               "body": 0.55,
@@ -207196,10 +207196,11 @@
             },
             "daysSinceLastRun": null,
             "recordsCount": 0,
-            "rawScore": 0.507788176100629,
-            "modelProbability": 8.373899314857745,
+            "rawScore": 0.537948176100629,
+            "modelProbability": 10.544683987002859,
             "positives": [
-              "rating-edge"
+              "rating-edge",
+              "draw-edge"
             ],
             "negatives": []
           },
@@ -207244,7 +207245,7 @@
             "daysSinceLastRun": 178,
             "recordsCount": 10,
             "rawScore": 0.555584826560714,
-            "modelProbability": 10.433108259765547,
+            "modelProbability": 11.435818890606344,
             "positives": [
               "draw-edge"
             ],
@@ -207255,7 +207256,7 @@
             "name": "晉步贏",
             "englishName": "JUMBO STEPS",
             "code": "L269",
-            "draw": 8,
+            "draw": 7,
             "handicapWeight": 126,
             "bodyWeight": 1099,
             "rating": 51,
@@ -207291,7 +207292,7 @@
             "daysSinceLastRun": 213,
             "recordsCount": 1,
             "rawScore": 0.49950286431767055,
-            "modelProbability": 8.06075488064241,
+            "modelProbability": 8.83546213088651,
             "positives": [
               "stable-body-weight"
             ],
@@ -207304,7 +207305,7 @@
             "name": "妙算強人",
             "englishName": "MISSION GIANT",
             "code": "K577",
-            "draw": 5,
+            "draw": 4,
             "handicapWeight": 125,
             "bodyWeight": 1188,
             "rating": 50,
@@ -207328,7 +207329,7 @@
               "course": 0.30804105353182826,
               "distance": 0.17221611171859807,
               "class": 0.5,
-              "going": 0.266211225643035,
+              "going": 0.30804105353182826,
               "rating": 0.4444444444444444,
               "draw": 0.84,
               "weight": 0.5555555555555556,
@@ -207339,8 +207340,8 @@
             },
             "daysSinceLastRun": 171,
             "recordsCount": 3,
-            "rawScore": 0.48265266077812025,
-            "modelProbability": 7.459558823299103,
+            "rawScore": 0.48305808834073477,
+            "modelProbability": 8.19174911112442,
             "positives": [
               "draw-edge"
             ],
@@ -207350,60 +207351,11 @@
             ]
           },
           {
-            "no": "9",
-            "name": "創科群英",
-            "englishName": "INNO SUPER",
-            "code": "K319",
-            "draw": 3,
-            "handicapWeight": 124,
-            "bodyWeight": 1158,
-            "rating": 49,
-            "last6run": "6/3/3/6/6/8",
-            "jockey": "周俊樂",
-            "trainer": "游達榮",
-            "gearInfo": "SR-/B2/TT",
-            "allowance": "2",
-            "trainerPreference": 1,
-            "trumpCard": false,
-            "priority": false,
-            "winOdds": null,
-            "placeOdds": null,
-            "age": "AUS / 4",
-            "sex": "g",
-            "careerStats": "1-1-1-10",
-            "features": {
-              "recent": 0.5760618563619213,
-              "form": 0.4629007633587787,
-              "courseDistance": 0.6945206147603568,
-              "course": 0.6945206147603568,
-              "distance": 0.6400267126489205,
-              "class": 0.5169328933111557,
-              "going": 0.5169328933111557,
-              "rating": 0.3888888888888889,
-              "draw": 1,
-              "weight": 0.6111111111111112,
-              "freshness": 0.35,
-              "body": 0.82,
-              "career": 0.601,
-              "age": 0.72
-            },
-            "daysSinceLastRun": 217,
-            "recordsCount": 10,
-            "rawScore": 0.5986189146644304,
-            "modelProbability": 12.717017299421974,
-            "positives": [
-              "course-distance",
-              "draw-edge",
-              "stable-body-weight"
-            ],
-            "negatives": []
-          },
-          {
             "no": "10",
             "name": "勝利君子",
             "englishName": "I AM BACK",
             "code": "L061",
-            "draw": 9,
+            "draw": 8,
             "handicapWeight": 119,
             "bodyWeight": 1142,
             "rating": 44,
@@ -207429,7 +207381,7 @@
               "class": 0.24351180195134567,
               "going": 0.24351180195134567,
               "rating": 0.1111111111111111,
-              "draw": 0.34,
+              "draw": 0.58,
               "weight": 0.8888888888888888,
               "freshness": 0.35,
               "body": 0.7,
@@ -207438,15 +207390,14 @@
             },
             "daysSinceLastRun": 305,
             "recordsCount": 2,
-            "rawScore": 0.4483747722118859,
-            "modelProbability": 6.371392102263054,
+            "rawScore": 0.47621477221188585,
+            "modelProbability": 7.937895482559357,
             "positives": [
               "light-weight"
             ],
             "negatives": [
               "weak-recent-form",
-              "low-rating",
-              "wide-or-bad-draw"
+              "low-rating"
             ]
           },
           {
@@ -207490,7 +207441,7 @@
             "daysSinceLastRun": 178,
             "recordsCount": 1,
             "rawScore": 0.5351430300401422,
-            "modelProbability": 9.496772196706228,
+            "modelProbability": 10.409492950983594,
             "positives": [
               "draw-edge",
               "light-weight"
@@ -207506,7 +207457,7 @@
         "raceName": "成功讓賽",
         "distance": 1200,
         "className": "第五班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T19:10:00+08:00",
         "runners": [
@@ -207551,7 +207502,7 @@
             "daysSinceLastRun": 175,
             "recordsCount": 17,
             "rawScore": 0.5487800610003655,
-            "modelProbability": 10.18175733216791,
+            "modelProbability": 10.176609711205224,
             "positives": [
               "rating-edge",
               "draw-edge"
@@ -207602,7 +207553,7 @@
             "daysSinceLastRun": 165,
             "recordsCount": 3,
             "rawScore": 0.48341435028183655,
-            "modelProbability": 7.537686863087247,
+            "modelProbability": 7.533876012598401,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -207653,7 +207604,7 @@
             "daysSinceLastRun": 171,
             "recordsCount": 13,
             "rawScore": 0.5593247285047057,
-            "modelProbability": 10.687802016248707,
+            "modelProbability": 10.682398552788616,
             "positives": [
               "rating-edge",
               "draw-edge"
@@ -207691,7 +207642,7 @@
               "course": 0.3184523130808612,
               "distance": 0.29768861247349065,
               "class": 0.5,
-              "going": 0.3018978982895448,
+              "going": 0.31514947642960695,
               "rating": 0.8888888888888888,
               "draw": 0.62,
               "weight": 0.11111111111111116,
@@ -207702,8 +207653,8 @@
             },
             "daysSinceLastRun": 196,
             "recordsCount": 7,
-            "rawScore": 0.4961164591447985,
-            "modelProbability": 7.991232903054736,
+            "rawScore": 0.496345633496162,
+            "modelProbability": 7.995617306476638,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -207755,7 +207706,7 @@
             "daysSinceLastRun": 189,
             "recordsCount": 18,
             "rawScore": 0.5145763699292342,
-            "modelProbability": 8.69945728992778,
+            "modelProbability": 8.69505907975161,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -207793,7 +207744,7 @@
               "course": 0.5843816483349911,
               "distance": 0.4466065583026379,
               "class": 0.40977570080027353,
-              "going": 0.40977570080027353,
+              "going": 0.43989425845039687,
               "rating": 0.8333333333333334,
               "draw": 0.4,
               "weight": 0.16666666666666663,
@@ -207804,8 +207755,8 @@
             },
             "daysSinceLastRun": 165,
             "recordsCount": 30,
-            "rawScore": 0.5127563963081445,
-            "modelProbability": 8.626930505440605,
+            "rawScore": 0.5133888860187971,
+            "modelProbability": 8.647692449201381,
             "positives": [
               "course-distance",
               "rating-edge",
@@ -207844,7 +207795,7 @@
               "course": 0.42789446239754664,
               "distance": 0.35430263701522285,
               "class": 0.22886920305474703,
-              "going": 0.3857072984923742,
+              "going": 0.3962982476017629,
               "rating": 0.7222222222222222,
               "draw": 0.24,
               "weight": 0.2777777777777778,
@@ -207855,8 +207806,8 @@
             },
             "daysSinceLastRun": 198,
             "recordsCount": 18,
-            "rawScore": 0.443695435009033,
-            "modelProbability": 6.278984996233318,
+            "rawScore": 0.44391784494033015,
+            "modelProbability": 6.282234488813455,
             "positives": [],
             "negatives": [
               "weak-recent-form",
@@ -207893,7 +207844,7 @@
               "course": 0.2880923229596456,
               "distance": 0.3300066196187929,
               "class": 0.28258197537015894,
-              "going": 0.3196194886652079,
+              "going": 0.32854072701736486,
               "rating": 0.7222222222222222,
               "draw": 0.92,
               "weight": 0.2777777777777778,
@@ -207904,8 +207855,8 @@
             },
             "daysSinceLastRun": 161,
             "recordsCount": 15,
-            "rawScore": 0.5099206887454396,
-            "modelProbability": 8.51512939225465,
+            "rawScore": 0.510108034750835,
+            "modelProbability": 8.518162091778397,
             "positives": [
               "draw-edge"
             ],
@@ -207955,7 +207906,7 @@
             "daysSinceLastRun": 161,
             "recordsCount": 8,
             "rawScore": 0.5509412101633602,
-            "modelProbability": 10.283481894025384,
+            "modelProbability": 10.27828284387715,
             "positives": [
               "draw-edge",
               "stable-body-weight"
@@ -207991,7 +207942,7 @@
               "course": 0.20740836066631538,
               "distance": 0.23548285137106845,
               "class": 0.20475382907247958,
-              "going": 0.23548285137106845,
+              "going": 0.2415262039790139,
               "rating": 0.4444444444444444,
               "draw": 0.62,
               "weight": 0.5555555555555556,
@@ -208002,8 +207953,8 @@
             },
             "daysSinceLastRun": 185,
             "recordsCount": 8,
-            "rawScore": 0.44303054893861804,
-            "modelProbability": 6.2598102095546375,
+            "rawScore": 0.44314335818729966,
+            "modelProbability": 6.259892975818857,
             "positives": [],
             "negatives": [
               "weak-recent-form",
@@ -208051,7 +208002,7 @@
             "daysSinceLastRun": 196,
             "recordsCount": 12,
             "rawScore": 0.5018422005308588,
-            "modelProbability": 8.204505577266174,
+            "modelProbability": 8.200357601281263,
             "positives": [
               "draw-edge",
               "light-weight",
@@ -208104,7 +208055,7 @@
             "daysSinceLastRun": 175,
             "recordsCount": 9,
             "rawScore": 0.45887919433465196,
-            "modelProbability": 6.733221020738855,
+            "modelProbability": 6.729816886408993,
             "positives": [
               "draw-edge",
               "light-weight",
@@ -208123,7 +208074,7 @@
         "raceName": "競賽精神讓賽",
         "distance": 1650,
         "className": "第四班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T19:40:00+08:00",
         "runners": [
@@ -208168,7 +208119,7 @@
             "daysSinceLastRun": 185,
             "recordsCount": 9,
             "rawScore": 0.5805591659663302,
-            "modelProbability": 12.671608741185821,
+            "modelProbability": 12.676287689119503,
             "positives": [
               "course-distance",
               "rating-edge",
@@ -208220,7 +208171,7 @@
             "daysSinceLastRun": 165,
             "recordsCount": 9,
             "rawScore": 0.5520283708888332,
-            "modelProbability": 11.113074537163687,
+            "modelProbability": 11.11717800170434,
             "positives": [
               "rating-edge",
               "draw-edge"
@@ -208271,7 +208222,7 @@
             "daysSinceLastRun": 165,
             "recordsCount": 8,
             "rawScore": 0.5363897356891256,
-            "modelProbability": 10.341703245664569,
+            "modelProbability": 10.345521884009576,
             "positives": [
               "rating-edge"
             ],
@@ -208318,7 +208269,7 @@
             "daysSinceLastRun": 171,
             "recordsCount": 1,
             "rawScore": 0.5284503134610639,
-            "modelProbability": 9.97082408689931,
+            "modelProbability": 9.974505779390876,
             "positives": [],
             "negatives": [
               "weak-recent-form"
@@ -208365,7 +208316,7 @@
             "daysSinceLastRun": 161,
             "recordsCount": 26,
             "rawScore": 0.580733714578771,
-            "modelProbability": 12.68178716081232,
+            "modelProbability": 12.686469867092429,
             "positives": [
               "recent-form",
               "draw-edge"
@@ -208413,7 +208364,7 @@
             "daysSinceLastRun": 367,
             "recordsCount": 4,
             "rawScore": 0.5148674436179969,
-            "modelProbability": 9.366898478312862,
+            "modelProbability": 9.370357173351135,
             "positives": [],
             "negatives": []
           },
@@ -208458,7 +208409,7 @@
             "daysSinceLastRun": 234,
             "recordsCount": 1,
             "rawScore": 0.5051512745994229,
-            "modelProbability": 8.957468543619676,
+            "modelProbability": 8.960776058063121,
             "positives": [
               "draw-edge"
             ],
@@ -208495,7 +208446,7 @@
               "course": 0.33948913971421524,
               "distance": 0.28767020639483837,
               "class": 0.34931125205649627,
-              "going": 0.3150905602384594,
+              "going": 0.2752146362747502,
               "rating": 0.2777777777777778,
               "draw": 1,
               "weight": 0.7222222222222222,
@@ -208506,8 +208457,8 @@
             },
             "daysSinceLastRun": 168,
             "recordsCount": 17,
-            "rawScore": 0.5202277678275896,
-            "modelProbability": 9.60073374480739,
+            "rawScore": 0.5193903734243518,
+            "modelProbability": 9.567354126742316,
             "positives": [
               "draw-edge"
             ],
@@ -208556,7 +208507,7 @@
             "daysSinceLastRun": 178,
             "recordsCount": 39,
             "rawScore": 0.4469100080864882,
-            "modelProbability": 6.852255255683544,
+            "modelProbability": 6.8547854273629625,
             "positives": [
               "light-weight",
               "stable-body-weight"
@@ -208608,7 +208559,7 @@
             "daysSinceLastRun": 182,
             "recordsCount": 15,
             "rawScore": 0.4923092249849211,
-            "modelProbability": 8.44364620585083,
+            "modelProbability": 8.446763993163755,
             "positives": [
               "light-weight",
               "stable-body-weight"
@@ -208625,7 +208576,7 @@
         "raceName": "快捷讓賽",
         "distance": 1200,
         "className": "第四班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T20:10:00+08:00",
         "runners": [
@@ -208670,7 +208621,7 @@
             "daysSinceLastRun": 162,
             "recordsCount": 14,
             "rawScore": 0.5089026926163622,
-            "modelProbability": 8.366678746424574,
+            "modelProbability": 8.363681615797102,
             "positives": [
               "rating-edge"
             ],
@@ -208720,7 +208671,7 @@
             "daysSinceLastRun": 253,
             "recordsCount": 5,
             "rawScore": 0.57457838172501,
-            "modelProbability": 11.317669433706465,
+            "modelProbability": 11.313615192505216,
             "positives": [
               "rating-edge",
               "draw-edge",
@@ -208771,7 +208722,7 @@
             "daysSinceLastRun": 166,
             "recordsCount": 6,
             "rawScore": 0.561337699144948,
-            "modelProbability": 10.648915237093771,
+            "modelProbability": 10.645100558536871,
             "positives": [
               "rating-edge",
               "draw-edge"
@@ -208821,7 +208772,7 @@
             "daysSinceLastRun": 172,
             "recordsCount": 1,
             "rawScore": 0.5058934361993869,
-            "modelProbability": 8.251660243579991,
+            "modelProbability": 8.24870431514135,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -208872,7 +208823,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.5458133333333334,
-            "modelProbability": 9.914972105085635,
+            "modelProbability": 9.911420341301302,
             "positives": [
               "draw-edge"
             ],
@@ -208919,7 +208870,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.46963555555555553,
-            "modelProbability": 6.984044364236331,
+            "modelProbability": 6.981542524031623,
             "positives": [],
             "negatives": [
               "wide-or-bad-draw"
@@ -208954,7 +208905,7 @@
               "course": 0.34479448183793737,
               "distance": 0.4527007396742521,
               "class": 0.3921664003566601,
-              "going": 0.3921664003566601,
+              "going": 0.42798886131017133,
               "rating": 0.3888888888888889,
               "draw": 0.4,
               "weight": 0.6111111111111112,
@@ -208965,8 +208916,8 @@
             },
             "daysSinceLastRun": 172,
             "recordsCount": 14,
-            "rawScore": 0.47024251658099747,
-            "modelProbability": 7.003571207780884,
+            "rawScore": 0.47099478826102126,
+            "modelProbability": 7.025331163257173,
             "positives": [
               "stable-body-weight"
             ],
@@ -209005,7 +208956,7 @@
               "course": 0.34129938288358347,
               "distance": 0.26463761177995176,
               "class": 0.27927395680481987,
-              "going": 0.2783033414591653,
+              "going": 0.2940185149845575,
               "rating": 0.2777777777777778,
               "draw": 0.82,
               "weight": 0.7222222222222222,
@@ -209016,8 +208967,8 @@
             },
             "daysSinceLastRun": 274,
             "recordsCount": 8,
-            "rawScore": 0.46371224069075145,
-            "modelProbability": 6.7963175070009205,
+            "rawScore": 0.46400559059655877,
+            "modelProbability": 6.803056833631752,
             "positives": [
               "draw-edge"
             ],
@@ -209067,7 +209018,7 @@
             "daysSinceLastRun": 166,
             "recordsCount": 1,
             "rawScore": 0.5259206095469355,
-            "modelProbability": 9.04796091572084,
+            "modelProbability": 9.044719734650242,
             "positives": [
               "draw-edge"
             ],
@@ -209116,7 +209067,7 @@
             "daysSinceLastRun": 179,
             "recordsCount": 1,
             "rawScore": 0.5118740485241592,
-            "modelProbability": 8.481821603259565,
+            "modelProbability": 8.478783225896892,
             "positives": [
               "draw-edge",
               "light-weight"
@@ -209154,7 +209105,7 @@
               "course": 0.20603961030678927,
               "distance": 0.23079594246751559,
               "class": 0.21595870445344129,
-              "going": 0.20461225705224878,
+              "going": 0.20906176274653956,
               "rating": 0.16666666666666666,
               "draw": 0.62,
               "weight": 0.8333333333333334,
@@ -209165,8 +209116,8 @@
             },
             "daysSinceLastRun": 172,
             "recordsCount": 9,
-            "rawScore": 0.4309126979307239,
-            "modelProbability": 5.84451155835604,
+            "rawScore": 0.4310012196755893,
+            "modelProbability": 5.844797441346031,
             "positives": [
               "light-weight"
             ],
@@ -209217,7 +209168,7 @@
             "daysSinceLastRun": 197,
             "recordsCount": 16,
             "rawScore": 0.48049781029727806,
-            "modelProbability": 7.341877077754969,
+            "modelProbability": 7.339247053904431,
             "positives": [
               "light-weight"
             ],
@@ -209232,7 +209183,7 @@
         "raceName": "風馳讓賽",
         "distance": 1000,
         "className": "第四班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T20:40:00+08:00",
         "runners": [
@@ -209277,7 +209228,7 @@
             "daysSinceLastRun": 166,
             "recordsCount": 22,
             "rawScore": 0.5413976196319152,
-            "modelProbability": 9.290068498584802,
+            "modelProbability": 9.288487845469161,
             "positives": [
               "rating-edge"
             ],
@@ -209314,7 +209265,7 @@
               "course": 0.5272391096973499,
               "distance": 0.8478805585929905,
               "class": 0.8997502903025086,
-              "going": 0.38467223333839334,
+              "going": 0.39362119526411987,
               "rating": 0.9473684210526315,
               "draw": 0.45,
               "weight": 0.052631578947368474,
@@ -209325,8 +209276,8 @@
             },
             "daysSinceLastRun": 365,
             "recordsCount": 10,
-            "rawScore": 0.5344785156453927,
-            "modelProbability": 8.999041285493872,
+            "rawScore": 0.534666443845833,
+            "modelProbability": 9.005291587049951,
             "positives": [
               "course-distance",
               "rating-edge"
@@ -209376,7 +209327,7 @@
             "daysSinceLastRun": 183,
             "recordsCount": 4,
             "rawScore": 0.5528201704591219,
-            "modelProbability": 9.791255192026915,
+            "modelProbability": 9.78958926480284,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -209426,7 +209377,7 @@
             "daysSinceLastRun": 183,
             "recordsCount": 2,
             "rawScore": 0.502396103341184,
-            "modelProbability": 7.764320550515588,
+            "modelProbability": 7.762999494866657,
             "positives": [],
             "negatives": [
               "weak-recent-form",
@@ -209474,7 +209425,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.5257305263157895,
-            "modelProbability": 8.644102503470508,
+            "modelProbability": 8.64263175785048,
             "positives": [],
             "negatives": []
           },
@@ -209519,7 +209470,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.5060105263157896,
-            "modelProbability": 7.894491966814757,
+            "modelProbability": 7.893148763228513,
             "positives": [],
             "negatives": []
           },
@@ -209564,7 +209515,7 @@
             "daysSinceLastRun": 211,
             "recordsCount": 3,
             "rawScore": 0.4542445460780923,
-            "modelProbability": 6.22169133014956,
+            "modelProbability": 6.220632744221258,
             "positives": [],
             "negatives": [
               "weak-recent-form",
@@ -209612,7 +209563,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.5093178947368422,
-            "modelProbability": 8.015516227405914,
+            "modelProbability": 8.014152432219662,
             "positives": [],
             "negatives": []
           },
@@ -209657,7 +209608,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.49075789473684217,
-            "modelProbability": 7.359582397410762,
+            "modelProbability": 7.358330205691393,
             "positives": [],
             "negatives": []
           },
@@ -209702,7 +209653,7 @@
             "daysSinceLastRun": 199,
             "recordsCount": 21,
             "rawScore": 0.5364107889068251,
-            "modelProbability": 9.079385415735292,
+            "modelProbability": 9.077840609166032,
             "positives": [],
             "negatives": []
           },
@@ -209735,7 +209686,7 @@
               "course": 0.4969827122663043,
               "distance": 0.5037016243406314,
               "class": 0.3192239133448537,
-              "going": 0.5126754479269879,
+              "going": 0.5052680491285149,
               "rating": 0,
               "draw": 0.62,
               "weight": 1,
@@ -209746,8 +209697,8 @@
             },
             "daysSinceLastRun": 172,
             "recordsCount": 15,
-            "rawScore": 0.5257616803482571,
-            "modelProbability": 8.645341366028399,
+            "rawScore": 0.5256061249734891,
+            "modelProbability": 8.637687459701507,
             "positives": [
               "course-distance",
               "light-weight"
@@ -209785,7 +209736,7 @@
               "course": 0.5,
               "distance": 0.4955822498373002,
               "class": 0.45393091948399367,
-              "going": 0.45393091948399367,
+              "going": 0.4955822498373002,
               "rating": 0,
               "draw": 0.78,
               "weight": 1,
@@ -209796,8 +209747,8 @@
             },
             "daysSinceLastRun": 169,
             "recordsCount": 3,
-            "rawScore": 0.5167740330800061,
-            "modelProbability": 8.295203266363629,
+            "rawScore": 0.5171777305895844,
+            "modelProbability": 8.309207835732543,
             "positives": [
               "light-weight",
               "stable-body-weight"
@@ -209813,7 +209764,7 @@
         "raceName": "浪琴錦標（讓賽）",
         "distance": 1000,
         "className": "第二班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T21:10:00+08:00",
         "runners": [
@@ -209846,7 +209797,7 @@
               "course": 0.9525412607362389,
               "distance": 0.7575516911803061,
               "class": 0.604013143689495,
-              "going": 0.5412182643175151,
+              "going": 0.5637298789184522,
               "rating": 1,
               "draw": 0.45,
               "weight": 0,
@@ -209857,8 +209808,8 @@
             },
             "daysSinceLastRun": 176,
             "recordsCount": 20,
-            "rawScore": 0.599101610835751,
-            "modelProbability": 12.004503677309671,
+            "rawScore": 0.5995743547423708,
+            "modelProbability": 12.043668545982825,
             "positives": [
               "course-distance",
               "rating-edge",
@@ -209897,7 +209848,7 @@
               "course": 0.6021494275031745,
               "distance": 0.30879999999999996,
               "class": 0.5,
-              "going": 0.7262253160343295,
+              "going": 0.5547304690930386,
               "rating": 0.391304347826087,
               "draw": 0.78,
               "weight": 0.7,
@@ -209908,8 +209859,8 @@
             },
             "daysSinceLastRun": 169,
             "recordsCount": 21,
-            "rawScore": 0.5770522005479459,
-            "modelProbability": 10.846631798745394,
+            "rawScore": 0.5734508087621788,
+            "modelProbability": 10.67997805197524,
             "positives": [
               "recent-form"
             ],
@@ -209946,7 +209897,7 @@
               "course": 0.4945351243428247,
               "distance": 0.540378003590794,
               "class": 0.3168748224077244,
-              "going": 0.38168101547501704,
+              "going": 0.41072433459127067,
               "rating": 0.30434782608695654,
               "draw": 0.78,
               "weight": 0.8,
@@ -209957,8 +209908,8 @@
             },
             "daysSinceLastRun": 166,
             "recordsCount": 34,
-            "rawScore": 0.5262435778808016,
-            "modelProbability": 8.586016866573827,
+            "rawScore": 0.5268534875822429,
+            "modelProbability": 8.619465717651853,
             "positives": [
               "course-distance",
               "light-weight",
@@ -209997,7 +209948,7 @@
               "course": 0.6305727798739987,
               "distance": 0.6388748521134806,
               "class": 0.3471886159900312,
-              "going": 0.5390385051188974,
+              "going": 0.5603107759671697,
               "rating": 0.2608695652173913,
               "draw": 0.62,
               "weight": 0.85,
@@ -210008,8 +209959,8 @@
             },
             "daysSinceLastRun": 183,
             "recordsCount": 14,
-            "rawScore": 0.5505786540888411,
-            "modelProbability": 9.603007059446435,
+            "rawScore": 0.5510253717766549,
+            "modelProbability": 9.633183650681577,
             "positives": [
               "course-distance",
               "light-weight"
@@ -210057,7 +210008,7 @@
             "daysSinceLastRun": 197,
             "recordsCount": 10,
             "rawScore": 0.6030423524954456,
-            "modelProbability": 12.224098587337192,
+            "modelProbability": 12.237339344558222,
             "positives": [
               "recent-form",
               "light-weight",
@@ -210106,7 +210057,7 @@
             "daysSinceLastRun": 176,
             "recordsCount": 27,
             "rawScore": 0.5077699674957599,
-            "modelProbability": 7.886530674690329,
+            "modelProbability": 7.895073115446487,
             "positives": [
               "light-weight",
               "stable-body-weight"
@@ -210157,7 +210108,7 @@
             "daysSinceLastRun": 306,
             "recordsCount": 23,
             "rawScore": 0.49262731328234205,
-            "modelProbability": 7.3558809097726146,
+            "modelProbability": 7.363848567475735,
             "positives": [
               "light-weight"
             ],
@@ -210207,7 +210158,7 @@
             "daysSinceLastRun": 183,
             "recordsCount": 8,
             "rawScore": 0.5774103493979236,
-            "modelProbability": 10.864516186870539,
+            "modelProbability": 10.876284287407891,
             "positives": [
               "course-distance",
               "light-weight",
@@ -210258,7 +210209,7 @@
             "daysSinceLastRun": 176,
             "recordsCount": 5,
             "rawScore": 0.5856481145174401,
-            "modelProbability": 11.28411294907953,
+            "modelProbability": 11.296335543567455,
             "positives": [
               "recent-form",
               "course-distance",
@@ -210310,7 +210261,7 @@
             "daysSinceLastRun": 176,
             "recordsCount": 21,
             "rawScore": 0.54465108690264,
-            "modelProbability": 9.344701290174461,
+            "modelProbability": 9.354823175252712,
             "positives": [
               "course-distance",
               "light-weight",
@@ -210327,7 +210278,7 @@
         "raceName": "快捷讓賽",
         "distance": 1200,
         "className": "第四班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T21:40:00+08:00",
         "runners": [
@@ -210372,7 +210323,7 @@
             "daysSinceLastRun": 162,
             "recordsCount": 40,
             "rawScore": 0.5140641210863319,
-            "modelProbability": 8.536293766205565,
+            "modelProbability": 8.525144496905378,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -210411,7 +210362,7 @@
               "course": 0.5,
               "distance": 0.5592310260202044,
               "class": 0.5592310260202044,
-              "going": 0.5592310260202044,
+              "going": 0.6266984689985532,
               "rating": 0.9444444444444444,
               "draw": 0.92,
               "weight": 0.05555555555555558,
@@ -210422,8 +210373,8 @@
             },
             "daysSinceLastRun": 172,
             "recordsCount": 6,
-            "rawScore": 0.5723831016349966,
-            "modelProbability": 11.162882798838998,
+            "rawScore": 0.5734457138619057,
+            "modelProbability": 11.202929421329152,
             "positives": [
               "rating-edge",
               "draw-edge"
@@ -210473,7 +210424,7 @@
             "daysSinceLastRun": 176,
             "recordsCount": 12,
             "rawScore": 0.5381324947725804,
-            "modelProbability": 9.53568853084805,
+            "modelProbability": 9.523233950171125,
             "positives": [
               "draw-edge",
               "stable-body-weight"
@@ -210524,7 +210475,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.4996274871794872,
-            "modelProbability": 7.987824240809395,
+            "modelProbability": 7.977391328585131,
             "positives": [],
             "negatives": [
               "wide-or-bad-draw"
@@ -210559,7 +210510,7 @@
               "course": 0.5,
               "distance": 0.20828043400295543,
               "class": 0.20828043400295543,
-              "going": 0.20828043400295543,
+              "going": 0.5,
               "rating": 0.5555555555555556,
               "draw": 0.82,
               "weight": 0.4444444444444444,
@@ -210570,8 +210521,8 @@
             },
             "daysSinceLastRun": 169,
             "recordsCount": 2,
-            "rawScore": 0.5333703985157111,
-            "modelProbability": 9.32907441377547,
+            "rawScore": 0.5354124354776905,
+            "modelProbability": 9.404819014336748,
             "positives": [
               "draw-edge",
               "stable-body-weight"
@@ -210621,7 +210572,7 @@
             "daysSinceLastRun": 263,
             "recordsCount": 1,
             "rawScore": 0.4917967914137646,
-            "modelProbability": 7.705213763657959,
+            "modelProbability": 7.695149969508015,
             "positives": [
               "draw-edge"
             ],
@@ -210670,7 +210621,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.45038222222222224,
-            "modelProbability": 6.368667051494604,
+            "modelProbability": 6.3603489235124755,
             "positives": [],
             "negatives": [
               "wide-or-bad-draw"
@@ -210717,7 +210668,7 @@
             "daysSinceLastRun": 199,
             "recordsCount": 24,
             "rawScore": 0.5308335661490524,
-            "modelProbability": 9.220842175741108,
+            "modelProbability": 9.208798816479167,
             "positives": [
               "draw-edge",
               "stable-body-weight"
@@ -210755,7 +210706,7 @@
               "course": 0.25335474844968403,
               "distance": 0.26862729018956505,
               "class": 0.2592892997532523,
-              "going": 0.2688866790801547,
+              "going": 0.266776541774482,
               "rating": 0.2777777777777778,
               "draw": 0.24,
               "weight": 0.7222222222222222,
@@ -210766,8 +210717,8 @@
             },
             "daysSinceLastRun": 169,
             "recordsCount": 10,
-            "rawScore": 0.4207480741307526,
-            "modelProbability": 5.557081789007777,
+            "rawScore": 0.42070376124733344,
+            "modelProbability": 5.548692517378781,
             "positives": [
               "stable-body-weight"
             ],
@@ -210818,7 +210769,7 @@
             "daysSinceLastRun": 288,
             "recordsCount": 11,
             "rawScore": 0.5495097524537894,
-            "modelProbability": 10.04803238419619,
+            "modelProbability": 10.034908630251367,
             "positives": [
               "course-distance",
               "light-weight"
@@ -210856,7 +210807,7 @@
               "course": 0.3357647955908728,
               "distance": 0.2560499668709488,
               "class": 0.2579581793918947,
-              "going": 0.2501539329934484,
+              "going": 0.2570521662815301,
               "rating": 0.05555555555555555,
               "draw": 0.92,
               "weight": 0.9444444444444444,
@@ -210867,8 +210818,8 @@
             },
             "daysSinceLastRun": 162,
             "recordsCount": 10,
-            "rawScore": 0.48855637762770016,
-            "modelProbability": 7.591212349318704,
+            "rawScore": 0.48870124052674985,
+            "modelProbability": 7.58635108038086,
             "positives": [
               "draw-edge",
               "light-weight"
@@ -210908,7 +210859,7 @@
               "course": 0.372869203054747,
               "distance": 0.38245158280715247,
               "class": 0.4022584954492055,
-              "going": 0.34959706639898774,
+              "going": 0.32592817733616875,
               "rating": 0,
               "draw": 0.62,
               "weight": 1,
@@ -210919,8 +210870,8 @@
             },
             "daysSinceLastRun": 242,
             "recordsCount": 23,
-            "rawScore": 0.46959635144967593,
-            "modelProbability": 6.957186736106169,
+            "rawScore": 0.4690993047793567,
+            "modelProbability": 6.932231851161795,
             "positives": [
               "light-weight",
               "stable-body-weight"
@@ -210938,7 +210889,7 @@
         "raceName": "飛行讓賽",
         "distance": 1200,
         "className": "第三班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T22:15:00+08:00",
         "runners": [
@@ -211530,7 +211481,7 @@
         "raceName": "凱歌讓賽",
         "distance": 1650,
         "className": "第三班",
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄",
         "postTime": "2026-10-21T22:50:00+08:00",
         "runners": [
@@ -211575,7 +211526,7 @@
             "daysSinceLastRun": 179,
             "recordsCount": 18,
             "rawScore": 0.5577763570285231,
-            "modelProbability": 9.300579032141645,
+            "modelProbability": 9.300134315456704,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -211614,7 +211565,7 @@
               "course": 0.5,
               "distance": 0.5868357710510936,
               "class": 0.4951644372713957,
-              "going": 0.44780201835220007,
+              "going": 0.479108845381488,
               "rating": 0.8888888888888888,
               "draw": 1,
               "weight": 0.11111111111111116,
@@ -211625,8 +211576,8 @@
             },
             "daysSinceLastRun": 172,
             "recordsCount": 17,
-            "rawScore": 0.5943854804074319,
-            "modelProbability": 11.006418771376364,
+            "rawScore": 0.5950429237750469,
+            "modelProbability": 11.039227323775332,
             "positives": [
               "rating-edge",
               "draw-edge",
@@ -211665,7 +211616,7 @@
               "course": 0.2144,
               "distance": 0.6431446325691812,
               "class": 0.5766893268318874,
-              "going": 0.5766893268318874,
+              "going": 0.5596306624917964,
               "rating": 0.8333333333333334,
               "draw": 0.58,
               "weight": 0.16666666666666663,
@@ -211676,8 +211627,8 @@
             },
             "daysSinceLastRun": 179,
             "recordsCount": 13,
-            "rawScore": 0.5437906896778992,
-            "modelProbability": 8.721075695852068,
+            "rawScore": 0.5434324577267573,
+            "modelProbability": 8.70630003707853,
             "positives": [
               "rating-edge",
               "stable-body-weight"
@@ -211713,7 +211664,7 @@
               "course": 0.5165307311622411,
               "distance": 0.5234288333073943,
               "class": 0.4814635331781061,
-              "going": 0.5352814615000288,
+              "going": 0.49843569140950583,
               "rating": 0.6666666666666666,
               "draw": 1,
               "weight": 0.33333333333333337,
@@ -211724,8 +211675,8 @@
             },
             "daysSinceLastRun": 176,
             "recordsCount": 23,
-            "rawScore": 0.5905269807822732,
-            "modelProbability": 10.812788229960745,
+            "rawScore": 0.5897532196103722,
+            "modelProbability": 10.773855480637527,
             "positives": [
               "draw-edge",
               "stable-body-weight"
@@ -211761,7 +211712,7 @@
               "course": 0.29185220138999124,
               "distance": 0.22289844718999244,
               "class": 0.43708665350927084,
-              "going": 0.48622470052665395,
+              "going": 0.5105346528314311,
               "rating": 0.4444444444444444,
               "draw": 0.58,
               "weight": 0.5555555555555556,
@@ -211772,8 +211723,8 @@
             },
             "daysSinceLastRun": 172,
             "recordsCount": 19,
-            "rawScore": 0.4780325797030766,
-            "modelProbability": 6.444681931975217,
+            "rawScore": 0.47854308870147694,
+            "modelProbability": 6.4595251459426715,
             "positives": [
               "stable-body-weight"
             ],
@@ -211822,7 +211773,7 @@
             "daysSinceLastRun": 183,
             "recordsCount": 25,
             "rawScore": 0.49742744308985876,
-            "modelProbability": 7.046081562887724,
+            "modelProbability": 7.045744647301754,
             "positives": [
               "course-distance"
             ],
@@ -211872,7 +211823,7 @@
             "daysSinceLastRun": 190,
             "recordsCount": 15,
             "rawScore": 0.4848776238666596,
-            "modelProbability": 6.650835508802384,
+            "modelProbability": 6.650517492310149,
             "positives": [
               "course-distance",
               "stable-body-weight"
@@ -211922,7 +211873,7 @@
             "daysSinceLastRun": null,
             "recordsCount": 0,
             "rawScore": 0.4370044444444444,
-            "modelProbability": 5.336264422648435,
+            "modelProbability": 5.3360092637152325,
             "positives": [],
             "negatives": [
               "wide-or-bad-draw"
@@ -211957,7 +211908,7 @@
               "course": 0.5042798170776017,
               "distance": 0.46364116085419826,
               "class": 0.4884929207155531,
-              "going": 0.46291525880295464,
+              "going": 0.46008819316030214,
               "rating": 0.2777777777777778,
               "draw": 1,
               "weight": 0.7222222222222222,
@@ -211968,8 +211919,8 @@
             },
             "daysSinceLastRun": 172,
             "recordsCount": 22,
-            "rawScore": 0.559098838183284,
-            "modelProbability": 9.357330745476554,
+            "rawScore": 0.5590394698047884,
+            "modelProbability": 9.35432835028495,
             "positives": [
               "draw-edge",
               "stable-body-weight"
@@ -212017,7 +211968,7 @@
             "daysSinceLastRun": 193,
             "recordsCount": 10,
             "rawScore": 0.5293528711197144,
-            "modelProbability": 8.160689186676949,
+            "modelProbability": 8.16029897498912,
             "positives": [
               "course-distance"
             ],
@@ -212052,7 +212003,7 @@
               "course": 0.34151101989417865,
               "distance": 0.3476579348458924,
               "class": 0.30673968036316934,
-              "going": 0.30247339202821366,
+              "going": 0.3227587404170573,
               "rating": 0,
               "draw": 0.84,
               "weight": 1,
@@ -212063,8 +212014,8 @@
             },
             "daysSinceLastRun": 176,
             "recordsCount": 33,
-            "rawScore": 0.4598207104701472,
-            "modelProbability": 5.926777758069248,
+            "rawScore": 0.46024670278631297,
+            "modelProbability": 5.938119098006084,
             "positives": [
               "draw-edge",
               "light-weight"
@@ -212116,7 +212067,7 @@
             "daysSinceLastRun": 190,
             "recordsCount": 14,
             "rawScore": 0.5988825994516996,
-            "modelProbability": 11.236477154132679,
+            "modelProbability": 11.235939870501936,
             "positives": [
               "recent-form",
               "course-distance",

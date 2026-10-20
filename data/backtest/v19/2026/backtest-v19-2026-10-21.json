@@ -10,25 +10,25 @@
         "titleBlock": "第 1 場",
         "className": "第四班",
         "distance": 1650,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
-      "fieldSize": 11,
+      "fieldSize": 10,
       "proTop3": [
         {
-          "no": "9",
-          "name": "創科群英",
-          "prob": 14.33
+          "no": "2",
+          "name": "本領非凡",
+          "prob": 14.01
         },
         {
           "no": "11",
           "name": "幸福約定",
-          "prob": 12.38
+          "prob": 13.78
         },
         {
-          "no": "2",
-          "name": "本領非凡",
-          "prob": 11.42
+          "no": "6",
+          "name": "部族高手",
+          "prob": 11.79
         }
       ],
       "recommendations": {
@@ -36,10 +36,10 @@
         "tiers": [],
         "reasons": [],
         "v12RiskFlags": [
-          "v9-gate-skip"
+          "low-t2-rel:0.33"
         ],
         "v13RiskFlags": [
-          "days-out-of-range:217"
+          "days-out-of-range:182"
         ]
       },
       "recommend": null,
@@ -59,7 +59,7 @@
         "titleBlock": "第 2 場",
         "className": "第五班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
       "fieldSize": 12,
@@ -81,61 +81,23 @@
         }
       ],
       "recommendations": {
-        "action": "play",
-        "tiers": [
-          "v12-banker"
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
         ],
-        "reasons": [
-          "v12-banker"
-        ],
-        "v12RiskFlags": [],
         "v13RiskFlags": [
           "v9-t1-prob<18%",
           "days-out-of-range:161"
         ]
       },
-      "recommend": {
-        "bets": [
-          {
-            "source": "v12",
-            "tier": "banker",
-            "t1": "9",
-            "t2": "1",
-            "t3": "11",
-            "stakeMultiplier": 0.5
-          }
-        ],
-        "qinT12": {
-          "combo": "9,1",
-          "label": "9-1"
-        }
-      },
+      "recommend": null,
       "actualTop3": [],
-      "model": "v19",
-      "v18": {
-        "tier": "A",
-        "score": 1.5,
-        "stakeMul": 1,
-        "reasons": [
-          "j-elite=15.1%",
-          "draw=2"
-        ],
-        "flags": [],
-        "jtCombo": "unknown",
-        "jWinRate": 0.1509433962264151,
-        "tWinRate": 0.08372827804107424,
-        "draw": 2,
-        "class": 5,
-        "lastBodyWeight": 1085,
-        "bodyDelta": -1
-      },
+      "model": "v19-skip",
       "v19": {
-        "action": "play",
-        "tier": "A",
-        "stakeMul": 1,
-        "boost": null,
-        "v18Tier": "A",
-        "v18Score": 1.5
+        "action": "skip",
+        "reason": "no-pick"
       }
     },
     {
@@ -144,7 +106,7 @@
         "titleBlock": "第 3 場",
         "className": "第四班",
         "distance": 1650,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
       "fieldSize": 10,
@@ -162,7 +124,7 @@
         {
           "no": "5",
           "name": "先到先得",
-          "prob": 11.39
+          "prob": 11.4
         }
       ],
       "recommendations": {
@@ -194,7 +156,7 @@
         "titleBlock": "第 4 場",
         "className": "第四班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
       "fieldSize": 12,
@@ -207,7 +169,7 @@
         {
           "no": "2",
           "name": "多多好馬",
-          "prob": 11.06
+          "prob": 11.05
         },
         {
           "no": "3",
@@ -244,7 +206,7 @@
         "titleBlock": "第 5 場",
         "className": "第四班",
         "distance": 1000,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
       "fieldSize": 12,
@@ -252,17 +214,17 @@
         {
           "no": "12",
           "name": "馬運高",
-          "prob": 11.01
+          "prob": 11.03
         },
         {
           "no": "10",
           "name": "超強六十",
-          "prob": 10.8
+          "prob": 10.79
         },
         {
           "no": "11",
           "name": "皇金合",
-          "prob": 10.57
+          "prob": 10.56
         }
       ],
       "recommendations": {
@@ -295,7 +257,7 @@
         "titleBlock": "第 6 場",
         "className": "第二班",
         "distance": 1000,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
       "fieldSize": 10,
@@ -303,17 +265,17 @@
         {
           "no": "9",
           "name": "好評如潮",
-          "prob": 13.63
+          "prob": 13.65
         },
         {
           "no": "5",
           "name": "俏眼光",
-          "prob": 12.97
+          "prob": 12.99
         },
         {
           "no": "2",
           "name": "樂勝天下",
-          "prob": 11.98
+          "prob": 11.8
         }
       ],
       "recommendations": {
@@ -344,7 +306,7 @@
         "titleBlock": "第 7 場",
         "className": "第四班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
       "fieldSize": 12,
@@ -352,17 +314,17 @@
         {
           "no": "2",
           "name": "賢知友您",
-          "prob": 10.79
+          "prob": 10.83
         },
         {
           "no": "10",
           "name": "飛躍成就",
-          "prob": 10.77
+          "prob": 10.75
         },
         {
           "no": "3",
           "name": "合夥飛馳",
-          "prob": 10.34
+          "prob": 10.32
         }
       ],
       "recommendations": {
@@ -392,7 +354,7 @@
         "titleBlock": "第 8 場",
         "className": "第三班",
         "distance": 1200,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
       "fieldSize": 12,
@@ -439,7 +401,7 @@
         "titleBlock": "第 9 場",
         "className": "第三班",
         "distance": 1650,
-        "going": "",
+        "going": "好地",
         "course": "草地 - \"B\" 賽道 - 向後移欄"
       },
       "fieldSize": 12,
@@ -452,7 +414,7 @@
         {
           "no": "4",
           "name": "一定掂",
-          "prob": 10.69
+          "prob": 10.65
         },
         {
           "no": "9",
