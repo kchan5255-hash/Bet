@@ -1,0 +1,400 @@
+{
+  "date": "2026-10-28",
+  "venue": "ST",
+  "model": "v18",
+  "mode": "pre",
+  "races": [
+    {
+      "raceNo": 1,
+      "meta": {
+        "titleBlock": "第 1 場",
+        "className": "第五班",
+        "distance": 1650,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 11,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "光輝歲月",
+          "prob": 11.87
+        },
+        {
+          "no": "6",
+          "name": "喜行",
+          "prob": 11.2
+        },
+        {
+          "no": "7",
+          "name": "巴閉佬",
+          "prob": 9.95
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-top1-shape:0.55"
+        ],
+        "v13RiskFlags": [
+          "days-out-of-range:175"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 2,
+      "meta": {
+        "titleBlock": "第 2 場",
+        "className": "第五班",
+        "distance": 1650,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "6",
+          "name": "悠悠乾坤",
+          "prob": 9.66
+        },
+        {
+          "no": "4",
+          "name": "全神貫注",
+          "prob": 9.18
+        },
+        {
+          "no": "8",
+          "name": "架勢奇爸",
+          "prob": 9.17
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:182"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 3,
+      "meta": {
+        "titleBlock": "第 3 場",
+        "className": "第五班",
+        "distance": 1200,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "3",
+          "name": "觀萬物",
+          "prob": 9.48
+        },
+        {
+          "no": "7",
+          "name": "勇者無敵",
+          "prob": 9.28
+        },
+        {
+          "no": "2",
+          "name": "天外富天",
+          "prob": 9.21
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:178"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 4,
+      "meta": {
+        "titleBlock": "第 4 場",
+        "className": "第四班",
+        "distance": 1800,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "精明選擇",
+          "prob": 10.82
+        },
+        {
+          "no": "3",
+          "name": "佳登",
+          "prob": 10.62
+        },
+        {
+          "no": "7",
+          "name": "步風雷",
+          "prob": 10.45
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "days-out-of-range:175"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 5,
+      "meta": {
+        "titleBlock": "第 5 場",
+        "className": "第四班",
+        "distance": 1200,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "5",
+          "name": "應龍飛影",
+          "prob": 11.09
+        },
+        {
+          "no": "9",
+          "name": "天天更好",
+          "prob": 11.04
+        },
+        {
+          "no": "8",
+          "name": "寶成智好",
+          "prob": 10.9
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-body-rel:0.46"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:178"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 6,
+      "meta": {
+        "titleBlock": "第 6 場",
+        "className": "第四班",
+        "distance": 1650,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "開心宇宙",
+          "prob": 8.86
+        },
+        {
+          "no": "7",
+          "name": "加州星馳",
+          "prob": 8.71
+        },
+        {
+          "no": "5",
+          "name": "午夜快車",
+          "prob": 8.38
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:175"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 7,
+      "meta": {
+        "titleBlock": "第 7 場",
+        "className": "第四班",
+        "distance": 1200,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "可靠大師",
+          "prob": 10.04
+        },
+        {
+          "no": "12",
+          "name": "天下寵兒",
+          "prob": 9.85
+        },
+        {
+          "no": "10",
+          "name": "魅力星",
+          "prob": 9.56
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:182"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 8,
+      "meta": {
+        "titleBlock": "第 8 場",
+        "className": "第三班",
+        "distance": 1200,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 12,
+      "proTop3": [
+        {
+          "no": "11",
+          "name": "大番薯",
+          "prob": 11.31
+        },
+        {
+          "no": "9",
+          "name": "赤海",
+          "prob": 10.8
+        },
+        {
+          "no": "6",
+          "name": "富心星",
+          "prob": 9.81
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "low-v9-t1-prob:14.0%",
+          "low-t2-rel:0.46",
+          "low-top1-shape:0.62"
+        ],
+        "v13RiskFlags": [
+          "v9-t1-prob<18%",
+          "days-out-of-range:175"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    },
+    {
+      "raceNo": 9,
+      "meta": {
+        "titleBlock": "第 9 場",
+        "className": "第三班",
+        "distance": 1650,
+        "going": "",
+        "course": "全天候跑道"
+      },
+      "fieldSize": 14,
+      "proTop3": [
+        {
+          "no": "1",
+          "name": "喜尊龍",
+          "prob": 8.85
+        },
+        {
+          "no": "4",
+          "name": "滿心星",
+          "prob": 8.66
+        },
+        {
+          "no": "6",
+          "name": "皇龍飛將",
+          "prob": 8.35
+        }
+      ],
+      "recommendations": {
+        "action": "skip",
+        "tiers": [],
+        "reasons": [],
+        "v12RiskFlags": [
+          "v9-gate-skip"
+        ],
+        "v13RiskFlags": [
+          "no-consensus",
+          "v9-t1-prob<18%",
+          "days-out-of-range:220"
+        ]
+      },
+      "recommend": null,
+      "actualTop3": [],
+      "model": "v18-skip"
+    }
+  ]
+}
