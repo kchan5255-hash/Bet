@@ -128546,8 +128546,8 @@
     "2026-11-22": {
       "date": "2026-11-22",
       "venue": "ST",
-      "mode": "pre",
-      "generatedAt": "2026-11-20T18:12:42.937Z",
+      "mode": "post",
+      "generatedAt": "2026-11-22T12:19:27.757Z",
       "races": [
         {
           "raceNo": 1,
@@ -128593,7 +128593,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "6",
+            "12",
+            "2"
+          ]
         },
         {
           "raceNo": 2,
@@ -128639,7 +128643,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "10",
+            "14",
+            "11"
+          ]
         },
         {
           "raceNo": 3,
@@ -128685,7 +128693,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "3",
+            "8",
+            "4"
+          ]
         },
         {
           "raceNo": 4,
@@ -128731,7 +128743,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "8",
+            "12",
+            "4"
+          ]
         },
         {
           "raceNo": 5,
@@ -128777,7 +128793,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "9",
+            "1",
+            "2"
+          ]
         },
         {
           "raceNo": 6,
@@ -128823,7 +128843,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "4",
+            "7",
+            "9"
+          ]
         },
         {
           "raceNo": 7,
@@ -128869,7 +128893,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "1",
+            "2",
+            "4"
+          ]
         },
         {
           "raceNo": 8,
@@ -128915,7 +128943,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "1",
+            "8",
+            "3"
+          ]
         },
         {
           "raceNo": 9,
@@ -128961,7 +128993,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "6",
+            "10",
+            "2"
+          ]
         },
         {
           "raceNo": 10,
@@ -129007,7 +129043,11 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "3",
+            "5",
+            "10"
+          ]
         },
         {
           "raceNo": 11,
@@ -129057,11 +129097,15 @@
             "boost": null
           },
           "recommend": null,
-          "actualTop3": []
+          "actualTop3": [
+            "8",
+            "7",
+            "3"
+          ]
         }
       ]
     }
   },
-  "generatedAt": "2026-11-20T18:12:43.026Z",
+  "generatedAt": "2026-11-22T12:19:27.881Z",
   "notes": "V19 = V18 + distance filter (skip 1000/1650/2000+/unknown, +1.5 boost for 1400/1600). 11 races / 0 play (S=0 A=0 B=0). 三年連贏膽拖 ROI +52.6% / 盈虧 +$64,076 / 三年皆正 (2024 +38% / 2025 +64% / 2026 +57%)."
 }
